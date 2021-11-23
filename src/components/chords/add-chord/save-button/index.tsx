@@ -8,7 +8,7 @@ const SaveButton: React.FC = observer(() => {
 
     return (
 
-        <CellButton centered > 
+        <CellButton centered onClick={Store.saveChord}> 
                 Сохранить аккорд
         </CellButton>
     )

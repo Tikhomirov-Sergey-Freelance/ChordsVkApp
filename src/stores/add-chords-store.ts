@@ -5,6 +5,9 @@ import { notes } from '../code/data/notes'
 import { getOuterBindingIdentifiers } from '@babel/types'
 
 import ChordCanvas from '../code/canvas/chord'
+import GlobalStore from './global-store'
+import { collection, addDoc } from '@firebase/firestore'
+import { snackbar } from '../code/common/alerts'
 
 type Mode = 'add' | 'edit'
 
@@ -50,6 +53,8 @@ export class AddChordsStore implements iParams {
 
         this.fillParams(params)
         makeAutoObservable(this, undefined, { deep: true })
+
+        this.saveChord = this.saveChord.bind(this)
     }
 
     fillParams(params: iParams) {
@@ -98,8 +103,15 @@ export class AddChordsStore implements iParams {
         }
     }
 
-    saveChord() {
+    async saveChord() {
+        
+        const firestore = GlobalStore.firestore
 
+        const result = await addDoc(collection(firestore, `chords/${this.note}/${this.name}`), this.chordParams)
+        console.log(result)
+        
+        snackbar('Добавили аккорд')
+        this.fillParams(defauiltParams) 
     }
 
     get chordParams(): iParams {
