@@ -1,0 +1,135 @@
+{
+  "errors": [
+    "./node_modules/@vkontakte/vkui/dist/components/AppRoot/AppRootPortal.js\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\components\\AppRoot'\n @ ./node_modules/@vkontakte/vkui/dist/components/AppRoot/AppRootPortal.js 3:0-41 13:47-59\n @ ./node_modules/@vkontakte/vkui/dist/components/Root/Root.js\n @ ./node_modules/@vkontakte/vkui/dist/index.js\n @ ./src/client.tsx\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client",
+    "./node_modules/@vkontakte/vkui/dist/components/Tooltip/Tooltip.js\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\components\\Tooltip'\n @ ./node_modules/@vkontakte/vkui/dist/components/Tooltip/Tooltip.js 9:0-33 201:100-108\n @ ./node_modules/@vkontakte/vkui/dist/index.js\n @ ./src/client.tsx\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client",
+    "./node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mobx-react-lite\\es\\utils'\n @ ./node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js 1:0-52 1:0-52\n @ ./node_modules/mobx-react-lite/es/index.js\n @ ./src/components/navigation/mobile/index.tsx\n @ ./src/components/views/view-list.tsx\n @ ./src/app.tsx\n @ ./src/client.tsx\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client",
+    "./src/client.tsx\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src'\n @ ./src/client.tsx 6:0-36 13:2-9\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client"
+  ],
+  "warnings": [],
+  "version": "4.30.0",
+  "hash": "b11d9cdba82121b1d377",
+  "publicPath": "/",
+  "outputPath": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\dist",
+  "assetsByChunkName": {
+    "main": [
+      "main.css",
+      "main.js",
+      "main.css.map",
+      "main.js.map"
+    ]
+  },
+  "assets": [
+    {
+      "name": "main.css",
+      "size": 214884,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": false
+    },
+    {
+      "name": "main.css.map",
+      "size": 261090,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": false
+    },
+    {
+      "name": "main.js",
+      "size": 11615446,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": false
+    },
+    {
+      "name": "main.js.map",
+      "size": 8062326,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "main.css",
+        "main.js",
+        "main.css.map",
+        "main.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "main.css",
+        "main.js",
+        "main.css.map",
+        "main.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\dist",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!node_modules/postcss-loader/src/index.js??ref--5-3!node_modules/@vkontakte/vkui/dist/vkui.css"
+    }
+  ]
+}

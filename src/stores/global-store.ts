@@ -46,5 +46,5 @@ export class GlobalStore {
     }
 }
   
-const store = (window as any).store = new GlobalStore()
-export default store
+var globalStore =  new GlobalStore()  
+export default globalStore

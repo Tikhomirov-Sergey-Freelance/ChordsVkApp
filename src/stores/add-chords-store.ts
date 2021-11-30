@@ -63,7 +63,7 @@ export class AddChordsStore implements iParams {
             this[prop as keyof this] = params[prop as keyof iParams] as any
         }
 
-        if (!this.guitarStrings?.length) {
+        if (!this.guitarStrings.length) {
             this.fillStrings()
         }
     }

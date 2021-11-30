@@ -1,5 +1,8 @@
 import React from 'react'
 import { AppRoot, Panel, View } from '@vkontakte/vkui'
+import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui'
+
+declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
@@ -10,13 +13,10 @@ import Snackbar from './components/common/dialogs/snackbar'
 const App: React.FC = () => {
 
   return (
-    <AppRoot>
 
-      <Layout >
-        <ViewList />
-      </Layout>
-
-    </AppRoot>
+    <Layout >
+      <ViewList />
+    </Layout>
   )
 }
 
