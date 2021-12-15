@@ -27,7 +27,7 @@ const config: Configuration = {
     },
     resolve: {
         modules: ['src', 'node_modules'],
-        alias: { 'react-dom': '@hot-loader/react-dom' },
+        alias: {  },
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
         plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },

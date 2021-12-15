@@ -144,18 +144,19 @@ module.exports = function(originalModule) {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vkontakte/vkui/dist/vkui.css */ "./node_modules/@vkontakte/vkui/dist/vkui.css");
-/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_layout_page_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/layout/page-layout */ "./src/components/layout/page-layout.tsx");
-/* harmony import */ var _components_views_view_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/views/view-list */ "./src/components/views/view-list.tsx");
+/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
+/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vkui/dist/vkui.css */ "./node_modules/@vkontakte/vkui/dist/vkui.css");
+/* harmony import */ var _vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui_dist_vkui_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_layout_page_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/layout/page-layout */ "./src/components/layout/page-layout.tsx");
+/* harmony import */ var _components_views_view_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/views/view-list */ "./src/components/views/view-list.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
+
 
 
 
@@ -163,7 +164,7 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 const App = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layout_page_layout__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_views_view_list__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["ConfigProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["AdaptivityProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["AppRoot"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layout_page_layout__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_views_view_list__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
 };
 
 const _default = App;
@@ -171,22 +172,21 @@ const _default = App;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(App, "App", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\app.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\app.tsx");
+  reactHotLoader.register(window, "window", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\app.tsx");
+  reactHotLoader.register(App, "App", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\app.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\app.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -201,15 +201,12 @@ const _default = App;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {(function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 class ChordCanvas {
   constructor(canvas) {
@@ -355,22 +352,20 @@ const _default = ChordCanvas;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(ChordCanvas, "ChordCanvas", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\canvas\\chord.ts");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\canvas\\chord.ts");
+  reactHotLoader.register(ChordCanvas, "ChordCanvas", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\canvas\\chord.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\canvas\\chord.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -387,13 +382,10 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "snackbar", function() { return snackbar; });
 /* harmony import */ var _stores_snackbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../stores/snackbar */ "./src/stores/snackbar.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 const snackbar = (message, callback) => {
@@ -405,21 +397,19 @@ const snackbar = (message, callback) => {
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(snackbar, "snackbar", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\common\\alerts.ts");
+  reactHotLoader.register(snackbar, "snackbar", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\common\\alerts.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -437,13 +427,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ "uuid");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_0__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 const createGuid = () => {
@@ -452,21 +439,19 @@ const createGuid = () => {
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(createGuid, "createGuid", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\common\\guid.ts");
+  reactHotLoader.register(createGuid, "createGuid", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\common\\guid.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -482,33 +467,28 @@ const createGuid = () => {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringsByCount", function() { return stringsByCount; });
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 const stringsByCount = ['', 'Первая', 'Вторая', 'Третья', 'Четвертая', 'Пятая', 'Шестая'];
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(stringsByCount, "stringsByCount", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\data\\guitar-string.ts");
+  reactHotLoader.register(stringsByCount, "stringsByCount", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\data\\guitar-string.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -524,33 +504,28 @@ const stringsByCount = ['', 'Первая', 'Вторая', 'Третья', 'Ч�
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "notes", function() { return notes; });
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(notes, "notes", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\data\\notes.ts");
+  reactHotLoader.register(notes, "notes", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\data\\notes.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -566,23 +541,17 @@ const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ "firebase/app");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var firebase_analytics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/analytics */ "firebase/analytics");
-/* harmony import */ var firebase_analytics__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_analytics__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/database */ "firebase/database");
-/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_database__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/firestore */ "firebase/firestore");
-/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(firebase_firestore__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/database */ "firebase/database");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_database__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/firestore */ "firebase/firestore");
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_firestore__WEBPACK_IMPORTED_MODULE_2__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
-
 // Import the functions you need from the SDKs you need
-
 
 
  // TODO: Add SDKs for Firebase products that you want to use
@@ -602,9 +571,10 @@ const firebaseConfig = {
 const init = () => {
   // Initialize Firebase
   const app = Object(firebase_app__WEBPACK_IMPORTED_MODULE_0__["initializeApp"])(firebaseConfig);
-  const analytics = Object(firebase_analytics__WEBPACK_IMPORTED_MODULE_1__["getAnalytics"])(app);
-  const database = Object(firebase_database__WEBPACK_IMPORTED_MODULE_2__["getDatabase"])(app);
-  const firestore = Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_3__["getFirestore"])(app);
+  const analytics = null; // = getAnalytics(app)
+
+  const database = Object(firebase_database__WEBPACK_IMPORTED_MODULE_1__["getDatabase"])(app);
+  const firestore = Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_2__["getFirestore"])(app);
   return {
     app,
     database,
@@ -618,23 +588,21 @@ const _default = init;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(firebaseConfig, "firebaseConfig", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\firebase\\index.ts");
-  reactHotLoader.register(init, "init", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\firebase\\index.ts");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\code\\firebase\\index.ts");
+  reactHotLoader.register(firebaseConfig, "firebaseConfig", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\firebase\\index.ts");
+  reactHotLoader.register(init, "init", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\firebase\\index.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\code\\firebase\\index.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -656,13 +624,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -679,22 +644,20 @@ const _default = BarreField;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(BarreField, "BarreField", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\barre\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\barre\\index.tsx");
+  reactHotLoader.register(BarreField, "BarreField", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\barre\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\barre\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -717,20 +680,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 /* harmony import */ var _code_canvas_chord__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../code/canvas/chord */ "./src/code/canvas/chord.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
 
 
-
-const Fret = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(__signature__(() => {
+const Fret = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(() => {
   const canvas = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   const params = _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__["default"].chordParams;
   const chordCanvasRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
@@ -752,28 +712,26 @@ const Fret = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(__
     width: 110,
     height: 170
   }));
-}, "useRef{canvas}\nuseRef{chordCanvasRef}\nuseEffect{}\nuseEffect{}"));
+});
 const _default = Fret;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(Fret, "Fret", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\drawing-fret\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\drawing-fret\\index.tsx");
+  reactHotLoader.register(Fret, "Fret", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\drawing-fret\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\drawing-fret\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -793,13 +751,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _code_data_guitar_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../code/data/guitar-string */ "./src/code/data/guitar-string.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -849,29 +804,25 @@ const GuitarStringField = ({
   }));
 };
 
-__signature__(GuitarStringField, "useMemo{data}");
-
 const _default = GuitarStringField;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(GuitarStringField, "GuitarStringField", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\guitar-string.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\guitar-string.tsx");
+  reactHotLoader.register(GuitarStringField, "GuitarStringField", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\guitar-string.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\guitar-string.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -892,13 +843,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 /* harmony import */ var _guitar_string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./guitar-string */ "./src/components/chords/add-chord/guitar-strings/guitar-string.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -919,22 +867,20 @@ const _default = GuitarStringFields;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(GuitarStringFields, "GuitarStringFields", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\index.tsx");
+  reactHotLoader.register(GuitarStringFields, "GuitarStringFields", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\guitar-strings\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -964,13 +910,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _guitar_strings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./guitar-strings */ "./src/components/chords/add-chord/guitar-strings/index.tsx");
 /* harmony import */ var _save_button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./save-button */ "./src/components/chords/add-chord/save-button/index.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -992,22 +935,20 @@ const _default = AddChordsForm;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(AddChordsForm, "AddChordsForm", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\index.tsx");
+  reactHotLoader.register(AddChordsForm, "AddChordsForm", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1029,13 +970,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1061,22 +999,20 @@ const _default = InstrumentField;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(InstrumentField, "InstrumentField", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\instrument\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\instrument\\index.tsx");
+  reactHotLoader.register(InstrumentField, "InstrumentField", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\instrument\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\instrument\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1098,13 +1034,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1123,22 +1056,20 @@ const _default = NameField;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(NameField, "NameField", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\name\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\name\\index.tsx");
+  reactHotLoader.register(NameField, "NameField", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\name\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\name\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1161,13 +1092,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _code_data_notes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../code/data/notes */ "./src/code/data/notes.ts");
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1195,22 +1123,20 @@ const _default = NotesField;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(NotesField, "NotesField", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\notes\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\notes\\index.tsx");
+  reactHotLoader.register(NotesField, "NotesField", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\notes\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\notes\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1232,13 +1158,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1255,22 +1178,20 @@ const _default = SaveButton;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(SaveButton, "SaveButton", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\save-button\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\save-button\\index.tsx");
+  reactHotLoader.register(SaveButton, "SaveButton", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\save-button\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\save-button\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1292,19 +1213,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../stores/add-chords-store */ "./src/stores/add-chords-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
 
-
-const StartFretField = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(__signature__(() => {
+const StartFretField = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(() => {
   const fretsData = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => {
     let frets = [];
 
@@ -1328,28 +1246,26 @@ const StartFretField = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["obse
     }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["CustomSelectOption"], restProps),
     onChange: event => _stores_add_chords_store__WEBPACK_IMPORTED_MODULE_3__["default"].changeProperty('startFret', +event.target.value)
   }));
-}, "useMemo{fretsData}"));
+});
 const _default = StartFretField;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(StartFretField, "StartFretField", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\startFret\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\chords\\add-chord\\startFret\\index.tsx");
+  reactHotLoader.register(StartFretField, "StartFretField", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\startFret\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\chords\\add-chord\\startFret\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1371,13 +1287,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_3__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1395,22 +1308,20 @@ const _default = SnackbarContainer;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(SnackbarContainer, "SnackbarContainer", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\common\\dialogs\\snackbar\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\common\\dialogs\\snackbar\\index.tsx");
+  reactHotLoader.register(SnackbarContainer, "SnackbarContainer", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\common\\dialogs\\snackbar\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\common\\dialogs\\snackbar\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1430,28 +1341,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _navigation_desktop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../navigation/desktop */ "./src/components/navigation/desktop/index.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
-
-
-const Layout = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(__signature__(({
+const Layout = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(({
   children
 }) => {
-  const {
-    viewWidth
-  } = Object(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["useAdaptivity"])();
   const platform = Object(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["usePlatform"])();
-  const isDesktop = viewWidth >= _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["ViewWidth"].TABLET;
   const hasHeader = platform !== _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["VKCOM"];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["SplitLayout"], {
     header: hasHeader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["PanelHeader"], {
@@ -1460,114 +1362,31 @@ const Layout = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["observer"])(
     style: {
       justifyContent: "center"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navigation_desktop__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["SplitCol"], {
-    animate: !isDesktop,
-    spaced: isDesktop,
-    width: isDesktop ? '560px' : '100%',
-    maxWidth: isDesktop ? '560px' : '100%'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["SplitCol"], {
+    width: '100%',
+    maxWidth: '100%'
   }, children));
-}, "useAdaptivity{{ viewWidth }}\nusePlatform{platform}", () => [_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["useAdaptivity"], _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["usePlatform"]]));
+});
 const _default = Layout;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(Layout, "Layout", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\layout\\page-layout.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\layout\\page-layout.tsx");
+  reactHotLoader.register(Layout, "Layout", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\layout\\page-layout.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\layout\\page-layout.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
-
-/***/ }),
-
-/***/ "./src/components/navigation/desktop/index.tsx":
-/*!*****************************************************!*\
-  !*** ./src/components/navigation/desktop/index.tsx ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
-/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hooks_isDesktop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../hooks/isDesktop */ "./src/hooks/isDesktop.ts");
-/* harmony import */ var _stores_global_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../stores/global-store */ "./src/stores/global-store.ts");
-/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../pages */ "./src/pages.tsx");
-/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
-/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__);
-(function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
-  enterModule && enterModule(module);
-})();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
-
-
-
-
-
-
-
-const activeLinkStyle = {
-  backgroundColor: "var(--button_secondary_background)",
-  borderRadius: 8
-};
-const DesktopNav = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__["observer"])(() => {
-  const isDesktop = Object(_hooks_isDesktop__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  if (!isDesktop) return null;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["SplitCol"], {
-    fixed: true,
-    width: "280px",
-    maxWidth: "280px"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["Panel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["PanelHeader"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["Group"], null, _pages__WEBPACK_IMPORTED_MODULE_4__["pages"].map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    key: page.key,
-    onClick: () => _stores_global_store__WEBPACK_IMPORTED_MODULE_3__["default"].setActiveStory(page.key),
-    disabled: _stores_global_store__WEBPACK_IMPORTED_MODULE_3__["default"].activeStory === page.key,
-    style: _stores_global_store__WEBPACK_IMPORTED_MODULE_3__["default"].activeStory === page.key ? activeLinkStyle : {},
-    "data-story": page.key,
-    before: page.iconComponent
-  }, page.name)))));
-});
-const _default = DesktopNav;
-/* harmony default export */ __webpack_exports__["default"] = (_default);
-;
-
-(function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
-
-  if (!reactHotLoader) {
-    return;
-  }
-
-  reactHotLoader.register(activeLinkStyle, "activeLinkStyle", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\navigation\\desktop\\index.tsx");
-  reactHotLoader.register(DesktopNav, "DesktopNav", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\navigation\\desktop\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\navigation\\desktop\\index.tsx");
-})();
-
-;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
 
@@ -1586,18 +1405,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _hooks_isDesktop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../hooks/isDesktop */ "./src/hooks/isDesktop.ts");
-/* harmony import */ var _stores_global_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../stores/global-store */ "./src/stores/global-store.ts");
-/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../pages */ "./src/pages.tsx");
+/* harmony import */ var _stores_global_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../stores/global-store */ "./src/stores/global-store.ts");
+/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../pages */ "./src/pages.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
-
 
 
 
@@ -1605,12 +1419,10 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 const MobileNav = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__["observer"])(() => {
-  const isDesktop = Object(_hooks_isDesktop__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  if (isDesktop) return null;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["Tabbar"], null, _pages__WEBPACK_IMPORTED_MODULE_5__["pages"].map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["TabbarItem"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["Tabbar"], null, _pages__WEBPACK_IMPORTED_MODULE_4__["pages"].map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["TabbarItem"], {
     key: page.key,
-    onClick: () => _stores_global_store__WEBPACK_IMPORTED_MODULE_4__["default"].setActiveStory(page.key),
-    selected: _stores_global_store__WEBPACK_IMPORTED_MODULE_4__["default"].activeStory === page.key,
+    onClick: () => _stores_global_store__WEBPACK_IMPORTED_MODULE_3__["default"].setActiveStory(page.key),
+    selected: _stores_global_store__WEBPACK_IMPORTED_MODULE_3__["default"].activeStory === page.key,
     "data-story": page.key,
     text: page.name
   }, page.iconComponent)));
@@ -1620,22 +1432,20 @@ const _default = MobileNav;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(MobileNav, "MobileNav", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\navigation\\mobile\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\navigation\\mobile\\index.tsx");
+  reactHotLoader.register(MobileNav, "MobileNav", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\navigation\\mobile\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\navigation\\mobile\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1654,13 +1464,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1674,22 +1481,20 @@ const _default = AddTrackView;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(AddTrackView, "AddTrackView", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\add-track.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\add-track.tsx");
+  reactHotLoader.register(AddTrackView, "AddTrackView", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\add-track.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\add-track.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1708,13 +1513,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chords_add_chord__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../chords/add-chord */ "./src/components/chords/add-chord/index.tsx");
 /* harmony import */ var _common_dialogs_snackbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../common/dialogs/snackbar */ "./src/components/common/dialogs/snackbar/index.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1729,22 +1531,20 @@ const _default = AddChordsView;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(AddChordsView, "AddChordsView", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\admin\\add-chords\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\admin\\add-chords\\index.tsx");
+  reactHotLoader.register(AddChordsView, "AddChordsView", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\admin\\add-chords\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\admin\\add-chords\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1766,13 +1566,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_global_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../stores/global-store */ "./src/stores/global-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1788,22 +1585,20 @@ const _default = AdminView;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(AdminView, "AdminView", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\admin\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\admin\\index.tsx");
+  reactHotLoader.register(AdminView, "AdminView", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\admin\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\admin\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1822,13 +1617,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1842,22 +1634,20 @@ const _default = ChordsView;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(ChordsView, "ChordsView", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\chords.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\chords.tsx");
+  reactHotLoader.register(ChordsView, "ChordsView", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\chords.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\chords.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1876,13 +1666,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1896,22 +1683,20 @@ const _default = FavouritesView;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(FavouritesView, "FavouritesView", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\favourites.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\favourites.tsx");
+  reactHotLoader.register(FavouritesView, "FavouritesView", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\favourites.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\favourites.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1930,13 +1715,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -1950,22 +1732,20 @@ const _default = TracksView;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(TracksView, "TracksView", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\tracks.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\tracks.tsx");
+  reactHotLoader.register(TracksView, "TracksView", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\tracks.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\tracks.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -1994,13 +1774,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_add_chords__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./admin/add-chords */ "./src/components/views/admin/add-chords/index.tsx");
 /* harmony import */ var _navigation_mobile__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../navigation/mobile */ "./src/components/navigation/mobile/index.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -2051,22 +1828,20 @@ const _default = ViewList;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(ViewList, "ViewList", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\view-list.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\views\\view-list.tsx");
+  reactHotLoader.register(ViewList, "ViewList", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\view-list.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\views\\view-list.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -2088,15 +1863,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _stores_global_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../stores/global-store */ "./src/stores/global-store.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -2114,77 +1886,21 @@ const _default = HeaderWithBack;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(HeaderWithBack, "HeaderWithBack", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\vk\\layout\\header\\heade-and-back\\index.tsx");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\components\\vk\\layout\\header\\heade-and-back\\index.tsx");
+  reactHotLoader.register(HeaderWithBack, "HeaderWithBack", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\vk\\layout\\header\\heade-and-back\\index.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\components\\vk\\layout\\header\\heade-and-back\\index.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
-
-/***/ }),
-
-/***/ "./src/hooks/isDesktop.ts":
-/*!********************************!*\
-  !*** ./src/hooks/isDesktop.ts ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
-/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_0__);
-(function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
-  enterModule && enterModule(module);
-})();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
-
-
-
-const _default = () => {
-  const {
-    viewWidth
-  } = Object(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_0__["useAdaptivity"])();
-  return viewWidth >= _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_0__["ViewWidth"].TABLET;
-};
-
-__signature__(_default, "useAdaptivity{{ viewWidth }}", () => [_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_0__["useAdaptivity"]]);
-
-/* harmony default export */ __webpack_exports__["default"] = (_default);
-;
-
-(function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
-
-  if (!reactHotLoader) {
-    return;
-  }
-
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\hooks\\isDesktop.ts");
-})();
-
-;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
 
@@ -2203,13 +1919,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vkontakte_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vkontakte/icons */ "@vkontakte/icons");
 /* harmony import */ var _vkontakte_icons__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_icons__WEBPACK_IMPORTED_MODULE_1__);
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -2237,21 +1950,19 @@ const pages = [{
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(pages, "pages", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\pages.tsx");
+  reactHotLoader.register(pages, "pages", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\pages.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -2267,38 +1978,35 @@ const pages = [{
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "fs");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ssr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ssr */ "./src/ssr.ts");
+/* harmony import */ var express_useragent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! express-useragent */ "express-useragent");
+/* harmony import */ var express_useragent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(express_useragent__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _server_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server/database */ "./src/server/database.ts");
+/* harmony import */ var _server_vk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./server/vk */ "./src/server/vk.ts");
+/* harmony import */ var _server_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./server/auth */ "./src/server/auth.ts");
+/* harmony import */ var _ssr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ssr */ "./src/ssr.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
+
 
 
 
 
 
 const app = express__WEBPACK_IMPORTED_MODULE_0___default()();
-app.get(/\.(js|css|map|ico)$/, express__WEBPACK_IMPORTED_MODULE_0___default.a.static(path__WEBPACK_IMPORTED_MODULE_2__["resolve"](__dirname, '../build')));
-app.use('*', (req, res) => {
-  const app = Object(_ssr__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  const firebaseToken = '11111';
-  let indexHTML = fs__WEBPACK_IMPORTED_MODULE_1__["readFileSync"](path__WEBPACK_IMPORTED_MODULE_2__["resolve"](__dirname, '../build/index.html'), {
-    encoding: 'utf8'
-  });
-  indexHTML.replace('<div id="root"></div>', `<div id="root">${app}</div>`);
-  indexHTML.replace('window["firebaseToken"] = null;', `window["firebaseToken"] = ${firebaseToken};`);
-  indexHTML.replace('window["isAdmin"] = false;', `window["isAdmin"] = ${true};`);
+app.use(express_useragent__WEBPACK_IMPORTED_MODULE_1___default.a.express());
+_server_database__WEBPACK_IMPORTED_MODULE_2__["default"].init();
+app.get(/\.(js|css|map|ico)$/, express__WEBPACK_IMPORTED_MODULE_0___default.a.static(__dirname));
+app.use('*', async (req, res) => {
+  const html = Object(_ssr__WEBPACK_IMPORTED_MODULE_5__["default"])(req['useragent'].source);
+  const isValidVk = Object(_server_vk__WEBPACK_IMPORTED_MODULE_3__["default"])(req);
+  const adminToken = isValidVk ? await Object(_server_auth__WEBPACK_IMPORTED_MODULE_4__["default"])(req) : null;
   res.contentType('text/html');
   res.status(200);
-  return res.send(indexHTML);
+  return res.send(html);
 });
 app.listen('9000', () => {
   console.log('Сервер на порту 9000');
@@ -2306,29 +2014,254 @@ app.listen('9000', () => {
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(app, "app", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\server.ts");
+  reactHotLoader.register(app, "app", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
 
-/***/ "./src/ssr.ts":
-/*!********************!*\
-  !*** ./src/ssr.ts ***!
-  \********************/
+/***/ "./src/server/auth.ts":
+/*!****************************!*\
+  !*** ./src/server/auth.ts ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var firebase_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase-admin */ "firebase-admin");
+/* harmony import */ var firebase_admin__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_admin__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./database */ "./src/server/database.ts");
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+
+
+
+const createFirebaseToken = async req => {
+  const query = req.query;
+  const store = Object(firebase_admin__WEBPACK_IMPORTED_MODULE_0__["firestore"])(_database__WEBPACK_IMPORTED_MODULE_1__["default"].app); //const y = await store.listCollections()
+  //console.log(y)
+};
+
+const _default = createFirebaseToken;
+/* harmony default export */ __webpack_exports__["default"] = (_default);
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(createFirebaseToken, "createFirebaseToken", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\auth.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\auth.ts");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./src/server/common.ts":
+/*!******************************!*\
+  !*** ./src/server/common.ts ***!
+  \******************************/
+/*! exports provided: isDev */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isDev", function() { return isDev; });
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+const isDev = () => process.env.NODE_ENV === 'development';
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(isDev, "isDev", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\common.ts");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./src/server/database.ts":
+/*!********************************!*\
+  !*** ./src/server/database.ts ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var firebase_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase-admin */ "firebase-admin");
+/* harmony import */ var firebase_admin__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_admin__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+class Database {
+  constructor() {
+    _defineProperty(this, "app", void 0);
+  }
+
+  init() {
+    const config = JSON.parse(fs__WEBPACK_IMPORTED_MODULE_1___default.a.readFileSync(Object(path__WEBPACK_IMPORTED_MODULE_2__["resolve"])(__dirname, '..', 'private/service-account-key.json')).toString('utf8'));
+    this.app = firebase_admin__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(config); //this.app.auth()
+  }
+
+  // @ts-ignore
+  __reactstandin__regenerateByEval(key, code) {
+    // @ts-ignore
+    this[key] = eval(code);
+  }
+
+}
+
+const database = new Database();
+const _default = database;
+/* harmony default export */ __webpack_exports__["default"] = (_default);
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Database, "Database", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\database.ts");
+  reactHotLoader.register(database, "database", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\database.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\database.ts");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./src/server/vk.ts":
+/*!**************************!*\
+  !*** ./src/server/vk.ts ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! crypto */ "crypto");
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common */ "./src/server/common.ts");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+
+
+
+
+const config = JSON.parse(fs__WEBPACK_IMPORTED_MODULE_1___default.a.readFileSync(Object(path__WEBPACK_IMPORTED_MODULE_3__["resolve"])(__dirname, '..', 'private/vk-secret-key.json')).toString('utf8'));
+
+const validateVkParams = req => {
+  if (_common__WEBPACK_IMPORTED_MODULE_2__["isDev"]) return true;
+  const query = req.query;
+  let vkParams = [];
+  const sign = query.sign;
+  if (!sign) return false;
+
+  for (let key in query) {
+    if (key.startsWith('vk_')) {
+      vkParams.push(`${key}=${query[key]}`);
+    }
+  }
+
+  const vkParamsString = vkParams.join('&');
+  const paramsHash = crypto__WEBPACK_IMPORTED_MODULE_0___default.a.createHmac('sha256', config.secret).update(vkParamsString).digest().toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=$/, '');
+  return paramsHash === sign;
+};
+
+const _default = validateVkParams;
+/* harmony default export */ __webpack_exports__["default"] = (_default);
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(config, "config", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\vk.ts");
+  reactHotLoader.register(validateVkParams, "validateVkParams", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\vk.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\server\\vk.ts");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./src/ssr.tsx":
+/*!*********************!*\
+  !*** ./src/ssr.tsx ***!
+  \*********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2338,45 +2271,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/server */ "react-dom/server");
 /* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app */ "./src/app.tsx");
+/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vkontakte/vkui */ "@vkontakte/vkui");
+/* harmony import */ var _vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app */ "./src/app.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
 
 
-const _default = () => {
-  const jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_2__["default"]);
+const _default = userAgent => {
+  const jsx = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["SSRWrapper"], {
+    userAgent: userAgent
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_3__["default"], null));
   const reactHtml = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__["renderToString"])(jsx);
-  return reactHtml;
+  return getHtml(reactHtml);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (_default);
+
+const getHtml = reactHtml => {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.jpg">
+        <title>Аккорды</title>
+        <link href="/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <script>
+            window['isAdmin'] = true;
+            window['vkVerify'] = true;
+        </script>
+
+        <div id="root" class="vkui__root">${reactHtml}</div> 
+        <script src="/main.js"></script>
+    </body>
+    </html>
+    `;
+};
+
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\ssr.ts");
+  reactHotLoader.register(getHtml, "getHtml", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\ssr.tsx");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\ssr.tsx");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -2399,15 +2359,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _firebase_firestore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_firebase_firestore__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _code_common_alerts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../code/common/alerts */ "./src/code/common/alerts.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -2522,30 +2479,28 @@ class AddChordsStore {
   }
 
 }
-const store = window.addChordsStore = new AddChordsStore();
+const store = new AddChordsStore();
 const _default = store;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(defauiltParams, "defauiltParams", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
-  reactHotLoader.register(AddChordsStore, "AddChordsStore", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
-  reactHotLoader.register(store, "store", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
+  reactHotLoader.register(defauiltParams, "defauiltParams", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
+  reactHotLoader.register(AddChordsStore, "AddChordsStore", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
+  reactHotLoader.register(store, "store", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\add-chords-store.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -2565,15 +2520,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _code_firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../code/firebase */ "./src/code/firebase/index.ts");
 /* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages */ "./src/pages.tsx");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -2600,8 +2552,8 @@ class GlobalStore {
     } = Object(_code_firebase__WEBPACK_IMPORTED_MODULE_1__["default"])();
     this.firebase = app;
     this.database = database;
-    this.firestore = firestore;
-    this.firebaseAnalitics = analytics;
+    this.firestore = firestore; //this.firebaseAnalitics = analytics
+
     Object(mobx__WEBPACK_IMPORTED_MODULE_0__["makeObservable"])(this, {
       activeStory: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       activePanel: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]
@@ -2634,23 +2586,21 @@ const _default = globalStore;
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(GlobalStore, "GlobalStore", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\global-store.ts");
-  reactHotLoader.register(globalStore, "globalStore", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\global-store.ts");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\global-store.ts");
+  reactHotLoader.register(GlobalStore, "GlobalStore", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\global-store.ts");
+  reactHotLoader.register(globalStore, "globalStore", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\global-store.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\global-store.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -2669,15 +2619,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _code_common_guid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../code/common/guid */ "./src/code/common/guid.ts");
 (function () {
-  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
+
   enterModule && enterModule(module);
 })();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
-  return a;
-};
 
 
 
@@ -2722,29 +2669,27 @@ class SnackbarsStore {
   }
 
 }
-const store = window.SnackbarsStore = new SnackbarsStore();
+const store = new SnackbarsStore();
 const _default = store;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 (function () {
-  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").leaveModule;
 
   if (!reactHotLoader) {
     return;
   }
 
-  reactHotLoader.register(SnackbarsStore, "SnackbarsStore", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\snackbar.ts");
-  reactHotLoader.register(store, "store", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\snackbar.ts");
-  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\\u0421hords\\chords-vk-app\\ChordsVkApp\\src\\stores\\snackbar.ts");
+  reactHotLoader.register(SnackbarsStore, "SnackbarsStore", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\snackbar.ts");
+  reactHotLoader.register(store, "store", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\snackbar.ts");
+  reactHotLoader.register(_default, "default", "C:\\Programming\\vkapp\\ChordsVkApp\\src\\stores\\snackbar.ts");
+  leaveModule(module);
 })();
 
 ;
-
-(function () {
-  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
-  leaveModule && leaveModule(module);
-})();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
@@ -2782,6 +2727,17 @@ module.exports = require("@vkontakte/vkui");
 
 /***/ }),
 
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("crypto");
+
+/***/ }),
+
 /***/ "express":
 /*!**************************!*\
   !*** external "express" ***!
@@ -2793,14 +2749,25 @@ module.exports = require("express");
 
 /***/ }),
 
-/***/ "firebase/analytics":
-/*!*************************************!*\
-  !*** external "firebase/analytics" ***!
-  \*************************************/
+/***/ "express-useragent":
+/*!************************************!*\
+  !*** external "express-useragent" ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("firebase/analytics");
+module.exports = require("express-useragent");
+
+/***/ }),
+
+/***/ "firebase-admin":
+/*!*********************************!*\
+  !*** external "firebase-admin" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("firebase-admin");
 
 /***/ }),
 
@@ -2900,6 +2867,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
+
+/***/ }),
+
+/***/ "react-hot-loader":
+/*!***********************************!*\
+  !*** external "react-hot-loader" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-hot-loader");
 
 /***/ }),
 

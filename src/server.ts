@@ -1,30 +1,29 @@
 import express from 'express'
-import * as fs from 'fs'
-import * as path from 'path'
+import useragent from 'express-useragent'
+import database from './server/database'
+import validateVK from './server/vk'
+import fireBaseToken from './server/auth'
 
 import getApp from './ssr'
 
 const app = express()
+app.use(useragent.express())
 
-app.get(/\.(js|css|map|ico)$/, express.static(path.resolve(__dirname, '../build')))
+database.init()
 
-app.use('*', (req, res) => {
+app.get(/\.(js|css|map|ico)$/, express.static(__dirname))
+app.use('*', async (req, res) => {
 
-    const app = getApp()
-    const firebaseToken = '11111'
+    const html = getApp(req['useragent'].source)
 
-    let indexHTML = fs.readFileSync(path.resolve(__dirname, '../build/index.html'), {
-        encoding: 'utf8',
-    })
+    const isValidVk = validateVK(req)
 
-    indexHTML.replace( '<div id="root"></div>', `<div id="root">${app}</div>`)
-    indexHTML.replace('window["firebaseToken"] = null;', `window["firebaseToken"] = ${firebaseToken};`)
-    indexHTML.replace('window["isAdmin"] = false;', `window["isAdmin"] = ${true};`)
-
+    const adminToken = isValidVk ? await fireBaseToken(req) : null
+    
     res.contentType('text/html')
     res.status(200)
 
-    return res.send(indexHTML)
+    return res.send(html)
 })
 
 app.listen('9000', () => {

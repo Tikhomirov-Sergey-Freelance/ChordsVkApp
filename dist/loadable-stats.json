@@ -1,15 +1,10 @@
 {
-  "errors": [
-    "./node_modules/@vkontakte/vkui/dist/components/AppRoot/AppRootPortal.js\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\components\\AppRoot'\n @ ./node_modules/@vkontakte/vkui/dist/components/AppRoot/AppRootPortal.js 3:0-41 13:47-59\n @ ./node_modules/@vkontakte/vkui/dist/components/Root/Root.js\n @ ./node_modules/@vkontakte/vkui/dist/index.js\n @ ./src/client.tsx\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client",
-    "./node_modules/@vkontakte/vkui/dist/components/Tooltip/Tooltip.js\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\components\\Tooltip'\n @ ./node_modules/@vkontakte/vkui/dist/components/Tooltip/Tooltip.js 9:0-33 201:100-108\n @ ./node_modules/@vkontakte/vkui/dist/index.js\n @ ./src/client.tsx\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client",
-    "./node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mobx-react-lite\\es\\utils'\n @ ./node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js 1:0-52 1:0-52\n @ ./node_modules/mobx-react-lite/es/index.js\n @ ./src/components/navigation/mobile/index.tsx\n @ ./src/components/views/view-list.tsx\n @ ./src/app.tsx\n @ ./src/client.tsx\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client",
-    "./src/client.tsx\nModule not found: Error: Can't resolve 'react-dom' in 'C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src'\n @ ./src/client.tsx 6:0-36 13:2-9\n @ multi react-hot-loader/patch css-hot-loader/hotModuleReplacement ./src/client"
-  ],
+  "errors": [],
   "warnings": [],
   "version": "4.30.0",
-  "hash": "b11d9cdba82121b1d377",
+  "hash": "50fac880c5afd4505b6a",
   "publicPath": "/",
-  "outputPath": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\dist",
+  "outputPath": "C:\\Programming\\vkapp\\ChordsVkApp\\dist",
   "assetsByChunkName": {
     "main": [
       "main.css",
@@ -43,7 +38,7 @@
     },
     {
       "name": "main.js",
-      "size": 11615446,
+      "size": 12350487,
       "chunks": [
         "main"
       ],
@@ -54,7 +49,7 @@
     },
     {
       "name": "main.js.map",
-      "size": 8062326,
+      "size": 8944796,
       "chunks": [
         "main"
       ],
@@ -100,7 +95,7 @@
       "errors": [],
       "warnings": [],
       "publicPath": "/",
-      "outputPath": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\dist",
+      "outputPath": "C:\\Programming\\vkapp\\ChordsVkApp\\dist",
       "assetsByChunkName": {},
       "assets": [],
       "filteredAssets": 0,

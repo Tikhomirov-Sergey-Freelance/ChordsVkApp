@@ -24,7 +24,7 @@ export class GlobalStore {
         this.database = database
         this.firestore = firestore
 
-        this.firebaseAnalitics = analytics
+        //this.firebaseAnalitics = analytics
 
         makeObservable(this, {
             activeStory: observable,

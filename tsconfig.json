@@ -2,7 +2,7 @@
   "compilerOptions": {
       "outDir": "./dist/",
       "sourceMap": true,
-      "noImplicitAny": true,
+      "noImplicitAny": false,
       "noImplicitThis": true,
       "resolveJsonModule": true,
       "allowSyntheticDefaultImports": true,
@@ -11,8 +11,7 @@
       "jsx": "react",
       "baseUrl": "src",
       "skipLibCheck": true,
-      "types": [
-        "src/types"
-      ]
+      "checkJs": false,
+      "skipDefaultLibCheck": true
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDom from 'react-dom'
 import { AppRoot, Panel, View } from '@vkontakte/vkui'
 import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui'
 
@@ -8,15 +9,25 @@ import '@vkontakte/vkui/dist/vkui.css'
 
 import Layout from './components/layout/page-layout'
 import ViewList from './components/views/view-list'
-import Snackbar from './components/common/dialogs/snackbar'
+
+declare global {
+  interface Window {
+
+  }
+}
 
 const App: React.FC = () => {
 
   return (
-
-    <Layout >
-      <ViewList />
-    </Layout>
+    <ConfigProvider>
+      <AdaptivityProvider>
+        <AppRoot>
+          <Layout >
+            <ViewList />
+          </Layout>
+        </AppRoot>
+      </AdaptivityProvider>
+    </ConfigProvider>
   )
 }
 

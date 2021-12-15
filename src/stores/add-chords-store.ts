@@ -2,7 +2,6 @@ import { makeAutoObservable } from 'mobx'
 import { iPageKey, pages } from '../pages'
 import { MusicalInstrument } from '../types/global-types'
 import { notes } from '../code/data/notes'
-import { getOuterBindingIdentifiers } from '@babel/types'
 
 import ChordCanvas from '../code/canvas/chord'
 import GlobalStore from './global-store'
@@ -130,5 +129,5 @@ export class AddChordsStore implements iParams {
     }
 }
 
-const store = (window as any).addChordsStore = new AddChordsStore()
+const store = new AddChordsStore()
 export default store

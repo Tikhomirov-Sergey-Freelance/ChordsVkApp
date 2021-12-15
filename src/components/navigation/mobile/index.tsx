@@ -9,10 +9,6 @@ import { pages } from '../../../pages'
 
 const MobileNav: React.FC = observer(() => {
 
-    const isDesktop = isDesktopHook()
-
-    if(isDesktop) return null
-
     return (
         <Tabbar>
 

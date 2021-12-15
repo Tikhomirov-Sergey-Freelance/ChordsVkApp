@@ -52,5 +52,5 @@ export interface iShowedSnackbar extends iSnackbar {
     close: () => void
 }
 
-const store = (window as any).SnackbarsStore = new SnackbarsStore()
+const store = new SnackbarsStore()
 export default store

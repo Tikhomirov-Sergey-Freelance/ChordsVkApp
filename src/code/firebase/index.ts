@@ -22,7 +22,7 @@ const init = () => {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig)
-    const analytics = getAnalytics(app)
+    const analytics: string =null// = getAnalytics(app)
     const database = getDatabase(app)
     const firestore = getFirestore(app)
 
