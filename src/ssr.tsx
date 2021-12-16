@@ -4,17 +4,17 @@ import { SSRWrapper } from '@vkontakte/vkui'
 
 import App from './app'
 
-export default (userAgent) => {
+export default (userAgent, validVk, adminToken) => {
 
     const jsx = <SSRWrapper userAgent={userAgent}>
         <App/>
     </SSRWrapper>
     const reactHtml = renderToString(jsx)
 
-    return getHtml(reactHtml)
+    return getHtml(reactHtml, { validVk, adminToken })
 }
 
-const getHtml = (reactHtml) => {
+const getHtml = (reactHtml, data) => {
 
     return `
     <!DOCTYPE html>
@@ -29,8 +29,9 @@ const getHtml = (reactHtml) => {
     </head>
     <body>
         <script>
-            window['isAdmin'] = true;
-            window['vkVerify'] = true;
+        debugger;
+            window['adminToken'] = '${data.adminToken}';
+            window['validVk'] = ${data.validVk};
         </script>
 
         <div id="root" class="vkui__root">${reactHtml}</div> 

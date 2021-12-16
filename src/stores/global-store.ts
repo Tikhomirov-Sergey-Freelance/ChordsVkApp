@@ -16,6 +16,9 @@ export class GlobalStore {
     firestore: Firestore
     firebaseAnalitics: Analytics
 
+    adminToken: string
+    validVk: boolean
+
     constructor() {
 
         const { app, database, firestore, analytics } = initDatabase()
@@ -26,11 +29,16 @@ export class GlobalStore {
 
         //this.firebaseAnalitics = analytics
 
+        this.adminToken = global['window'] && global['window'].adminToken
+        this.validVk = global['window'] && global['window'].validVk   
+        
+        debugger
+
         makeObservable(this, {
             activeStory: observable,
             activePanel: observable
         })
-    }
+    }   
 
     toMainPanel() {
         this.activePanel = this.activeStory

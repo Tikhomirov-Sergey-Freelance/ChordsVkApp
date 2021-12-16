@@ -10,9 +10,17 @@ import '@vkontakte/vkui/dist/vkui.css'
 import Layout from './components/layout/page-layout'
 import ViewList from './components/views/view-list'
 
+try {
+  console.log(window);
+} catch (err) {
+  global['window'] = { isServer: true };
+}
+
 declare global {
   interface Window {
-
+    adminToken: string
+    validVk: boolean
+    isServer: boolean
   }
 }
 

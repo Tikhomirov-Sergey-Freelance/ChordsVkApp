@@ -163,6 +163,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+try {
+  console.log(window);
+} catch (err) {
+  global['window'] = {
+    isServer: true
+  };
+}
+
 const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["ConfigProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["AdaptivityProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_1__["AppRoot"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layout_page_layout__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_views_view_list__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
 };
@@ -1995,15 +2003,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+global['window'] = {};
 
 const app = express__WEBPACK_IMPORTED_MODULE_0___default()();
 app.use(express_useragent__WEBPACK_IMPORTED_MODULE_1___default.a.express());
 _server_database__WEBPACK_IMPORTED_MODULE_2__["default"].init();
 app.get(/\.(js|css|map|ico)$/, express__WEBPACK_IMPORTED_MODULE_0___default.a.static(__dirname));
 app.use('*', async (req, res) => {
-  const html = Object(_ssr__WEBPACK_IMPORTED_MODULE_5__["default"])(req['useragent'].source);
+  global['window'] = {};
   const isValidVk = Object(_server_vk__WEBPACK_IMPORTED_MODULE_3__["default"])(req);
   const adminToken = isValidVk ? await Object(_server_auth__WEBPACK_IMPORTED_MODULE_4__["default"])(req) : null;
+  const html = Object(_ssr__WEBPACK_IMPORTED_MODULE_5__["default"])(req['useragent'].source, isValidVk, adminToken);
   res.contentType('text/html');
   res.status(200);
   return res.send(html);
@@ -2042,7 +2052,8 @@ app.listen('9000', () => {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var firebase_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase-admin */ "firebase-admin");
 /* harmony import */ var firebase_admin__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_admin__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./database */ "./src/server/database.ts");
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common */ "./src/server/common.ts");
+/* harmony import */ var _database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./database */ "./src/server/database.ts");
 (function () {
   var enterModule = __webpack_require__(/*! react-hot-loader */ "react-hot-loader").enterModule;
 
@@ -2052,10 +2063,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const createFirebaseToken = async req => {
   const query = req.query;
-  const store = Object(firebase_admin__WEBPACK_IMPORTED_MODULE_0__["firestore"])(_database__WEBPACK_IMPORTED_MODULE_1__["default"].app); //const y = await store.listCollections()
-  //console.log(y)
+  const vkId = !_common__WEBPACK_IMPORTED_MODULE_1__["isDev"] ? query && query.vk_user_id : '222834864';
+  if (!vkId) return;
+  const store = Object(firebase_admin__WEBPACK_IMPORTED_MODULE_0__["firestore"])(_database__WEBPACK_IMPORTED_MODULE_2__["default"].app);
+  const isAdmin = !(await store.collection('admins').where('vkId', '==', +vkId).get()).empty;
+  if (!isAdmin) return;
+  return await _database__WEBPACK_IMPORTED_MODULE_2__["default"].app.auth().createCustomToken(vkId);
 };
 
 const _default = createFirebaseToken;
@@ -2097,7 +2113,7 @@ __webpack_require__.r(__webpack_exports__);
   enterModule && enterModule(module);
 })();
 
-const isDev = () => process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 ;
 
 (function () {
@@ -2152,7 +2168,11 @@ class Database {
 
   init() {
     const config = JSON.parse(fs__WEBPACK_IMPORTED_MODULE_1___default.a.readFileSync(Object(path__WEBPACK_IMPORTED_MODULE_2__["resolve"])(__dirname, '..', 'private/service-account-key.json')).toString('utf8'));
-    this.app = firebase_admin__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(config); //this.app.auth()
+    this.app = firebase_admin__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp({
+      credential: firebase_admin__WEBPACK_IMPORTED_MODULE_0___default.a.credential.cert(config),
+      databaseURL: "https://chords-7f150.firebaseio.com"
+    });
+    this.app.auth();
   }
 
   // @ts-ignore
@@ -2285,17 +2305,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const _default = userAgent => {
+const _default = (userAgent, validVk, adminToken) => {
   const jsx = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_vkontakte_vkui__WEBPACK_IMPORTED_MODULE_2__["SSRWrapper"], {
     userAgent: userAgent
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_3__["default"], null));
   const reactHtml = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__["renderToString"])(jsx);
-  return getHtml(reactHtml);
+  return getHtml(reactHtml, {
+    validVk,
+    adminToken
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 
-const getHtml = reactHtml => {
+const getHtml = (reactHtml, data) => {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -2309,8 +2332,9 @@ const getHtml = reactHtml => {
     </head>
     <body>
         <script>
-            window['isAdmin'] = true;
-            window['vkVerify'] = true;
+        debugger;
+            window['adminToken'] = '${data.adminToken}';
+            window['validVk'] = ${data.validVk};
         </script>
 
         <div id="root" class="vkui__root">${reactHtml}</div> 
@@ -2544,6 +2568,10 @@ class GlobalStore {
 
     _defineProperty(this, "firebaseAnalitics", void 0);
 
+    _defineProperty(this, "adminToken", void 0);
+
+    _defineProperty(this, "validVk", void 0);
+
     const {
       app,
       database,
@@ -2554,6 +2582,9 @@ class GlobalStore {
     this.database = database;
     this.firestore = firestore; //this.firebaseAnalitics = analytics
 
+    this.adminToken = global['window'] && global['window'].adminToken;
+    this.validVk = global['window'] && global['window'].validVk;
+    debugger;
     Object(mobx__WEBPACK_IMPORTED_MODULE_0__["makeObservable"])(this, {
       activeStory: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       activePanel: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"]

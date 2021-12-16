@@ -2,7 +2,7 @@
   "errors": [],
   "warnings": [],
   "version": "4.30.0",
-  "hash": "50fac880c5afd4505b6a",
+  "hash": "9336d521e2309f86e3c0",
   "publicPath": "/",
   "outputPath": "C:\\Programming\\vkapp\\ChordsVkApp\\dist",
   "assetsByChunkName": {
@@ -38,7 +38,7 @@
     },
     {
       "name": "main.js",
-      "size": 12350487,
+      "size": 12351080,
       "chunks": [
         "main"
       ],
@@ -49,7 +49,7 @@
     },
     {
       "name": "main.js.map",
-      "size": 8944796,
+      "size": 8945590,
       "chunks": [
         "main"
       ],
@@ -90,41 +90,5 @@
       "childAssets": {}
     }
   },
-  "children": [
-    {
-      "errors": [],
-      "warnings": [],
-      "publicPath": "/",
-      "outputPath": "C:\\Programming\\vkapp\\ChordsVkApp\\dist",
-      "assetsByChunkName": {},
-      "assets": [],
-      "filteredAssets": 0,
-      "entrypoints": {
-        "mini-css-extract-plugin": {
-          "chunks": [
-            "mini-css-extract-plugin"
-          ],
-          "assets": [
-            "*"
-          ],
-          "children": {},
-          "childAssets": {}
-        }
-      },
-      "namedChunkGroups": {
-        "mini-css-extract-plugin": {
-          "chunks": [
-            "mini-css-extract-plugin"
-          ],
-          "assets": [
-            "*"
-          ],
-          "children": {},
-          "childAssets": {}
-        }
-      },
-      "children": [],
-      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!node_modules/postcss-loader/src/index.js??ref--5-3!node_modules/@vkontakte/vkui/dist/vkui.css"
-    }
-  ]
+  "children": []
 }

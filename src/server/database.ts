@@ -8,8 +8,11 @@ class Database {
 
     init() {
         const config = JSON.parse(fs.readFileSync(resolve(__dirname, '..', 'private/service-account-key.json')).toString('utf8'))
-        this.app = admin.initializeApp(config)
-        //this.app.auth()
+        this.app = admin.initializeApp({
+            credential: admin.credential.cert(config),
+            databaseURL: "https://chords-7f150.firebaseio.com"
+          })
+        this.app.auth()
     }
 }
 
