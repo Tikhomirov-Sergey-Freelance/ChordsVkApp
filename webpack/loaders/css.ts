@@ -19,21 +19,16 @@ export default {
         use: [
             IS_DEV && 'css-hot-loader',
             MiniCssExtractPlugin.loader,
-            'css-loader',
+            'css-loader',      
             {
                 loader: 'postcss-loader',
                 options: {
-                    plugins: [
-                        postcssImport({
-                            resolve: postcssImportAliasResolver(
-                                resolverOptions
-                            ),
-                        }),
-                        postcssCustomMedia(),
-                        postcssNested(),
-                        !IS_DEV && cssnano({ preset: 'default' }),
-                    ].filter(Boolean),
-                },
+                    postcssOptions: {
+                      plugins: [
+                        "postcss-import"
+                      ]
+                    }
+                }
             },
         ].filter(Boolean),
     },

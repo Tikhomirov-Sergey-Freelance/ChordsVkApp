@@ -4,8 +4,6 @@ import database from './server/database'
 import validateVK from './server/vk'
 import fireBaseToken from './server/auth'
 
-global['window'] = {}
-
 import getApp from './ssr'
 
 const app = express()
@@ -15,8 +13,6 @@ database.init()
 
 app.get(/\.(js|css|map|ico)$/, express.static(__dirname))
 app.use('*', async (req, res) => {
-
-    global['window'] = {}
 
     const isValidVk = validateVK(req)
     const adminToken = isValidVk ? await fireBaseToken(req) : null
@@ -29,6 +25,6 @@ app.use('*', async (req, res) => {
     return res.send(html)
 })
 
-app.listen('9000', () => {
-    console.log('Сервер на порту 9000')
+app.listen('9001', () => {
+    console.log('Сервер на порту 9001')
 })
