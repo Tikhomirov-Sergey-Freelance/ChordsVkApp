@@ -30,9 +30,7 @@ export class GlobalStore {
         //this.firebaseAnalitics = analytics
 
         this.adminToken = global['window'] && global['window'].adminToken
-        this.validVk = global['window'] && global['window'].validVk   
-        
-        debugger
+        this.validVk = global['window'] && global['window'].validVk
 
         makeObservable(this, {
             activeStory: observable,

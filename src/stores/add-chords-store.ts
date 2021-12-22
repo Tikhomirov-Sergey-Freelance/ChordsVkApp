@@ -5,7 +5,7 @@ import { notes } from '../code/data/notes'
 
 import ChordCanvas from '../code/canvas/chord'
 import GlobalStore from './global-store'
-import { collection, addDoc } from '@firebase/firestore'
+import { collection, addDoc, doc, setDoc } from '@firebase/firestore'
 import { snackbar } from '../code/common/alerts'
 
 type Mode = 'add' | 'edit'
@@ -106,11 +106,14 @@ export class AddChordsStore implements iParams {
         
         const firestore = GlobalStore.firestore
 
-        const result = await addDoc(collection(firestore, `chords/${this.note}/${this.name}`), this.chordParams)
+        const result = await setDoc(doc(firestore, `chords/${this.name}`), this.chordParams)
         console.log(result)
         
         snackbar('Добавили аккорд')
-        this.fillParams(defauiltParams) 
+
+        const newParams = { ...defauiltParams, note: this.chordParams.note, name: this.chordParams.note }
+
+        this.fillParams(newParams) 
     }
 
     get chordParams(): iParams {

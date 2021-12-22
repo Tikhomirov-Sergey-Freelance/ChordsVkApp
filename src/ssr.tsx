@@ -29,7 +29,6 @@ const getHtml = (reactHtml, data) => {
     </head>
     <body>
         <script>
-        debugger;
             window['adminToken'] = '${data.adminToken}';
             window['validVk'] = ${data.validVk};
         </script>

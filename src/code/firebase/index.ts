@@ -10,12 +10,13 @@ import { getFirestore, collection } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAG70Q8XMvKfSU48NLjICNcHxm4w1LGGiU",
-  authDomain: "chords-test-c25b3.firebaseapp.com",
-  projectId: "chords-test-c25b3",
-  storageBucket: "chords-test-c25b3.appspot.com",
-  messagingSenderId: "961783308721",
-  appId: "1:961783308721:web:265426d5c87511d98add90"
+  apiKey: "AIzaSyD3e15pWN9vA-cNbzZp15S8oa8E2nyB45c",
+  authDomain: "chords-7f150.firebaseapp.com",
+  projectId: "chords-7f150",
+  storageBucket: "chords-7f150.appspot.com",
+  messagingSenderId: "876182563897",
+  appId: "1:876182563897:web:8161ba973a700f579571e8",
+  measurementId: "G-C0H2MJXMS5"
 };
 
 const init = () => {

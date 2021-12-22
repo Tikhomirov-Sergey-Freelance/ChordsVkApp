@@ -140,6 +140,10 @@ class ChordCanvas {
             this.context.lineWidth = 0.5
             this.context.strokeText('X', x - 2.5, this.topPadding - 2)
         }
+
+        this.context.lineWidth = 0.5
+        this.context.textAlign = 'center'
+        this.context.strokeText(this.params.name, this.canvas.width / 2, this.topPadding - 12)
     }
 
     drawLine(startX: number, startY: number, endX: number, endY: number) {
