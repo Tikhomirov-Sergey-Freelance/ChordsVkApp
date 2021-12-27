@@ -1,30 +1,15 @@
 import { Panel, PanelHeader, View } from '@vkontakte/vkui'
 import React, { useEffect } from 'react'
-import { observer } from 'mobx-react-lite'
-import ChordsListStore from 'stores/chords-list-store'
+import ChordsList from '../chords/chord-list'
 
-const ChordsView: React.FC = observer(() => {
-
-    useEffect(() => {
-        ChordsListStore.loadChords()
-    }, [])
-
-    const chords = ChordsListStore.chords
-    
-    if(!chords || !chords.size) return (<> Loading </>)
-
-    const keys = Array.from(chords.keys())
+const ChordsView: React.FC = () => {
 
     return (
         <>
             <PanelHeader>Аккорды</PanelHeader>
-
-            {
-                keys.map(note => chords.get(note).map(chord => <div>{chord.name}</div>))
-            }
+            <ChordsList />
         </>
     )
-
-})
+}
 
 export default ChordsView

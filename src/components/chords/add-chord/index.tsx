@@ -3,10 +3,11 @@ import { observer } from 'mobx-react-lite'
 import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayout, FormItem, SliderSwitch, Select, CustomSelectOption, PanelHeaderSubmit } from '@vkontakte/vkui'
 
 import { notes } from '../../../code/data/notes'
+import Store from '../../../stores/add-chords-store'
 
 import HeaderWithBack from '../../vk/layout/header/heade-and-back'
 import Canvas from './drawing-fret'
-import Instrument from './instrument'
+import Instrument from '../instrument/change-instrument'
 import Notes from './notes'
 import Name from './name'
 import StartFret from './startFret'
@@ -25,7 +26,7 @@ const AddChordsForm: React.FC = observer(() => {
 
             <Group>
 
-                <Instrument/>
+                <Instrument />
                 <Notes />
                 <Name />
 

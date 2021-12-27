@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, reaction } from 'mobx'
 import { iPageKey, pages } from '../pages'
 import { MusicalInstrument } from '../types/global-types'
 import { notes } from '../code/data/notes'
@@ -27,7 +27,7 @@ export interface iGuitarString {
 
 const defauiltParams: iParams = {
     mode: 'add',
-    instrument: 'guitar',
+    instrument: GlobalStore.currentInstrument,
     note: notes[0],
     name: notes[0],
     startFret: 0,
@@ -38,11 +38,18 @@ const defauiltParams: iParams = {
 export class AddChordsStore implements iParams {
 
     mode: Mode
-    instrument: MusicalInstrument
     note: string 
     name: string
     startFret: number
     barre: boolean
+
+    get instrument() {
+        return GlobalStore.currentInstrument
+    }
+
+    set instrument(value) {
+        GlobalStore.changeInstrument(value)
+    }
 
     canvas: ChordCanvas
 
@@ -54,6 +61,14 @@ export class AddChordsStore implements iParams {
         makeAutoObservable(this, undefined, { deep: true })
 
         this.saveChord = this.saveChord.bind(this)
+
+        reaction(() => GlobalStore.currentInstrument,
+            () => {
+                if(GlobalStore.activePanel === 'addChords') {
+                    this.fillStrings()
+                }
+            }
+        )  
     }
 
     fillParams(params: iParams) {
@@ -88,8 +103,11 @@ export class AddChordsStore implements iParams {
     }
 
     changeInstrtument(instrument: MusicalInstrument) {
-        this.instrument = instrument
-        this.fillStrings()
+
+        //this.instrument = instrument
+        GlobalStore.changeInstrument(instrument)
+
+        this.fillStrings()  
     }
 
     fillStrings() {

@@ -5,6 +5,7 @@ import initDatabase from '../code/firebase'
 import { iPageKey, pages } from '../pages'
 import { Database, getDatabase } from 'firebase/database'
 import { Firestore } from '@firebase/firestore'
+import { MusicalInstrument } from 'types/global-types'
 
 export class GlobalStore {
 
@@ -18,6 +19,8 @@ export class GlobalStore {
 
     adminToken: string
     validVk: boolean
+
+    currentInstrument: MusicalInstrument = 'guitar'
 
     constructor() {
 
@@ -34,7 +37,8 @@ export class GlobalStore {
 
         makeObservable(this, {
             activeStory: observable,
-            activePanel: observable
+            activePanel: observable,
+            currentInstrument: observable
         })
     }   
 
@@ -49,6 +53,10 @@ export class GlobalStore {
 
     setActivePanel(panel: string = '') {
         this.activePanel = panel
+    }
+
+    changeInstrument(instrument: MusicalInstrument) {
+        this.currentInstrument = instrument
     }
 }
   

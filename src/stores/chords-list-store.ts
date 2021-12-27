@@ -10,38 +10,45 @@ export class ChordsListStore {
     loading = false
     loaded = false
 
-    chords: Map<string, ChordParam[]> = new Map<string, ChordParam[]>()
+    guitarChords: Map<string, ChordParam[]> = new Map<string, ChordParam[]>()
+    ukuleleChords: Map<string, ChordParam[]> = new Map<string, ChordParam[]>()
 
     constructor() {
         makeAutoObservable(this)
     }
 
     async loadChords() {
+
+        if(this.loaded) return
         
         this.loading = true
 
         const chords = (await getDocs(collection(GlobalStore.firestore, "chords"))).docs.map(doc => doc.data() as ChordParam)
 
-        const chordsByGroup = new Map<string, ChordParam[]>([])
+        const guitarChordsByGroup = new Map<string, ChordParam[]>([])
+        const ukuleleChordsByGroup = new Map<string, ChordParam[]>([])
+
+        this.guitarChords = null 
+        this.ukuleleChords = null
 
         chords.forEach(chord => {
 
-            if(chordsByGroup.has(chord.note)) {
-                chordsByGroup.get(chord.note).push(chord)
+            const source = chord.instrument === 'guitar' ? guitarChordsByGroup : ukuleleChordsByGroup
+
+            if(source.has(chord.note)) {
+                source.get(chord.note).push(chord)
             } else {
-                chordsByGroup.set(chord.note, [chord])
+                source.set(chord.note, [chord])
             }
         })
         
-        this.chords = chordsByGroup 
+        this.guitarChords = guitarChordsByGroup 
+        this.ukuleleChords = ukuleleChordsByGroup
+
+        this.loaded = true
         this.loading = false 
     }
 } 
-
-interface iChordsGroupByNote {
-    note: string,
-    chords: ChordParam[]
-}
 
 const store = new ChordsListStore()
 export default store
