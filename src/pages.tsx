@@ -26,11 +26,11 @@ export const pages: iPage[] = [
       name: 'Избранное',
       iconComponent: <Icon28FavoriteOutline />
     },
-    {
+    /*{
       key: 'addTrack',
       name: 'Добавить трек',
       iconComponent: <Icon28AddSquareOutline />
-    },
+    },*/
     {
       key: 'admin',
       name: 'Администрирование',

@@ -11,6 +11,7 @@ export class GlobalStore {
 
     activeStory: iPageKey = pages[0].key
     activePanel: string = pages[0].key
+    activePanelData: any
 
     firebase: FirebaseApp
     database: Database
@@ -35,6 +36,8 @@ export class GlobalStore {
         this.adminToken = global['window'] && global['window'].adminToken
         this.validVk = global['window'] && global['window'].validVk
 
+        this.setLocation()
+
         makeObservable(this, {
             activeStory: observable,
             activePanel: observable,
@@ -46,17 +49,46 @@ export class GlobalStore {
         this.activePanel = this.activeStory
     }
 
-    setActiveStory(activeStory: iPageKey, panel: string = '') {
+    setActiveStory(activeStory: iPageKey, panel: string = '', data = null) {
+
         this.activeStory = activeStory
         this.activePanel = panel || activeStory
+        this.activePanelData = data
+
+        this.saveLocation()
     }
 
-    setActivePanel(panel: string = '') {
+    setActivePanel(panel: string = '', data = null) {
+
         this.activePanel = panel
+        this.activePanelData = data
+
+        this.saveLocation()
     }
 
     changeInstrument(instrument: MusicalInstrument) {
         this.currentInstrument = instrument
+    }
+
+    saveLocation() {
+        sessionStorage.setItem('chords_location', JSON.stringify(this.locationData))
+    }
+
+    setLocation() {
+
+        const ssLocalion = global['window'] && global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
+
+        if(!ssLocalion) return
+
+        const location = JSON.parse(ssLocalion)
+
+        this.activeStory = location.activeStory
+        this.activePanel = location.activePanel
+        this.activePanelData = location.activePanelData
+    }
+
+    get locationData() {
+        return { activeStory: this.activeStory, activePanel: this.activePanel, activePanelData: this.activePanelData }
     }
 }
   

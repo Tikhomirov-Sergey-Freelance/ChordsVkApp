@@ -6,6 +6,7 @@ import ChordsListStore from 'stores/chords-list-store'
 import Instrument from '../instrument/change-instrument'
 import Note from '../../chords/chord-list/note'
 import GlobalStore from 'stores/global-store'
+import ListVirtualized from '../../common/virtualized/virtualized-list'
 
 const ChordsList: React.FC = observer(() => {
 

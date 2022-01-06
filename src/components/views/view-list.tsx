@@ -11,6 +11,7 @@ import Favourites from './favourites'
 import AddTrack from './add-track'
 import Admin from './admin'
 import AdminAddChords from './admin/add-chords'
+import AdminAddArtist from './admin/add-artist'
 
 import MobileNav from '../navigation/mobile'
 
@@ -38,18 +39,15 @@ const ViewList: React.FC = observer(() => {
         </Panel>
       </View >
 
-      <View id='addTrack' activePanel={GlobalStore.activePanel}>
-        <Panel id='addTrack'>
-          <AddTrack />
-        </Panel>
-      </View >
-
       <View id='admin' activePanel={GlobalStore.activePanel}>
         <Panel id='admin'>
           <Admin />
         </Panel>
         <Panel id='addChords'>
           <AdminAddChords />
+        </Panel>
+        <Panel id='addArtist'>
+          <AdminAddArtist />
         </Panel>
       </View >
 
