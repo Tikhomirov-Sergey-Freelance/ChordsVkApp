@@ -19,6 +19,10 @@ const AdminView: React.FC = observer(() => {
             <CellButton onClick={ () => GlobalStore.setActivePanel('addArtist') }>
                 Добавить артиста
             </CellButton>
+
+            <CellButton onClick={ () => GlobalStore.setActivePanel('addTrack') }>
+                Добавить трек
+            </CellButton>
         
             </Group>
 

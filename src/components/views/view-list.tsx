@@ -12,6 +12,7 @@ import AddTrack from './add-track'
 import Admin from './admin'
 import AdminAddChords from './admin/add-chords'
 import AdminAddArtist from './admin/add-artist'
+import AdminAddTrack from './admin/add-track'
 
 import MobileNav from '../navigation/mobile'
 
@@ -48,6 +49,9 @@ const ViewList: React.FC = observer(() => {
         </Panel>
         <Panel id='addArtist'>
           <AdminAddArtist />
+        </Panel>
+        <Panel id='addTrack'>
+          <AdminAddTrack />
         </Panel>
       </View >
 
