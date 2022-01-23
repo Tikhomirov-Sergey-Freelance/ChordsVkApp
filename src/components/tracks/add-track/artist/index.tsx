@@ -16,7 +16,7 @@ const Artist: React.FC<iProps> = observer(({ store }) => {
 
     return (
 
-        <FormItem top='Исполнитель'>
+        <FormItem top='Исполнитель'> 
               <CustomSelect
                 placeholder='Введите исполнителя'
                 searchable

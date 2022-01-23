@@ -1,4 +1,4 @@
-import { Panel, PanelHeader, View } from '@vkontakte/vkui'
+import { Panel, PanelHeader, View, PanelSpinner } from '@vkontakte/vkui'
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ChordsListStore from 'stores/chords-list-store'
@@ -16,7 +16,7 @@ const ChordsList: React.FC = observer(() => {
     
     const chords = GlobalStore.currentInstrument === 'guitar' ? ChordsListStore.guitarChords : ChordsListStore.ukuleleChords
     
-    if(!chords || !chords.size) return (<> Loading </>)
+    if(!chords || !chords.size) return <PanelSpinner size="large"/>
 
     const keys = Array.from(chords.keys())
 

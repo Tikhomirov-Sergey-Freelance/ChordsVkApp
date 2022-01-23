@@ -6,16 +6,14 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 import { iParams as ChordParam } from './add-chords-store'
 import { snackbar } from '../code/common/alerts'
-
-export interface iArtist {
-    id: string,
-    name: string
-}
+import { iArtist } from 'types/artists'
 
 export class AddArtistStore {
 
     name: string
     id: string
+
+    queryArtist
 
     constructor() {
         this.id = createGuid()
@@ -34,7 +32,8 @@ export class AddArtistStore {
     get artistToSave(): iArtist {
         return {
             id: this.id,
-            name: this.name
+            name: this.name,
+            searchName: this.name.toUpperCase()
         }
     }
 

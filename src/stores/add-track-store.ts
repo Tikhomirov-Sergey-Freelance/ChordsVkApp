@@ -7,13 +7,8 @@ import { limit } from 'firebase/firestore'
 import { iParams as ChordParam } from './add-chords-store'
 import { snackbar } from '../code/common/alerts'
 import { loadArtistsByQuery } from 'code/firebase/artists'
-
-export interface iTrack {
-    id: string
-    name: string
-    artistId: string
-    strumming: string[]
-} 
+import { iTrack } from 'types/track'
+import { StrummingType, defaultStrumming } from 'types/strumming'
 
 export interface iArtistSearch {
     label: string
@@ -25,6 +20,8 @@ export class AddTrackStore {
     name: string
     id: string
     artistId: string
+    strumming: StrummingType[] = defaultStrumming
+    strummingNote
 
     artistsList: iArtistSearch[] = []
     artistListLoading = false
@@ -69,6 +66,14 @@ export class AddTrackStore {
         }))  
 
         this.artistListLoading = false
+    }
+
+    addStrummingItem(item: StrummingType) {
+        this.strumming.push(item)
+    }
+
+    deleteStrummingItem() {
+        this.strumming.pop()
     }
 } 
 
