@@ -4,7 +4,7 @@ import { createGuid } from '../code/common/guid'
 import GlobalStore from './global-store'
 import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc } from '@firebase/firestore'
 import { limit } from 'firebase/firestore'
-import { iParams as ChordParam } from './add-chords-store'
+
 import { snackbar } from '../code/common/alerts'
 import { iArtist } from 'types/artists'
 

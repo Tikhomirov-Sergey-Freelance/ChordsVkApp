@@ -4,10 +4,9 @@ import { createGuid } from '../code/common/guid'
 import GlobalStore from './global-store'
 import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc } from '@firebase/firestore'
 import { limit } from 'firebase/firestore'
-import { iParams as ChordParam } from './add-chords-store'
 import { snackbar } from '../code/common/alerts'
 import { loadArtistsByQuery } from 'code/firebase/artists'
-import { iTrack } from 'types/track'
+import { iChordsText, iTrack, iChordsWord } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 
 export interface iArtistSearch {
@@ -21,7 +20,10 @@ export class AddTrackStore {
     id: string
     artistId: string
     strumming: StrummingType[] = defaultStrumming
-    strummingNote
+    strummingNote: string
+    chordsText: iChordsText
+
+    text: string
 
     artistsList: iArtistSearch[] = []
     artistListLoading = false
@@ -38,7 +40,7 @@ export class AddTrackStore {
 
         const result = await setDoc(doc(firestore, `tracks/${this.id}`), this.trackToSave)
         console.log(result)
-        
+
         snackbar('Добавили трек')
     }
 
@@ -47,7 +49,9 @@ export class AddTrackStore {
             id: this.id,
             name: this.name,
             artistId: '',
-            strumming: []
+            strumming: this.strumming,
+            strummingNote: this.strummingNote,
+            chordsText: this.chordsText
         }
     }
 
@@ -56,14 +60,14 @@ export class AddTrackStore {
     }
 
     async loadArtist(query: string) {
-        
-        this.artistListLoading = true 
+
+        this.artistListLoading = true
         const data = await loadArtistsByQuery(query)
-        
+
         this.artistsList = data.map(artist => ({
             label: artist.name,
             value: artist.id
-        }))  
+        }))
 
         this.artistListLoading = false
     }
@@ -75,6 +79,40 @@ export class AddTrackStore {
     deleteStrummingItem() {
         this.strumming.pop()
     }
-} 
+
+    changeText(text: string) {
+
+        const chordsText: iChordsText = { rows: [] }
+        const rows = text.split('\n')
+
+        for (let row of rows) {
+            const words = row.split(' ').filter(word => word)
+            chordsText.rows.push({ words: words.map(word => ({ word })) })
+        }
+
+        for (let i = 0; i < chordsText.rows.length; i++) {
+
+            const row = chordsText.rows[i]
+            const lastRow = this.chordsText?.rows[i]
+
+            if(!lastRow) break
+
+            for(let j = 0; j < row.words.length; j++) {
+
+                const word = row.words[j]
+                const lastWord = lastRow.words[j]
+
+                if(!lastWord) break
+
+                if(word.word === lastWord.word) {
+                    word.chord = lastWord.chord
+                }
+            }
+        }
+
+        this.text = text
+        this.chordsText = chordsText
+    }
+}
 
 export default AddTrackStore

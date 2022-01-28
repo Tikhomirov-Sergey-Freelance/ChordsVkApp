@@ -7,26 +7,11 @@ import ChordCanvas from '../code/canvas/chord'
 import GlobalStore from './global-store'
 import { collection, addDoc, doc, setDoc } from '@firebase/firestore'
 import { snackbar } from '../code/common/alerts'
+import { iChord, iGuitarString } from 'types/chord'
 
 type Mode = 'add' | 'edit'
 
-export interface iParams {
-    mode: Mode
-    instrument: MusicalInstrument
-    note: string
-    name: string
-    startFret: number
-    barre: boolean
-    guitarStrings: iGuitarString[]
-}
-
-export interface iGuitarString {
-    index: number,
-    fret: number | string
-}
-
-const defauiltParams: iParams = {
-    mode: 'add',
+const defauiltParams: iChord = {
     instrument: GlobalStore.currentInstrument,
     note: notes[0],
     name: notes[0],
@@ -35,9 +20,9 @@ const defauiltParams: iParams = {
     guitarStrings: []
 }
 
-export class AddChordsStore implements iParams {
+export class AddChordsStore implements iChord {
 
-    mode: Mode
+    mode: Mode = 'add'
     note: string 
     name: string
     startFret: number
@@ -55,7 +40,7 @@ export class AddChordsStore implements iParams {
 
     guitarStrings!: iGuitarString[]
 
-    constructor(params: iParams = defauiltParams) {
+    constructor(params: iChord = defauiltParams) {
 
         this.fillParams(params)
         makeAutoObservable(this, undefined, { deep: true })
@@ -71,10 +56,10 @@ export class AddChordsStore implements iParams {
         )  
     }
 
-    fillParams(params: iParams) {
+    fillParams(params: iChord) {
 
         for (let prop in params) {
-            this[prop as keyof this] = params[prop as keyof iParams] as any
+            this[prop as keyof this] = params[prop as keyof iChord] as any
         }
 
         if (!this.guitarStrings.length) {
@@ -82,7 +67,7 @@ export class AddChordsStore implements iParams {
         }
     }
 
-    changeProperty(property: keyof iParams, value: any) {
+    changeProperty(property: keyof iChord, value: any) {
         this[property as keyof this] = value
     }
 
@@ -134,10 +119,9 @@ export class AddChordsStore implements iParams {
         this.fillParams(newParams) 
     }
 
-    get chordParams(): iParams {
+    get chordParams(): iChord {
 
-        const params: iParams = {
-            mode: this.mode,
+        const params: iChord = {
             instrument: this.instrument,
             note: this.note,
             name: this.name,
