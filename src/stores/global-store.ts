@@ -7,10 +7,13 @@ import { Database, getDatabase } from 'firebase/database'
 import { Firestore } from '@firebase/firestore'
 import { MusicalInstrument } from 'types/global-types'
 
+export type iActiveStory = iPageKey | 'defaultModalPage'
+
 export class GlobalStore {
 
-    activeStory: iPageKey = pages[0].key
+    activeStory: iActiveStory = pages[0].key
     activePanel: string = pages[0].key
+    activeModal: string
     activePanelData: any
 
     firebase: FirebaseApp
@@ -49,7 +52,7 @@ export class GlobalStore {
         this.activePanel = this.activeStory
     }
 
-    setActiveStory(activeStory: iPageKey, panel: string = '', data = null) {
+    setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {
 
         this.activeStory = activeStory
         this.activePanel = panel || activeStory

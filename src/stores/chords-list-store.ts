@@ -3,15 +3,15 @@ import { createGuid } from '../code/common/guid'
 import GlobalStore from './global-store'
 import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc } from '@firebase/firestore'
 import { limit } from 'firebase/firestore'
-import { iParams as ChordParam } from './add-chords-store'
+import { iChord } from 'types/chord'
 
 export class ChordsListStore {
 
     loading = false
     loaded = false
 
-    guitarChords: Map<string, ChordParam[]> = new Map<string, ChordParam[]>()
-    ukuleleChords: Map<string, ChordParam[]> = new Map<string, ChordParam[]>()
+    guitarChords: Map<string, iChord[]> = new Map<string, iChord[]>()
+    ukuleleChords: Map<string, iChord[]> = new Map<string, iChord[]>()
 
     constructor() {
         makeAutoObservable(this)
@@ -23,10 +23,10 @@ export class ChordsListStore {
         
         this.loading = true
 
-        const chords = (await getDocs(collection(GlobalStore.firestore, "chords"))).docs.map(doc => doc.data() as ChordParam)
+        const chords = (await getDocs(collection(GlobalStore.firestore, "chords"))).docs.map(doc => doc.data() as iChord)
 
-        const guitarChordsByGroup = new Map<string, ChordParam[]>([])
-        const ukuleleChordsByGroup = new Map<string, ChordParam[]>([])
+        const guitarChordsByGroup = new Map<string, iChord[]>([])
+        const ukuleleChordsByGroup = new Map<string, iChord[]>([])
 
         this.guitarChords = null 
         this.ukuleleChords = null

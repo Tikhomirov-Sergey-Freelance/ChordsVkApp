@@ -3,12 +3,11 @@ import { observer } from 'mobx-react-lite'
 import { FormItem } from '@vkontakte/vkui'
 
 import AddTrackStore from '../../../../stores/add-track-store'
+import ModalPageStore from '../../../../stores/modal-page-store'
 import { iChordsWord } from 'types/track'
 
 import Styled from './styled'
 import ChordRow from './chords-row'
-import SelectChordsModal from './select-chord-modal'
-
 
 interface iProps {
     store: AddTrackStore
@@ -31,8 +30,6 @@ const Chords: React.FC<iProps> = observer(({ store }) => {
             </Styled>
               
         </FormItem>
-
-        <SelectChordsModal visible={!!selectedWord} onChange={(chord) => { console.log(chord) }} onClose={() => selectWord(null)}/>
 
         </>
     ) 

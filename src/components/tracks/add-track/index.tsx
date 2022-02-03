@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayout, FormItem, SliderSwitch, Select, CustomSelectOption, PanelHeaderSubmit } from '@vkontakte/vkui'
+import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayout, FormItem, SliderSwitch, Select, CustomSelectOption, PanelHeaderSubmit, ModalRoot } from '@vkontakte/vkui'
 
 import { notes } from '../../../code/data/notes'
 import Store from '../../../stores/add-chords-store'
@@ -16,18 +16,19 @@ const AddTrack: React.FC = observer(() => {
 
     const ObserverForm = observer<{ store: AddTrackStore }>(({ store }) => {
         return <Form store={store} />
-})
+    })
 
     return (
+
         <FormLayout>
-      
+
             <HeaderWithBack>
                 Добавить трек
             </HeaderWithBack>
 
-            <ObserverForm store={store}/>
+            <ObserverForm store={store} />
 
-        </FormLayout >
+        </FormLayout>
     )
 })
 
