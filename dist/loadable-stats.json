@@ -1,94 +1,205 @@
 {
-  "errors": [],
-  "warnings": [],
-  "version": "4.30.0",
-  "hash": "9336d521e2309f86e3c0",
+  "hash": "86527a347b5cd79fb109",
+  "version": "5.65.0",
   "publicPath": "/",
-  "outputPath": "C:\\Programming\\vkapp\\ChordsVkApp\\dist",
+  "outputPath": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\dist",
   "assetsByChunkName": {
     "main": [
-      "main.css",
-      "main.js",
-      "main.css.map",
-      "main.js.map"
+      "main.js"
     ]
   },
   "assets": [
     {
-      "name": "main.css",
-      "size": 214884,
-      "chunks": [
-        "main"
-      ],
-      "chunkNames": [
-        "main"
-      ],
-      "emitted": false
-    },
-    {
-      "name": "main.css.map",
-      "size": 261090,
-      "chunks": [
-        "main"
-      ],
-      "chunkNames": [
-        "main"
-      ],
-      "emitted": false
-    },
-    {
+      "type": "asset",
       "name": "main.js",
-      "size": 12351080,
-      "chunks": [
-        "main"
-      ],
+      "size": 4853473,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "main.js.map"
+        }
+      },
       "chunkNames": [
         "main"
       ],
-      "emitted": false
-    },
-    {
-      "name": "main.js.map",
-      "size": 8945590,
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "main.js.map",
+          "size": 4551888,
+          "emitted": false,
+          "comparedForEmit": false,
+          "cached": true,
+          "info": {
+            "development": true
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [
+            "main"
+          ],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [
+            "main"
+          ],
+          "isOverSizeLimit": false
+        }
+      ],
       "chunks": [
         "main"
       ],
-      "chunkNames": [
-        "main"
-      ],
-      "emitted": false
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
     }
   ],
-  "filteredAssets": 0,
   "entrypoints": {
     "main": {
+      "name": "main",
       "chunks": [
         "main"
       ],
       "assets": [
-        "main.css",
-        "main.js",
-        "main.css.map",
-        "main.js.map"
+        {
+          "name": "main.js"
+        }
       ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "auxiliaryAssets": [
+        {
+          "name": "main.js.map"
+        }
+      ],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": null,
       "children": {},
-      "childAssets": {}
+      "childAssets": {},
+      "isOverSizeLimit": false
     }
   },
   "namedChunkGroups": {
     "main": {
+      "name": "main",
       "chunks": [
         "main"
       ],
       "assets": [
-        "main.css",
-        "main.js",
-        "main.css.map",
-        "main.js.map"
+        {
+          "name": "main.js"
+        }
       ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "auxiliaryAssets": [
+        {
+          "name": "main.js.map"
+        }
+      ],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": null,
       "children": {},
-      "childAssets": {}
+      "childAssets": {},
+      "isOverSizeLimit": false
     }
   },
+  "errors": [
+    {
+      "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-hot-loader\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mini-css-extract-plugin\\dist\\loader.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css",
+      "moduleName": "./node_modules/@vkontakte/vkui/dist/vkui.css",
+      "message": "Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nHookWebpackError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\n    at validate (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\node_modules\\schema-utils\\dist\\validate.js:105:11)\n    at Object.getOptions (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:578:19)\n    at Object.loader (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\index.js:40:24)\n    at tryRunOrWebpackError (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\HookWebpackError.js:88:9)\n    at __webpack_require_module__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4979:12)\n    at __webpack_require__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4936:18)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:5007:20\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3485:9)\n    at done (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\Hook.js:18:14)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4914:43\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3482:9)\n-- inner error --\nError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\n    at validate (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\node_modules\\schema-utils\\dist\\validate.js:105:11)\n    at Object.getOptions (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:578:19)\n    at Object.loader (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\index.js:40:24)\n    at Object.<anonymous> (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css:1:7)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\javascript\\JavascriptModulesPlugin.js:432:11\n    at Hook.eval (eval at create (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\HookCodeFactory.js:19:10), <anonymous>:7:1)\n    at Hook.CALL_DELEGATE [as _call] (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\Hook.js:14:14)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4981:39\n    at tryRunOrWebpackError (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\HookWebpackError.js:83:7)\n    at __webpack_require_module__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4979:12)\n    at __webpack_require__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4936:18)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:5007:20\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3485:9)\n\nGenerated code for C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css\n1 | throw new Error(\"Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\\n - options has an unknown property 'plugins'. These properties are valid:\\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\\n    at validate (C:\\\\Programming\\\\vkapp\\\\Сhords\\\\chords-vk-app\\\\ChordsVkApp\\\\node_modules\\\\webpack\\\\node_modules\\\\schema-utils\\\\dist\\\\validate.js:105:11)\\n    at Object.getOptions (C:\\\\Programming\\\\vkapp\\\\Сhords\\\\chords-vk-app\\\\ChordsVkApp\\\\node_modules\\\\webpack\\\\lib\\\\NormalModule.js:578:19)\\n    at Object.loader (C:\\\\Programming\\\\vkapp\\\\Сhords\\\\chords-vk-app\\\\ChordsVkApp\\\\node_modules\\\\postcss-loader\\\\dist\\\\index.js:40:24)\");",
+      "moduleId": "./node_modules/@vkontakte/vkui/dist/vkui.css",
+      "moduleTrace": [
+        {
+          "originIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\babel-loader\\lib\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src\\app.tsx",
+          "originName": "./src/app.tsx",
+          "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-hot-loader\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mini-css-extract-plugin\\dist\\loader.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css",
+          "moduleName": "./node_modules/@vkontakte/vkui/dist/vkui.css",
+          "dependencies": [
+            {
+              "loc": "13:0-39"
+            }
+          ],
+          "originId": "./src/app.tsx",
+          "moduleId": "./node_modules/@vkontakte/vkui/dist/vkui.css"
+        },
+        {
+          "originIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\babel-loader\\lib\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src\\client.tsx",
+          "originName": "./src/client.tsx",
+          "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\babel-loader\\lib\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src\\app.tsx",
+          "moduleName": "./src/app.tsx",
+          "dependencies": [
+            {
+              "loc": "8:0-24"
+            },
+            {
+              "loc": "12:36-39"
+            }
+          ],
+          "originId": "./src/client.tsx",
+          "moduleId": "./src/app.tsx"
+        }
+      ],
+      "stack": "ModuleBuildError: Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nHookWebpackError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\n    at validate (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\node_modules\\schema-utils\\dist\\validate.js:105:11)\n    at Object.getOptions (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:578:19)\n    at Object.loader (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\index.js:40:24)\n    at tryRunOrWebpackError (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\HookWebpackError.js:88:9)\n    at __webpack_require_module__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4979:12)\n    at __webpack_require__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4936:18)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:5007:20\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3485:9)\n    at done (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\Hook.js:18:14)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4914:43\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3482:9)\n-- inner error --\nError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\n    at validate (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\node_modules\\schema-utils\\dist\\validate.js:105:11)\n    at Object.getOptions (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:578:19)\n    at Object.loader (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\index.js:40:24)\n    at Object.<anonymous> (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css:1:7)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\javascript\\JavascriptModulesPlugin.js:432:11\n    at Hook.eval (eval at create (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\HookCodeFactory.js:19:10), <anonymous>:7:1)\n    at Hook.CALL_DELEGATE [as _call] (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\tapable\\lib\\Hook.js:14:14)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4981:39\n    at tryRunOrWebpackError (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\HookWebpackError.js:83:7)\n    at __webpack_require_module__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4979:12)\n    at __webpack_require__ (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:4936:18)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:5007:20\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3485:9)\n\nGenerated code for C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css\n1 | throw new Error(\"Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\\n - options has an unknown property 'plugins'. These properties are valid:\\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\\n    at validate (C:\\\\Programming\\\\vkapp\\\\Сhords\\\\chords-vk-app\\\\ChordsVkApp\\\\node_modules\\\\webpack\\\\node_modules\\\\schema-utils\\\\dist\\\\validate.js:105:11)\\n    at Object.getOptions (C:\\\\Programming\\\\vkapp\\\\Сhords\\\\chords-vk-app\\\\ChordsVkApp\\\\node_modules\\\\webpack\\\\lib\\\\NormalModule.js:578:19)\\n    at Object.loader (C:\\\\Programming\\\\vkapp\\\\Сhords\\\\chords-vk-app\\\\ChordsVkApp\\\\node_modules\\\\postcss-loader\\\\dist\\\\index.js:40:24)\");\n    at processResult (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:751:19)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:853:5\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\loader-runner\\lib\\LoaderRunner.js:399:11\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\loader-runner\\lib\\LoaderRunner.js:195:20\n    at context.callback (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mini-css-extract-plugin\\dist\\loader.js:182:9\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\dependencies\\LoaderPlugin.js:206:27\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\Compilation.js:5016:17\n    at symbolIterator (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3485:9)\n    at done (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\neo-async\\async.js:3527:9)"
+    },
+    {
+      "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css",
+      "moduleName": "./node_modules/@vkontakte/vkui/dist/vkui.css.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./node_modules/@vkontakte/vkui/dist/vkui.css",
+      "message": "Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\n    at validate (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\node_modules\\schema-utils\\dist\\validate.js:105:11)\n    at Object.getOptions (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:578:19)\n    at Object.loader (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\index.js:40:24)",
+      "moduleId": null,
+      "moduleTrace": [
+        {
+          "originIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-hot-loader\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mini-css-extract-plugin\\dist\\loader.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css",
+          "originName": "./node_modules/@vkontakte/vkui/dist/vkui.css",
+          "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css",
+          "moduleName": "./node_modules/@vkontakte/vkui/dist/vkui.css.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./node_modules/@vkontakte/vkui/dist/vkui.css",
+          "dependencies": [],
+          "originId": "./node_modules/@vkontakte/vkui/dist/vkui.css",
+          "moduleId": null
+        },
+        {
+          "originIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\babel-loader\\lib\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src\\app.tsx",
+          "originName": "./src/app.tsx",
+          "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-hot-loader\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\mini-css-extract-plugin\\dist\\loader.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\css-loader\\dist\\cjs.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\cjs.js??ruleSet[1].rules[1].use[3]!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\@vkontakte\\vkui\\dist\\vkui.css",
+          "moduleName": "./node_modules/@vkontakte/vkui/dist/vkui.css",
+          "dependencies": [
+            {
+              "loc": "13:0-39"
+            }
+          ],
+          "originId": "./src/app.tsx",
+          "moduleId": "./node_modules/@vkontakte/vkui/dist/vkui.css"
+        },
+        {
+          "originIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\babel-loader\\lib\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src\\client.tsx",
+          "originName": "./src/client.tsx",
+          "moduleIdentifier": "C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\babel-loader\\lib\\index.js!C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\src\\app.tsx",
+          "moduleName": "./src/app.tsx",
+          "dependencies": [
+            {
+              "loc": "8:0-24"
+            },
+            {
+              "loc": "12:36-39"
+            }
+          ],
+          "originId": "./src/client.tsx",
+          "moduleId": "./src/app.tsx"
+        }
+      ],
+      "stack": "ModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap?, implementation? }\n    at validate (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\node_modules\\schema-utils\\dist\\validate.js:105:11)\n    at Object.getOptions (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:578:19)\n    at Object.loader (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\postcss-loader\\dist\\index.js:40:24)\n    at processResult (C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:751:19)\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\webpack\\lib\\NormalModule.js:853:5\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\loader-runner\\lib\\LoaderRunner.js:399:11\n    at C:\\Programming\\vkapp\\Сhords\\chords-vk-app\\ChordsVkApp\\node_modules\\loader-runner\\lib\\LoaderRunner.js:251:18"
+    }
+  ],
+  "errorsCount": 2,
+  "warnings": [],
+  "warningsCount": 0,
   "children": []
 }

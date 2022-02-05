@@ -38,7 +38,7 @@ export class GlobalStore {
             activeStory: observable,
             activePanel: observable
         })
-    }   
+    }    
 
     toMainPanel() {
         this.activePanel = this.activeStory
