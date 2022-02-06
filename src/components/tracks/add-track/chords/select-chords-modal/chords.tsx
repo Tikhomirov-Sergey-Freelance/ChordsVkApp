@@ -18,11 +18,13 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
 
     const loadChords = async (query: string) => {
         if(!query.length) return
+        changeLoading(true)
         const data = await loadChordsByQuery(query)
         setChordsList(data.map(chord => ({
             label: chord.name,
             value: chord.name
         })))
+        changeLoading(false)
     }
 
     const [loadChordsDebounce, clearDebounce] = useDebounce(loadChords)

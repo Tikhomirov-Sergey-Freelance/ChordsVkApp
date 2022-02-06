@@ -6,7 +6,7 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 import { snackbar } from '../code/common/alerts'
 import { loadArtistsByQuery } from 'code/firebase/artists'
-import { iChordsText, iTrack, iChordsWord } from 'types/track'
+import { iChordsText, iTrack, iChordsWord, iChordWordPosition } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 
 export interface iArtistSearch {
@@ -30,7 +30,7 @@ export class AddTrackStore {
 
     constructor() {
         this.id = createGuid()
-        makeAutoObservable(this)
+        makeAutoObservable(this, undefined, { deep: true })
 
         this.loadArtist = this.loadArtist.bind(this)
     }
