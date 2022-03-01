@@ -1,6 +1,7 @@
 export enum StrummingType {
     up,
     down,
+    mutting,
     space
 }
 

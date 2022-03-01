@@ -7,6 +7,7 @@ export interface iTrack {
     strumming: StrummingType[]
     strummingNote: string
     chordsText: iChordsText
+    chordsNote: string
 } 
 
 export interface iChordsText {
@@ -15,6 +16,7 @@ export interface iChordsText {
 
 export interface iChordsRow {
     words: iChordsWord[]
+    spaceRow?: boolean
 }
 
 export interface iChordsWord {

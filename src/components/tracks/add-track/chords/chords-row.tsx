@@ -1,32 +1,41 @@
 import React from 'react'
+import AddTrackStore from 'stores/add-track-store'
 
 import ModalPageStore from '../../../../stores/modal-page-store'
-import { iChordsWord } from '../../../../types/track'
+import { iChordsWord, iChordWordPosition } from '../../../../types/track'
 
 import SelectChordsModal from './select-chords-modal'
+import ChordsWord from './chords-word'
 
 export interface iProps {
     words: iChordsWord[]
+    spaceRow: boolean
     rowIndex: number
-    showChordsWord: (word: iChordsWord) => void
+    store: AddTrackStore
 }
 
 const ChordsRow: React.FC<iProps> = (props) => {
 
-    const showChordsModal = (word: iChordsWord) => {
+    const showChordsModal = (word: iChordsWord, wordIndex: number) => {
 
         const changeChord = (chord: string, chordCharPosition: number) => {
-            word.chord = { key: chord, chordCharPosition }
+            const chordWord: iChordWordPosition = { key: chord, chordCharPosition }
+            props.store.changeChordWord(props.rowIndex, wordIndex, chordWord)
         }
-     
-        const component = () => <SelectChordsModal word={word} onChange={changeChord} onClose={() => ModalPageStore.closeModal()}/>
+
+        const component = () => <SelectChordsModal word={word} onChange={changeChord} onClose={() => ModalPageStore.closeModal()} />
         ModalPageStore.openModal(component, null)
     }
 
     return (
-        <div>
+        <div className={`chord-row${props.spaceRow ? ' space-row' : ''}`}>
             {
-                props.words.map((word, index) => <span key={index} className='chords-word' onClick={() => showChordsModal(word)}>{word.word}{word.chord?.key}{word.chord?.chordCharPosition}</span>)
+                props.words.map((word, index) => <ChordsWord
+                    key={index}
+                    word={word}
+                    selectWord={() => showChordsModal(word, index)}
+                    deleteWord={() => props.store.deleteChordWord(props.rowIndex, index)}
+                />)
             }
         </div>
     )

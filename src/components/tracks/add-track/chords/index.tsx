@@ -15,7 +15,9 @@ interface iProps {
 
 const Chords: React.FC<iProps> = observer(({ store }) => {
 
-    const [selectedWord, selectWord] = useState<iChordsWord>(null)
+    if(typeof window !== 'undefined') {
+        (window as any)['fff'] = store
+    }
 
     return (
     <>
@@ -24,7 +26,7 @@ const Chords: React.FC<iProps> = observer(({ store }) => {
             <Styled> 
 
                 {
-                    store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} words={row.words} showChordsWord={selectWord} />)
+                    store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} words={row.words} spaceRow={row.spaceRow} store={store} />)
                 }
 
             </Styled>

@@ -6,13 +6,28 @@ export default Styled.div`
     border-radius: inherit;
     border: 1px solid rgba(0, 0, 0, 0.12);
     min-height: 60px;
-    padding: 11px;
+    padding: 17px 11px;
     box-sizing: border-box;
     border-radius: 8px;
 
-    .chords-word {
-        margin: 8px 3px;
+    .space-row {
+        margin-top: 1.5rem;
+    }    
+
+    .chord-word {
+        
+        display: inline-block;
+        position: relative;
+        margin: 0.5em 0.2em;
+        
         cursor:pointer;
+
+        .chord {
+            position: absolute;
+            top: -1em;
+            white-space: nowrap;
+        }
+
         &:hover {
             color: #2688eb;
         }

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import { loadChordsByQuery } from 'code/firebase/chords'
 import useDebounce from 'code/hooks/use-debounce'
-import { CustomSelect, FormItem } from '@vkontakte/vkui'
+import { CustomSelect, FormItem, Text } from '@vkontakte/vkui'
+
+import OptionText from '../../../../common/vk/controls/select/option-text'
 
 
 export interface iProps {
@@ -30,7 +32,7 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
     const [loadChordsDebounce, clearDebounce] = useDebounce(loadChords)
 
     return (
-        <FormItem top='Исполнитель'>
+        <FormItem top='Аккорд'>
                 <CustomSelect
                     placeholder='Введите аккорд'
                     searchable
@@ -49,6 +51,9 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
                     filterFn={false}
                     options={chordsList}
                     fetching={loading}
+                    renderDropdown={(!loading || !q.length) &&
+                        (({ defaultDropdownContent }) => 
+                        q.length ? defaultDropdownContent : <OptionText>Начните вводить аккорд</OptionText>)}
                 />
             </FormItem>
     )

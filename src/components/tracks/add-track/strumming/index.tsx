@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react'
 import { Chip, ChipsInput, FormItem, Group } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
-import { Icon24ArrowDownOutline, Icon24ArrowUpOutline, Icon24CheckBoxOff, Icon24CancelOutline } from '@vkontakte/icons'
+import { Icon24ArrowDownOutline, Icon24ArrowUpOutline, Icon24CheckBoxOff, Icon24CancelOutline, Icon24DeleteOutline } from '@vkontakte/icons'
 
 import AddTrackStore from 'stores/add-track-store'
 
@@ -26,6 +26,9 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
 
             case StrummingType.up:
                 return <Icon24ArrowUpOutline />
+
+            case StrummingType.mutting:
+                return <Icon24CancelOutline title='глушение' />
 
             case StrummingType.space:
                 return ''
@@ -54,8 +57,9 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
                     <Styled>
                         <Icon24ArrowDownOutline onClick={() => store.addStrummingItem(StrummingType.down)} />
                         <Icon24ArrowUpOutline onClick={() => store.addStrummingItem(StrummingType.up)} />
+                        <Icon24CancelOutline title='глушение' onClick={() => store.addStrummingItem(StrummingType.mutting)} />
                         <Icon24CheckBoxOff onClick={() => store.addStrummingItem(StrummingType.space)} />
-                        <Icon24CancelOutline onClick={() => store.deleteStrummingItem()} />
+                        <Icon24DeleteOutline onClick={() => store.deleteStrummingItem()} />
                     </Styled>
                 }
                 onInput={(event: ChangeEvent<HTMLInputElement>) => {

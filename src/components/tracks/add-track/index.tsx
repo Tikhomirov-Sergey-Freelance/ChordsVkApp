@@ -12,7 +12,7 @@ import Form from './form'
 
 const AddTrack: React.FC = observer(() => {
 
-    const [store] = useState(() => new AddTrackStore())
+    const [store] = useState(() => new AddTrackStore('add'))
 
     const ObserverForm = observer<{ store: AddTrackStore }>(({ store }) => {
         return <Form store={store} />

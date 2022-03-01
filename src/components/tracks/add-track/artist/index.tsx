@@ -4,6 +4,7 @@ import { CustomSelect, FormItem } from '@vkontakte/vkui'
  
 import { AddTrackStore } from 'stores/add-track-store'
 import useDebounce from 'code/hooks/use-debounce'
+import OptionText from 'components/common/vk/controls/select/option-text'
 
 interface iProps {
     store: AddTrackStore
@@ -11,7 +12,7 @@ interface iProps {
 
 const Artist: React.FC<iProps> = observer(({ store }) => {
 
-    const [query, changeQuery] = useState<string>()
+    const [query, changeQuery] = useState<string>('')
     const [loadArtists, clearDebounce] = useDebounce(store.loadArtist)
 
     return (
@@ -35,6 +36,9 @@ const Artist: React.FC<iProps> = observer(({ store }) => {
                 filterFn={false}
                 options={store.artistsList}
                 fetching={store.artistListLoading}
+                renderDropdown={(!store.artistListLoading || !query.length) &&
+                    (({ defaultDropdownContent }) => 
+                    query.length ? defaultDropdownContent : <OptionText>Начните вводить артиста</OptionText>)}
               />
         </FormItem>  
     )
