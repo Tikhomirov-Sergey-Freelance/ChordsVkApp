@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getDatabase } from 'firebase/database'
+import { getAuth, signInWithCustomToken } from 'firebase/auth'
 import { getFirestore, collection } from 'firebase/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,13 +20,20 @@ const firebaseConfig = {
   measurementId: "G-C0H2MJXMS5"
 };
 
-const init = () => {
+const init = async (adminToken = null) => {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig)
-    const analytics: string =null// = getAnalytics(app)
+    const analytics: string = null// = getAnalytics(app)
     const database = getDatabase(app)
+    
     const firestore = getFirestore(app)
+
+    if(adminToken) {
+
+      const auth = getAuth()
+      await signInWithCustomToken(auth, adminToken)
+    }
 
     return { app, database, firestore, analytics }
 }

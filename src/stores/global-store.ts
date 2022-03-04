@@ -11,6 +11,8 @@ export type iActiveStory = iPageKey | 'defaultModalPage'
 
 export class GlobalStore {
 
+    globalLoading = true
+
     activeStory: iActiveStory = pages[0].key
     activePanel: string = pages[0].key
     activeModal: string
@@ -28,16 +30,14 @@ export class GlobalStore {
 
     constructor() {
 
-        const { app, database, firestore, analytics } = initDatabase()
-
-        this.firebase = app
-        this.database = database
-        this.firestore = firestore
-
-        //this.firebaseAnalitics = analytics
+        this.globalLoading = true
 
         this.adminToken = global['window'] && global['window'].adminToken
         this.validVk = global['window'] && global['window'].validVk
+
+        this.loadApp()
+
+        //this.firebaseAnalitics = analytics
 
         this.setLocation()
 
@@ -46,7 +46,18 @@ export class GlobalStore {
             activePanel: observable,
             currentInstrument: observable
         })
-    }   
+    }
+
+    async loadApp() {
+
+        const { app, database, firestore, analytics } = await initDatabase(this.adminToken)
+
+        this.firebase = app
+        this.database = database
+        this.firestore = firestore
+
+        this.globalLoading = false
+    }
 
     toMainPanel() {
         this.activePanel = this.activeStory
