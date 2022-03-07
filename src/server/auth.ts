@@ -1,9 +1,11 @@
 import { async } from '@firebase/util'
 import { firestore, auth } from 'firebase-admin'
-import { isDev } from './common'
+import { isDev, databaseConnected } from './common'
 import database from './database'
 
 const createFirebaseToken = async (req) => {
+
+    if(!databaseConnected) return
 
     const query = req.query 
     const vkId = !isDev ? (query && query.vk_user_id) : '222834864'

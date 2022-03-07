@@ -1,0 +1,3 @@
+[submodule "private-keys"]
+	path = ChordsPrivate
+	url = https://github.com/Tikhomirov-Sergey-Freelance/ChordsPrivate
