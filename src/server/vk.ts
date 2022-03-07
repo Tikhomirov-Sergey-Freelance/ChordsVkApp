@@ -3,7 +3,9 @@ import fs from 'fs'
 import { isDev } from './common'
 import { resolve } from 'path'
 
-const config = JSON.parse(fs.readFileSync(resolve(__dirname, '..', 'private/vk-secret-key.json')).toString('utf8'))
+const devVKSecret = {
+    "secret": "1111111"
+}
 
 const validateVkParams = (req) => {
 
@@ -24,6 +26,7 @@ const validateVkParams = (req) => {
     }
 
     const vkParamsString = vkParams.join('&')
+    const config = getVKConfig()
 
     const paramsHash = crypto
     .createHmac('sha256', config.secret)
@@ -35,6 +38,17 @@ const validateVkParams = (req) => {
     .replace(/=$/, '')
 
     return paramsHash === sign
+}
+
+export const getVKConfig = () => {
+    
+    const configPath = resolve(__dirname, '..', 'ChordsPrivate/firebase/vk-secret-key.json')
+
+    if(isDev || !fs.existsSync(configPath)) {
+        return devVKSecret
+    }
+
+    return JSON.parse(fs.readFileSync(resolve(__dirname, '..', 'ChordsPrivate/firebase/vk-secret-key.json')).toString('utf8'))
 }
 
 export default validateVkParams

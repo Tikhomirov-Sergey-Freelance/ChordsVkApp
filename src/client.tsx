@@ -3,7 +3,7 @@ import { hydrate } from 'react-dom'
 
 import 'babel-polyfill'
 
-import App from './app'
+import App from './App'
 import { SSRWrapper } from '@vkontakte/vkui'
 
 hydrate(
