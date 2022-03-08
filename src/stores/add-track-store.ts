@@ -84,7 +84,9 @@ export class AddTrackStore {
             strumming: this.strumming,
             strummingNote: this.strummingNote,
             chordsText: this.chordsText,
-            chordsNote: this.chordsNote
+            chordsNote: this.chordsNote,
+            addedDate: new Date(),
+            searchName: this.name.toUpperCase()
         }
     }
 

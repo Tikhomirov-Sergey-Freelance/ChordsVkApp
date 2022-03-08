@@ -1,4 +1,5 @@
-import { StrummingType } from "./strumming";
+import { iArtist } from './artists'
+import { StrummingType } from './strumming'
 
 export interface iTrack {
     id: string
@@ -8,7 +9,14 @@ export interface iTrack {
     strummingNote: string
     chordsText: iChordsText
     chordsNote: string
+
+    addedDate?: Date
+    searchName?: string
 } 
+
+export interface iTrackView extends iTrack {
+    artist: iArtist
+}
 
 export interface iChordsText {
     rows: iChordsRow[]
