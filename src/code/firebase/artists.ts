@@ -14,3 +14,16 @@ export const loadArtistsByQuery = async (q: string) => {
     const data = await getDocs(querySnapshot)
     return data.docs.map(item => item.data()) as iArtist[]
 } 
+
+export const loadArtistsByIds = async (ids: string[]) => {
+
+    if(!ids.length) return []
+
+    const querySnapshot = 
+    query(
+        collection(GlobalStore.firestore, 'artists'), 
+        where('id', 'in', ids));
+
+    const data = await getDocs(querySnapshot)
+    return data.docs.map(item => item.data()) as iArtist[]
+}

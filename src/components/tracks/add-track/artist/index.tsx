@@ -15,7 +15,7 @@ const Artist: React.FC<iProps> = observer(({ store }) => {
     const [query, changeQuery] = useState<string>('')
     const [loadArtists, clearDebounce] = useDebounce(store.loadArtist)
 
-    return (
+    return (   
 
         <FormItem top='Исполнитель'> 
               <CustomSelect
