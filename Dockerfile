@@ -1,15 +1,15 @@
-FROM node
+FROM node:16
 
-WORKDIR /app
+WORKDIR /chords
 
 COPY package.json .
 
-RUN npm install
+RUN npm i
 
 COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 9001
 
 CMD ["node", "dist/server.js"]

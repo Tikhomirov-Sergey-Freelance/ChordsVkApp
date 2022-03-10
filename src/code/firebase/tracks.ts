@@ -1,6 +1,6 @@
 import { collection, getDocs, where, query, Query, orderBy, limit } from "firebase/firestore"
-import GlobalStore from "stores/global-store"
-import { iTrack, iTrackView } from "types/track"
+import GlobalStore from "../../stores/global-store"
+import { iTrack, iTrackView } from "../../types/track"
 import { loadArtistsByIds } from "./artists";
 
 
