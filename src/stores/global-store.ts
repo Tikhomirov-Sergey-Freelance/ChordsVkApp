@@ -23,7 +23,7 @@ export class GlobalStore {
     firestore: Firestore
     firebaseAnalitics: Analytics
 
-    adminToken: string
+    firebaseToken: string
     validVk: boolean
 
     currentInstrument: MusicalInstrument = 'guitar'
@@ -32,7 +32,7 @@ export class GlobalStore {
 
         this.globalLoading = true
 
-        this.adminToken = global['window'] && global['window'].adminToken
+        this.firebaseToken = global['window'] && global['window'].firebaseToken
         this.validVk = global['window'] && global['window'].validVk
 
         this.loadApp()
@@ -50,7 +50,7 @@ export class GlobalStore {
 
     async loadApp() {
 
-        const { app, database, firestore, analytics } = await initDatabase(this.adminToken)
+        const { app, database, firestore, analytics } = await initDatabase(this.firebaseToken)
 
         this.firebase = app
         this.database = database

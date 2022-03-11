@@ -29,9 +29,9 @@ if(!isHttp) {
 app.use('*', async (req, res) => {
 
     const isValidVk = validateVK(req)
-    const adminToken = isValidVk ? await fireBaseToken(req) : null
+    const firebaseToken = await fireBaseToken(req, isValidVk)
 
-    const html = getApp(req['useragent'].source, isValidVk, adminToken)
+    const html = getApp(req['useragent'].source, isValidVk, firebaseToken)
     
     res.contentType('text/html')
     res.status(200)

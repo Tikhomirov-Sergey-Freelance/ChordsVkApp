@@ -12,7 +12,7 @@ import ViewList from './components/views/view-list'
 
 declare global {
   interface Window {
-    adminToken: string
+    firebaseToken: string
     validVk: boolean
     isServer: boolean 
   }  

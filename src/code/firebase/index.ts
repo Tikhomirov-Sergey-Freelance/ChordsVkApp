@@ -20,7 +20,7 @@ const firebaseConfig = {
   measurementId: "G-C0H2MJXMS5"
 };
 
-const init = async (adminToken = null) => {
+const init = async (firebaseToken = null) => {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig)
@@ -29,10 +29,10 @@ const init = async (adminToken = null) => {
     
     const firestore = getFirestore(app)
 
-    if(adminToken) {
+    if(firebaseToken) {
 
       const auth = getAuth()
-      await signInWithCustomToken(auth, adminToken)
+      await signInWithCustomToken(auth, firebaseToken)
     }
 
     return { app, database, firestore, analytics }
