@@ -23,7 +23,7 @@ export class ChordsListStore {
         
         this.loading = true
 
-        const chords = (await getDocs(collection(GlobalStore.firestore, "chords"))).docs.map(doc => doc.data() as iChord)
+        const chords = (await getDocs(collection(await GlobalStore.firebase.getFirestore(), "chords"))).docs.map(doc => doc.data() as iChord)
 
         const guitarChordsByGroup = new Map<string, iChord[]>([])
         const ukuleleChordsByGroup = new Map<string, iChord[]>([])

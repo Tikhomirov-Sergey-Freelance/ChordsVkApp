@@ -55,7 +55,7 @@ export class AddTrackStore {
 
     async save() {
 
-        const firestore = GlobalStore.firestore
+        const firestore = await GlobalStore.firebase.getFirestore()
 
         const result = await setDoc(doc(firestore, `tracks/${this.id}`), this.trackToSave)
         console.log(result)

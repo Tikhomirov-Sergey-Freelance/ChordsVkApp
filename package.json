@@ -8,7 +8,7 @@
     "@types/react-virtualized": "^9.21.16",
     "@types/styled-components": "^5.1.21",
     "@vkontakte/icons": "^1.138.0",
-    "@vkontakte/vk-bridge": "^2.4.8",
+    "@vkontakte/vk-bridge": "^2.5.3",
     "@vkontakte/vkui": "^4.23.0",
     "b_": "1.3.4",
     "babel-polyfill": "6.26.0",
@@ -104,7 +104,8 @@
   "scripts": {
     "start:webpack": "webpack --mode=development --watch",
     "start:server": "nodemon index.js --watch dist/server.js",
-    "start": "set NODE_ENV=development&& npm-run-all --print-label --parallel start:*",
+    "start": "set NODE_ENV=development&&set HTTP=true&& npm-run-all --print-label --parallel start:*",
+    "start-https": "set NODE_ENV=development&& npm-run-all --print-label --parallel start:*",
     "postinst": "npm install node_modules/@vkontakte/vkui/",
     "build": "webpack"
   },

@@ -1,27 +1,26 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { AppRoot, Panel, View } from '@vkontakte/vkui'
+import { AppRoot } from '@vkontakte/vkui'
 import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui'
 
 declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
-import Layout from './components/layout/page-layout'
 import ViewList from './components/views/view-list'
 
 declare global {
   interface Window {
     firebaseToken: string
     validVk: boolean
-    isServer: boolean 
-  }  
+    isServer: boolean
+  }
 }
 
 try {
   console.log(window);
 } catch (err) {
-  global['window'] = { isServer: true } as any 
+  global['window'] = { isServer: true } as any
 }
 
 const App: React.FC = () => {
@@ -30,9 +29,7 @@ const App: React.FC = () => {
     <ConfigProvider>
       <AdaptivityProvider>
         <AppRoot>
-          <Layout >
-            <ViewList />
-          </Layout>
+          <ViewList />
         </AppRoot>
       </AdaptivityProvider>
     </ConfigProvider>

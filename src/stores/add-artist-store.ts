@@ -21,7 +21,7 @@ export class AddArtistStore {
     }
 
     async save() {
-        const firestore = GlobalStore.firestore
+        const firestore = await GlobalStore.firebase.getFirestore()
 
         const result = await setDoc(doc(firestore, `artists/${this.id}`), this.artistToSave)
         console.log(result)

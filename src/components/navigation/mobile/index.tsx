@@ -7,7 +7,7 @@ import GlobalStore from '../../../stores/global-store'
 
 import { pages } from '../../../pages'
 
-const MobileNav: React.FC = observer(() => {
+const MobileNav: React.FC = () => {
 
     return (
         <Tabbar>
@@ -18,7 +18,7 @@ const MobileNav: React.FC = observer(() => {
                     <TabbarItem
                         key={page.key}
                         onClick={() => GlobalStore.setActiveStory(page.key)}
-                        selected={GlobalStore.activeStory === page.key}
+                        selected={'tracks' === page.key}
                         data-story={page.key}
                         text={page.name}
                     >
@@ -29,7 +29,7 @@ const MobileNav: React.FC = observer(() => {
 
         </Tabbar>
     )
-})
+}
 
 export default MobileNav
 

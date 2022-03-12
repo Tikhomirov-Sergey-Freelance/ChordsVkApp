@@ -105,9 +105,9 @@ export class AddChordsStore implements iChord {
         }
     }
 
-    async saveChord() {
+    async saveChord() { 
         
-        const firestore = GlobalStore.firestore
+        const firestore = await GlobalStore.firebase.getFirestore()
 
         const result = await setDoc(doc(firestore, `chords/${this.name}`), this.chordParams)
         console.log(result)

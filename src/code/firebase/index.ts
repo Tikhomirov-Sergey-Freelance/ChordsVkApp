@@ -1,9 +1,11 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app'
+import { FirebaseApp, initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-import { getDatabase } from 'firebase/database'
+import { getDatabase, Database } from 'firebase/database'
 import { getAuth, signInWithCustomToken } from 'firebase/auth'
 import { getFirestore, collection } from 'firebase/firestore'
+import { Firestore } from '@firebase/firestore'
+import { Analytics } from 'firebase/analytics'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,22 +22,42 @@ const firebaseConfig = {
   measurementId: "G-C0H2MJXMS5"
 };
 
-const init = async (firebaseToken = null) => {
+class FirebaseProvider {
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig)
-    const analytics: string = null// = getAnalytics(app)
-    const database = getDatabase(app)
-    
-    const firestore = getFirestore(app)
+  private firebase: FirebaseApp
+  private database: Database
+  private firestore: Firestore
+  private firebaseAnalitics: Analytics
 
-    if(firebaseToken) {
+  private token: string
 
-      const auth = getAuth()
-      await signInWithCustomToken(auth, firebaseToken)
+  constructor(token: string) {
+    this.token = token
+  }
+
+  async getFirestore() {
+
+    if (!this.firestore) {
+      await this.initDatabase()
     }
 
-    return { app, database, firestore, analytics }
+    return this.firestore
+  }
+
+  private async initDatabase() {
+
+    this.firebase = initializeApp(firebaseConfig)
+    this.firebaseAnalitics = getAnalytics(this.firebase)
+    this.database = getDatabase(this.firebase)
+
+    this.firestore = getFirestore(this.firebase)
+
+    if (this.token) {
+
+      const auth = getAuth()
+      await signInWithCustomToken(auth, this.token)
+    }
+  }
 }
 
-export default init
+export default FirebaseProvider

@@ -2015,10 +2015,10 @@
     "es6-object-assign" "1.1.0"
     "svg-baker-runtime" "1.4.7"
 
-"@vkontakte/vk-bridge@^2.0.2", "@vkontakte/vk-bridge@^2.4.8":
-  "integrity" "sha512-YGTZZsm9OO/JRRBM6HHGCPMN3yiQcBUxFLCK7bCUcFWvWghFZdWQvPtuCKXONwhBMwp1Wo90kSV5rXSvJA8lOQ=="
-  "resolved" "https://registry.npmjs.org/@vkontakte/vk-bridge/-/vk-bridge-2.4.8.tgz"
-  "version" "2.4.8"
+"@vkontakte/vk-bridge@^2.0.2", "@vkontakte/vk-bridge@^2.5.3":
+  "integrity" "sha512-VQaRXOixKh+hxnBPEgDqtVxiajxrZWWOlykpHsKD85qCNLW9Mrnd6GSbyK6xu7qYUSCT6n7yD6pJsm1mFRBdfQ=="
+  "resolved" "https://registry.npmjs.org/@vkontakte/vk-bridge/-/vk-bridge-2.5.3.tgz"
+  "version" "2.5.3"
 
 "@vkontakte/vkjs@^0.22.1":
   "integrity" "sha512-gDlJYAIIH4K0L8Qz2bE/cIdz5XWSwvEVytkK4mXC7lGTVTF/PuidUb8MZ792AaqTxdoASOoBD1Jy89q/GjaOSg=="

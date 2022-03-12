@@ -7,7 +7,7 @@ export const loadArtistsByQuery = async (q: string) => {
 
     const querySnapshot = 
         query(
-            collection(GlobalStore.firestore, 'artists'), 
+            collection(await GlobalStore.firebase.getFirestore(), 'artists'), 
             where('searchName', '>=', q.toUpperCase()), 
             where('searchName', '<=', q.toUpperCase() + '\uf8ff'));
 
@@ -21,7 +21,7 @@ export const loadArtistsByIds = async (ids: string[]) => {
 
     const querySnapshot = 
     query(
-        collection(GlobalStore.firestore, 'artists'), 
+        collection(await GlobalStore.firebase.getFirestore(), 'artists'), 
         where('id', 'in', ids));
 
     const data = await getDocs(querySnapshot)

@@ -6,9 +6,10 @@ import { loadArtistsByIds } from "./artists";
 
 export const loadLastTracks = async (count: number) => {
 
+
     const querySnapshot = 
     query(
-        collection(GlobalStore.firestore, "tracks"), 
+        collection(await GlobalStore.firebase.getFirestore(), "tracks"), 
         orderBy('addedDate'),
         limit(count)
         );

@@ -1,11 +1,8 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx'
-import { FirebaseApp } from 'firebase/app'
-import { Analytics } from 'firebase/analytics'
-import initDatabase from '../code/firebase'
+import FirebaseProvider from '../code/firebase'
 import { iPageKey, pages } from '../pages'
-import { Database, getDatabase } from 'firebase/database'
-import { Firestore } from '@firebase/firestore'
 import { MusicalInstrument } from 'types/global-types'
+import VK from '@vkontakte/vk-bridge'
 
 export type iActiveStory = iPageKey | 'defaultModalPage'
 
@@ -18,10 +15,7 @@ export class GlobalStore {
     activeModal: string
     activePanelData: any
 
-    firebase: FirebaseApp
-    database: Database
-    firestore: Firestore
-    firebaseAnalitics: Analytics
+    firebase: FirebaseProvider
 
     firebaseToken: string
     validVk: boolean
@@ -32,12 +26,12 @@ export class GlobalStore {
 
         this.globalLoading = true
 
-        this.firebaseToken = global['window'] && global['window'].firebaseToken
+        const firebaseToken = global['window'] && global['window'].firebaseToken
         this.validVk = global['window'] && global['window'].validVk
 
-        this.loadApp()
+        this.firebase = new FirebaseProvider(firebaseToken)
 
-        //this.firebaseAnalitics = analytics
+        this.loadApp()
 
         this.setLocation()
 
@@ -50,12 +44,9 @@ export class GlobalStore {
 
     async loadApp() {
 
-        const { app, database, firestore, analytics } = await initDatabase(this.firebaseToken)
+        //тут что-нибудь, что нужно загрузить
 
-        this.firebase = app
-        this.database = database
-        this.firestore = firestore
-
+        await VK.send("VKWebAppInit", {})
         this.globalLoading = false
     }
 
@@ -90,21 +81,32 @@ export class GlobalStore {
 
     setLocation() {
 
-        const ssLocalion = global['window'] && global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
+        try {
 
-        if(!ssLocalion) return
+            const ssLocalion = global['window'] && global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
 
-        const location = JSON.parse(ssLocalion)
+            if (!ssLocalion) return
 
-        this.activeStory = location.activeStory
-        this.activePanel = location.activePanel
-        this.activePanelData = location.activePanelData
+            const location = JSON.parse(ssLocalion)
+
+            this.activeStory = location.activeStory
+            this.activePanel = location.activePanel
+            this.activePanelData = location.activePanelData
+        }
+        catch {
+
+        }
     }
 
     get locationData() {
         return { activeStory: this.activeStory, activePanel: this.activePanel, activePanelData: this.activePanelData }
     }
 }
-  
-var globalStore =  new GlobalStore()  
+
+var globalStore = new GlobalStore()
+
+if(global['window']) {
+    global['window']['globalStore'] = globalStore
+}
+
 export default globalStore

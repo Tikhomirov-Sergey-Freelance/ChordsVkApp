@@ -7,7 +7,7 @@ export const loadChordsByQuery = async (q: string) => {
 
     const querySnapshot = 
     query(
-        collection(GlobalStore.firestore, "chords"), 
+        collection(await GlobalStore.firebase.getFirestore(), "chords"), 
         where('name', '>=', q.toUpperCase()), 
         where('name', '<=', q.toUpperCase() + '\uf8ff'));
 
