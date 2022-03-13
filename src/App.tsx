@@ -13,6 +13,7 @@ declare global {
   interface Window {
     firebaseToken: string
     validVk: boolean
+    isAdmin: boolean
     isServer: boolean
   }
 }

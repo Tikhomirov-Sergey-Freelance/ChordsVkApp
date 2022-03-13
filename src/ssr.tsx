@@ -4,14 +4,14 @@ import { SSRWrapper } from '@vkontakte/vkui'
 
 import App from './App'
 
-export default (userAgent, validVk, firebaseToken) => {
+export default (userAgent, appParams) => {
 
     const jsx = <SSRWrapper userAgent={userAgent}>
         <App/>
     </SSRWrapper>
     const reactHtml = renderToString(jsx)
 
-    return getHtml(reactHtml, { validVk, firebaseToken })
+    return getHtml(reactHtml, appParams)
 }
 
 const getHtml = (reactHtml, data) => {
@@ -31,6 +31,7 @@ const getHtml = (reactHtml, data) => {
         <script>
             window['firebaseToken'] = '${data.firebaseToken}';
             window['validVk'] = ${data.validVk};
+            window['isAdmin'] = ${data.isAdmin};
         </script>
 
         <div id="root" class="vkui__root">${reactHtml}</div> 

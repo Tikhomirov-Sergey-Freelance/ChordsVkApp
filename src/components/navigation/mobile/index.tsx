@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import isDesktopHook from '../../../hooks/isDesktop'
 import GlobalStore from '../../../stores/global-store'
 
-import { pages } from '../../../pages'
+import pages from '../../../pages'
 
 const MobileNav: React.FC = () => {
 
@@ -31,5 +31,5 @@ const MobileNav: React.FC = () => {
     )
 }
 
-export default MobileNav
+export default observer(MobileNav)
 

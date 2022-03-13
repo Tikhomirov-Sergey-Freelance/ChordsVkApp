@@ -1,6 +1,6 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx'
 import FirebaseProvider from '../code/firebase'
-import { iPageKey, pages } from '../pages'
+import pages, { iPageKey } from '../pages'
 import { MusicalInstrument } from 'types/global-types'
 import VK from '@vkontakte/vk-bridge'
 
@@ -10,8 +10,8 @@ export class GlobalStore {
 
     globalLoading = true
 
-    activeStory: iActiveStory = pages[0].key
-    activePanel: string = pages[0].key
+    activeStory: iActiveStory = 'tracks'
+    activePanel: string = 'tracks'
     activeModal: string
     activePanelData: any
 
@@ -19,6 +19,7 @@ export class GlobalStore {
 
     firebaseToken: string
     validVk: boolean
+    isAdmin: boolean
 
     currentInstrument: MusicalInstrument = 'guitar'
 
@@ -28,6 +29,7 @@ export class GlobalStore {
 
         const firebaseToken = global['window'] && global['window'].firebaseToken
         this.validVk = global['window'] && global['window'].validVk
+        this.isAdmin = global['window'] && global['window'].isAdmin
 
         this.firebase = new FirebaseProvider(firebaseToken)
 

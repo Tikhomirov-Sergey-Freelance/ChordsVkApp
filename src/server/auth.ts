@@ -4,25 +4,23 @@ import { isDev, databaseConnected } from './common'
 import database from './database'
 import { createGuid } from '../code/common/guid'
 
-const createFirebaseToken = async (req, isValidVk: boolean) => {
+const createFirebaseToken = async (req, isValidVk: boolean): Promise<[string, boolean]> => {
 
-    if (!databaseConnected) return
+    if (!databaseConnected) return [null, false]
+
+    let vkId = createGuid()
+    let admin = false
 
     if (isValidVk) {
 
         const query = req.query
-        const vkId = !isDev ? (query && query.vk_user_id) : '222834864'
-        if (!vkId) return
+        vkId = !isDev ? (query && query.vk_user_id) : '222834864'
 
         const store = firestore(database.app)
-        const admin = !(await store.collection('admins').where('vkId', '==', +vkId).get()).empty
+        admin = !(await store.collection('admins').where('vkId', '==', +vkId).get()).empty
+    } 
 
-        return await database.app.auth().createCustomToken(vkId, { admin })
-
-    } else {
-
-        return await database.app.auth().createCustomToken(createGuid())
-    }
+    return [await database.app.auth().createCustomToken(vkId, { admin }), admin] 
 }
 
 export default createFirebaseToken
