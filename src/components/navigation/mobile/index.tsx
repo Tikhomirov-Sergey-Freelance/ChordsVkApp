@@ -2,10 +2,9 @@ import React from 'react'
 import { Tabbar, TabbarItem } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
-import isDesktopHook from '../../../hooks/isDesktop'
 import GlobalStore from '../../../stores/global-store'
 
-import pages from '../../../pages'
+import pages from '../menu'
 
 const MobileNav: React.FC = () => {
 
@@ -18,7 +17,7 @@ const MobileNav: React.FC = () => {
                     <TabbarItem
                         key={page.key}
                         onClick={() => GlobalStore.setActiveStory(page.key)}
-                        selected={'tracks' === page.key}
+                        selected={GlobalStore.activeStory === page.key}
                         data-story={page.key}
                         text={page.name}
                     >

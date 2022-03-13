@@ -4,7 +4,7 @@ import { Cell, Group, Panel, PanelHeader, SplitCol } from '@vkontakte/vkui'
 import isDesktopHook from '../../../hooks/isDesktop'
 import GlobalStore from '../../../stores/global-store'
 
-import { pages } from '../../../pages'
+import { pages } from '../menu'
 import { observer } from 'mobx-react-lite'
 
 const activeLinkStyle = {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { CellButton, Group, Panel, PanelHeader, View } from '@vkontakte/vkui'
-import GlobalStore from '../../../stores/global-store'
+import GlobalStore from '../../stores/global-store'
 
 
 const AdminView: React.FC = observer(() => {

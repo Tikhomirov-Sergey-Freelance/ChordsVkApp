@@ -1,6 +1,6 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx'
 import FirebaseProvider from '../code/firebase'
-import pages, { iPageKey } from '../pages'
+import pages, { iPageKey } from '../components/navigation/menu'
 import { MusicalInstrument } from 'types/global-types'
 import VK from '@vkontakte/vk-bridge'
 

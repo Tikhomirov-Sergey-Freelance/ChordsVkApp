@@ -5,7 +5,7 @@ const FavouritesView: React.FC = () => {
 
     return (
         <>
-            <PanelHeader>Администрирование</PanelHeader>
+            <PanelHeader>Моя коллекция</PanelHeader>
         </>
     )
 

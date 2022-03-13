@@ -7,7 +7,7 @@ declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
-import ViewList from './components/views/view-list'
+import ViewList from './views'
 
 declare global {
   interface Window {
