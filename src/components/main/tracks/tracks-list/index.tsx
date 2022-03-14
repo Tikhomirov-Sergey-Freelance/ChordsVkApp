@@ -3,6 +3,8 @@ import React from 'react'
 
 import { iTrackView } from 'types/track'
 
+import Track from './track'
+
 export interface iProps {
     title: string
     tracks: iTrackView[]
@@ -14,13 +16,7 @@ const TracksList: React.FC<iProps> = ({ title, tracks }) => {
         <Group header={<Header>Последняя активность</Header>}>
 
             {
-                tracks.map(track => 
-                <SimpleCell
-                    description={<Text weight='regular'>{track.artist.name}</Text>}
-                    before={<Avatar size={32} mode="app" />}
-                  >
-                    {track.name}
-                  </SimpleCell>)
+                tracks.map(track => <Track key={track.id} track={track} />)
             }
 
         </Group>
