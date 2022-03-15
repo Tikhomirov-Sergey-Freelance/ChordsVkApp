@@ -15,12 +15,7 @@ interface iProps {
 
 const Chords: React.FC<iProps> = observer(({ store }) => {
 
-    if(typeof window !== 'undefined') {
-        (window as any)['fff'] = store
-    }
-
     return (
-    <>
         <FormItem top='Аккодры'>
 
             <Styled> 
@@ -32,8 +27,6 @@ const Chords: React.FC<iProps> = observer(({ store }) => {
             </Styled>
               
         </FormItem>
-
-        </>
     ) 
 })
 

@@ -19,7 +19,10 @@ const ViewList: React.FC = observer(() => {
 
     <SplitLayout modal={
       <ModalRoot activeModal={ModalPageStore.activeModalComponent && 'defaultModalPage'}>
-        <ModalPage id='defaultModalPage' onClose={() => ModalPageStore.closeModal()}>
+        <ModalPage 
+        id='defaultModalPage' 
+        header={ModalPageStore.activeModalComponent && ModalPageStore.activeModalComponent.header()}
+        onClose={() => ModalPageStore.closeModal()}>
           {ModalPageStore.activeModalComponent && ModalPageStore.activeModalComponent.component()}
         </ModalPage>
       </ModalRoot>

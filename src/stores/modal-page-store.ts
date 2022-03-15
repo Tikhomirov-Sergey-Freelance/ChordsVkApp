@@ -1,15 +1,9 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx'
-import { FirebaseApp } from 'firebase/app'
-import { Analytics } from 'firebase/analytics'
-import initDatabase from '../code/firebase'
-import { iPageKey, pages } from '../components/navigation/menu'
-import { Database, getDatabase } from 'firebase/database'
-import { Firestore } from '@firebase/firestore'
-import { MusicalInstrument } from 'types/global-types'
 import React, { ReactNode } from 'react'
 import GlobalStore from './global-store'
 
 export interface iModalComponent {
+    header?: () => ReactNode
     component: () => ReactNode
     onClose: (data: any) => void
 }
@@ -22,18 +16,27 @@ export class ModalPage {
         makeAutoObservable(this)
     }  
 
-    openModal(component: () => ReactNode, onClose: (data) => void) {
+    openModal(component: () => ReactNode, onClose: (data) => void, header?: () => ReactNode) {
 
         this.activeModalComponent = {
             component,
             onClose: (data) => {
                 this.activeModalComponent = null
-                onClose(data)
-            }
+
+                if(onClose) {
+                    onClose(data)
+                }
+            },
+            header
         }
     }
 
     closeModal() {
+        
+        if(this.activeModalComponent?.onClose) {
+            this.activeModalComponent.onClose(null)
+        }
+
         this.activeModalComponent = null
     }
 }
