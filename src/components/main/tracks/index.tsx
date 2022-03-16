@@ -1,3 +1,4 @@
+import { PanelSpinner } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import React, { useEffect } from 'react'
 
@@ -12,6 +13,8 @@ const Tracks: React.FC = () => {
     useEffect(() => {
         store.loadLastTracks()
     }, [])
+
+    if(!store.lastTracks || !store.lastTracks.length) return <PanelSpinner size="large"/>
 
     return (
         <>

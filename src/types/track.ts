@@ -11,7 +11,7 @@ export interface iTrack {
     chordsNote: string
 
     addedDate?: Date
-    searchName?: string
+    searchName?: string[]
 } 
 
 export interface iTrackView extends iTrack {

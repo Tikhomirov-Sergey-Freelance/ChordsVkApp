@@ -31,10 +31,10 @@ export class ModalPage {
         }
     }
 
-    closeModal() {
+    closeModal(data = null) {
         
         if(this.activeModalComponent?.onClose) {
-            this.activeModalComponent.onClose(null)
+            this.activeModalComponent.onClose(data)
         }
 
         this.activeModalComponent = null

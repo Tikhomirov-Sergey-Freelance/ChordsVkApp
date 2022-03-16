@@ -11,7 +11,8 @@ const openTrack = (track: iTrackView) => {
     const header = () => <TrackHeader track={track} onClose={() => ModalPageStore.closeModal()} />
     const component = () => <Track track={track} onClose={() => ModalPageStore.closeModal()} />
 
-    const onClose = () => {
+    const onClose = (data) => {
+        if(data === 'edit') return
         GlobalStore.setActiveStory('tracks')
     }
 

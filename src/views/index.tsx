@@ -21,7 +21,9 @@ const ViewList: React.FC = observer(() => {
       <ModalRoot activeModal={ModalPageStore.activeModalComponent && 'defaultModalPage'}>
         <ModalPage 
         id='defaultModalPage' 
-        header={ModalPageStore.activeModalComponent && ModalPageStore.activeModalComponent.header()}
+        header={ModalPageStore.activeModalComponent && 
+          ModalPageStore.activeModalComponent.header &&
+          ModalPageStore.activeModalComponent.header()}
         onClose={() => ModalPageStore.closeModal()}>
           {ModalPageStore.activeModalComponent && ModalPageStore.activeModalComponent.component()}
         </ModalPage>

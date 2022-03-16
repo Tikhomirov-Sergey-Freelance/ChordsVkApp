@@ -1,11 +1,11 @@
 import { makeAutoObservable, observable } from 'mobx'
 
-import { createGuid } from '../code/common/guid'
-import GlobalStore from './global-store'
-import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc } from '@firebase/firestore'
+import { createGuid } from '../../code/common/guid'
+import GlobalStore from '../global-store'
+import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc, updateDoc } from '@firebase/firestore'
 import { limit } from 'firebase/firestore'
-import { snackbar } from '../code/common/alerts'
-import { loadArtistsByQuery } from 'code/firebase/artists'
+import { snackbar } from '../../code/common/alerts'
+import { loadArtistById, loadArtistsByIds, loadArtistsByQuery } from 'code/firebase/artists'
 import { iChordsText, iTrack, iChordsWord, iChordWordPosition } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 
@@ -43,36 +43,59 @@ export class AddTrackStore {
     artistsList: iArtistSearch[] = []
     artistListLoading = false
 
-    constructor(mode: StoreMode, track: iTrack = null) {
-        this.id = createGuid()
-        makeAutoObservable(this, undefined, { deep: true })
+    constructor() {
 
-        this.mode = mode
+        const routData = GlobalStore.activePanelData
+        const track = routData && routData.track
+
+        if (track) {
+            this.mode = 'edit'
+        } else {
+            this.mode = 'add'
+            this.id = createGuid()
+        }
+        debugger
         this.fillTrack(track)
 
+        makeAutoObservable(this, undefined, { deep: true })
         this.loadArtist = this.loadArtist.bind(this)
     }
 
     async save() {
 
         const firestore = await GlobalStore.firebase.getFirestore()
+        const artist = await loadArtistById(this.artistId)
 
-        const result = await setDoc(doc(firestore, `tracks/${this.id}`), this.trackToSave)
-        console.log(result)
-        snackbar('Добавили трек')
+        const track = this.trackToSave
+        track.searchName = [artist.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
 
-        if(this.mode === 'add') {
+        const document = doc(firestore, `tracks/${this.id}`)
+
+        if (this.mode === 'add') {
+
+            const result = await setDoc(document, track)
+            console.log(result)
+            snackbar('Добавили трек')
             this.newTrack()
+        } else {
+
+            const result = await updateDoc(document, { ...track })
+            console.log(result)
+            snackbar('Трек изменен')
         }
     }
 
     fillTrack(track: iTrack) {
 
-        if(this.mode === 'add') {
+        if (this.mode === 'add') {
 
-            if(!track) {
+            if (!track) {
                 return this.loadTempTrack()
             }
+        }
+
+        if (track) {
+            this.fillTrackData(track)
         }
     }
 
@@ -85,20 +108,19 @@ export class AddTrackStore {
             strummingNote: this.strummingNote,
             chordsText: this.chordsText,
             chordsNote: this.chordsNote,
-            addedDate: new Date(),
-            searchName: this.name.toUpperCase()
+            addedDate: new Date()
         }
     }
 
     fillTrackData(track: iTrack) {
 
-        if(!track) {
+        if (!track) {
 
-            if(this.mode === 'add') {
+            if (this.mode === 'add') {
                 this.newTrack()
             }
 
-            return 
+            return
         }
 
         this.id = track.id
@@ -116,7 +138,7 @@ export class AddTrackStore {
 
     async loadArtist(query: string) {
 
-        if(!query.length) return
+        if (!query.length) return
 
         this.artistListLoading = true
         const data = await loadArtistsByQuery(query)
@@ -150,37 +172,37 @@ export class AddTrackStore {
         const rows = text.split('\n')
 
         for (let row of rows) {
-            
-            if(!row) {
-                chordsText.rows.push({ words: [], spaceRow: true})
+
+            if (!row) {
+                chordsText.rows.push({ words: [], spaceRow: true })
                 continue
             }
 
             const words = row.split(' ').filter(word => word)
             chordsText.rows.push({ words: words.map(word => ({ word })) })
-        } 
+        }
 
         for (let i = 0; i < chordsText.rows.length; i++) {
 
             const row = chordsText.rows[i]
             const lastRow = this.chordsText?.rows[i]
 
-            if(!lastRow) break
+            if (!lastRow) break
 
-            for(let j = 0; j < row.words.length; j++) {
+            for (let j = 0; j < row.words.length; j++) {
 
                 const word = row.words[j]
                 const lastWord = lastRow.words[j]
 
-                if(!lastWord) break
+                if (!lastWord) break
 
-                if(word.word === lastWord.word) {
+                if (word.word === lastWord.word) {
                     word.chord = lastWord.chord
                 }
             }
         }
 
-        this.chordsText = chordsText 
+        this.chordsText = chordsText
         this.saveTempTrack()
     }
 
@@ -209,8 +231,8 @@ export class AddTrackStore {
     }
 
     saveTempTrack() {
-        
-        if(this.mode === 'edit') return
+
+        if (this.mode === 'edit') return
 
         const track = [this.trackToSave, this.text]
         localStorage.setItem('tempTrack', JSON.stringify(track))
@@ -220,7 +242,7 @@ export class AddTrackStore {
 
         const value = localStorage.getItem('tempTrack')
 
-        if(value) {
+        if (value) {
 
             const [track, text] = JSON.parse(value)
 
