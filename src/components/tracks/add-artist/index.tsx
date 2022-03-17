@@ -4,28 +4,25 @@ import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayo
 
 import { notes } from '../../../code/data/notes'
 import Store from '../../../stores/add-chords-store'
-import { AddArtistStore } from 'stores/add-artist-store'
+import { AddArtistStoreProvider } from 'stores/add-artist-store/add-artist-store-provider'
 
 import HeaderWithBack from '../../vk/layout/header/heade-and-back'
 import Form from './add-artist-form'
 
-
 const AddArtist: React.FC = observer(() => {
-
-    const [store] = useState(() => new AddArtistStore())
-
-    const ObserverForm = observer<{ store: AddArtistStore }>(({ store }) => {
-        return <Form store={store} />
-})
 
     return (
         <FormLayout>
-      
-            <HeaderWithBack>
-                Добавить артиста
-            </HeaderWithBack>
 
-            <ObserverForm store={store}/>
+            <AddArtistStoreProvider>
+
+                <HeaderWithBack>
+                    Добавить артиста
+                </HeaderWithBack>
+
+                <Form />
+
+            </AddArtistStoreProvider>
 
         </FormLayout >
     )
