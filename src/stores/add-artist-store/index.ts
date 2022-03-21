@@ -7,6 +7,8 @@ import { limit } from 'firebase/firestore'
 
 import { snackbar } from '../../code/common/alerts'
 import { iArtist } from 'types/artists'
+import { saveArtistLogo } from 'code/firebase/images'
+import { saveArtist } from 'code/firebase/artists'
 
 export class AddArtistStore {
 
@@ -28,7 +30,10 @@ export class AddArtistStore {
     async save() {
         const firestore = await GlobalStore.firebase.getFirestore()
 
-        const result = await setDoc(doc(firestore, `artists/${this.id}`), this.artistToSave)
+        const artist = this.artistToSave
+        await this.saveLogo(artist)
+        
+        const result = await saveArtist(artist)
         console.log(result)
         
         snackbar('Добавили артиста')
@@ -57,6 +62,21 @@ export class AddArtistStore {
             this.imageDataSrc = fileReader.result
         }
         fileReader.readAsDataURL(this.imageData)
+    }
+
+    async saveLogo(artist: iArtist) {
+        
+        if(!this.imageData) return 
+
+        const logo = await saveArtistLogo(artist.id, this.imageData)
+
+        if(!logo) {
+            snackbar('Ошибка при сохранении логотипа.')
+            return
+        } 
+
+        this.artistImage = logo
+        artist.artistImage = logo
     }
 } 
 

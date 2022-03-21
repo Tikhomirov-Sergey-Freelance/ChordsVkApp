@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { CustomSelect, FormItem } from '@vkontakte/vkui'
+import { Avatar, CustomSelect, CustomSelectOption, FormItem } from '@vkontakte/vkui'
  
 import { AddTrackStore } from 'stores/add-track-store'
 import useDebounce from 'code/hooks/use-debounce'
@@ -36,9 +36,15 @@ const Artist: React.FC<iProps> = observer(({ store }) => {
                 filterFn={false}
                 options={store.artistsList}
                 fetching={store.artistListLoading}
-                renderDropdown={(!store.artistListLoading || !query.length) &&
-                    (({ defaultDropdownContent }) => 
-                    query.length ? defaultDropdownContent : <OptionText>Начните вводить артиста</OptionText>)}
+                renderOption={({ option, ...restProps }) => {
+                        if(!query.length) {
+                            return <OptionText>Начните вводить артиста</OptionText>
+                        }
+                        return <CustomSelectOption
+                            {...restProps}
+                            before={<Avatar size={24} src={option.avatar} />}
+                        />
+                    }}
               />
         </FormItem>  
     )

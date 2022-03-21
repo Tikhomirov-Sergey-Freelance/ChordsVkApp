@@ -17,7 +17,7 @@ const Track: React.FC<iProps> = ({ track }) => {
         <SimpleCell
             onClick={onOpenTrack}
             description={<Text weight='regular'>{track.artist.name}</Text>}
-            before={<Avatar size={32} mode="app" />}
+            before={<Avatar size={32} mode="app" src={track.artist.artistImage} />}
         >
             {track.name}
         </SimpleCell>

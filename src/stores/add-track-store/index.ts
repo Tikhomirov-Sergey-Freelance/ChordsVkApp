@@ -145,7 +145,8 @@ export class AddTrackStore {
 
         this.artistsList = data.map(artist => ({
             label: artist.name,
-            value: artist.id
+            value: artist.id,
+            avatar: artist.artistImage
         }))
 
         this.artistListLoading = false
