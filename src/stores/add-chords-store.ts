@@ -1,5 +1,5 @@
 import { makeAutoObservable, reaction } from 'mobx'
-import { iPageKey, pages } from '../components/navigation/menu'
+import { iPageKey } from '../components/navigation/menu'
 import { MusicalInstrument } from '../types/global-types'
 import { notes } from '../code/data/notes'
 

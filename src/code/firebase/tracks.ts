@@ -6,7 +6,6 @@ import { loadArtistsByIds } from "./artists";
 
 export const loadLastTracks = async (count: number) => {
 
-
     const querySnapshot = 
     query(
         collection(await GlobalStore.firebase.getFirestore(), "tracks"), 
@@ -32,3 +31,15 @@ export const loadLastTracks = async (count: number) => {
 
     return tracksView
 } 
+
+export const loadTracksByArtist = async (artistId: string) => {
+
+    const querySnapshot = 
+    query(
+        collection(await GlobalStore.firebase.getFirestore(), "tracks"), 
+        where('artistId', '==', artistId)
+        );
+
+    const data = await getDocs(querySnapshot)
+    return data.docs.map(item => item.data()) as iTrackView[]
+}

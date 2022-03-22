@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 
 import { useMainPageStore } from '../../../stores/main-page-store/main-page-provider'
 
-import TrackList from './tracks-list'
+import TrackList from '../../common/tracks/tracks-list'
 
 const Tracks: React.FC = () => {
 

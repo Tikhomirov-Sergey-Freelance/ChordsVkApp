@@ -3,7 +3,7 @@ import React from 'react'
 
 import { iTrackView } from 'types/track'
 
-import Track from './track'
+import Track from '../track'
 
 export interface iProps {
     title: string
