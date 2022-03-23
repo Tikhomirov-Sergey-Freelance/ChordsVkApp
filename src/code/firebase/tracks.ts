@@ -1,4 +1,4 @@
-import { collection, getDocs, where, query, Query, orderBy, limit } from "firebase/firestore"
+import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc } from "firebase/firestore"
 import GlobalStore from "../../stores/global-store"
 import { iTrack, iTrackView } from "../../types/track"
 import { loadArtistsByIds } from "./artists";
@@ -42,4 +42,10 @@ export const loadTracksByArtist = async (artistId: string) => {
 
     const data = await getDocs(querySnapshot)
     return data.docs.map(item => item.data()) as iTrackView[]
+}
+
+export const updateTracksSearchName = async (searchName: string[], trackId: string) => {
+
+    const document = doc(await GlobalStore.firebase.getFirestore(), `tracks/${trackId}`)
+    await updateDoc(document, { searchName })
 }

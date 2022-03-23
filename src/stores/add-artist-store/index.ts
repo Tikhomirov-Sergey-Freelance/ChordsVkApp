@@ -8,9 +8,15 @@ import { limit } from 'firebase/firestore'
 import { snackbar } from '../../code/common/alerts'
 import { iArtist } from 'types/artists'
 import { saveArtistLogo } from 'code/firebase/images'
-import { saveArtist } from 'code/firebase/artists'
+import { saveArtist, updateArtist } from 'code/firebase/artists'
+import { loadTracksByArtist, updateTracksSearchName } from 'code/firebase/tracks'
+import { iTrack } from 'types/track'
+
+type StoreMode = 'add' | 'edit'
 
 export class AddArtistStore {
+
+    mode: StoreMode
 
     name: string
     id: string
@@ -22,8 +28,23 @@ export class AddArtistStore {
 
     queryArtist
 
+    origArtist: iArtist
+
     constructor() {
-        this.id = createGuid()
+
+        const routData = GlobalStore.activePanelData
+        const artist = routData && routData.artist
+
+        if (artist) {
+            this.mode = 'edit'
+            this.origArtist = artist
+        } else {
+            this.mode = 'add'
+            this.id = createGuid()
+        }
+
+        this.fillArtistData(artist)
+
         makeAutoObservable(this)
     }
 
@@ -32,11 +53,17 @@ export class AddArtistStore {
 
         const artist = this.artistToSave
         await this.saveLogo(artist)
-        
-        const result = await saveArtist(artist)
-        console.log(result)
-        
-        snackbar('Добавили артиста')
+
+        if (this.mode === 'add') {
+            const result = await saveArtist(artist)
+            console.log(result)
+            snackbar('Добавили артиста')
+        } else {
+            const result = await updateArtist(artist)
+            console.log(result)
+            await this.recalcTracksNames()
+            snackbar('Изменили артиста')
+        }
     }
 
     get artistToSave(): iArtist {
@@ -65,19 +92,51 @@ export class AddArtistStore {
     }
 
     async saveLogo(artist: iArtist) {
-        
-        if(!this.imageData) return 
+
+        if (!this.imageData) return
 
         const logo = await saveArtistLogo(artist.id, this.imageData)
 
-        if(!logo) {
+        if (!logo) {
             snackbar('Ошибка при сохранении логотипа.')
             return
-        } 
+        }
 
         this.artistImage = logo
         artist.artistImage = logo
     }
-} 
+
+    fillArtistData(artist: iArtist) {
+
+        if (this.mode === 'add' || !artist) return
+
+        this.id = artist.id
+        this.name = artist.name
+        this.description = artist.description
+        this.artistImage = artist.artistImage
+    }
+
+    async recalcTracksNames() {
+
+        if(this.mode === 'add') return
+
+        try {
+
+            const tracks: iTrack[] = await loadTracksByArtist(this.id) 
+
+            const requests = tracks.map(track => {
+                const searchName = [this.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
+                return updateTracksSearchName(searchName, track.id)
+            })
+
+            Promise.all(requests)
+
+        } catch (error) {
+
+            console.error(error)
+            snackbar('Ошибка при пересчете названий треков')
+        }
+    }
+}
 
 export default AddArtistStore

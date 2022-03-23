@@ -31,10 +31,8 @@ export class ArtistPageStore {
     }
 
     async loadArtistTracks(artistId: string) {
-        debugger
         const tracks = await loadTracksByArtist(artistId)
         this.tracks = tracks.map(track => ({ ...track, artist: this.artist }) as iTrackView)
-        debugger
     }
 }
 

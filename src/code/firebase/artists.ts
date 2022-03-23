@@ -1,4 +1,4 @@
-import { collection, getDocs, where, query, Query, getDoc, doc, setDoc } from 'firebase/firestore'
+import { collection, getDocs, where, query, Query, getDoc, doc, setDoc, updateDoc } from 'firebase/firestore'
 import GlobalStore from 'stores/global-store'
 import { iArtist } from 'types/artists'
 
@@ -49,4 +49,10 @@ export const saveArtist = async (artist: iArtist) => {
 
     const firestore = await GlobalStore.firebase.getFirestore()
     return await setDoc(doc(firestore, `artists/${artist.id}`), artist)
+}
+
+export const updateArtist = async (artist: iArtist) => {
+
+    const firestore = await GlobalStore.firebase.getFirestore()
+    return await updateDoc(doc(firestore, `artists/${artist.id}`), { ...artist })
 }

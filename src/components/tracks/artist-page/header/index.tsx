@@ -1,4 +1,5 @@
 import { ModalPageHeader, PanelHeaderClose, useAdaptivity, ViewWidth, PanelHeaderEdit, Avatar, Div } from '@vkontakte/vkui'
+import { editArtist } from 'code/artist/edit-artist'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
 import ArtistPageStore from 'stores/artist-page-store'
@@ -18,22 +19,12 @@ const TrackHeader: React.FC<iProps> = ({ store, onClose }) => {
     const { viewWidth } = useAdaptivity()
     const isMobile = viewWidth <= ViewWidth.MOBILE
 
-    const mobxArtistObject = store.artist as any
-    const dataRoute = { 
-        track: mobxArtistObject && mobxArtistObject.toJS ? mobxArtistObject.toJS() : mobxArtistObject
-     }
-
-    const edit = () => {
-        GlobalStore.setActiveStory('admin', 'addTrack', dataRoute)
-        ModalPageStore.closeModal('edit')
-    }
-
     if(store.loading) return null
 
     return (
         <ModalPageHeader
             left={isMobile && <PanelHeaderClose onClick={onClose} />}
-            right={GlobalStore.isAdmin && <PanelHeaderEdit onClick={edit}/>}
+            right={GlobalStore.isAdmin && <PanelHeaderEdit onClick={() => editArtist(store.artist)}/>}
         >
             <Styled>
                 <Avatar size={32} mode="app" src={store.artist.artistImage} className='logo'/>
