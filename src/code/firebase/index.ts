@@ -47,7 +47,7 @@ class FirebaseProvider {
   private async initDatabase() {
 
     this.firebase = initializeApp(firebaseConfig)
-    this.firebaseAnalitics = getAnalytics(this.firebase)
+    this.firebaseAnalitics = global['window'] && getAnalytics(this.firebase)
     this.database = getDatabase(this.firebase)
 
     this.firestore = getFirestore(this.firebase)

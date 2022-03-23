@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ChordsListStore from 'stores/chords-list-store'
 
+import PanelPreloader from '../../common/preloaders/panel-preloader'
 import Instrument from '../instrument/change-instrument'
 import Note from '../../chords/chord-list/note'
 import GlobalStore from 'stores/global-store'
@@ -16,12 +17,14 @@ const ChordsList: React.FC = observer(() => {
     
     const chords = GlobalStore.currentInstrument === 'guitar' ? ChordsListStore.guitarChords : ChordsListStore.ukuleleChords
     
-    if(!chords || !chords.size) return <PanelSpinner size="large"/>
+    if(!chords || !chords.size) return <PanelPreloader title='Аккорды'/>
 
     const keys = Array.from(chords.keys())
 
     return (
         <>
+
+            <PanelHeader>Аккорды</PanelHeader>
 
             <Instrument />
 

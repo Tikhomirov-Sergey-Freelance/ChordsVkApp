@@ -2,23 +2,15 @@ import { PanelSpinner } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import React, { useEffect } from 'react'
 
-import { useMainPageStore } from '../../../stores/main-page-store/main-page-provider'
+import MainPageStore from '../../../stores/main-page-store'
 
 import TrackList from '../../common/tracks/tracks-list'
 
 const Tracks: React.FC = () => {
 
-    const store = useMainPageStore()
-
-    useEffect(() => {
-        store.loadLastTracks()
-    }, [])
-
-    if(!store.lastTracks || !store.lastTracks.length) return <PanelSpinner size="large"/>
-
     return (
         <>
-            {store.lastTracks && <TrackList tracks={store.lastTracks} title='Новые треки' />}
+            {MainPageStore.lastTracks && <TrackList tracks={MainPageStore.lastTracks} title='Новые треки' />}
         </>
     )
 }

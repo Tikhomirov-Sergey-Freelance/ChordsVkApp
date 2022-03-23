@@ -6,7 +6,6 @@ const ChordsView: React.FC = () => {
 
     return (
         <>
-            <PanelHeader>Аккорды</PanelHeader>
             <ChordsList />
         </>
     )

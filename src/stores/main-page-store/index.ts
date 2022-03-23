@@ -11,23 +11,33 @@ import { StrummingType, defaultStrumming } from 'types/strumming'
 
 export class MainPageStore {
 
-    loadingLastTracks: boolean
+    loading: boolean
 
     lastTracks: iTrackView[]
     FavoriteTracks: iTrackView[]
     
     constructor() {
+
+        this.loadPage()
+
         makeAutoObservable(this, undefined, { deep: true })
     }
 
+    async loadPage() {
+
+        this.loading = true
+
+        await Promise.all([
+            this.loadLastTracks()
+        ])
+
+        this.loading = false
+    }
+
     async loadLastTracks() {
-
-        this.loadingLastTracks = true
-
         this.lastTracks = await loadLastTracks(5)
-
-        this.loadingLastTracks = false
     }
 }
 
-export default MainPageStore
+const store = new MainPageStore()
+export default store
