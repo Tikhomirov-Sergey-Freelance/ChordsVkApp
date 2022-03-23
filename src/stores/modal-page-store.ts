@@ -1,6 +1,5 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx'
 import React, { ReactNode } from 'react'
-import GlobalStore from './global-store'
 
 export interface iModalComponent {
     header?: () => ReactNode

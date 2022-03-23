@@ -3,6 +3,7 @@ import FirebaseProvider from '../code/firebase'
 import pages, { iPageKey } from '../components/navigation/menu'
 import { MusicalInstrument } from 'types/global-types'
 import VK from '@vkontakte/vk-bridge'
+import ModalPage from './modal-page-store'
 
 export type iActiveStory = iPageKey | 'defaultModalPage'
 
@@ -12,7 +13,6 @@ export class GlobalStore {
 
     activeStory: iActiveStory = 'tracks'
     activePanel: string = 'tracks'
-    activeModal: string
     activePanelData: any
 
     firebase: FirebaseProvider
@@ -33,9 +33,12 @@ export class GlobalStore {
 
         this.firebase = new FirebaseProvider(firebaseToken)
 
+        if(!global['window']) return
+
         this.loadApp()
 
         this.setLocation()
+        this.bindEvents()
 
         makeObservable(this, {
             activeStory: observable,
@@ -56,12 +59,17 @@ export class GlobalStore {
         this.activePanel = this.activeStory
     }
 
+    pushHistory() {
+        history.pushState({ ...this.locationData, modalPage: ModalPage.activeModalComponent }, null)
+    }
+
     setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {
 
         this.activeStory = activeStory
         this.activePanel = panel || activeStory
         this.activePanelData = data
 
+        this.pushHistory()
         this.saveLocation()
     }
 
@@ -70,6 +78,7 @@ export class GlobalStore {
         this.activePanel = panel
         this.activePanelData = data
 
+        this.pushHistory()
         this.saveLocation()
     }
 
@@ -94,10 +103,34 @@ export class GlobalStore {
             this.activeStory = location.activeStory
             this.activePanel = location.activePanel
             this.activePanelData = location.activePanelData
+
+            this.pushHistory()
         }
         catch {
 
         }
+    }
+
+    bindEvents() {
+        
+        window.addEventListener('popstate', (event) => {
+            
+            const state = event.state
+
+            if(state) {
+
+                if(this.activeStory !== state.activeStory) {
+                    this.activeStory = state.activeStory
+                }
+
+                if(this.activePanel !== state.activePanel) {
+                    this.activePanel = state.activePanel
+                }
+
+                ModalPage.activeModalComponent = state.modalPage
+                this.activePanelData = state.activePanelData
+            }
+        })
     }
 
     get locationData() {
