@@ -60,7 +60,7 @@ export class GlobalStore {
     }
 
     pushHistory() {
-        history.pushState({ ...this.locationData, modalPage: ModalPage.activeModalComponent }, null)
+        history.pushState(this.locationData, null)
     }
 
     setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {
@@ -127,7 +127,6 @@ export class GlobalStore {
                     this.activePanel = state.activePanel
                 }
 
-                ModalPage.activeModalComponent = state.modalPage
                 this.activePanelData = state.activePanelData
             }
         })

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Group, Header, CardGrid, Card } from '@vkontakte/vkui'
-import { iParams as ChordParam } from '../../../stores/add-chords-store'
+import { iChord } from '../../../types/chord'
 
 import Chord from './chord'
 
 export interface iProps {
     note: string
-    chords: ChordParam[]
+    chords: iChord[]
 }
 
 const Note: React.FC<iProps> = ({ note, chords }) => {

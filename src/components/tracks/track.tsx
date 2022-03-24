@@ -1,7 +1,7 @@
 import React from 'react'
 import { SimpleCell, Text, Avatar } from '@vkontakte/vkui'
 
-import openTrack from '../../../code/tracks/open-track'
+import { openTrack } from '../../code/tracks/open-track'
 
 import { iTrackView } from 'types/track'
 

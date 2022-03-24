@@ -1,8 +1,29 @@
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc } from "firebase/firestore"
+import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc } from "firebase/firestore"
 import GlobalStore from "../../stores/global-store"
 import { iTrack, iTrackView } from "../../types/track"
-import { loadArtistsByIds } from "./artists";
+import { loadArtistById, loadArtistsByIds } from "./artists";
 
+export const loadTrackById = async (id: string) => {
+
+    try {
+
+        if (!id) return null
+
+        const reference = doc(await GlobalStore.firebase.getFirestore(), `tracks/${id}`)
+        const data = await getDoc(reference)
+
+        if(!data.exists()) return null
+
+        const track = data?.data() as iTrack
+        const artist = await loadArtistById(track.artistId)
+        
+        return { ...track, artist } as iTrackView
+
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
 
 export const loadLastTracks = async (count: number) => {
 
