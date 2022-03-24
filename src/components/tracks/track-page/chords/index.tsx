@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardScroll, InfoRow, SimpleCell } from '@vkontakte/vkui'
+import { Card, CardScroll, HorizontalCell, InfoRow, SimpleCell } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import { iChord } from 'types/chord'
 
@@ -10,19 +10,15 @@ export interface iProps {
 }
 
 const Chords: React.FC<iProps> = ({ chords }) => {
-debugger
+
     return (
-        <SimpleCell>
-            <InfoRow header='Аккорды'>
-                <CardScroll size='s'>
+        <HorizontalCell>
 
-                    {
-                        chords.map(chord => <Chord chord={chord} />)
-                    }
+            {
+                chords.map(chord => <Chord chord={chord} />)
+            }
 
-                </CardScroll>
-            </InfoRow>
-        </SimpleCell>
+        </HorizontalCell>
     )
 }
 
