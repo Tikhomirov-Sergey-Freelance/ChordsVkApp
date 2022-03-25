@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, FormItem } from '@vkontakte/vkui'
+import { Group, FormItem, Header } from '@vkontakte/vkui'
 
 import ArtistPageStore from 'stores/artist-page-store'
 
@@ -15,13 +15,13 @@ const Tracks: React.FC<iProps> = ({ store }) => {
     if (!store.tracks || !store.tracks.length) return null
 
     return (
-        <FormItem top='Треки исполнителя'>
+        <Group header={<Header mode="secondary">Треки исполнителя</Header>}>
 
             {
                 store.tracks.map(track => <Track key={track.id} track={track} />)
             }
 
-        </FormItem> 
+        </Group> 
     )
 }
 

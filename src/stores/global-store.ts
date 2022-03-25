@@ -60,7 +60,7 @@ export class GlobalStore {
     }
 
     pushHistory() {
-        history.pushState(this.locationData, null)
+       // history.pushState(this.locationData, null)
     }
 
     setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {

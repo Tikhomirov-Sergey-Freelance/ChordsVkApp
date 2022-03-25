@@ -11,11 +11,11 @@ interface iProps {
 const Description: React.FC<iProps> = ({ store }) => {
 
     return (
-        <FormItem top='Биография'>
+        <Group header={<Header mode="secondary">Биография</Header>}>
 
             {store.artist.description}
 
-        </FormItem>
+        </Group>
     )
 }
 

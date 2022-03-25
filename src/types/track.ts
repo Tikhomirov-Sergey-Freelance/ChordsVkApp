@@ -9,6 +9,7 @@ export interface iTrack {
     strummingNote: string
     chordsText: iChordsText
     chordsNote: string
+    trackVideoSrc: string
 
     addedDate?: Date
     searchName?: string[]

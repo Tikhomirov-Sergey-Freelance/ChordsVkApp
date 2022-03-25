@@ -8,6 +8,7 @@ import Strumming from './strumming'
 import InputControl from '../../common/vk/controls/input-control'
 import Text from './text'
 import Chords from './chords'
+import TrackVideo from './video'
 
 const AddArtistForm: React.FC = observer(() => {
 
@@ -24,6 +25,7 @@ const AddArtistForm: React.FC = observer(() => {
             <Text store={store} />
             <Chords store={store} />
             <InputControl title='Примечание к тексту' value={store.chordsNote} onChange={event => store.changeProperty('chordsNote', event.target.value)} />
+            <TrackVideo store={store} />
 
             <CellButton centered onClick={() => store.save()}>
                 Сохранить трек

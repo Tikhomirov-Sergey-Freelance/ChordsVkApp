@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Button, ModalPage, ModalRoot, Group, FormItem, Input, CustomSelect, CellButton, Header } from '@vkontakte/vkui'
-import { loadChordsByQuery } from 'code/firebase/chords'
+import React from 'react'
+import { observer } from 'mobx-react-lite'
+import { Group } from '@vkontakte/vkui'
 import { iChordsWord, iTrackView } from 'types/track'
 import TrackPageStore from 'stores/track-page-store'
 
 import Artist from './artist'
 import Strumming from './strumming'
 import Chords from './chords'
-import Text from '././text'
-import { observer } from 'mobx-react-lite'
+import Text from './text'
+import TrackVideo from './video'
 
 interface iProps {
     store: TrackPageStore
@@ -26,6 +26,7 @@ const SelectChordModal: React.FC<iProps> = ({ store, onClose }) => {
             <Strumming track={store.track} />
             <Chords chords={store.chords} />
             <Text track={store.track} />
+            <TrackVideo track={store.track} />
   
         </Group>
     )

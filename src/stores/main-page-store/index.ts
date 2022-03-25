@@ -35,7 +35,7 @@ export class MainPageStore {
     }
 
     async loadLastTracks() {
-        this.lastTracks = await loadLastTracks(5)
+        this.lastTracks = await loadLastTracks(7)
     }
 }
 

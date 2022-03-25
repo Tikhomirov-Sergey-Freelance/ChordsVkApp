@@ -1,4 +1,4 @@
-import { FormItem, Group } from '@vkontakte/vkui'
+import { FormItem, Group, Header } from '@vkontakte/vkui'
 import React from 'react'
 import { iTrackView } from 'types/track'
 
@@ -13,7 +13,7 @@ export interface iProps {
 const Chords: React.FC<iProps> = ({ track }) => {
 
     return (
-        <FormItem top='Текст'>
+        <Group header={<Header mode="secondary">Текст</Header>}>
 
             <Styled>
 
@@ -25,7 +25,7 @@ const Chords: React.FC<iProps> = ({ track }) => {
 
             {track.chordsNote && <Group description={track.chordsNote} />}
 
-        </FormItem>
+        </Group>
     )
 }
 

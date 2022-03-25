@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable, observable, toJS } from 'mobx'
 
 import { createGuid } from '../../code/common/guid'
 import GlobalStore from '../global-store'
@@ -23,7 +23,8 @@ const defaultTrack: iTrack = {
     strumming: defaultStrumming,
     strummingNote: '',
     chordsText: null,
-    chordsNote: ''
+    chordsNote: '',
+    trackVideoSrc: ''
 }
 
 export class AddTrackStore {
@@ -37,6 +38,7 @@ export class AddTrackStore {
     strummingNote: string
     chordsText: iChordsText
     chordsNote: string
+    trackVideoSrc: string
 
     text: string
 
@@ -54,7 +56,7 @@ export class AddTrackStore {
             this.mode = 'add'
             this.id = createGuid()
         }
-        debugger
+        
         this.fillTrack(track)
 
         makeAutoObservable(this, undefined, { deep: true })
@@ -70,7 +72,7 @@ export class AddTrackStore {
         track.searchName = [artist.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
 
         const document = doc(firestore, `tracks/${this.id}`)
-
+        debugger
         if (this.mode === 'add') {
 
             const result = await setDoc(document, track)
@@ -105,9 +107,10 @@ export class AddTrackStore {
             name: this.name,
             artistId: this.artistId,
             strumming: this.strumming,
-            strummingNote: this.strummingNote,
-            chordsText: this.chordsText,
-            chordsNote: this.chordsNote,
+            strummingNote: this.strummingNote || '',
+            chordsText: toJS(this.chordsText),
+            chordsNote: this.chordsNote || '',
+            trackVideoSrc: this.trackVideoSrc,
             addedDate: new Date()
         }
     }

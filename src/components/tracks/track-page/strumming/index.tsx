@@ -34,18 +34,17 @@ const Strumming: React.FC<iProps> = ({ track }) => {
 
     return (
 
-        <Group>
-
+        <Group
+            header={<Header mode="secondary">Бой</Header>}
+        >
             <SimpleCell>
-                <InfoRow header='Бой'>
-                    <Styled>
+                <Styled>
 
-                        {
-                            track.strumming.map(item => getIcon(item))
-                        }
+                    {
+                        track.strumming.map(item => getIcon(item))
+                    }
 
-                    </Styled>
-                </InfoRow>
+                </Styled>
             </SimpleCell>
 
             {track.strummingNote && <Group description={track.strummingNote} />}
