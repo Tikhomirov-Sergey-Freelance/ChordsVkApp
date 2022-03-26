@@ -25,9 +25,9 @@ const Chord: React.FC<iProps> = ({ chord, width, height, style }) => {
     }, [])
 
     return (
-        <Card style={{ margin: '0 10px', padding: 7, display: 'flex', justifyContent: 'center', width: width + 20, height: height + 10, ...style  }}>
+        <HorizontalCell disabled style={{ margin: '0 20px', padding: 7, display: 'flex', justifyContent: 'center', width: width + 20, height: height + 10, ...style  }}>
             <canvas ref={canvas} width={width} height={height} />
-        </Card>
+        </HorizontalCell> 
     )
 }
 
