@@ -1,5 +1,6 @@
 import React from 'react'
-import { Group, CardScroll, HorizontalScroll, InfoRow, SimpleCell, Spinner, Header } from '@vkontakte/vkui'
+import { Group, CardScroll, HorizontalCell, InfoRow, SimpleCell, Spinner, Header, Card } from '@vkontakte/vkui'
+import  HorizontalScroll from '../../../common/scrollbar/horizontal-scroll'
 import { observer } from 'mobx-react-lite'
 import { iChord } from 'types/chord'
 
@@ -23,21 +24,19 @@ const Chords: React.FC<iProps> = ({ chords }) => {
 
     return (
         <Group header={<Header mode="secondary">Аккорды</Header>}>
+
             <HorizontalScroll
-                showArrows
                 getScrollToLeft={i => i - 130}
                 getScrollToRight={i => i + 130}
             >
 
-                <div style={{ display: "flex" }}>
-
                     {
-                        chords.map(chord => <Chord chord={chord} />)
+                        chords.map(chord => <Chord key={chord.name} chord={chord} />)
                     }
 
-                </div>
-
             </HorizontalScroll>
+
+            
         </Group>
     )
 }

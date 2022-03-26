@@ -25,16 +25,18 @@ const Chord: React.FC<iProps> = ({ chord, width, height, style }) => {
     }, [])
 
     return (
-        <HorizontalCell disabled style={{ margin: '0 20px', padding: 7, display: 'flex', justifyContent: 'center', width: width + 20, height: height + 10, ...style  }}>
-            <canvas ref={canvas} width={width} height={height} />
-        </HorizontalCell> 
+        <Card style={{ margin: '0 10px' }}>
+            <div style={{ padding: 7, display: 'flex', justifyContent: 'center', width, height, ...style  }}>
+                <canvas ref={canvas} width={width} height={height} />  
+            </div>
+        </Card> 
     )
 }
 
 Chord.defaultProps = {
     width: 110,
     height: 170,
-    style: {}
+    style: {} 
 }
 
 export default Chord

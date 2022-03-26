@@ -17,10 +17,12 @@ const TrackVideo: React.FC<iProps> = ({ store }) => {
 
             <InputControl title='Ссылка на видео' value={store.trackVideoSrc} onChange={event => store.changeProperty('trackVideoSrc', event.target.value)} />
 
-            {store.trackVideoSrc && <iframe width="100%" src={store.trackVideoSrc} allowFullScreen></iframe>}
+            {store.trackVideoSrc && <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <iframe style={{ maxWidth: 320 }} src={store.trackVideoSrc} allowFullScreen></iframe>
+            </div>}
 
         </div>
-    ) 
+    )
 }
 
 export default observer(TrackVideo)

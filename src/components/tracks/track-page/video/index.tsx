@@ -13,7 +13,9 @@ const TrackVideo: React.FC<iProps> = ({ track }) => {
 
     return (
         <Group>
-            <iframe width="100%" src={track.trackVideoSrc} allowFullScreen></iframe>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <iframe style={{ maxWidth: 320 }} src={track.trackVideoSrc} allowFullScreen></iframe>
+            </div>
         </Group>
     )
 }

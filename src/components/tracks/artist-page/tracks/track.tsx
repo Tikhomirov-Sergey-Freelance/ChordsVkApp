@@ -1,5 +1,5 @@
 import { SimpleCell } from '@vkontakte/vkui'
-import openTrack from 'code/tracks/open-track'
+import { openTrack } from '../../../../code/tracks/open-track'
 import React from 'react'
 import { iTrackView } from 'types/track'
 
