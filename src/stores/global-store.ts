@@ -2,8 +2,9 @@ import { makeAutoObservable, makeObservable, observable } from 'mobx'
 import FirebaseProvider from '../code/firebase'
 import pages, { iPageKey } from '../components/navigation/menu'
 import { MusicalInstrument } from 'types/global-types'
-import VK from '@vkontakte/vk-bridge'
+import VK, { VKBridgeEvent, AnyReceiveMethodName } from '@vkontakte/vk-bridge'
 import ModalPage from './modal-page-store'
+import { iAppearance } from 'types/common'
 
 export type iActiveStory = iPageKey | 'defaultModalPage'
 
@@ -21,6 +22,8 @@ export class GlobalStore {
     validVk: boolean
     isAdmin: boolean
 
+    appearance: iAppearance = 'light'
+
     currentInstrument: MusicalInstrument = 'guitar'
 
     constructor() {
@@ -34,8 +37,6 @@ export class GlobalStore {
         this.firebase = new FirebaseProvider(firebaseToken)
 
         if(!global['window']) return
-
-        this.loadApp()
 
         this.setLocation()
         this.bindEvents()
@@ -51,9 +52,10 @@ export class GlobalStore {
 
         //тут что-нибудь, что нужно загрузить
 
-        await VK.send("VKWebAppInit", {})
+        await this.initVK()
+
         this.globalLoading = false
-    }
+    }    
 
     toMainPanel() {
         this.activePanel = this.activeStory
@@ -130,6 +132,21 @@ export class GlobalStore {
                 this.activePanelData = state.activePanelData
             }
         })
+    }
+
+    async initVK() {
+
+        if(this.validVk) {
+
+            VK.subscribe((event) => {
+
+                if(event.detail.type === 'VKWebAppUpdateConfig') {
+                    this.appearance = event.detail.data['appearance']
+                }
+            })
+
+            await VK.send('VKWebAppInit', {})
+        }
     }
 
     get locationData() {

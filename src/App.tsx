@@ -7,6 +7,8 @@ declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
+import GlobalStore from 'stores/global-store'
+
 import ViewList from './views'
 
 declare global {
@@ -25,9 +27,9 @@ try {
 }
 
 const App: React.FC = () => {
-
+  
   return (
-    <ConfigProvider>
+    <ConfigProvider appearance={GlobalStore.appearance}>
       <AdaptivityProvider>
         <AppRoot>
           <ViewList />
