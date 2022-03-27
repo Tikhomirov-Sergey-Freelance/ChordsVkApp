@@ -1,9 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Group } from '@vkontakte/vkui'
+import { Group, withModalRootContext } from '@vkontakte/vkui'
 import { iChordsWord, iTrackView } from 'types/track'
-import TrackPageStore from 'stores/track-page-store'
+import TrackPageStore from '../../../stores/track-page-store'
+import ModalPageStore from '../../../stores/modal-page-store'
 
+import Spinner from '../../common/preloaders/panel-preloader'
 import Artist from './artist'
 import Strumming from './strumming'
 import Chords from './chords'
@@ -11,13 +13,14 @@ import Text from './text'
 import TrackVideo from './video'
 
 interface iProps {
-    store: TrackPageStore
-    onClose: () => void
+
 }
 
-const SelectChordModal: React.FC<iProps> = ({ store, onClose }) => {
+const TrackModal: React.FC<iProps> = () => {
 
-    if(store.loading) return null
+    const store = ModalPageStore.activeModalComponent?.modalData.store
+
+    if(!store || store.loading) return null
 
     return (
         <Group>
@@ -32,4 +35,4 @@ const SelectChordModal: React.FC<iProps> = ({ store, onClose }) => {
     )
 }
 
-export default observer(SelectChordModal)
+export default observer(TrackModal)

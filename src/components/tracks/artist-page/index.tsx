@@ -5,6 +5,7 @@ import { iArtist } from 'types/artists'
 import ArtistPageStore from 'stores/artist-page-store'
 import { observer } from 'mobx-react-lite'
 
+import Spinner from '../../common/preloaders/panel-preloader'
 import Description from './description'
 import Tracks from './tracks'
 
@@ -15,7 +16,7 @@ interface iProps {
 
 const SelectChordModal: React.FC<iProps> = ({ store, onClose }) => {
 
-    if(store.loading) return <PanelSpinner size="large"/>
+    if(!store || store.loading) return <Spinner/>
 
     return (
         <Group>

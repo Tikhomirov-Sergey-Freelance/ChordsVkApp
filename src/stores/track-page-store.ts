@@ -5,6 +5,7 @@ import { loadArtistById } from 'code/firebase/artists'
 import { loadTrackById, loadTracksByArtist } from 'code/firebase/tracks'
 import { iChord } from 'types/chord'
 import { loadChordsByKeys } from 'code/firebase/chords'
+import GlobalStore from './global-store'
 
 export class TrackPageStore {
 
@@ -13,20 +14,23 @@ export class TrackPageStore {
     track: iTrackView
     chords: iChord[] = []
 
-    constructor(track: iTrackView = null) {
-
-        if(track) {
-            this.track = track
-            this.loadChords()
+    constructor(trackId: string) {
+        
+        if(!trackId) {
+            GlobalStore.modal.closeModal()
+            return
         }
+
+        this.loadTrack(trackId)
 
         makeAutoObservable(this) 
     }
 
-    async loadTrack(trackId) {
+    async loadTrack(trackId: string) {
         this.loading = true
         this.track = await loadTrackById(trackId)
         this.loading = false
+        debugger
         this.loadChords()
         return this.track
     }

@@ -3,6 +3,7 @@ import { iTrackView } from 'types/track'
 import { iArtist } from 'types/artists'
 import { loadArtistById } from 'code/firebase/artists'
 import { loadTracksByArtist } from 'code/firebase/tracks'
+import GlobalStore from './global-store'
 
 export class ArtistPageStore {
 
@@ -11,13 +12,14 @@ export class ArtistPageStore {
     artist: iArtist
     tracks: iTrackView[]
 
-    constructor(artist: iArtist = null) {
+    constructor(artistId) {
 
-        if(artist) {
-            this.artist = artist
-            this.loadArtistTracks(artist.id)
+        if(!artistId) {
+            GlobalStore.modal.closeModal()
+            return
         }
 
+        this.loadArtist(artistId)
         makeAutoObservable(this) 
     }
 

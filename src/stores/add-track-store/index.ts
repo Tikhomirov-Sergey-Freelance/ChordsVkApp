@@ -47,7 +47,7 @@ export class AddTrackStore {
 
     constructor() {
 
-        const routData = GlobalStore.activePanelData
+        const routData = GlobalStore.router.activePanelData
         const track = routData && routData.track
 
         if (track) {
@@ -72,7 +72,7 @@ export class AddTrackStore {
         track.searchName = [artist.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
 
         const document = doc(firestore, `tracks/${this.id}`)
-        debugger
+        
         if (this.mode === 'add') {
 
             const result = await setDoc(document, track)

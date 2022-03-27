@@ -24,7 +24,7 @@ const ChordsRow: React.FC<iProps> = (props) => {
         }
 
         const component = () => <SelectChordsModal word={word} onChange={changeChord} onClose={() => ModalPageStore.closeModal()} />
-        ModalPageStore.openModal(component, null)
+        ModalPageStore.openModal('defaultModalPage', { component })
     }
 
     return (

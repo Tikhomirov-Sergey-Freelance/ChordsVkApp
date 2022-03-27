@@ -13,7 +13,7 @@ const Artist: React.FC<iProps> = ({ track }) => {
     return (
         <Group>
             <SimpleCell
-                onClick={() => openArtist(track.artist)}
+                onClick={() => openArtist(track.artist.id)}
                 before={<Avatar size={32} mode="app" src={track.artist.artistImage} />}
             >
                 <InfoRow header='Исполнитель'>

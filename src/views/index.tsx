@@ -9,30 +9,34 @@ import GlobalStore from '../stores/global-store'
 
 import Snackbar from '../components/common/dialogs/snackbar'
 
-import views from './views'
+import Modals from './modals'
+import Views from './views'
 
 import MobileNav from '../components/navigation/mobile'
 
-const ViewList: React.FC = observer(() => {
+const ViewList: React.FC = () => {
 
   return (
 
     <SplitLayout modal={
-      <ModalRoot activeModal={ModalPageStore.activeModalComponent && 'defaultModalPage'}>
-        <ModalPage 
-        id='defaultModalPage' 
-        header={ModalPageStore.activeModalComponent && 
-          ModalPageStore.activeModalComponent.header &&
-          ModalPageStore.activeModalComponent.header()}
-        onClose={() => ModalPageStore.closeModal()}>
-          {ModalPageStore.activeModalComponent && ModalPageStore.activeModalComponent.component()}
+      <ModalRoot activeModal={ModalPageStore.activeModalComponent?.key}>
+        <ModalPage
+          id='defaultModalPage'
+          header={ModalPageStore.activeModalComponent &&
+            ModalPageStore.activeModalComponent.modalData.header &&
+            ModalPageStore.activeModalComponent.modalData?.header()}
+          onClose={() => ModalPageStore.closeModal()}>
+          {ModalPageStore.activeModalComponent &&
+          ModalPageStore.activeModalComponent.modalData?.component &&
+          ModalPageStore.activeModalComponent.modalData.component()}
         </ModalPage>
-      </ModalRoot>
+        {Modals}
+      </ModalRoot> 
     }>
       <Epic activeStory={GlobalStore.router.activeStory} tabbar={<MobileNav />}>
 
         {
-          views.map(view =>
+          Views.map(view =>
 
             <View id={view.id} activePanel={GlobalStore.router.activePanel}>
 
@@ -51,6 +55,6 @@ const ViewList: React.FC = observer(() => {
       </Epic>
     </SplitLayout>
   )
-})
+}
 
-export default ViewList
+export default observer(ViewList)
