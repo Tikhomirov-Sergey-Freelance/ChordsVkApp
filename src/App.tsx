@@ -27,15 +27,15 @@ try {
 }
 
 const App: React.FC = () => {
-  
+
   return (
-    <ConfigProvider appearance={GlobalStore.appearance}>
-      <AdaptivityProvider>
+    <AdaptivityProvider>
+      <ConfigProvider appearance={GlobalStore.vk.appearance}>
         <AppRoot>
           <ViewList />
         </AppRoot>
-      </AdaptivityProvider>
-    </ConfigProvider>
+      </ConfigProvider>
+    </AdaptivityProvider>
   )
 }
 

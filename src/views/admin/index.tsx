@@ -12,15 +12,15 @@ const AdminView: React.FC = observer(() => {
 
             <Group>
             
-            <CellButton onClick={ () => GlobalStore.setActivePanel('addChords') }>
+            <CellButton onClick={ () => GlobalStore.router.setActivePanel('addChords') }>
                 Добавить аккорд
             </CellButton>
 
-            <CellButton onClick={ () => GlobalStore.setActivePanel('addArtist') }>
+            <CellButton onClick={ () => GlobalStore.router.setActivePanel('addArtist') }>
                 Добавить артиста
             </CellButton>
 
-            <CellButton onClick={ () => GlobalStore.setActivePanel('addTrack') }>
+            <CellButton onClick={ () => GlobalStore.router.setActivePanel('addTrack') }>
                 Добавить трек
             </CellButton>
         

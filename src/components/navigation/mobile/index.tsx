@@ -16,8 +16,8 @@ const MobileNav: React.FC = () => {
 
                     <TabbarItem
                         key={page.key}
-                        onClick={() => GlobalStore.setActiveStory(page.key)}
-                        selected={GlobalStore.activeStory === page.key}
+                        onClick={() => GlobalStore.router.setActiveStory(page.key)}
+                        selected={GlobalStore.router.activeStory === page.key}
                         data-story={page.key}
                         text={page.name}
                     >

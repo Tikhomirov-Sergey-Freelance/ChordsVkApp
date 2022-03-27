@@ -29,12 +29,12 @@ const ViewList: React.FC = observer(() => {
         </ModalPage>
       </ModalRoot>
     }>
-      <Epic activeStory={GlobalStore.activeStory} tabbar={<MobileNav />}>
+      <Epic activeStory={GlobalStore.router.activeStory} tabbar={<MobileNav />}>
 
         {
           views.map(view =>
 
-            <View id={view.id} activePanel={GlobalStore.activePanel}>
+            <View id={view.id} activePanel={GlobalStore.router.activePanel}>
 
               {
                 view.panels.map(panel =>

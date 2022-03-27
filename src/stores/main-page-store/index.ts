@@ -18,6 +18,8 @@ export class MainPageStore {
     
     constructor() {
 
+        if(!global['window']) return
+
         this.loadPage()
 
         makeAutoObservable(this, undefined, { deep: true })
