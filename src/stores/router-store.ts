@@ -1,12 +1,22 @@
-import { makeAutoObservable, makeObservable, observable } from 'mobx'
+import { makeAutoObservable, makeObservable, observable, toJS } from 'mobx'
 import FirebaseProvider from '../code/firebase'
 import pages, { iPageKey } from '../components/navigation/menu'
 import { MusicalInstrument } from 'types/global-types'
 import VK, { VKBridgeEvent, AnyReceiveMethodName } from '@vkontakte/vk-bridge'
 import ModalPage from './modal-page-store'
 import { iAppearance } from 'types/common'
+import GlobalStore from './global-store'
 
-export type iActiveStory = iPageKey | 'defaultModalPage'
+export interface iHistoryData {
+    activeStory: iActiveStory
+    activePanel: string
+    activePanelData: any
+
+    modalKey?: string
+    modalData?: any
+}
+
+export type iActiveStory = iPageKey
 
 export class RouterStore {
 
@@ -29,7 +39,16 @@ export class RouterStore {
     }
 
     pushHistory() {
-       // history.pushState(this.locationData, null)
+
+        const data: iHistoryData = { ...toJS(this.locationData) }
+        const modalData = GlobalStore.modal.activeModalComponent
+
+        if(modalData) {
+            data.modalKey = modalData.key
+            data.modalData = toJS(modalData.modalData.data)
+        }
+          
+        history.pushState(data, null)
     }
 
     setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {
@@ -69,7 +88,8 @@ export class RouterStore {
             this.activePanel = location.activePanel
             this.activePanelData = location.activePanelData
 
-            this.pushHistory()
+            const data: iHistoryData = { ...toJS(this.locationData) }
+            history.replaceState(data, null)
         }
         catch {
 
@@ -80,7 +100,7 @@ export class RouterStore {
         
         window.addEventListener('popstate', (event) => {
             
-            const state = event.state
+            const state: iHistoryData = event.state
 
             if(state) {
 
@@ -93,6 +113,8 @@ export class RouterStore {
                 }
 
                 this.activePanelData = state.activePanelData
+                
+                GlobalStore.modal.openFromHistory(state.modalKey, state.modalData)
             }
         })
     }

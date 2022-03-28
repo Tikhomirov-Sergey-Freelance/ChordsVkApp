@@ -10,20 +10,21 @@ import { iArtist } from 'types/artists'
 import Styled from './styled'
 
 export interface iProps {
-    store: ArtistPageStore
-    onClose: () => void
+
 }
 
-const TrackHeader: React.FC<iProps> = ({ store, onClose }) => {
+const TrackHeader: React.FC<iProps> = () => {
 
     const { viewWidth } = useAdaptivity()
     const isMobile = viewWidth <= ViewWidth.MOBILE
+
+    const store = ModalPageStore.activeModalComponent?.modalData?.store
 
     if(store.loading) return null
 
     return (
         <ModalPageHeader
-            left={isMobile && <PanelHeaderClose onClick={onClose} />}
+            left={isMobile && <PanelHeaderClose onClick={() => ModalPageStore.closeModal()} />}
             right={GlobalStore.isAdmin && <PanelHeaderEdit onClick={() => editArtist(store.artist)}/>}
         >
             <Styled>

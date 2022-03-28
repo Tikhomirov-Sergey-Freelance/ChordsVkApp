@@ -9,7 +9,7 @@ const HeaderWithBack: React.FC<PanelHeaderProps> = observer((props) => {
 
     return (
         <PanelHeader
-            left={<PanelHeaderClose onClick={() => GlobalStore.toMainPanel() }/>}
+            left={<PanelHeaderClose onClick={() => GlobalStore.router.toMainPanel() }/>}
             {...props}
         >
            {props.children}

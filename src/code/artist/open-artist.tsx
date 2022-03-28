@@ -14,5 +14,5 @@ export const openArtist = (artistId: string) => {
 }
 
 export const openArtistModalPage = (artistId: string) => {
-    ModalPageStore.openModal('artist', { data: { artistId } })
+    ModalPageStore.openModal('artist', { data: { artistId }, saveHistory: true })
 }

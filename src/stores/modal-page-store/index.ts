@@ -1,5 +1,6 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx'
 import React, { ReactNode } from 'react'
+import GlobalStore from 'stores/global-store'
 import { createStoreByModalKey } from './dictionary'
 
 export type ModalKey = 'defaultModalPage' | 'track' | 'artist'
@@ -17,6 +18,7 @@ export interface ModalComponentData {
 
     store?: any
     saveHistory?: boolean
+    openFromHistory?: boolean
 }
 
 export class ModalPage {
@@ -36,6 +38,10 @@ export class ModalPage {
             key,
             modalData
         }
+
+        if(modalData.saveHistory && !modalData.openFromHistory) {
+            GlobalStore.router.pushHistory()
+        }
     }
 
     closeModal(data = null) {
@@ -45,6 +51,15 @@ export class ModalPage {
         }
 
         this.activeModalComponent = null
+    }
+
+    openFromHistory(key: string, data: any) {
+
+        if(key) {
+            this.openModal(key as ModalKey, { data, saveHistory: true, openFromHistory: true })
+        } else {
+            this.activeModalComponent = null
+        }
     }
 }
   

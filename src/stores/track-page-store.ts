@@ -30,7 +30,6 @@ export class TrackPageStore {
         this.loading = true
         this.track = await loadTrackById(trackId)
         this.loading = false
-        debugger
         this.loadChords()
         return this.track
     }

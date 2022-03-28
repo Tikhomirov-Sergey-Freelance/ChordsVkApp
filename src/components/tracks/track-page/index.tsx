@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Group, withModalRootContext } from '@vkontakte/vkui'
+import { Group, withModalRootContext, PanelHeader, PanelHeaderClose, PanelHeaderEdit } from '@vkontakte/vkui'
 import { iChordsWord, iTrackView } from 'types/track'
 import TrackPageStore from '../../../stores/track-page-store'
 import ModalPageStore from '../../../stores/modal-page-store'
@@ -18,13 +18,13 @@ interface iProps {
 
 const TrackModal: React.FC<iProps> = () => {
 
-    const store = ModalPageStore.activeModalComponent?.modalData.store
+    const store = ModalPageStore.activeModalComponent?.modalData?.store
 
     if(!store || store.loading) return null
 
     return (
-        <Group>
 
+        <Group>
             <Artist track={store.track} />
             <Strumming track={store.track} />
             <Chords chords={store.chords} />

@@ -9,7 +9,7 @@ export class ArtistPageStore {
 
     loading: boolean
 
-    artist: iArtist
+    artist: iArtist = null
     tracks: iTrackView[]
 
     constructor(artistId) {
@@ -24,6 +24,7 @@ export class ArtistPageStore {
     }
 
     async loadArtist(artistId) {
+        
         this.loading = true
         this.artist = await loadArtistById(artistId)
         await this.loadArtistTracks(artistId)
