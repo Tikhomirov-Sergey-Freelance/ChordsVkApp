@@ -2,8 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { Group, withModalRootContext, PanelHeader, PanelHeaderClose, PanelHeaderEdit } from '@vkontakte/vkui'
 import { iChordsWord, iTrackView } from 'types/track'
-import TrackPageStore from '../../../stores/track-page-store'
-import ModalPageStore from '../../../stores/modal-page-store'
+import GlobalStore from 'stores/global-store'
 
 import Spinner from '../../common/preloaders/panel-preloader'
 import Artist from './artist'
@@ -18,7 +17,7 @@ interface iProps {
 
 const TrackModal: React.FC<iProps> = () => {
 
-    const store = ModalPageStore.activeModalComponent?.modalData?.store
+    const store = GlobalStore.modal.activeModalComponent?.modalData?.store
 
     if(!store || store.loading) return null
 

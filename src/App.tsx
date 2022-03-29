@@ -2,19 +2,20 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { AppRoot } from '@vkontakte/vkui'
 import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui'
+import VK from '@vkontakte/vk-bridge'
 
 declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
-import GlobalStore from 'stores/global-store'
-
 import ViewList from './views'
+import GlobalStore from 'stores/global-store'
 
 declare global {
   interface Window {
     firebaseToken: string
     validVk: boolean
+    vkId: string
     isAdmin: boolean
     isServer: boolean
   }
@@ -29,13 +30,13 @@ try {
 const App: React.FC = () => {
 
   return (
-    <AdaptivityProvider>
-      <ConfigProvider appearance={GlobalStore.vk.appearance}>
+    <ConfigProvider appearance={GlobalStore.vk.appearance}>
+      <AdaptivityProvider>
         <AppRoot>
           <ViewList />
         </AppRoot>
-      </ConfigProvider>
-    </AdaptivityProvider>
+      </AdaptivityProvider>
+    </ConfigProvider>
   )
 }
 

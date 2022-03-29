@@ -4,9 +4,9 @@ import { isDev, databaseConnected } from './common'
 import database from './database'
 import { createGuid } from '../code/common/guid'
 
-const createFirebaseToken = async (req, isValidVk: boolean): Promise<[string, boolean]> => {
+const createFirebaseToken = async (req, isValidVk: boolean): Promise<[string, string, boolean]> => {
 
-    if (!databaseConnected) return [null, false]
+    if (!databaseConnected) return [null, null, false]
 
     let vkId = createGuid()
     let admin = false
@@ -20,7 +20,7 @@ const createFirebaseToken = async (req, isValidVk: boolean): Promise<[string, bo
         admin = !(await store.collection('admins').where('vkId', '==', +vkId).get()).empty
     } 
 
-    return [await database.app.auth().createCustomToken(vkId, { admin }), admin] 
+    return [await database.app.auth().createCustomToken(vkId, { admin, vkuser: isValidVk, id: vkId }), vkId, admin] 
 }
 
 export default createFirebaseToken

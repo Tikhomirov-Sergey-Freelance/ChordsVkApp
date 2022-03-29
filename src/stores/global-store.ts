@@ -13,9 +13,9 @@ export class GlobalStore {
 
     globalLoading = true
 
-    router = RouterStore
-    modal = ModalStore
-    vk = VKStore
+    router = new RouterStore()
+    modal = new ModalStore()
+    vk = new VKStore()
 
     firebase: FirebaseProvider
 

@@ -124,5 +124,4 @@ export class RouterStore {
     }
 }
 
-var routerStore = new RouterStore()
-export default routerStore
+export default RouterStore

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28FavoriteOutline, Icon28AddSquareOutline, Icon28SettingsOutline } from '@vkontakte/icons'
+import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28LikeOutline, Icon28AddSquareOutline, Icon28SettingsOutline } from '@vkontakte/icons'
 import { JsxElement } from 'typescript'
 import GlobalStore from 'stores/global-store'
 
@@ -24,8 +24,8 @@ const pages: iPage[] = [
     },
     {
       key: 'favourites',
-      name: 'Избранное',
-      iconComponent: <Icon28FavoriteOutline />
+      name: 'Моя коллекция',
+      iconComponent: <Icon28LikeOutline />
     },
     /*{
       key: 'addTrack',

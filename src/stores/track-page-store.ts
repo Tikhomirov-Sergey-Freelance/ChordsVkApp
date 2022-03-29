@@ -6,6 +6,8 @@ import { loadTrackById, loadTracksByArtist } from 'code/firebase/tracks'
 import { iChord } from 'types/chord'
 import { loadChordsByKeys } from 'code/firebase/chords'
 import GlobalStore from './global-store'
+import { incrementTrackView } from 'code/firebase/track-analytics'
+import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/firebase/favorite'
 
 export class TrackPageStore {
 
@@ -13,6 +15,7 @@ export class TrackPageStore {
 
     track: iTrackView
     chords: iChord[] = []
+    isFavorite: boolean
 
     constructor(trackId: string) {
         
@@ -29,8 +32,10 @@ export class TrackPageStore {
     async loadTrack(trackId: string) {
         this.loading = true
         this.track = await loadTrackById(trackId)
+        this.isFavorite = await isFavoriteTrack(trackId)
         this.loading = false
         this.loadChords()
+        incrementTrackView(this.track.id)
         return this.track
     }
 
@@ -55,6 +60,13 @@ export class TrackPageStore {
             }))
 
         return chordsKey
+    }
+
+    async changeFavourite() {
+       const result = await changeFavorite(this.track.id, this.isFavorite ? 'delete' : 'add')
+       if(result) {
+           this.isFavorite = !this.isFavorite
+       }
     }
 }
 

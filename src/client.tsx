@@ -1,5 +1,5 @@
 import React from 'react'
-import { hydrate } from 'react-dom'
+import { render } from 'react-dom'
 
 import 'babel-polyfill'
 
@@ -8,10 +8,10 @@ import GlobalStore from 'stores/global-store'
 import { SSRWrapper } from '@vkontakte/vkui'
 
 const init = async () => {
-
+    
     await GlobalStore.loadApp()
-
-    hydrate(
+    
+    render(
         <App />,
         document.getElementById('root')
     )

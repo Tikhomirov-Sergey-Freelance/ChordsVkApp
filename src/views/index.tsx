@@ -19,16 +19,14 @@ const ViewList: React.FC = () => {
   return (
 
     <SplitLayout modal={
-      <ModalRoot activeModal={ModalPageStore.activeModalComponent?.key}>
+      <ModalRoot activeModal={GlobalStore.modal.activeModalComponent?.key}>
         <ModalPage
           id='defaultModalPage'
-          header={ModalPageStore.activeModalComponent &&
-            ModalPageStore.activeModalComponent.modalData.header &&
-            ModalPageStore.activeModalComponent.modalData?.header()}
-          onClose={() => ModalPageStore.closeModal()}>
-          {ModalPageStore.activeModalComponent &&
-          ModalPageStore.activeModalComponent.modalData?.component &&
-          ModalPageStore.activeModalComponent.modalData.component()}
+          header={GlobalStore.modal.activeModalComponent?.modalData?.header &&
+            GlobalStore.modal.activeModalComponent.modalData.header()}
+          onClose={() => GlobalStore.modal.closeModal()}>
+          {GlobalStore.modal.activeModalComponent?.modalData?.component &&
+          GlobalStore.modal.activeModalComponent.modalData.component()}
         </ModalPage>
         {Modals}
       </ModalRoot> 

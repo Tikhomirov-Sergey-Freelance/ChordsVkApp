@@ -21,7 +21,7 @@ export interface ModalComponentData {
     openFromHistory?: boolean
 }
 
-export class ModalPage {
+export class ModalPageStore {
     
     activeModalComponent: ModalComponent
 
@@ -62,6 +62,5 @@ export class ModalPage {
         }
     }
 }
-  
-var modalPage =  new ModalPage()  
-export default modalPage
+   
+export default ModalPageStore

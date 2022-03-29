@@ -4,13 +4,15 @@ import VK, { AppearanceType } from '@vkontakte/vk-bridge'
 export class VKStore {
 
     validVk: boolean
+    vkId: string
     appearance: AppearanceType
 
     constructor() {
-
+        
         if(!global['window']) return
 
         this.validVk = window.validVk
+        this.vkId = window.vkId
 
         makeAutoObservable(this)
     } 
@@ -26,10 +28,9 @@ export class VKStore {
                 }
             })
 
-            await VK.send('VKWebAppInit', {})
+            VK.send('VKWebAppInit', {})
         }
     }
 }
 
-const store = new VKStore()
-export default store
+export default VKStore

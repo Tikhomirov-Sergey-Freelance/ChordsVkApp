@@ -8,5 +8,5 @@ export const openTrack = (trackId: string) => {
 }
 
 export const openTrackModal = (trackId: string) => {
-    ModalPageStore.openModal('track', { data: { trackId }, saveHistory: true })
+    GlobalStore.modal.openModal('track', { data: { trackId }, saveHistory: true })
 }

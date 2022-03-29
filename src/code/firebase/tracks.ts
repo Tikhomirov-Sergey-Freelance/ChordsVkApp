@@ -1,7 +1,7 @@
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc } from "firebase/firestore"
-import GlobalStore from "../../stores/global-store"
-import { iTrack, iTrackView } from "../../types/track"
-import { loadArtistById, loadArtistsByIds } from "./artists";
+import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc } from 'firebase/firestore'
+import GlobalStore from '../../stores/global-store'
+import { iTrack, iTrackView } from '../../types/track'
+import { loadArtistById, loadArtistsByIds } from './artists'
 
 export const loadTrackById = async (id: string) => {
 
@@ -29,7 +29,7 @@ export const loadLastTracks = async (count: number) => {
 
     const querySnapshot = 
     query(
-        collection(await GlobalStore.firebase.getFirestore(), "tracks"), 
+        collection(await GlobalStore.firebase.getFirestore(), 'tracks'), 
         orderBy('addedDate'),
         limit(count)
         );
@@ -57,7 +57,7 @@ export const loadTracksByArtist = async (artistId: string) => {
 
     const querySnapshot = 
     query(
-        collection(await GlobalStore.firebase.getFirestore(), "tracks"), 
+        collection(await GlobalStore.firebase.getFirestore(), 'tracks'), 
         where('artistId', '==', artistId)
         );
 

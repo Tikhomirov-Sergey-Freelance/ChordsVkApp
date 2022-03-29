@@ -6,12 +6,14 @@ import App from './App'
 
 export default (userAgent, appParams) => {
 
-    const jsx = <SSRWrapper userAgent={userAgent}>
+    //Пока убрал ssr, токены по прежнему генерятся на сервере, только root div пустой
+    //Все равно весит плашка мини апп, пока не загрузится js 
+    /*const jsx = <SSRWrapper userAgent={userAgent}>
         <App/>
     </SSRWrapper>
-    const reactHtml = renderToString(jsx)
+    const reactHtml = renderToString(jsx)*/
 
-    return getHtml(reactHtml, appParams)
+    return getHtml('', appParams)
 }
 
 const getHtml = (reactHtml, data) => {
@@ -30,11 +32,12 @@ const getHtml = (reactHtml, data) => {
     <body>
         <script>
             window['firebaseToken'] = '${data.firebaseToken}';
-            window['validVk'] = ${data.validVk};
+            window['validVk'] = ${data.isValidVk};
+            window['vkId'] = ${data.vkId};
             window['isAdmin'] = ${data.isAdmin};
         </script>
 
-        <div id="root" class="vkui__root">${reactHtml}</div> 
+        <div id="root" class="vkui__root"></div> 
         <script src="/main.js"></script>
     </body>
     </html>

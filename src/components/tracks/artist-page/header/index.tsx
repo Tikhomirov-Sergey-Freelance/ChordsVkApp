@@ -18,13 +18,13 @@ const TrackHeader: React.FC<iProps> = () => {
     const { viewWidth } = useAdaptivity()
     const isMobile = viewWidth <= ViewWidth.MOBILE
 
-    const store = ModalPageStore.activeModalComponent?.modalData?.store
+    const store = GlobalStore.modal.activeModalComponent?.modalData?.store
 
-    if(store.loading) return null
+    if(!store || store.loading) return null
 
     return (
         <ModalPageHeader
-            left={isMobile && <PanelHeaderClose onClick={() => ModalPageStore.closeModal()} />}
+            left={isMobile && <PanelHeaderClose onClick={() => GlobalStore.modal.closeModal()} />}
             right={GlobalStore.isAdmin && <PanelHeaderEdit onClick={() => editArtist(store.artist)}/>}
         >
             <Styled>
