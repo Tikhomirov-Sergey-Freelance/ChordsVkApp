@@ -1,10 +1,11 @@
 import React from 'react'
 import { ModalPageHeader, PanelHeaderClose, useAdaptivity, ViewWidth, PanelHeaderEdit, PanelHeaderButton } from '@vkontakte/vkui'
-import { Icon24Like, Icon24LifebuoyOutline, Icon24LikeOutline } from '@vkontakte/icons'
+import { Icon24Like, Icon24LikeOutline } from '@vkontakte/icons'
 import { editTrack } from 'code/tracks/edit-track'
 import { observer } from 'mobx-react-lite'
-import GlobalStore from 'stores/global-store'
-import { TrackPageStore } from 'stores/track-page-store'
+import GlobalStore from 'stores/root/global-store'
+import { TrackPageStore } from 'stores/pages/track-page-store'
+import { Modal, Global, VK } from 'stores/root-store'
 
 import { iTrackView } from 'types/track'
 
@@ -17,20 +18,20 @@ const TrackHeader: React.FC<iProps> = () => {
     const { viewWidth } = useAdaptivity()
     const isMobile = viewWidth <= ViewWidth.MOBILE
 
-    const store: TrackPageStore = GlobalStore.modal.activeModalComponent?.modalData?.store
+    const store: TrackPageStore = Modal.activeModalComponent?.modalData?.store
 
     if (!store || store.loading) return null
 
     return (
         <ModalPageHeader
-            left={isMobile && <PanelHeaderClose onClick={() => GlobalStore.modal.closeModal()} />}
+            left={isMobile && <PanelHeaderClose onClick={() => Modal.closeModal()} />}
             right={
                 <>
-                    {GlobalStore.vk.validVk &&
+                    {VK.validVk &&
                         <PanelHeaderButton onClick={() => store.changeFavourite()}>
                             {store.isFavorite ? <Icon24Like /> : <Icon24LikeOutline />}
                         </PanelHeaderButton>}
-                    {GlobalStore.isAdmin && <PanelHeaderEdit onClick={() => editTrack(store.track)} />}
+                    {Global.isAdmin && <PanelHeaderEdit onClick={() => editTrack(store.track)} />}
                 </>
             }
         >

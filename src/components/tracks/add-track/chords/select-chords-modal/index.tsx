@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, ModalPage, ModalRoot, Group, FormItem, Input, CustomSelect, CellButton } from '@vkontakte/vkui'
-import { loadChordsByQuery } from 'code/firebase/chords'
+import { loadChordsByQuery } from 'code/database/chords'
 import { iChordsWord } from 'types/track'
 
 import Chords from './chords'

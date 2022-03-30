@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { FormItem } from '@vkontakte/vkui'
 
-import AddTrackStore from '../../../../stores/add-track-store'
-import ModalPageStore from '../../../../stores/modal-page-store'
+import AddTrackStore from '../../../../stores/pages/add-track-store'
+import ModalPageStore from '../../../../stores/root/modal-page-store'
 import { iChordsWord } from 'types/track'
 
 import Styled from './styled'

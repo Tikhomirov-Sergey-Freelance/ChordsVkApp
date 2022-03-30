@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { FormItem, Select, CustomSelectOption, CellButton  } from '@vkontakte/vkui'
 
-import Store from '../../../../stores/add-chords-store'
+import Store from '../../../../stores/pages/add-chords-store'
 
 const SaveButton: React.FC = observer(() => {
 

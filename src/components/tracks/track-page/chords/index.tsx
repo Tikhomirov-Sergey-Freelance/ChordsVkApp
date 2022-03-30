@@ -5,14 +5,16 @@ import { observer } from 'mobx-react-lite'
 import { iChord } from 'types/chord'
 
 import Chord from '../../../chords/chord-card'
+import ChangeInstrument from '../../../chords/instrument/change-instrument'
 
 export interface iProps {
     chords: iChord[]
+    loading: boolean
 }
 
-const Chords: React.FC<iProps> = ({ chords }) => {
+const Chords: React.FC<iProps> = ({ chords, loading }) => {
 
-    if (!chords || !chords.length) {
+    if (loading) {
         return (
             <Group header={<Header mode="secondary">Аккорды</Header>}>
                 <div style={{ display: 'flex', margin: 'auto', height: 195, width: '100%' }}>
@@ -24,6 +26,8 @@ const Chords: React.FC<iProps> = ({ chords }) => {
 
     return (
         <Group header={<Header mode="secondary">Аккорды</Header>}>
+
+            <ChangeInstrument />
 
             <HorizontalScroll
                 getScrollToLeft={i => i - 130}

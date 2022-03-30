@@ -2,7 +2,7 @@ import { PanelHeader } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
 
-import MainPageStore from '../../stores/main-page-store'
+import MainPageStore from '../../stores/pages/main-page-store'
 
 import PanelPreloader from '../common/preloaders/panel-preloader'
 import Tracks from './tracks'

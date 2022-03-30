@@ -2,14 +2,13 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { AppRoot } from '@vkontakte/vkui'
 import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui'
-import VK from '@vkontakte/vk-bridge'
 
 declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
 import ViewList from './views'
-import GlobalStore from 'stores/global-store'
+import { VK } from 'stores/root-store'
 
 declare global {
   interface Window {
@@ -30,7 +29,7 @@ try {
 const App: React.FC = () => {
 
   return (
-    <ConfigProvider appearance={GlobalStore.vk.appearance}>
+    <ConfigProvider appearance={VK.appearance}>
       <AdaptivityProvider>
         <AppRoot>
           <ViewList />

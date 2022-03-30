@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite'
 
 import { Icon24ArrowDownOutline, Icon24ArrowUpOutline, Icon24CheckBoxOff, Icon24CancelOutline, Icon24DeleteOutline } from '@vkontakte/icons'
 
-import AddTrackStore from 'stores/add-track-store'
+import AddTrackStore from 'stores/pages/add-track-store'
 
 import Styled from './styled'
-import store from 'stores/snackbar'
+import store from 'stores/root/snackbar'
 import { StrummingType } from 'types/strumming'
 
 export interface iProps {

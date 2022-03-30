@@ -1,7 +1,7 @@
 import React from 'react'
-import AddTrackStore from 'stores/add-track-store'
+import AddTrackStore from 'stores/pages/add-track-store'
 
-import ModalPageStore from '../../../../stores/modal-page-store'
+import ModalPageStore from '../../../../stores/root/modal-page-store'
 import { iChordsWord, iChordWordPosition } from '../../../../types/track'
 
 import ChordsWord from './chords-word'

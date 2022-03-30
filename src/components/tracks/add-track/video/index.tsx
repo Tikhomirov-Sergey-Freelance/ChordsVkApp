@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { FormItem, SizeType, Textarea, Group } from '@vkontakte/vkui'
 import useDebounce from 'code/hooks/use-debounce'
 import InputControl from 'components/common/vk/controls/input-control'
-import AddTrackStore from 'stores/add-track-store'
+import AddTrackStore from 'stores/pages/add-track-store'
 
 interface iProps {
     store: AddTrackStore

@@ -1,12 +1,9 @@
-import React from 'react'
-import { iTrackView } from 'types/track'
-import GlobalStore from '../../stores/global-store'
-import ModalPageStore from '../../stores/modal-page-store'
+import { Modal } from 'stores/root-store'
 
 export const openTrack = (trackId: string) => {
     openTrackModal(trackId)
 }
 
 export const openTrackModal = (trackId: string) => {
-    GlobalStore.modal.openModal('track', { data: { trackId }, saveHistory: true })
+    Modal.openModal('track', { data: { trackId }, saveHistory: true })
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Div } from '@vkontakte/vkui'
 
-import Store from '../../../../stores/add-chords-store'
+import Store from '../../../../stores/pages/add-chords-store'
 import ChordCanvas from '../../../../code/canvas/chord'
 
 const Fret: React.FC = observer(() => {

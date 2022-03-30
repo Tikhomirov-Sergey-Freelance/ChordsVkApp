@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { FormItem, Select, CustomSelectOption } from '@vkontakte/vkui'
 
 import { notes } from '../../../../code/data/notes'
-import Store from '../../../../stores/add-chords-store'
+import Store from '../../../../stores/pages/add-chords-store'
 
 const NotesField: React.FC = observer(() => {
 

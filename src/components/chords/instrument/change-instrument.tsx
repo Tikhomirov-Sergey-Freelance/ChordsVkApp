@@ -3,15 +3,15 @@ import { observer } from 'mobx-react-lite'
 import { FormItem, SliderSwitch } from '@vkontakte/vkui'
 
 import { MusicalInstrument } from '../../../types/global-types'
-import GlobalStore from '../../../stores/global-store'
+import { Global } from 'stores/root-store'
 
 const InstrumentField: React.FC = observer(() => {
 
     return (
         <FormItem top='Инструмент'>
             <SliderSwitch
-                activeValue={GlobalStore.currentInstrument}
-                onSwitch={ value => { debugger; GlobalStore.changeInstrument(value as MusicalInstrument)}}
+                activeValue={Global.currentInstrument}
+                onSwitch={ value => Global.changeInstrument(value as MusicalInstrument)}
                 options={[
                     {
                         name: 'Гитара',

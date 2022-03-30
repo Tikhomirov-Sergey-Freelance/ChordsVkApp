@@ -2,7 +2,7 @@ import { FormItem, SizeType, Textarea } from '@vkontakte/vkui'
 import useDebounce from 'code/hooks/use-debounce'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import AddTrackStore from 'stores/add-track-store'
+import AddTrackStore from 'stores/pages/add-track-store'
 
 interface iProps {
     store: AddTrackStore

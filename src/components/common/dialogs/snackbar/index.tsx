@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 
-import Store from '../../../../stores/snackbar'
+import Store from '../../../../stores/root/snackbar'
 import { Snackbar } from '@vkontakte/vkui'
 
 const SnackbarContainer: React.FC = observer(() => {

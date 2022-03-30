@@ -24,11 +24,6 @@ export default Styled.div`
             position: absolute;
             top: -1em;
             white-space: nowrap;
-            cursor: pointer;
-
-            &:hover {
-                color: #2688eb;
-            }
         }
     }
 `

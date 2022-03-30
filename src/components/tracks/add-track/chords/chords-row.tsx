@@ -1,7 +1,7 @@
 import React from 'react'
-import AddTrackStore from 'stores/add-track-store'
+import AddTrackStore from 'stores/pages/add-track-store'
 
-import ModalPageStore from '../../../../stores/modal-page-store'
+import { Modal } from 'stores/root-store'
 import { iChordsWord, iChordWordPosition } from '../../../../types/track'
 
 import SelectChordsModal from './select-chords-modal'
@@ -23,8 +23,8 @@ const ChordsRow: React.FC<iProps> = (props) => {
             props.store.changeChordWord(props.rowIndex, wordIndex, chordWord)
         }
 
-        const component = () => <SelectChordsModal word={word} onChange={changeChord} onClose={() => ModalPageStore.closeModal()} />
-        ModalPageStore.openModal('defaultModalPage', { component })
+        const component = () => <SelectChordsModal word={word} onChange={changeChord} onClose={() => Modal.closeModal()} />
+        Modal.openModal('defaultModalPage', { component })
     }
 
     return (

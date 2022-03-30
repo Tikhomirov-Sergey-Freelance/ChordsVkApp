@@ -1,5 +1,4 @@
-import GlobalStore from 'stores/global-store'
-import ModalPageStore from 'stores/modal-page-store'
+import { Modal, Router } from 'stores/root-store'
 import { iArtist } from 'types/artists'
 
 export const editArtist = (artist: iArtist) => {
@@ -9,6 +8,6 @@ export const editArtist = (artist: iArtist) => {
         artist: mobxArtistObject.toJS ? mobxArtistObject.toJS() : mobxArtistObject
     }
  
-    GlobalStore.setActiveStory('admin', 'addArtist', dataRoute)
-    ModalPageStore.closeModal('edit')
+    Router.setActiveStory('admin', 'addArtist', dataRoute)
+    Modal.closeModal('edit')
 }

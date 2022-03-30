@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { FormItem, SliderSwitch } from '@vkontakte/vkui'
 
 import { MusicalInstrument } from '../../../../types/global-types'
-import Store from '../../../../stores/add-chords-store'
+import Store from '../../../../stores/pages/add-chords-store'
 
 import String from './guitar-string'
 

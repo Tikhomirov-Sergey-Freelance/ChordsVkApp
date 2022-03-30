@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { Epic, PanelHeader, SplitCol, SplitLayout, useAdaptivity, usePlatform, ViewWidth, VKCOM } from '@vkontakte/vkui'
 
-import GlobalStore from '../../stores/global-store'
+import GlobalStore from '../../stores/root/global-store'
 
 import DesktopNav from '../navigation/desktop'
 import MobileNav from '../navigation/mobile'

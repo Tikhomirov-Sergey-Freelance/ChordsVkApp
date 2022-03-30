@@ -6,14 +6,12 @@ import App from './App'
 
 export default (userAgent, appParams) => {
 
-    //Пока убрал ssr, токены по прежнему генерятся на сервере, только root div пустой
-    //Все равно весит плашка мини апп, пока не загрузится js 
-    /*const jsx = <SSRWrapper userAgent={userAgent}>
+    const jsx = <SSRWrapper userAgent={userAgent}>
         <App/>
     </SSRWrapper>
-    const reactHtml = renderToString(jsx)*/
+    const reactHtml = renderToString(jsx)
 
-    return getHtml('', appParams)
+    return getHtml(jsx, appParams)
 }
 
 const getHtml = (reactHtml, data) => {

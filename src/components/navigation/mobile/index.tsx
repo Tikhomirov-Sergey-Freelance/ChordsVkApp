@@ -2,7 +2,7 @@ import React from 'react'
 import { Tabbar, TabbarItem } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
-import GlobalStore from '../../../stores/global-store'
+import { Router } from 'stores/root-store'
 
 import pages from '../menu'
 
@@ -16,8 +16,8 @@ const MobileNav: React.FC = () => {
 
                     <TabbarItem
                         key={page.key}
-                        onClick={() => GlobalStore.router.setActiveStory(page.key)}
-                        selected={GlobalStore.router.activeStory === page.key}
+                        onClick={() => Router.setActiveStory(page.key)}
+                        selected={Router.activeStory === page.key}
                         data-story={page.key}
                         text={page.name}
                     >

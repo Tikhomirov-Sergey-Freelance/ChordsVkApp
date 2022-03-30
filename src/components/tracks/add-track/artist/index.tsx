@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Avatar, CustomSelect, CustomSelectOption, FormItem } from '@vkontakte/vkui'
  
-import { AddTrackStore } from 'stores/add-track-store'
+import { AddTrackStore } from 'stores/pages/add-track-store'
 import useDebounce from 'code/hooks/use-debounce'
 import OptionText from 'components/common/vk/controls/select/option-text'
 

@@ -4,12 +4,12 @@ import { render } from 'react-dom'
 import 'babel-polyfill'
 
 import App from './App'
-import GlobalStore from 'stores/global-store'
+import { Root } from 'stores/root-store'
 import { SSRWrapper } from '@vkontakte/vkui'
 
 const init = async () => {
     
-    await GlobalStore.loadApp()
+    await Root.loadApp()
     
     render(
         <App />,

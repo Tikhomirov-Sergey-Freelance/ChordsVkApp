@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { loadChordsByQuery } from 'code/firebase/chords'
+import { loadChordsByQuery } from 'code/database/chords'
 import useDebounce from 'code/hooks/use-debounce'
 import { CustomSelect, FormItem, Text } from '@vkontakte/vkui'
 

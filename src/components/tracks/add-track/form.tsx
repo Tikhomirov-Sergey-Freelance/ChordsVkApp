@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayout, FormItem, SliderSwitch, Select, CustomSelectOption, PanelHeaderSubmit, Input } from '@vkontakte/vkui'
 
-import { useAddTrackStore } from 'stores/add-track-store/add-track-store-provider'
+import { useAddTrackStore } from 'stores/pages/add-track-store/add-track-store-provider'
 import Artist from './artist'
 import Strumming from './strumming'
 import InputControl from '../../common/vk/controls/input-control'

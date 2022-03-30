@@ -2,7 +2,7 @@ import { PanelSpinner } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import React, { useEffect } from 'react'
 
-import MainPageStore from '../../../stores/main-page-store'
+import MainPageStore from '../../../stores/pages/main-page-store'
 
 import TrackList from '../../tracks/tracks-list'
 

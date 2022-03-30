@@ -1,5 +1,4 @@
-import GlobalStore from 'stores/global-store'
-import ModalPageStore from 'stores/modal-page-store'
+import { Modal, Router } from 'stores/root-store'
 import { iTrack } from 'types/track'
 
 export const editTrack = (track: iTrack) => {
@@ -9,6 +8,6 @@ export const editTrack = (track: iTrack) => {
         track: mobxTrackObject.toJS ? mobxTrackObject.toJS() : mobxTrackObject
     }
 
-    GlobalStore.setActiveStory('admin', 'addTrack', dataRoute)
-    ModalPageStore.closeModal('edit')
+    Router.setActiveStory('admin', 'addTrack', dataRoute)
+    Modal.closeModal('edit')
 }

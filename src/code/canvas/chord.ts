@@ -1,4 +1,4 @@
-import { iParams as iChordParams } from '../../stores/add-chords-store'
+import { iParams as iChordParams } from '../../stores/pages/add-chords-store'
 
 class ChordCanvas {
 

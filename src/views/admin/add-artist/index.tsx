@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Form from '../../../components/tracks/add-artist'
+import Form from '../../../components/artists/add-artist'
 
 const AddArtistView: React.FC = () => {
 

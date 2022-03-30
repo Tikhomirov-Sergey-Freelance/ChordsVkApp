@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28LikeOutline, Icon28AddSquareOutline, Icon28SettingsOutline } from '@vkontakte/icons'
 import { JsxElement } from 'typescript'
-import GlobalStore from 'stores/global-store'
+import { Global } from 'stores/root-store'
 
 export type iPageKey = 'tracks' | 'chords' | 'favourites' | 'addTrack' | 'admin'
 
@@ -42,7 +42,7 @@ const adminPages: iPage[] = [
   }
 ]
 
-if(GlobalStore.isAdmin) {
+if(Global.isAdmin) {
   pages.push(...adminPages)
 }
 

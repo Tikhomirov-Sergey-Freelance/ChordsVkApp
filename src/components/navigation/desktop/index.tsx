@@ -2,7 +2,7 @@ import React from 'react'
 import { Cell, Group, Panel, PanelHeader, SplitCol } from '@vkontakte/vkui'
 
 import isDesktopHook from '../../../hooks/isDesktop'
-import GlobalStore from '../../../stores/global-store'
+import GlobalStore from '../../../stores/root/global-store'
 
 import { pages } from '../menu'
 import { observer } from 'mobx-react-lite'
