@@ -7,37 +7,24 @@ import { changeFavorite, getFavoriteTracks } from 'code/database/favorite'
 
 export class FavoritesStore {
 
-    loadingFavorites: boolean
-    loadingTracks: boolean
+    loading: boolean
 
     favorites: string[] = []
-    tracks: iTrackView[]
 
     constructor() {
         makeAutoObservable(this)
     }
 
     async loadFavorites() {
-
-        this.loadingFavorites = true
+        this.loading = true
         this.favorites = await getFavoriteTracks()
-        this.loadingFavorites = false
-    }
-
-    async loadTracks() {
-
-        this.loadingTracks = true
-
-        await this.loadFavorites()
-        this.tracks = await loadTracksByIds(this.favorites)
-
-        this.loadingTracks = false
+        this.loading = false
     }
 
     async changeFavourite(trackId: string, mode: 'add' | 'delete') {
 
         if (mode === 'add') {
-            this.favorites.push(trackId)
+            this.favorites = [...this.favorites, trackId]
         } else {
             this.favorites = this.favorites.filter(track => track !== trackId)
         }
@@ -49,13 +36,9 @@ export class FavoritesStore {
             if (mode === 'add') {
                 this.favorites = this.favorites.filter(track => track !== trackId)
             } else {
-                this.favorites.push(trackId)
+                this.favorites = [...this.favorites, trackId]
             }
         }
-    }
-
-    get favoritesTracks() {
-        return this.tracks.filter(track => this.favorites.includes(track.id))
     }
 
     isFavoriteTrack(trackId: string) {

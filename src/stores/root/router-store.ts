@@ -21,7 +21,7 @@ export class RouterStore {
 
     constructor() {
 
-        if(!global['window']) return
+        if (!global['window']) return
 
         this.setLocation()
         this.bindEvents()
@@ -38,11 +38,11 @@ export class RouterStore {
         const data: iHistoryData = { ...toJS(this.locationData) }
         const modalData = Modal.activeModalComponent
 
-        if(modalData) {
+        if (modalData) {
             data.modalKey = modalData.key
             data.modalData = toJS(modalData.modalData.data)
         }
-          
+
         history.pushState(data, null)
     }
 
@@ -73,15 +73,16 @@ export class RouterStore {
 
         try {
 
-            const ssLocalion = global['window'] && global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
+            let ssLocation = global['window'] && global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
 
-            if (!ssLocalion) return
+            if (ssLocation) {
 
-            const location = JSON.parse(ssLocalion)
+                const location = JSON.parse(ssLocation)
 
-            this.activeStory = location.activeStory
-            this.activePanel = location.activePanel
-            this.activePanelData = location.activePanelData
+                this.activeStory = location.activeStory
+                this.activePanel = location.activePanel
+                this.activePanelData = location.activePanelData
+            }
 
             const data: iHistoryData = { ...toJS(this.locationData) }
             history.replaceState(data, null)
@@ -92,23 +93,23 @@ export class RouterStore {
     }
 
     bindEvents() {
-        
+
         window.addEventListener('popstate', (event) => {
-            
+
             const state: iHistoryData = event.state
 
-            if(state) {
+            if (state) {
 
-                if(this.activeStory !== state.activeStory) {
+                if (this.activeStory !== state.activeStory) {
                     this.activeStory = state.activeStory
                 }
 
-                if(this.activePanel !== state.activePanel) {
+                if (this.activePanel !== state.activePanel) {
                     this.activePanel = state.activePanel
                 }
 
                 this.activePanelData = state.activePanelData
-                
+
                 Modal.openFromHistory(state.modalKey, state.modalData)
             }
         })

@@ -1,8 +1,7 @@
 import React from 'react'
-import { Icon28ClipOutline, Icon28MessageOutline, Icon28ServicesOutline, Icon28UserCircleOutline, Icon56NewsfeedOutline } from '@vkontakte/icons'
-import { Epic, Group, Panel, PanelHeader, PanelHeaderBack, Placeholder, Root, View, ModalRoot, ModalPage, ModalPageHeader, SplitLayout } from '@vkontakte/vkui'
+import { Epic, Group, Panel, View, ModalRoot, ModalPage, ModalPageHeader, SplitLayout } from '@vkontakte/vkui'
 
-import { Modal, Global, Router } from 'stores/root-store'
+import { Modal, Router } from 'stores/root-store'
 
 import { observer } from 'mobx-react-lite'
 
@@ -19,14 +18,6 @@ const ViewList: React.FC = () => {
 
     <SplitLayout modal={
       <ModalRoot activeModal={Modal.activeModalComponent?.key}>
-        <ModalPage
-          id='defaultModalPage'
-          header={Modal.activeModalComponent?.modalData?.header &&
-            Modal.activeModalComponent.modalData.header()}
-          onClose={() => Modal.closeModal()}>
-          {Modal.activeModalComponent?.modalData?.component &&
-          Modal.activeModalComponent.modalData.component()}
-        </ModalPage>
         {Modals}
       </ModalRoot> 
     }>
@@ -35,11 +26,11 @@ const ViewList: React.FC = () => {
         {
           Views.map(view =>
 
-            <View id={view.id} activePanel={Router.activePanel}>
+            <View key={view.id} id={view.id} activePanel={Router.activePanel}>
 
               {
                 view.panels.map(panel =>
-                  <Panel id={panel.id}>
+                  <Panel key={panel.id} id={panel.id}>
                     {panel.render()}
                     <Snackbar />
                   </Panel>

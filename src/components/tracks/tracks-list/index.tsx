@@ -13,7 +13,7 @@ export interface iProps {
 const TracksList: React.FC<iProps> = ({ title, tracks }) => {
 
     return (
-        <Group header={<Header>Последняя активность</Header>}>
+        <Group header={title && <Header>{title}</Header>}>
 
             {
                 tracks.map(track => <Track key={track.id} track={track} />)

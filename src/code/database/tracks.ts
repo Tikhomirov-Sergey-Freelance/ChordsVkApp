@@ -93,6 +93,8 @@ export const loadTracksByArtist = async (artistId: string) => {
 
 export const loadTracksByIds = async (ids: string[]) => {
 
+    if(!ids.length) return []
+
     const querySnapshot =
         query(
             collection(await Firebase.getFirestore(), 'tracks'),
