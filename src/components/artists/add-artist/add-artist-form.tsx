@@ -26,60 +26,6 @@ const AddArtistForm: React.FC = observer(() => {
                 <Textarea value={store.description} onInput={event => store.changeProperty('description', event.currentTarget.value)} />
             </FormItem>
 
-            <CardScroll onScroll={(e => { debugger; })}>
-
-                <Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card>
-                <Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card>
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card><Card >
-                    <div style={{ width: 100, height: 200, margin: 5, backgroundColor: 'black' }}>
-                        dddd
-                    </div>
-                </Card>
-            </CardScroll>
-
             <CellButton centered onClick={() => store.save()}>
                 Сохранить артиста
             </CellButton>

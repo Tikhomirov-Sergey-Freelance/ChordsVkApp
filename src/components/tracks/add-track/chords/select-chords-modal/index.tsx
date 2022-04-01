@@ -13,7 +13,7 @@ interface iProps {
 }
 
 const SelectChordModal: React.FC<iProps> = ({ word, onChange, onClose }) => {
-
+    
     const [chord, changeChords] = useState('')
     const [numberChar, changeNumberChar] = useState(0)
 

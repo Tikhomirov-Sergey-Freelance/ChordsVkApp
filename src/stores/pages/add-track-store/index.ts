@@ -6,7 +6,7 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 import { snackbar } from '../../../code/common/alerts'
 import { loadArtistById, loadArtistsByIds, loadArtistsByQuery } from 'code/database/artists'
-import { iChordsText, iTrack, iChordsWord, iChordWordPosition } from 'types/track'
+import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
 
@@ -16,17 +16,6 @@ export interface iArtistSearch {
 }
 
 type StoreMode = 'add' | 'edit'
-
-const defaultTrack: iTrack = {
-    id: '',
-    name: '',
-    artistId: '',
-    strumming: defaultStrumming,
-    strummingNote: '',
-    chordsText: null,
-    chordsNote: '',
-    trackVideoSrc: ''
-}
 
 export class AddTrackStore {
 
@@ -57,7 +46,7 @@ export class AddTrackStore {
             this.mode = 'add'
             this.id = createGuid()
         }
-        
+
         this.fillTrack(track)
 
         makeAutoObservable(this, undefined, { deep: true })
@@ -70,18 +59,23 @@ export class AddTrackStore {
 
         const track = this.trackToSave
         track.searchName = [artist.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
-        
-        if (this.mode === 'add') {
 
-            const result = await addTrack(track)
-            console.log(result)
-            snackbar('Добавили трек')
-            this.newTrack()
+        const result = this.mode === 'add' ?
+            await addTrack(track) :
+            await updateTrack(track.id, track)
+
+        if(result) {
+            snackbar(this.mode === 'add' ? 'Добавили трек' : 'Трек изменен')
+
+            if(this.mode === 'add') {
+                snackbar('Добавили трек')
+                this.newTrack()
+            } else {
+                Router.goBack()
+            }
+
         } else {
-
-            const result = await updateTrack(track.id, track)
-            console.log(result)
-            snackbar('Трек изменен')
+            snackbar('Произошла ошибка')
         }
     }
 
@@ -108,7 +102,7 @@ export class AddTrackStore {
             strummingNote: this.strummingNote || '',
             chordsText: toJS(this.chordsText),
             chordsNote: this.chordsNote || '',
-            trackVideoSrc: this.trackVideoSrc,
+            trackVideoSrc: this.trackVideoSrc || '',
             addedDate: new Date()
         }
     }
@@ -130,6 +124,9 @@ export class AddTrackStore {
         this.strumming = track.strumming
         this.strummingNote = track.strummingNote
         this.chordsText = track.chordsText
+        this.chordsNote = track.chordsNote
+        this.trackVideoSrc = track.trackVideoSrc
+        this.setTextByChordsText()
     }
 
     changeProperty(property: keyof iTrack, value: any) {
@@ -224,11 +221,7 @@ export class AddTrackStore {
 
     newTrack() {
 
-        this.id = createGuid()
-
-        this.fillTrack(defaultTrack)
-        this.text = ''
-
+        this.fillTrack({ ...defaultTrack, id: createGuid() })
         this.saveTempTrack()
     }
 
@@ -253,6 +246,18 @@ export class AddTrackStore {
         }
 
         return null
+    }
+
+    setTextByChordsText() {
+
+        if (!this.chordsText?.rows) return
+
+        const rows = this.chordsText.rows.map(row => {
+            const words = row.words.map(word => word.word)
+            return words.join(' ')
+        })
+
+        return rows.join('\n')
     }
 }
 

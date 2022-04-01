@@ -1,4 +1,4 @@
-export interface iTrackAnalytics {
+export interface iTrackMetrics {
     id: string
     views: number
     inFavorites?: number

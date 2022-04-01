@@ -7,6 +7,7 @@ import Track from '../../../components/tracks/track-page'
 import TrackHeader from '../../../components/tracks/track-page/track-header'
 
 export default <ModalPage
+    key='track'
     id='track'
     header={<TrackHeader />}
     settlingHeight={100}

@@ -21,7 +21,7 @@ const TrackModal: React.FC<iProps> = () => {
 
     const store: TrackPageStore = Modal.activeModalComponent?.modalData?.store
 
-    if(!store || store.loading) return null
+    if(!store || store.loading) return <Spinner />
 
     return (
 

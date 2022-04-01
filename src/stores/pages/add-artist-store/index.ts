@@ -121,7 +121,7 @@ export class AddArtistStore {
 
         try {
 
-            const tracks: iTrack[] = await loadTracksByArtist(this.id) 
+            const tracks = await loadTracksByArtist(this.id) 
 
             const requests = tracks.map(track => {
                 const searchName = [this.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]

@@ -1,5 +1,14 @@
-import { iArtist } from './artists'
-import { StrummingType } from './strumming'
+import { iShortArtist } from './artists'
+import { defaultStrumming, StrummingType } from './strumming'
+
+export interface iShortTrack {
+    id: string
+    name: string
+    artistId: string
+
+    addedDate?: Date
+    searchName?: string[]
+}
 
 export interface iTrack {
     id: string
@@ -15,8 +24,12 @@ export interface iTrack {
     searchName?: string[]
 } 
 
+export interface iShortTrackView extends iShortTrack {
+    artist: iShortArtist
+}
+
 export interface iTrackView extends iTrack {
-    artist: iArtist
+    artist: iShortArtist
 }
 
 export interface iChordsText {
@@ -36,5 +49,25 @@ export interface iChordsWord {
 export interface iChordWordPosition {
     key: string
     chordCharPosition: number
+}
+
+export const defaultTrack: iTrack = {
+    id: '',
+    name: '',
+    artistId: '',
+    strumming: defaultStrumming,
+    strummingNote: '',
+    chordsText: null,
+    chordsNote: '',
+    trackVideoSrc: ''
+}
+
+export const defaultShortTrack: iShortTrack = {
+    id: '',
+    name: '',
+    artistId: '',
+
+    searchName: [],
+    addedDate: null
 }
 

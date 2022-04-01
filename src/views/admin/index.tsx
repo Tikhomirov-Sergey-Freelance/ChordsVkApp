@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { CellButton, Group, Panel, PanelHeader, View } from '@vkontakte/vkui'
-import GlobalStore from '../../stores/root/global-store'
+import { Router } from 'stores/root-store'
 
 
 const AdminView: React.FC = observer(() => {
@@ -12,15 +12,15 @@ const AdminView: React.FC = observer(() => {
 
             <Group>
             
-            <CellButton onClick={ () => GlobalStore.router.setActivePanel('addChords') }>
+            <CellButton onClick={ () => Router.setActivePanel('addChords') }>
                 Добавить аккорд
             </CellButton>
 
-            <CellButton onClick={ () => GlobalStore.router.setActivePanel('addArtist') }>
+            <CellButton onClick={ () => Router.setActivePanel('addArtist') }>
                 Добавить артиста
             </CellButton>
 
-            <CellButton onClick={ () => GlobalStore.router.setActivePanel('addTrack') }>
+            <CellButton onClick={ () => Router.setActivePanel('addTrack') }>
                 Добавить трек
             </CellButton>
         

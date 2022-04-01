@@ -41,10 +41,10 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
 
             <ChipsInput
 
-                value={store.strumming.map(item => ({ value: item }))}
+                value={store.strumming.map((item, index) => ({ value: item, index }))}
                 renderChip={({ value, label, option, ...rest }) => (
                     <Chip
-                        key={value}
+                        key={option.index}
                         value={value}
                         removable={false}
                         style={{ width: 42 }}

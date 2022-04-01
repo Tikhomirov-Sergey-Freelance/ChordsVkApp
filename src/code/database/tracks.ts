@@ -1,14 +1,21 @@
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc } from 'firebase/firestore'
+import { trackToShortTrack, trackToShortTrackPartial } from 'code/tracks/mapper'
+import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc, runTransaction } from 'firebase/firestore'
 import { Firebase } from "stores/root-store"
-import { iTrack, iTrackView } from '../../types/track'
+import { iShortTrack, iShortTrackView, iTrack, iTrackView } from '../../types/track'
 import { loadArtistById, loadArtistsByIds } from './artists'
 
 export const addTrack = async (track: iTrack) => {
 
     try {
+        
+        const firestore = await Firebase.getFirestore()
 
-        const document = doc(await Firebase.getFirestore(), `tracks/${track.id}`)
-        return await setDoc(document, track)
+        await runTransaction(firestore, async transaction => {
+           transaction.set(doc(firestore, `tracks/${track.id}`), track)
+           transaction.set(doc(firestore, `short-tracks/${track.id}`), trackToShortTrack(track))
+        })
+
+        return true
 
     } catch (error) {
         console.error(error)
@@ -20,8 +27,20 @@ export const updateTrack = async (trackId: string, track: Partial<iTrack>) => {
 
     try {
 
-        const document = doc(await Firebase.getFirestore(), `tracks/${trackId}`)
-        return await updateDoc(document, { ...track })
+        const firestore = await Firebase.getFirestore()
+        const [shortTrack, needSaveShortTrack] = trackToShortTrackPartial(track)
+
+        await runTransaction(firestore, async transaction => {
+
+            await transaction.update(doc(firestore, `tracks/${trackId}`), { ...track })
+
+            if(needSaveShortTrack) {
+                await transaction.update(doc(firestore, `short-tracks/${trackId}`), { ...shortTrack })
+            }
+
+        })
+
+        return true
 
     } catch (error) {
         console.error(error)
@@ -55,18 +74,18 @@ export const loadLastTracks = async (count: number) => {
 
     const querySnapshot =
         query(
-            collection(await Firebase.getFirestore(), 'tracks'),
+            collection(await Firebase.getFirestore(), 'short-tracks'),
             orderBy('addedDate'),
             limit(count)
         );
 
     const data = await getDocs(querySnapshot)
-    const tracks = data.docs.map(item => item.data()) as iTrack[]
+    const tracks = data.docs.map(item => item.data()) as iShortTrack[]
 
     const artistsIds = tracks.map(track => track.artistId)
     const artists = await loadArtistsByIds(artistsIds)
 
-    const tracksView: iTrackView[] = tracks.map(track => {
+    const tracksView: iShortTrackView[] = tracks.map(track => {
 
         const artist = artists.find(art => art.id === track.artistId)
 
@@ -83,12 +102,12 @@ export const loadTracksByArtist = async (artistId: string) => {
 
     const querySnapshot =
         query(
-            collection(await Firebase.getFirestore(), 'tracks'),
+            collection(await Firebase.getFirestore(), 'short-tracks'),
             where('artistId', '==', artistId)
         );
 
     const data = await getDocs(querySnapshot)
-    return data.docs.map(item => item.data()) as iTrackView[]
+    return data.docs.map(item => item.data()) as iShortTrackView[]
 }
 
 export const loadTracksByIds = async (ids: string[]) => {
@@ -97,17 +116,17 @@ export const loadTracksByIds = async (ids: string[]) => {
 
     const querySnapshot =
         query(
-            collection(await Firebase.getFirestore(), 'tracks'),
+            collection(await Firebase.getFirestore(), 'short-tracks'),
             where('id', 'in', ids)
         );
 
     const data = await getDocs(querySnapshot)
-    const tracks = data.docs.map(item => item.data()) as iTrack[]
+    const tracks = data.docs.map(item => item.data()) as iShortTrack[]
 
     const artistsIds = tracks.map(track => track.artistId)
     const artists = await loadArtistsByIds(artistsIds)
 
-    const tracksView: iTrackView[] = tracks.map(track => {
+    const tracksView: iShortTrackView[] = tracks.map(track => {
 
         const artist = artists.find(art => art.id === track.artistId)
 
@@ -121,7 +140,5 @@ export const loadTracksByIds = async (ids: string[]) => {
 }
 
 export const updateTracksSearchName = async (trackId: string, searchName: string[]) => {
-
-    const document = doc(await Firebase.getFirestore(), `tracks/${trackId}`)
-    await updateDoc(document, { searchName })
+    await updateTrack(trackId, { searchName })
 }

@@ -33,17 +33,22 @@ export class RouterStore {
         this.activePanel = this.activeStory
     }
 
+    goBack() {
+        history.back()
+    }
+
     pushHistory() {
 
-        const data: iHistoryData = { ...toJS(this.locationData) }
-        const modalData = Modal.activeModalComponent
+        const data: iHistoryData = toJS(this.locationData)
+        const modalData = toJS(Modal.activeModalComponent)
 
         if (modalData) {
-            data.modalKey = modalData.key
+            data.modalKey = toJS(modalData.key)
             data.modalData = toJS(modalData.modalData.data)
         }
 
-        history.pushState(data, null)
+        debugger
+        history.pushState(toJS(data), null)
     }
 
     setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {
@@ -116,7 +121,7 @@ export class RouterStore {
     }
 
     get locationData() {
-        return { activeStory: this.activeStory, activePanel: this.activePanel, activePanelData: this.activePanelData }
+        return { activeStory: toJS(this.activeStory), activePanel: toJS(this.activePanel), activePanelData: toJS(this.activePanelData) }
     }
 }
 

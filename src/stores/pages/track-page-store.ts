@@ -6,7 +6,7 @@ import { loadTrackById, loadTracksByArtist } from 'code/database/tracks'
 import { iChord } from 'types/chord'
 import { loadChordsByKeys } from 'code/database/chords'
 import GlobalStore from '../root/global-store'
-import { incrementTrackView } from 'code/database/track-analytics'
+import { incrementTrackView } from 'code/database/track-metrics'
 import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/database/favorite'
 import { Modal, Favorites, Global } from '../root-store'
 

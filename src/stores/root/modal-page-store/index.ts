@@ -46,7 +46,7 @@ export class ModalPageStore {
 
     closeModal(data = null) {
         
-        if(this.activeModalComponent?.modalData.onClose) {
+        if(this.activeModalComponent?.modalData?.onClose) {
             this.activeModalComponent.modalData.onClose(data)
         }
 
