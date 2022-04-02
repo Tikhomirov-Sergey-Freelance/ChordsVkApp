@@ -1,18 +1,27 @@
 import { trackToShortTrack, trackToShortTrackPartial } from 'code/tracks/mapper'
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc, runTransaction } from 'firebase/firestore'
+import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc, runTransaction, startAt } from 'firebase/firestore'
 import { Firebase } from "stores/root-store"
 import { iShortTrack, iShortTrackView, iTrack, iTrackView } from '../../types/track'
-import { loadArtistById, loadArtistsByIds } from './artists'
+import { loadArtistById, loadArtistsByIds, loadShortArtistById } from './artists'
+import { updateAfterAddedTrack, loadNextRandomIndex } from './track-metrics'
 
 export const addTrack = async (track: iTrack) => {
 
     try {
         
         const firestore = await Firebase.getFirestore()
+        const randomIndex = await loadNextRandomIndex()
+
+        track.randomIndex = randomIndex
 
         await runTransaction(firestore, async transaction => {
-           transaction.set(doc(firestore, `tracks/${track.id}`), track)
-           transaction.set(doc(firestore, `short-tracks/${track.id}`), trackToShortTrack(track))
+
+            await Promise.all([
+                transaction.set(doc(firestore, `tracks/${track.id}`), track),
+                transaction.set(doc(firestore, `short-tracks/${track.id}`), trackToShortTrack(track))
+            ])
+            
+            await updateAfterAddedTrack(transaction)
         })
 
         return true
@@ -60,7 +69,7 @@ export const loadTrackById = async (id: string) => {
         if (!data.exists()) return null
 
         const track = data?.data() as iTrack
-        const artist = await loadArtistById(track.artistId)
+        const artist = await loadShortArtistById(track.artistId)
 
         return { ...track, artist } as iTrackView
 
@@ -70,7 +79,7 @@ export const loadTrackById = async (id: string) => {
     }
 }
 
-export const loadLastTracks = async (count: number) => {
+export const loadLastAddedTracks = async (count: number) => {
 
     const querySnapshot =
         query(
@@ -139,6 +148,34 @@ export const loadTracksByIds = async (ids: string[]) => {
     return tracksView
 }
 
+export const loadRandomTrack = async () => {
+
+    try {
+
+        const count = await loadNextRandomIndex()
+        let randomIndex = Math.round(Math.random() * (count - 2)) + 1 
+        
+        const querySnapshot = query(
+            collection(await Firebase.getFirestore(), 'short-tracks'),
+            orderBy('randomIndex', 'desc'),
+            where('randomIndex', '<=', randomIndex),
+            limit(1))
+
+        const data = await getDocs(querySnapshot)
+        
+        const track = data.docs[0].data() as iShortTrack
+
+        const artist = await loadShortArtistById(track.id)
+        const trackView: iShortTrackView = { ...track, artist }
+
+        return trackView
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export const updateTracksSearchName = async (trackId: string, searchName: string[]) => {
     await updateTrack(trackId, { searchName })
 }
+

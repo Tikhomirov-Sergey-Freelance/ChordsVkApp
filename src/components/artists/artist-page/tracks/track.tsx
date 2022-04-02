@@ -1,10 +1,10 @@
 import { SimpleCell } from '@vkontakte/vkui'
 import { openTrack } from '../../../../code/tracks/open-track'
 import React from 'react'
-import { iTrackView } from 'types/track'
+import { iShortTrackView } from 'types/track'
 
 export interface iProps {
-    track: iTrackView
+    track: iShortTrackView
 }
 
 const Track: React.FC<iProps> = ({ track }) => {

@@ -99,6 +99,7 @@ export class AddTrackStore {
         return {
             id: this.id,
             name: this.name,
+            index: 0,
             artistId: this.artistId,
             strumming: this.strumming,
             strummingNote: this.strummingNote || '',
@@ -107,7 +108,8 @@ export class AddTrackStore {
             chordsText: toJS(this.chordsText),
             chordsNote: this.chordsNote || '',
             trackVideoSrc: this.trackVideoSrc || '',
-            addedDate: new Date()
+            addedDate: new Date(),
+            randomIndex: 0
         }
     }
 

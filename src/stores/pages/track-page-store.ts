@@ -39,6 +39,8 @@ export class TrackPageStore {
             return
         }
 
+        Global.saveLastViewedTrack(this.track.id)
+
         this.loading = false
         this.loadChords()
         incrementTrackView(this.track.id)

@@ -3,15 +3,18 @@ import { defaultStrumming, StrummingType } from './strumming'
 
 export interface iShortTrack {
     id: string
+    index: number
     name: string
     artistId: string
 
     addedDate?: Date
     searchName?: string[]
+    randomIndex: number
 }
 
 export interface iTrack {
     id: string
+    index: number
     name: string
     artistId: string
     strumming: StrummingType[]
@@ -24,6 +27,7 @@ export interface iTrack {
 
     addedDate?: Date
     searchName?: string[]
+    randomIndex: number
 } 
 
 export interface iShortTrackView extends iShortTrack {
@@ -55,6 +59,7 @@ export interface iChordWordPosition {
 
 export const defaultTrack: iTrack = {
     id: '',
+    index: 0,
     name: '',
     artistId: '',
     strumming: defaultStrumming,
@@ -63,15 +68,19 @@ export const defaultTrack: iTrack = {
     introNote: '',
     chordsText: null,
     chordsNote: '',
-    trackVideoSrc: ''
+    trackVideoSrc: '',
+
+    randomIndex: 0
 }
 
 export const defaultShortTrack: iShortTrack = {
     id: '',
+    index: 0,
     name: '',
     artistId: '',
 
     searchName: [],
-    addedDate: null
+    addedDate: null,
+    randomIndex: 0
 }
 

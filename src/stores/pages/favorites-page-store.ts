@@ -2,13 +2,13 @@ import { makeAutoObservable, reaction } from 'mobx'
 
 import { loadTracksByIds } from '../../code/database/tracks'
 import { Favorites } from '../root-store'
-import { iTrackView } from '../../types/track'
+import { iShortTrackView, iTrackView } from '../../types/track'
 
 export class FavoritesPageStore {
 
     loading: boolean
     loaded: boolean
-    tracks: iTrackView[] = []
+    tracks: iShortTrackView[] = []
 
     openPage: boolean
 

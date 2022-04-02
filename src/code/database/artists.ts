@@ -46,6 +46,23 @@ export const loadArtistById = async (id: string) => {
     }
 }
 
+export const loadShortArtistById = async (id: string) => {
+
+    try {
+
+        if (!id) return null
+
+        const reference = doc(await Firebase.getFirestore(), `short-artists/${id}`)
+        const artist = await getDoc(reference)
+
+        return artist?.data() as iShortArtist
+
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
+
 export const saveArtist = async (artist: iArtist) => {
 
     const firestore = await Firebase.getFirestore()

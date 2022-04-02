@@ -1,13 +1,13 @@
 import { Group, Header, SimpleCell, Avatar, Text } from '@vkontakte/vkui'
 import React from 'react'
 
-import { iTrackView } from 'types/track'
+import { iShortTrackView } from 'types/track'
 
 import Track from '../track'
 
 export interface iProps {
     title: string
-    tracks: iTrackView[]
+    tracks: iShortTrackView[]
 }
 
 const TracksList: React.FC<iProps> = ({ title, tracks }) => {

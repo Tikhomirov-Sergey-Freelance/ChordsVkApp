@@ -5,11 +5,11 @@ import { Icon24Like, Icon24LikeOutline } from '@vkontakte/icons'
 import { Favorites } from 'stores/root-store'
 import { openTrack } from '../../code/tracks/open-track'
 
-import { iTrackView } from 'types/track'
+import { iShortTrackView } from 'types/track'
 import { observer } from 'mobx-react-lite'
 
 export interface iProps {
-    track: iTrackView
+    track: iShortTrackView
 }
 
 const Track: React.FC<iProps> = ({ track }) => {
