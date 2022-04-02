@@ -17,7 +17,12 @@ const ChordsRow: React.FC<iProps> = ({ words, spaceRow, rowIndex }) => {
     return (
         <div className={`chord-row${spaceRow ? ' space-row' : ''}`}>
             {
-                words.map((word, index) => <ChordsWord key={`${rowIndex}-${index}`} word={word} />)
+                words.map((word, index) => {
+                    return <>
+                        <ChordsWord key={`${rowIndex}-${index}`} word={word} />
+                        {(index !== words.length - 1) && <span className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>}
+                    </>
+                })
             }
         </div>
     )

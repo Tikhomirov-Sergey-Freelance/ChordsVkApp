@@ -26,6 +26,8 @@ export class AddTrackStore {
     artistId: string
     strumming: StrummingType[] = defaultStrumming
     strummingNote: string
+    intro: string[] = []
+    introNote: string
     chordsText: iChordsText
     chordsNote: string
     trackVideoSrc: string
@@ -100,6 +102,8 @@ export class AddTrackStore {
             artistId: this.artistId,
             strumming: this.strumming,
             strummingNote: this.strummingNote || '',
+            intro: this.intro || [],
+            introNote: this.introNote || '',
             chordsText: toJS(this.chordsText),
             chordsNote: this.chordsNote || '',
             trackVideoSrc: this.trackVideoSrc || '',
@@ -123,6 +127,8 @@ export class AddTrackStore {
         this.artistId = track.artistId
         this.strumming = track.strumming
         this.strummingNote = track.strummingNote
+        this.intro = track.intro
+        this.introNote = track.introNote
         this.chordsText = track.chordsText
         this.chordsNote = track.chordsNote
         this.trackVideoSrc = track.trackVideoSrc
@@ -157,6 +163,19 @@ export class AddTrackStore {
 
     deleteStrummingItem() {
         this.strumming.pop()
+        this.saveTempTrack()
+    }
+
+    addIntroItem(chord: string) {
+
+        if(!chord) return
+
+        this.intro.push(chord)
+        this.saveTempTrack()
+    }
+
+    deleteIntroItem() {
+        this.intro.pop()
         this.saveTempTrack()
     }
 

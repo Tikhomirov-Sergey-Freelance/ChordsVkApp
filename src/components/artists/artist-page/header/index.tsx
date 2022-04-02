@@ -18,9 +18,10 @@ const TrackHeader: React.FC<iProps> = () => {
     const { viewWidth } = useAdaptivity()
     const isMobile = viewWidth <= ViewWidth.MOBILE
 
-    const store = Modal.activeModalComponent?.modalData?.store
+    const store: ArtistPageStore = Modal.activeModalComponent?.modalData?.store
 
-    if(!store || store.loading) return null
+    if(!store || !(store instanceof ArtistPageStore)) return null
+    if(!store.artist || store.loading) return null
 
     return (
         <ModalPageHeader

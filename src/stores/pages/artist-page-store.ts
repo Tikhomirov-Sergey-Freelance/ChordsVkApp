@@ -1,5 +1,5 @@
 import { makeAutoObservable, reaction } from 'mobx'
-import { iTrackView } from 'types/track'
+import { iShortTrackView, iTrackView } from 'types/track'
 import { iArtist } from 'types/artists'
 import { loadArtistById } from 'code/database/artists'
 import { loadTracksByArtist } from 'code/database/tracks'
@@ -10,7 +10,7 @@ export class ArtistPageStore {
     loading: boolean
 
     artist: iArtist = null
-    tracks: iTrackView[]
+    tracks: iShortTrackView[]
 
     constructor(artistId) {
 
@@ -27,6 +27,12 @@ export class ArtistPageStore {
         
         this.loading = true
         this.artist = await loadArtistById(artistId)
+
+        if(!this.artist) {
+            Modal.closeModal()
+            return
+        }
+
         await this.loadArtistTracks(artistId)
         this.loading = false
 
@@ -35,7 +41,7 @@ export class ArtistPageStore {
 
     async loadArtistTracks(artistId: string) {
         const tracks = await loadTracksByArtist(artistId)
-        this.tracks = tracks.map(track => ({ ...track, artist: this.artist }) as iTrackView)
+        this.tracks = tracks.map(track => ({ ...track, artist: this.artist }) as iShortTrackView)
     }
 }
 

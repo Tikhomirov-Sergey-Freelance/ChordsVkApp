@@ -4,7 +4,7 @@ import AddTrackStore from 'stores/pages/add-track-store'
 import { Modal } from 'stores/root-store'
 import { iChordsWord, iChordWordPosition } from '../../../../types/track'
 
-import SelectChordsModal from './select-chords-modal'
+import SelectChordsModal from './select-word-chords-modal'
 import ChordsWord from './chords-word'
 
 export interface iProps {

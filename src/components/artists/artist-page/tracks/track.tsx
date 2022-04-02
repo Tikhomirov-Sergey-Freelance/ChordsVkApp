@@ -9,7 +9,7 @@ export interface iProps {
 
 const Track: React.FC<iProps> = ({ track }) => {
 
-    const onOpenTrack = () => openTrack(track)
+    const onOpenTrack = () => openTrack(track.id)
 
     return (
         <SimpleCell

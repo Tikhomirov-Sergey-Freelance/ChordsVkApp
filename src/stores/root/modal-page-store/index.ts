@@ -50,7 +50,11 @@ export class ModalPageStore {
             this.activeModalComponent.modalData.onClose(data)
         }
 
-        this.activeModalComponent = null
+        this.activeModalComponent.key = null
+
+        setTimeout(() => {
+            this.activeModalComponent = null
+        }, 0)
     }
 
     openFromHistory(key: string, data: any) {

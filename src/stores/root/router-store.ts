@@ -47,7 +47,6 @@ export class RouterStore {
             data.modalData = toJS(modalData.modalData.data)
         }
 
-        debugger
         history.pushState(toJS(data), null)
     }
 

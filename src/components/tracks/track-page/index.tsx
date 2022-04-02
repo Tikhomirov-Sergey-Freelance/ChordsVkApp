@@ -8,6 +8,7 @@ import Spinner from '../../common/preloaders/panel-preloader'
 import Artist from './artist'
 import Strumming from './strumming'
 import Chords from './chords'
+import Intro from './intro'
 import Text from './text'
 import TrackVideo from './video'
 import TrackPageStore from 'stores/pages/track-page-store'
@@ -21,7 +22,8 @@ const TrackModal: React.FC<iProps> = () => {
 
     const store: TrackPageStore = Modal.activeModalComponent?.modalData?.store
 
-    if(!store || store.loading) return <Spinner />
+    if(!store || !(store instanceof TrackPageStore)) return null
+    if(!store.track || store.loading) return <Spinner />
 
     return (
 
@@ -29,6 +31,7 @@ const TrackModal: React.FC<iProps> = () => {
             <Artist track={store.track} />
             <Strumming track={store.track} />
             <Chords chords={store.instrumentChords} loading={store.loadingChords}/>
+            <Intro track={store.track}/>
             <Text track={store.track} />
             <TrackVideo track={store.track} />
   

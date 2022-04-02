@@ -33,6 +33,12 @@ export class TrackPageStore {
     async loadTrack(trackId: string) {
         this.loading = true
         this.track = await loadTrackById(trackId)
+
+        if(!this.track) {
+            Modal.closeModal()
+            return
+        }
+
         this.loading = false
         this.loadChords()
         incrementTrackView(this.track.id)
@@ -69,6 +75,14 @@ export class TrackPageStore {
                     chordsKey.push(word.chord.key)
                 }
             }))
+
+        if(this.track.intro) {
+            this.track.intro.forEach(key => {
+                if(!chordsKey.includes(key)) {
+                    chordsKey.push(key)
+                }
+            })
+        }
 
         return chordsKey
     }

@@ -20,7 +20,8 @@ const TrackHeader: React.FC<iProps> = () => {
 
     const store: TrackPageStore = Modal.activeModalComponent?.modalData?.store
 
-    if (!store || store.loading) return null
+    if(!store || !(store instanceof TrackPageStore)) return null
+    if (!store.track || store.loading) return null
 
     return (
         <ModalPageHeader

@@ -27,7 +27,7 @@ const Chords: React.FC<iProps> = ({ chords, loading }) => {
     return (
         <Group header={<Header mode="secondary">Аккорды</Header>}>
 
-            <ChangeInstrument />
+            <ChangeInstrument title='' />
 
             <HorizontalScroll
                 getScrollToLeft={i => i - 130}

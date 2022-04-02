@@ -75,7 +75,7 @@ export const loadLastTracks = async (count: number) => {
     const querySnapshot =
         query(
             collection(await Firebase.getFirestore(), 'short-tracks'),
-            orderBy('addedDate'),
+            orderBy('addedDate', 'desc'),
             limit(count)
         );
 

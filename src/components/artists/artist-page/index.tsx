@@ -5,6 +5,7 @@ import { iArtist } from 'types/artists'
 import GlobalStore from 'stores/root/global-store'
 import { observer } from 'mobx-react-lite'
 import { Modal } from 'stores/root-store'
+import ArtistPageStore from 'stores/pages/artist-page-store'
 
 import Spinner from '../../common/preloaders/panel-preloader'
 import Description from './description'
@@ -15,9 +16,10 @@ interface iProps {
 
 const ArtistModalPage: React.FC<iProps> = () => {
 
-    const store = Modal.activeModalComponent?.modalData?.store
+    const store: ArtistPageStore = Modal.activeModalComponent?.modalData?.store
 
-    if(!store || store.loading) return <Spinner/>
+    if(!store || !(store instanceof ArtistPageStore)) return null
+    if(!store.artist || store.loading) return <Spinner/>
 
     return (
         <Group>
