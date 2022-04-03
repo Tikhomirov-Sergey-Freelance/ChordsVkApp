@@ -6,7 +6,7 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 
 import { snackbar } from '../../../code/common/alerts'
-import { iArtist } from 'types/artists'
+import { iArtist, iShortArtist } from 'types/artists'
 import { saveArtistLogo } from 'code/database/images'
 import { saveArtist, updateArtist } from 'code/database/artists'
 import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
@@ -60,7 +60,7 @@ export class AddArtistStore {
         } else {
             const result = await updateArtist(artist)
             console.log(result)
-            await this.recalcTracksNames()
+            await this.recalcTracksNames(artist)
             snackbar('Изменили артиста')
         }
     }
@@ -71,7 +71,7 @@ export class AddArtistStore {
             name: this.name,
             description: this.description,
             artistImage: '',
-            searchName: this.name.toUpperCase()
+            searchName: this.name.toLocaleUpperCase()
         }
     }
 
@@ -115,7 +115,7 @@ export class AddArtistStore {
         this.artistImage = artist.artistImage
     }
 
-    async recalcTracksNames() {
+    async recalcTracksNames(artist: iArtist) {
 
         if(this.mode === 'add') return
 
@@ -124,8 +124,7 @@ export class AddArtistStore {
             const tracks = await loadTracksByArtist(this.id) 
 
             const requests = tracks.map(track => {
-                const searchName = [this.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
-                return updateTracksSearchName(track.id, searchName)
+                return updateTracksSearchName(track, artist as iShortArtist)
             })
 
             Promise.all(requests)

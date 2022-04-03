@@ -10,6 +10,8 @@ import { iChordsText, iTrack, iChordsWord, iChordWordPosition, iTrackView, iShor
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { Global } from 'stores/root-store'
 import { openTrack } from 'code/tracks/open-track'
+import useDebounce from 'code/common/debounce'
+import { iShortArtist } from 'types/artists'
 
 export class MainPageStore {
 
@@ -22,14 +24,28 @@ export class MainPageStore {
     lastViewedTracks: iShortTrackView[] = []
 
     openPage: boolean
-    
+
+    searchQuery: string
+    searchLoading: boolean
+
+    foundArtists: iShortArtist[] = []
+    foundTracks: iShortTrack[] = []
+
+    private searchDebounce: () => Promise<void>
+    private clearDebounce: () => void
+
     constructor() {
 
-        if(!global['window']) return
+        if (!global['window']) return
 
         makeAutoObservable(this, undefined, { deep: true })
 
+        const [searchDebounce, clearDebounce] = useDebounce(this.search.bind(this))
+
         this.openRandomTrack = this.openRandomTrack.bind(this)
+        this.searchDebounce = searchDebounce
+        this.clearDebounce = clearDebounce
+
 
         reaction(() => Global.lastViewedTracks, this.onChangeLastViewedTracks)
         reaction(() => this.openPage, this.onOpenPage)
@@ -40,31 +56,49 @@ export class MainPageStore {
         this.loadingTracks = true
         this.loadedTracks = false
 
-        await Promise.all([
-            this.loadLastAddedTracks(),
-            this.loadLastViewedTracks()
-        ])
+        await this.loadTracks()
 
         this.loadingTracks = false
         this.loadedTracks = true
     }
 
+    async loadTracks() {
+        await Promise.all([
+            this.loadLastAddedTracks(),
+            this.loadLastViewedTracks()
+        ])
+    }
+
     async loadLastAddedTracks() {
-        if(this.lastAddedTracks?.length) return
+        if (this.lastAddedTracks?.length) return
         this.lastAddedTracks = await loadLastAddedTracks(7)
     }
 
     async loadLastViewedTracks() {
         
-        const ids = Global.lastViewedTracks
-        const needLoadTracks = ids.filter(id => !this.lastViewedTracks.some(track => track.id === id))
-        const lastViewedTracks = this.lastViewedTracks.filter(track => ids.some(id => track.id === id))
+        try {
+            debugger
+            const ids = Global.lastViewedTracks
+            const needLoadTracks = ids.filter(id => !this.lastViewedTracks.some(track => track.id === id))
+            const lastViewedTracks = this.lastViewedTracks.filter(track => ids.some(id => track.id === id))
 
-        lastViewedTracks.push(...(await loadTracksByIds(needLoadTracks)))
+            lastViewedTracks.push(...(await loadTracksByIds(needLoadTracks)))
 
-        this.lastViewedTracks = ids
-            .map(id => lastViewedTracks.find(track => track.id === id))
-            .filter(track => track)
+            this.lastViewedTracks = ids
+                .map(id => lastViewedTracks.find(track => track.id === id))
+                .filter(track => track)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async search() {
+
+        if (!this.searchQuery) return
+        this.searchLoading = true
+
+        const query = this.searchQuery.toLocaleUpperCase()
     }
 
     async openRandomTrack() {
@@ -77,8 +111,30 @@ export class MainPageStore {
         this.loadindRandomTrack = false
     }
 
+    onChangeSearch = async (query) => {
+
+        if (query) {
+
+            if (!this.searchQuery) {
+                this.searchLoading = true
+            }
+
+            this.searchQuery = query
+            this.searchDebounce()
+
+        } else {
+
+            this.clearDebounce()
+            this.searchLoading = false
+            this.searchQuery = query
+
+            this.foundArtists = []
+            this.foundTracks = []
+        }
+    }
+
     onChangeLastViewedTracks = () => {
-        
+
         if (this.loadedTracks) {
             this.loadedTracks = false
         }
@@ -89,7 +145,7 @@ export class MainPageStore {
     }
 
     onOpenPage = () => {
-        
+
         if (this.openPage && !this.loadedTracks) {
             this.loadPage()
         }

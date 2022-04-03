@@ -57,10 +57,7 @@ export class AddTrackStore {
 
     async save() {
 
-        const artist = await loadArtistById(this.artistId)
-
         const track = this.trackToSave
-        track.searchName = [artist.name.toLocaleUpperCase(), track.name.toLocaleUpperCase()]
 
         const result = this.mode === 'add' ?
             await addTrack(track) :
@@ -108,8 +105,7 @@ export class AddTrackStore {
             chordsText: toJS(this.chordsText),
             chordsNote: this.chordsNote || '',
             trackVideoSrc: this.trackVideoSrc || '',
-            addedDate: new Date(),
-            randomIndex: 0
+            addedDate: new Date()
         }
     }
 
@@ -123,6 +119,8 @@ export class AddTrackStore {
 
             return
         }
+
+        track = { ...defaultTrack, ...track }
 
         this.id = track.id
         this.name = track.name
@@ -260,7 +258,7 @@ export class AddTrackStore {
 
         if (value) {
 
-            const [track, text] = JSON.parse(value)
+            let [track, text] = JSON.parse(value)
 
             this.text = text
             this.fillTrackData(track)

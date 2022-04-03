@@ -8,8 +8,11 @@ export interface iShortTrack {
     artistId: string
 
     addedDate?: Date
-    searchName?: string[]
     randomIndex: number
+
+    searchNameStartArtist?: string
+    searchNameWithoutArtist?: string
+    searchNameEndArtist?: string
 }
 
 export interface iTrack {
@@ -26,8 +29,6 @@ export interface iTrack {
     trackVideoSrc: string
 
     addedDate?: Date
-    searchName?: string[]
-    randomIndex: number
 } 
 
 export interface iShortTrackView extends iShortTrack {
@@ -68,9 +69,7 @@ export const defaultTrack: iTrack = {
     introNote: '',
     chordsText: null,
     chordsNote: '',
-    trackVideoSrc: '',
-
-    randomIndex: 0
+    trackVideoSrc: ''
 }
 
 export const defaultShortTrack: iShortTrack = {
@@ -79,7 +78,6 @@ export const defaultShortTrack: iShortTrack = {
     name: '',
     artistId: '',
 
-    searchName: [],
     addedDate: null,
     randomIndex: 0
 }

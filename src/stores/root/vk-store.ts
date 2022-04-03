@@ -17,7 +17,7 @@ export class VKStore {
         makeAutoObservable(this)
     } 
 
-    async initVK() {
+    async bindVKEvents() {
 
         if(this.validVk) {
 
@@ -27,9 +27,11 @@ export class VKStore {
                     this.appearance = event.detail.data['appearance']
                 }
             })
-
-            VK.send('VKWebAppInit', {})
         }
+    }
+
+    async initVk() {
+        VK.send('VKWebAppInit', {})
     }
 }
 

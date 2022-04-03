@@ -18,7 +18,7 @@ export class RootStore {
 
         //тут что-нибудь, что нужно загрузить
 
-        await this.VkStore.initVK()
+        await this.VkStore.bindVKEvents()
 
         this.FavoritesStore.loadFavorites()
     }

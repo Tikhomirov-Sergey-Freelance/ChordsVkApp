@@ -15,6 +15,8 @@ const init = async () => {
         <App />,
         document.getElementById('root')
     )
+
+    await Root.VkStore.initVk()
 }
 
 init()

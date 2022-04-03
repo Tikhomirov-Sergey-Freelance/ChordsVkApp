@@ -1,6 +1,7 @@
 import { increment, doc, updateDoc, getDoc, setDoc, Transaction } from 'firebase/firestore'
 import { iTrackMetrics, iAllTracksInfo, defaultTracksInfo } from 'types/track-metrics'
 import { Firebase } from "stores/root-store"
+import { iShortTrack } from 'types/track'
 
 export const incrementTrackView = async (trackId) => {
 
@@ -104,6 +105,11 @@ export const loadAllTracksInfo = async () => {
 export const loadNextRandomIndex = async () => {
     const info = await loadAllTracksInfo()
     return info.nextRandomIndex
+}
+
+export const setNextRandomIndex = async (track: iShortTrack) => {
+    const randomIndex = await loadNextRandomIndex()
+    track.randomIndex = randomIndex
 }
 
 export const loadCountTrack = async () => {

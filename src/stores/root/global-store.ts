@@ -7,7 +7,7 @@ export class GlobalStore {
     isAdmin: boolean
 
     currentInstrument: MusicalInstrument = 'guitar'
-    lastViewedTracks: string[]
+    lastViewedTracks: string[] = []
 
     constructor() {
 
