@@ -2,7 +2,7 @@ import React from 'react'
 import Tracks from './tracks'
 import Chords from './chords'
 import Favourites from './favorites'
-import AddTrack from './add-track'
+import ProposeTrack from './propose-track'
 import Admin from './admin'
 import AdminAddChords from './admin/add-chords'
 import AdminAddArtist from './admin/add-artist'
@@ -33,6 +33,15 @@ export const views = [
             {
                 id: 'favourites',
                 render: () => <Favourites />
+            }
+        ]
+    },
+    {
+        id: 'proposeTrack',
+        panels: [
+            {
+                id: 'proposeTrack',
+                render: () => <ProposeTrack />
             }
         ]
     },

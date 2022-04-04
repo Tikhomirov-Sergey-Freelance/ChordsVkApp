@@ -6,14 +6,20 @@ import { iArtist, iShortArtist } from 'types/artists'
 
 export const loadArtistsByQuery = async (q: string) => {
 
-    const querySnapshot =
-        query(
-            collection(await Firebase.getFirestore(), 'short-artists'),
-            where('searchName', '>=', q.toUpperCase()),
-            where('searchName', '<=', q.toUpperCase() + '\uf8ff'));
+    try {
+        const querySnapshot =
+            query(
+                collection(await Firebase.getFirestore(), 'short-artists'),
+                where('searchName', '>=', q.toUpperCase()),
+                where('searchName', '<=', q.toUpperCase() + '\uf8ff'));
 
-    const data = await getDocs(querySnapshot)
-    return data.docs.map(item => item.data()) as iShortArtist[]
+        const data = await getDocs(querySnapshot)
+        return data.docs.map(item => item.data()) as iShortArtist[]
+        
+    } catch (error) {
+        console.error(error)
+        return []
+    }
 }
 
 export const loadArtistsByIds = async (ids: string[]) => {

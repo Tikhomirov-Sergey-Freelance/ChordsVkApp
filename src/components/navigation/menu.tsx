@@ -3,7 +3,7 @@ import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28LikeOutline, Icon28Add
 import { JsxElement } from 'typescript'
 import { Global } from 'stores/root-store'
 
-export type iPageKey = 'tracks' | 'chords' | 'favourites' | 'addTrack' | 'admin'
+export type iPageKey = 'tracks' | 'chords' | 'favourites' | 'proposeTrack' | 'admin'
 
 export interface iPage {
   key: iPageKey
@@ -12,26 +12,26 @@ export interface iPage {
 }
 
 const pages: iPage[] = [
-    {
-        key: 'tracks',
-        name: 'Треки',
-        iconComponent: <Icon28PlaylistOutline />
-    },
-    {
-      key: 'chords',
-      name: 'Аккорды',
-      iconComponent: <Icon28MusicOutline />
-    },
-    {
-      key: 'favourites',
-      name: 'Моя коллекция',
-      iconComponent: <Icon28LikeOutline />
-    },
-    /*{
-      key: 'addTrack',
-      name: 'Добавить трек',
-      iconComponent: <Icon28AddSquareOutline />
-    },*/
+  {
+    key: 'tracks',
+    name: 'Треки',
+    iconComponent: <Icon28PlaylistOutline />
+  },
+  {
+    key: 'chords',
+    name: 'Аккорды',
+    iconComponent: <Icon28MusicOutline />
+  },
+  {
+    key: 'favourites',
+    name: 'Моя коллекция',
+    iconComponent: <Icon28LikeOutline />
+  },
+  {
+    key: 'proposeTrack',
+    name: 'Предложить трек',
+    iconComponent: <Icon28AddSquareOutline />
+  },
 ]
 
 const adminPages: iPage[] = [
@@ -42,7 +42,7 @@ const adminPages: iPage[] = [
   }
 ]
 
-if(Global.isAdmin) {
+if (Global.isAdmin) {
   pages.push(...adminPages)
 }
 

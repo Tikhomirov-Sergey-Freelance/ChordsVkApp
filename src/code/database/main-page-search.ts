@@ -1,13 +1,21 @@
+import { Firebase } from 'stores/root-store'
 import { iShortArtist } from 'types/artists'
-import { iShortTrack } from 'types/track'
+import { iShortTrack, iShortTrackView } from 'types/track'
+import { loadArtistsByQuery } from './artists'
+import { loadTracksByQuery } from './tracks'
 
-/*export const searchByQuery = async (query: string): [iShortArtist[], iShortTrack[]] => {
+export const searchByQuery = async (query: string): Promise<[iShortArtist[], iShortTrackView[]]> => {
 
     if(!query) return [[], []]
 
-    const words = query.toLocaleUpperCase().split(' ').filter(word => word)
+    const words = query.toLocaleUpperCase()
+        .replace('-', '')
+        .split(' ')
+        .filter(word => word)
+        .join(' ')
     
     if(!words.length) return [[], []]
 
-    //words[words.length - 1] += 
-}*/
+    return await Promise.all([loadArtistsByQuery(words), loadTracksByQuery(words)])
+}
+

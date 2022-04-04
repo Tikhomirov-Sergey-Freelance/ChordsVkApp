@@ -5,19 +5,15 @@ import React, { useEffect } from 'react'
 import MainPageStore from '../../../stores/pages/main-page-store'
 
 import SearchInput from './search-input'
+import SearchResult from './search-result'
 
 const Search: React.FC = () => {
 
     return (
-
-        <>
-
-            <Group>
-                <SearchInput />
-                {MainPageStore.searchQuery && <span>query {MainPageStore.searchQuery}</span>}
-            </Group>
-        </>
-
+        <Group>
+            <SearchInput />
+            <SearchResult />
+        </Group>
     )
 }
 

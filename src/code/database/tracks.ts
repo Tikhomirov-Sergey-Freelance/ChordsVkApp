@@ -208,6 +208,64 @@ export const loadRandomTrack = async () => {
     }
 }
 
+export const loadTracksByQuery = async (q: string) => {
+
+    try {
+
+        const firestore = await Firebase.getFirestore()
+
+        const searchByNameWithStartArtist = query(
+            collection(firestore, 'short-tracks'),
+            where('searchNameStartArtist', '>=', q),
+            where('searchNameStartArtist', '<=', q + '\uf8ff'))
+
+        const searchByNameWithoutArtist = query(
+            collection(firestore, 'short-tracks'),
+            where('searchNameWithoutArtist', '>=', q),
+            where('searchNameWithoutArtist', '<=', q + '\uf8ff'))
+
+        const searchByNameWithEndArtist = query(
+            collection(firestore, 'short-tracks'),
+            where('searchNameEndArtist', '>=', q),
+            where('searchNameEndArtist', '<=', q + '\uf8ff'))
+
+        const results = await Promise.all([
+            getDocs(searchByNameWithStartArtist),
+            getDocs(searchByNameWithoutArtist),
+            getDocs(searchByNameWithEndArtist)
+        ])
+
+        let tracksIds: string[] = []
+        let tracks: iShortTrack[] = []
+
+        results.forEach(search => search.docs.forEach(doc => {
+            if (!tracksIds.includes(doc.id)) {
+                tracksIds.push(doc.id)
+                tracks.push(doc.data() as iShortTrack)
+            }
+        }))
+
+        const artistsIds = tracks.map(track => track.artistId)
+        const artists = await loadArtistsByIds(artistsIds)
+
+        const tracksView: iShortTrackView[] = tracks.map(track => {
+
+            const artist = artists.find(art => art.id === track.artistId)
+
+            return {
+                ...track,
+                artist
+            }
+        })
+
+        return tracksView
+
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
 export const updateTracksSearchName = async (track: iShortTrack, artist: iShortArtist = null) => {
 
     try {

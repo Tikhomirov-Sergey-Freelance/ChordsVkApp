@@ -69,7 +69,7 @@ export class AddArtistStore {
         return {
             id: this.id,
             name: this.name,
-            description: this.description,
+            description: this.description || '',
             artistImage: '',
             searchName: this.name.toLocaleUpperCase()
         }

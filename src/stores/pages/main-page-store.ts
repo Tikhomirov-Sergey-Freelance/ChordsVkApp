@@ -12,6 +12,7 @@ import { Global } from 'stores/root-store'
 import { openTrack } from 'code/tracks/open-track'
 import useDebounce from 'code/common/debounce'
 import { iShortArtist } from 'types/artists'
+import { searchByQuery } from 'code/database/main-page-search'
 
 export class MainPageStore {
 
@@ -29,7 +30,7 @@ export class MainPageStore {
     searchLoading: boolean
 
     foundArtists: iShortArtist[] = []
-    foundTracks: iShortTrack[] = []
+    foundTracks: iShortTrackView[] = []
 
     private searchDebounce: () => Promise<void>
     private clearDebounce: () => void
@@ -77,7 +78,7 @@ export class MainPageStore {
     async loadLastViewedTracks() {
         
         try {
-            debugger
+            
             const ids = Global.lastViewedTracks
             const needLoadTracks = ids.filter(id => !this.lastViewedTracks.some(track => track.id === id))
             const lastViewedTracks = this.lastViewedTracks.filter(track => ids.some(id => track.id === id))
@@ -98,7 +99,12 @@ export class MainPageStore {
         if (!this.searchQuery) return
         this.searchLoading = true
 
-        const query = this.searchQuery.toLocaleUpperCase()
+        const [artists, tracks] = await searchByQuery(this.searchQuery)
+
+        this.foundArtists = artists
+        this.foundTracks = tracks
+
+        this.searchLoading = false
     }
 
     async openRandomTrack() {
