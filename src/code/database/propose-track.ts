@@ -7,9 +7,9 @@ export const addProposeTrack = async (track: iProposeTrack) => {
 
     try {
 
-        const document = doc(await Firebase.getFirestore(), `propose-track/${track.id}`)
+        const document = doc(await Firebase.getFirestore(), `propose-tracks/${track.id}`)
         setDoc(document, track)
-        
+
         return true
 
     } catch (error) {

@@ -48,7 +48,7 @@ export class ProposeTrackStore {
         if (!this.validate()) return
 
         const track = this.dataToSave
-        const result = addProposeTrack(track)
+        const result = await addProposeTrack(track)
 
         Router.toMainPanel()
         snackbar(result ?
@@ -84,7 +84,7 @@ export class ProposeTrackStore {
     get dataToSave(): iProposeTrack {
         return {
             id: this.id,
-            userId: VK.vkId,
+            userId: VK.vkId.toString(),
             track: this.track,
             artist: this.artist,
             comment: this.comment,
