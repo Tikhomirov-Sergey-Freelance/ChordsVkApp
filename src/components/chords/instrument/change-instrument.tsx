@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { FormItem, SliderSwitch } from '@vkontakte/vkui'
+import { FormItem, SegmentedControl } from '@vkontakte/vkui'
 
 import { MusicalInstrument } from '../../../types/global-types'
 import { Global } from 'stores/root-store'
@@ -13,16 +13,16 @@ const InstrumentField: React.FC<iProps> = observer(({ title }) => {
 
     return (
         <FormItem top={title}>
-            <SliderSwitch
-                activeValue={Global.currentInstrument}
-                onSwitch={ value => Global.changeInstrument(value as MusicalInstrument)}
+            <SegmentedControl
+                value={Global.currentInstrument}
+                onChange={ value => Global.changeInstrument(value as MusicalInstrument)}
                 options={[
                     {
-                        name: 'Гитара',
+                        label: 'Гитара',
                         value: 'guitar',
                     },
                     {
-                        name: 'Укулеле',
+                        label: 'Укулеле',
                         value: 'ukulele',
                     },
                 ]}

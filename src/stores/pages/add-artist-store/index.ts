@@ -8,7 +8,7 @@ import { limit } from 'firebase/firestore'
 import { snackbar } from '../../../code/common/alerts'
 import { iArtist, iShortArtist } from 'types/artists'
 import { saveArtistLogo } from 'code/database/images'
-import { saveArtist, updateArtist } from 'code/database/artists'
+import { addArtist, updateArtist } from 'code/database/artists'
 import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
 import { iTrack } from 'types/track'
 
@@ -54,7 +54,7 @@ export class AddArtistStore {
         await this.saveLogo(artist)
 
         if (this.mode === 'add') {
-            const result = await saveArtist(artist)
+            const result = await addArtist(artist)
             console.log(result)
             snackbar('Добавили артиста')
         } else {

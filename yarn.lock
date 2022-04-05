@@ -2007,7 +2007,7 @@
     "tapable" "^2.2.0"
     "webpack" "^5"
 
-"@vkontakte/icons@^1.109.0", "@vkontakte/icons@^1.138.0":
+"@vkontakte/icons@^1.136.0", "@vkontakte/icons@^1.138.0":
   "integrity" "sha512-RW0z4/vxhdyJUt7PzsMNe7sS+0B1bHjb+/dKUuNPFVOFiQrCmJY3Ojxuf8zr17ccGLH33S6at12TLbyqInDulA=="
   "resolved" "https://registry.npmjs.org/@vkontakte/icons/-/icons-1.138.0.tgz"
   "version" "1.138.0"
@@ -2020,19 +2020,20 @@
   "resolved" "https://registry.npmjs.org/@vkontakte/vk-bridge/-/vk-bridge-2.5.3.tgz"
   "version" "2.5.3"
 
-"@vkontakte/vkjs@^0.22.1":
-  "integrity" "sha512-gDlJYAIIH4K0L8Qz2bE/cIdz5XWSwvEVytkK4mXC7lGTVTF/PuidUb8MZ792AaqTxdoASOoBD1Jy89q/GjaOSg=="
-  "resolved" "https://registry.npmjs.org/@vkontakte/vkjs/-/vkjs-0.22.1.tgz"
-  "version" "0.22.1"
+"@vkontakte/vkjs@^0.22.2":
+  "integrity" "sha512-dOnRGhcKzCuex/RRTmi74uckqAQtGcVPhsKXSptmKz1/KqVt6WpmOT2rrr2rPyyWcfjHBbPwnF8A4Z0jkFz+Zg=="
+  "resolved" "https://registry.npmjs.org/@vkontakte/vkjs/-/vkjs-0.22.2.tgz"
+  "version" "0.22.2"
 
-"@vkontakte/vkui@^4.23.0":
-  "integrity" "sha512-F6HV+bJ2IW7G7r1PmMO8XufaHgOwHfFZV06KZdLi7HG//dyeXa3wQnZb3LipjmAPrnWro/HlvNOzKtnu2pGhKA=="
-  "resolved" "https://registry.npmjs.org/@vkontakte/vkui/-/vkui-4.23.0.tgz"
-  "version" "4.23.0"
+"@vkontakte/vkui@^4.28.1":
+  "integrity" "sha512-0K/vJaABbMK9C5bn6iVokaPK7VeIjEcXs26Z96toz5ScRfII1ngqVT7sQh1qPfWTTeBF7/StbmPEJB+Rakx+1Q=="
+  "resolved" "https://registry.npmjs.org/@vkontakte/vkui/-/vkui-4.28.1.tgz"
+  "version" "4.28.1"
   dependencies:
     "@babel/runtime" "^7.14.6"
     "@popperjs/core" "^2.9.2"
-    "@vkontakte/vkjs" "^0.22.1"
+    "@vkontakte/vkjs" "^0.22.2"
+    "date-fns" "^2.28.0"
     "mitt" "^3.0.0"
     "react-popper" "^2.2.5"
 
@@ -3304,6 +3305,11 @@
   "integrity" "sha512-O7Xe5dLaqvY/aF/MFWArsAM1J4j7w1CSZlPCX9uHgmb+6SbkPd8Q4YOvfvH/cZGvFlJFfHOZKxQtmMUOoZhc/w=="
   "resolved" "https://registry.npmjs.org/date-and-time/-/date-and-time-2.0.1.tgz"
   "version" "2.0.1"
+
+"date-fns@^2.28.0":
+  "integrity" "sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw=="
+  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.28.0.tgz"
+  "version" "2.28.0"
 
 "debug@^2.2.0":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="

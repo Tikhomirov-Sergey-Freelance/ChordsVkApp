@@ -17,7 +17,9 @@ const ViewList: React.FC = () => {
   return (
 
     <SplitLayout modal={
-      <ModalRoot activeModal={Modal.activeModalComponent?.key}>
+      <ModalRoot 
+        activeModal={Modal.activeModalComponent?.key}
+        onClose={Modal.closeModal}>
         {Modals}
       </ModalRoot> 
     }>

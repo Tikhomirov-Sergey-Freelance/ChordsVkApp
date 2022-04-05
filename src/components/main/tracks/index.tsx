@@ -6,6 +6,8 @@ import MainPageStore from '../../../stores/pages/main-page-store'
 
 import PanelPreloader from '../../common/preloaders/panel-preloader'
 import TrackList from '../../tracks/tracks-list'
+import RandomTrackButton from '../random-track-button'
+import ProposeTrackButton from '../propose-track-button'
 
 const Tracks: React.FC = () => {
 
@@ -14,16 +16,8 @@ const Tracks: React.FC = () => {
 
     return (
         <>
-            <Button
-                style={{ margin: 10 }}
-                stretched={false}
-                mode='outline'
-                size='l'
-                loading={MainPageStore.loadindRandomTrack}
-                onClick={() => MainPageStore.openRandomTrack()}
-            >
-                Случайный трек
-            </Button>
+            <RandomTrackButton />
+            <ProposeTrackButton />
 
             {!!MainPageStore.lastViewedTracks.length && <TrackList tracks={MainPageStore.lastViewedTracks} title='Последние просмотренные треки' />}
             {!!MainPageStore.lastAddedTracks.length && <TrackList tracks={MainPageStore.lastAddedTracks} title='Новые треки' />}

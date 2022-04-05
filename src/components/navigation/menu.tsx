@@ -3,7 +3,7 @@ import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28LikeOutline, Icon28Add
 import { JsxElement } from 'typescript'
 import { Global } from 'stores/root-store'
 
-export type iPageKey = 'tracks' | 'chords' | 'favourites' | 'proposeTrack' | 'admin'
+export type iPageKey = 'tracks' | 'chords' | 'favourites' | 'admin'
 
 export interface iPage {
   key: iPageKey
@@ -26,12 +26,7 @@ const pages: iPage[] = [
     key: 'favourites',
     name: 'Моя коллекция',
     iconComponent: <Icon28LikeOutline />
-  },
-  {
-    key: 'proposeTrack',
-    name: 'Предложить трек',
-    iconComponent: <Icon28AddSquareOutline />
-  },
+  }
 ]
 
 const adminPages: iPage[] = [

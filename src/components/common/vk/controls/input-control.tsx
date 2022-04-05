@@ -6,12 +6,17 @@ export interface iProps {
     value: string
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
     title: string
+    error?: string
 }
 
-const InputControl: React.FC<iProps> = ({ title, value, onChange }) => {
+const InputControl: React.FC<iProps> = ({ title, value, onChange, error }) => {
 
     return (
-        <FormItem top={title}>
+        <FormItem 
+            top={title}
+            status={error ? 'error' : 'default'}
+            bottom={error}
+         >
             <Input value={value} onChange={onChange} />
         </FormItem>
     )

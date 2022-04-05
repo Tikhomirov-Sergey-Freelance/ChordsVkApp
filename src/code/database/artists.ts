@@ -69,7 +69,7 @@ export const loadShortArtistById = async (id: string) => {
     }
 }
 
-export const saveArtist = async (artist: iArtist) => {
+export const addArtist = async (artist: iArtist) => {
 
     const firestore = await Firebase.getFirestore()
 
