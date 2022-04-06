@@ -1937,6 +1937,11 @@
   "resolved" "https://registry.npmjs.org/@types/uuid/-/uuid-8.3.3.tgz"
   "version" "8.3.3"
 
+"@types/vk-openapi@^1.6.1":
+  "integrity" "sha512-T5kfaOQCQAttxyV711Y4NUPTxrG3UGlMcIJ+1dL42XGMRd8jv6XYmKiOGDPXTmTPP6EIgPW0bCBns7wEotUmfA=="
+  "resolved" "https://registry.npmjs.org/@types/vk-openapi/-/vk-openapi-1.6.1.tgz"
+  "version" "1.6.1"
+
 "@types/webpack-dev-middleware@*", "@types/webpack-dev-middleware@5.0.2":
   "integrity" "sha512-S3WUtef//Vx6WETyWZkM45WqgRxWSaqbpWtPcKySNRhiQNyhCqM9EueggaMX3L9N2IbG4dJIK5PgYcAWUifUbA=="
   "resolved" "https://registry.npmjs.org/@types/webpack-dev-middleware/-/webpack-dev-middleware-5.0.2.tgz"
@@ -8582,6 +8587,11 @@
   "integrity" "sha1-IpnwLG3tMNSllhsLn3RSShj2NPw="
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
+
+"vk-openapi@^0.1.2":
+  "integrity" "sha1-uLe0mxUAxvRUDodJcLmkgpWFJ3I="
+  "resolved" "https://registry.npmjs.org/vk-openapi/-/vk-openapi-0.1.2.tgz"
+  "version" "0.1.2"
 
 "warning@^4.0.2":
   "integrity" "sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w=="

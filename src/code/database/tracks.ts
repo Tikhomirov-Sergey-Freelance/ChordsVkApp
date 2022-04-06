@@ -219,11 +219,6 @@ export const loadTracksByQuery = async (q: string) => {
             where('searchNameStartArtist', '>=', q),
             where('searchNameStartArtist', '<=', q + '\uf8ff'))
 
-        const searchByNameWithoutArtist = query(
-            collection(firestore, 'short-tracks'),
-            where('searchNameWithoutArtist', '>=', q),
-            where('searchNameWithoutArtist', '<=', q + '\uf8ff'))
-
         const searchByNameWithEndArtist = query(
             collection(firestore, 'short-tracks'),
             where('searchNameEndArtist', '>=', q),
@@ -231,7 +226,6 @@ export const loadTracksByQuery = async (q: string) => {
 
         const results = await Promise.all([
             getDocs(searchByNameWithStartArtist),
-            getDocs(searchByNameWithoutArtist),
             getDocs(searchByNameWithEndArtist)
         ])
 

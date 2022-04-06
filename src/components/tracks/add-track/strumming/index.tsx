@@ -16,7 +16,6 @@ export interface iProps {
 
 const Strumming: React.FC<iProps> = observer(({ store }) => {
 
-
     const getIcon = (value: StrummingType) => {
 
         switch (value) {

@@ -9,6 +9,7 @@ import '@vkontakte/vkui/dist/vkui.css'
 
 import ViewList from './views'
 import { VK } from 'stores/root-store'
+import { observer } from 'mobx-react-lite'
 
 declare global {
   interface Window {
@@ -39,4 +40,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App
+export default observer(App)

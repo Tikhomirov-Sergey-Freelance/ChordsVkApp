@@ -32,10 +32,10 @@ export class GlobalStore {
 
         if(lastTracks.includes(trackId)) {
             const index = lastTracks.findIndex(track => track === trackId)
-            lastTracks.splice(index)
+            lastTracks.splice(index, 1)
         }
     
-        if(lastTracks.length === 5) {
+        if(lastTracks.length >= 3) {
             lastTracks.pop()
         }
     

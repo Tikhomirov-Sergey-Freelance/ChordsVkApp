@@ -16,10 +16,14 @@ const Tracks: React.FC = () => {
 
     return (
         <>
-            <RandomTrackButton />
-            <ProposeTrackButton />
 
             {!!MainPageStore.lastViewedTracks.length && <TrackList tracks={MainPageStore.lastViewedTracks} title='Последние просмотренные треки' />}
+           
+            <Group style={{ display: 'flex', justifyContent: 'center' }}>
+                <RandomTrackButton />
+                <ProposeTrackButton />
+            </Group>
+
             {!!MainPageStore.lastAddedTracks.length && <TrackList tracks={MainPageStore.lastAddedTracks} title='Новые треки' />}
 
         </>

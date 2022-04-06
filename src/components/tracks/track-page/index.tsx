@@ -2,7 +2,9 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { Group, withModalRootContext, PanelHeader, PanelHeaderClose, PanelHeaderEdit } from '@vkontakte/vkui'
 import { iChordsWord, iTrackView } from 'types/track'
-import GlobalStore from 'stores/root/global-store'
+import { Modal } from 'stores/root-store'
+
+import TrackPageStore from 'stores/pages/track-page-store'
 
 import Spinner from '../../common/preloaders/panel-preloader'
 import Artist from './artist'
@@ -11,8 +13,7 @@ import Chords from './chords'
 import Intro from './intro'
 import Text from './text'
 import TrackVideo from './video'
-import TrackPageStore from 'stores/pages/track-page-store'
-import { Modal } from 'stores/root-store'
+import Comments from './comments'
 
 interface iProps {
 
@@ -27,14 +28,16 @@ const TrackModal: React.FC<iProps> = () => {
 
     return (
 
-        <Group>
+        <Group style={{ paddingBottom: 50 }}>
+
             <Artist track={store.track} />
             <Strumming track={store.track} />
             <Chords chords={store.instrumentChords} loading={store.loadingChords}/>
             <Intro track={store.track}/>
             <Text track={store.track} />
             <TrackVideo track={store.track} />
-  
+            <Comments track={store.track} />
+
         </Group>
     )
 }

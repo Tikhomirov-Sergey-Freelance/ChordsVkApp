@@ -24,6 +24,8 @@ export class AddTrackStore {
     name: string
     id: string
     artistId: string
+    riff: string
+    riffNote: string
     strumming: StrummingType[] = defaultStrumming
     strummingNote: string
     intro: string[] = []
@@ -98,6 +100,8 @@ export class AddTrackStore {
             name: this.name,
             index: 0,
             artistId: this.artistId,
+            riff: this.riff || '',
+            riffNote: this.riffNote || '',
             strumming: this.strumming,
             strummingNote: this.strummingNote || '',
             intro: this.intro || [],

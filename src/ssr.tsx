@@ -26,6 +26,7 @@ const getHtml = (reactHtml, data) => {
         <link rel="shortcut icon" type="image/png" href="/images/favicon.jpg">
         <title>Аккорды</title>
         <link href="/main.css" rel="stylesheet">
+        <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
     </head>
     <body>
         <script>

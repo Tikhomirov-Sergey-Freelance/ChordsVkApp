@@ -12,7 +12,7 @@ export interface iProps {
 
 const Strumming: React.FC<iProps> = ({ track }) => {
 
-    if (!track.strumming.length) null
+    if (!track.strumming.length) return null
 
     const getIcon = (value: StrummingType) => {
 

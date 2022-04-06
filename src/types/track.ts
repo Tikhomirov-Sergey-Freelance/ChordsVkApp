@@ -11,7 +11,6 @@ export interface iShortTrack {
     randomIndex: number
 
     searchNameStartArtist?: string
-    searchNameWithoutArtist?: string
     searchNameEndArtist?: string
 }
 
@@ -20,6 +19,8 @@ export interface iTrack {
     index: number
     name: string
     artistId: string
+    riff: string
+    riffNote: string
     strumming: StrummingType[]
     strummingNote: string
     intro: string[]
@@ -63,6 +64,8 @@ export const defaultTrack: iTrack = {
     index: 0,
     name: '',
     artistId: '',
+    riff: '',
+    riffNote: '',
     strumming: defaultStrumming,
     strummingNote: '',
     intro: [],

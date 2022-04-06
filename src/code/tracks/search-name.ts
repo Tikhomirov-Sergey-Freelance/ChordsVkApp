@@ -1,5 +1,4 @@
 import { loadShortArtistById } from 'code/database/artists'
-import { loadShortTrackById } from 'code/database/tracks'
 import { iShortArtist } from 'types/artists'
 import { iShortTrack } from 'types/track'
 
@@ -15,7 +14,6 @@ export const setTrackSearchName = async (track: iShortTrack, artist: iShortArtis
         const trackName = track.name.toLocaleUpperCase().split(' ').filter(word => word).join(' ')
 
         track.searchNameStartArtist = `${artistName} ${trackName}`
-        track.searchNameWithoutArtist = trackName
         track.searchNameEndArtist = `${trackName} ${artistName}`
 
         return true

@@ -10,7 +10,7 @@ const RandomTrackButton: React.FC = () => {
 
     return <Button
         style={{ margin: 10 }}
-        stretched={false}
+        stretched
         mode='outline'
         size='l'
         loading={MainPageStore.loadindRandomTrack}

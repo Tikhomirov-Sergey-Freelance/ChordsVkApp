@@ -15,6 +15,7 @@ const ProposeTrackButton: React.FC = () => {
 
     return <Button
         style={{ margin: 10 }}
+        stretched
         size='l'
         mode='outline'
         key='button'
