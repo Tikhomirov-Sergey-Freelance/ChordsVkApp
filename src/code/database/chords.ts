@@ -6,7 +6,9 @@ export const addChord = async (chord: iChord) => {
 
     try {
 
-        const document = doc(await Firebase.getFirestore(), `chords/${chord.name}`)
+        const id = `${chord.instrument === 'guitar' ? '' : 'ukulele' }${chord.name}`
+
+        const document = doc(await Firebase.getFirestore(), `chords/${id}`)
         return setDoc(document, chord)
 
     } catch (error) {
