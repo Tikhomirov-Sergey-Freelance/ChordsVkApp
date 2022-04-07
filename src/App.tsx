@@ -30,7 +30,7 @@ try {
 const App: React.FC = () => {
 
   return (
-    <ConfigProvider appearance={'dark'}>
+    <ConfigProvider appearance={VK.appearance}>
       <AdaptivityProvider>
         <AppRoot>
           <ViewList />
