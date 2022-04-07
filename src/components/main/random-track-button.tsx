@@ -9,8 +9,7 @@ import { toJS } from 'mobx'
 const RandomTrackButton: React.FC = () => {
 
     return <Button
-        style={{ margin: 10 }}
-        stretched
+        style={{ margin: '10px 0', width: '100%' }}
         mode='outline'
         size='l'
         loading={MainPageStore.loadindRandomTrack}

@@ -27,6 +27,7 @@ export class ModalPageStore {
 
     constructor() {
         makeAutoObservable(this)
+        this.closeModal = this.closeModal.bind(this)
     }  
 
     openModal(key: ModalKey, modalData: ModalComponentData = {}) {

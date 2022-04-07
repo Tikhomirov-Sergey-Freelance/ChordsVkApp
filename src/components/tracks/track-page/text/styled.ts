@@ -2,7 +2,6 @@ import Styled from 'styled-components'
 
 export default Styled.div`
 
-    background: #f2f3f5;
     border-radius: inherit;
     border: 1px solid rgba(0, 0, 0, 0.12);
     min-height: 60px;
@@ -10,7 +9,8 @@ export default Styled.div`
     padding: 17px 11px;
     box-sizing: border-box;
     border-radius: 8px;
-
+    z-index: 2;
+    
     .space-row {
         margin-top: 1.5rem;
     }    

@@ -13,7 +13,6 @@ import Chords from './chords'
 import Intro from './intro'
 import Text from './text'
 import TrackVideo from './video'
-import Comments from './comments'
 
 interface iProps {
 
@@ -36,7 +35,6 @@ const TrackModal: React.FC<iProps> = () => {
             <Intro track={store.track}/>
             <Text track={store.track} />
             <TrackVideo track={store.track} />
-            <Comments track={store.track} />
 
         </Group>
     )

@@ -22,7 +22,7 @@ const AddArtistForm: React.FC = observer(() => {
             <InputControl title='Название' value={store.name} onChange={event => store.changeProperty('name', event.target.value)} />
             <Artist store={store} />
             <InputControl title='Перебор' value={store.riff} onChange={event => store.changeProperty('riff', event.target.value)} />
-            <InputControl title='Примечание к перебору' value={store.riff} onChange={event => store.changeProperty('riff', event.target.value)} />
+            <InputControl title='Примечание к перебору' value={store.riffNote} onChange={event => store.changeProperty('riffNote', event.target.value)} />
             <Strumming store={store} />
             <InputControl title='Примечание к бою' value={store.strummingNote} onChange={event => store.changeProperty('strummingNote', event.target.value)} />
             <Into store={store} />

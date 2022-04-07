@@ -19,7 +19,7 @@ const Tracks: React.FC = () => {
 
             {!!MainPageStore.lastViewedTracks.length && <TrackList tracks={MainPageStore.lastViewedTracks} title='Последние просмотренные треки' />}
            
-            <Group style={{ display: 'flex', justifyContent: 'center' }}>
+            <Group style={{ padding: 10 }}>
                 <RandomTrackButton />
                 <ProposeTrackButton />
             </Group>

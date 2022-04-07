@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { FormItem } from '@vkontakte/vkui'
+import { FormItem, FormField } from '@vkontakte/vkui'
 
 import AddTrackStore from '../../../../stores/pages/add-track-store'
 import ModalPageStore from '../../../../stores/root/modal-page-store'
@@ -18,16 +18,17 @@ const Chords: React.FC<iProps> = observer(({ store }) => {
     return (
         <FormItem top='Аккодры'>
 
-            <Styled> 
+            <FormField style={{ margin: 10 }}>
+                <Styled>
 
-                {
-                    store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} words={row.words} spaceRow={row.spaceRow} store={store} />)
-                }
+                    {
+                        store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} words={row.words} spaceRow={row.spaceRow} store={store} />)
+                    }
 
-            </Styled>
-              
+                </Styled>
+            </FormField>
         </FormItem>
-    ) 
+    )
 })
 
 export default Chords 

@@ -33,17 +33,6 @@ export class VKStore {
     async initVk() {
 
         VK.send('VKWebAppInit', {})
-
-        if(global['window'] && window['VK']) {
-            window['VK'].init({ apiId: 8012795, onlyWidgets: true });
-        }
-    }
-
-    mountComments(pageId: string) {
-
-        if(global['window'] && window['VK']) {
-            window['VK'].Widgets.Comments('vk_comments', { limit: 10 }, pageId);
-        }
     }
 }
 
