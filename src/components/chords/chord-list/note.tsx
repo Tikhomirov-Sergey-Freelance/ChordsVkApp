@@ -1,8 +1,10 @@
 import React from 'react'
 import { Group, Header, CardGrid, Card } from '@vkontakte/vkui'
 import { iChord } from '../../../types/chord'
+import { Global } from 'stores/root-store'
 
 import Chord from './chord'
+
 
 export interface iProps {
     note: string

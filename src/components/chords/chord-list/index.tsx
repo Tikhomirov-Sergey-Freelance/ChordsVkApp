@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Panel, PanelHeader, View, PanelSpinner, Group } from '@vkontakte/vkui'
+import { Panel, PanelHeader, View, PanelSpinner, Group, CardGrid } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import ChordsListStore from 'stores/pages/chords-list-store'
 import { Global } from 'stores/root-store'
@@ -8,6 +8,7 @@ import PanelPreloader from '../../common/preloaders/panel-preloader'
 import Instrument from '../instrument/change-instrument'
 import SelectNote from 'components/common/notes/select-note'
 import Note from '../../chords/chord-list/note'
+import Chord from './chord'
 
 
 const ChordsList: React.FC = observer(() => {
@@ -30,7 +31,15 @@ const ChordsList: React.FC = observer(() => {
 
             </Group>
 
-            <Note note={ChordsListStore.note} chords={ChordsListStore.currentNoteChords} />
+            <Group>
+                <CardGrid size='s'>
+
+                    {
+                        ChordsListStore.currentNoteChords.map(chord => <Chord key={chord.name + Global.currentInstrument} chord={chord} />)
+                    }
+
+                </CardGrid>
+            </Group>
         </>
     )
 })
