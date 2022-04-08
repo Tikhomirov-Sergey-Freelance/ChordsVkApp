@@ -46,6 +46,7 @@ export class AddChordsStore implements iChord {
         makeAutoObservable(this, undefined, { deep: true })
 
         this.saveChord = this.saveChord.bind(this)
+        this.changeNote = this.changeNote.bind(this)
 
         reaction(() => Global.currentInstrument,
             () => {
@@ -57,7 +58,7 @@ export class AddChordsStore implements iChord {
     }
 
     fillParams(params: iChord) {
-
+        
         for (let prop in params) {
             this[prop as keyof this] = params[prop as keyof iChord] as any
         }
@@ -89,7 +90,6 @@ export class AddChordsStore implements iChord {
 
     changeInstrtument(instrument: MusicalInstrument) {
 
-        //this.instrument = instrument
         Global.changeInstrument(instrument)
 
         this.fillStrings()  
@@ -112,7 +112,7 @@ export class AddChordsStore implements iChord {
         
         snackbar('Добавили аккорд')
 
-        const newParams = { ...defauiltParams, note: this.chordParams.note, name: this.chordParams.note }
+        const newParams = { ...defauiltParams, note: this.chordParams.note, name: this.chordParams.note, instrument: Global.currentInstrument }
 
         this.fillParams(newParams) 
     }
