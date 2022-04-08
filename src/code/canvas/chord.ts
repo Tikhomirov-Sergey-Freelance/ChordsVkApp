@@ -1,16 +1,16 @@
-import { iParams as iChordParams } from '../../stores/pages/add-chords-store'
+import { iChord } from 'types/chord'
 
 class ChordCanvas {
 
     canvas: HTMLCanvasElement
     context: CanvasRenderingContext2D
 
-    params: iChordParams
+    params: iChord
 
     stepStrings: number
     stepFrets: number
     padding: number = 10
-    topPadding: number = this.padding * 2
+    topPadding: number = this.padding * 2.5
 
     stringsColor = 'black'
     fretsColor = '#99a2ad'
@@ -20,7 +20,7 @@ class ChordCanvas {
         this.context = this.canvas.getContext('2d')!
     }
 
-    draw(params: iChordParams, width: number, height: number) {
+    draw(params: iChord, width: number, height: number) {
 
         this.params = params
         this.canvas.width = width
@@ -141,9 +141,10 @@ class ChordCanvas {
             this.context.strokeText('X', x - 2.5, this.topPadding - 2)
         }
 
-        this.context.lineWidth = 0.5
+        this.context.lineWidth = 0.6
+        this.context.font = '13px Arial'
         this.context.textAlign = 'center'
-        this.context.strokeText(this.params.name, this.canvas.width / 2, this.topPadding - 12)
+        this.context.strokeText(this.params.name, this.canvas.width / 2, this.topPadding - 13)
     }
 
     drawLine(startX: number, startY: number, endX: number, endY: number) {

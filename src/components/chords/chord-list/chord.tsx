@@ -15,14 +15,14 @@ const Chord: React.FC<iProps> = ({ chord }) => {
     useEffect(() => {
 
         chordCanvasRef.current = new ChordCanvas(canvas.current!)
-        chordCanvasRef.current!.draw(chord, 110, 170)
+        chordCanvasRef.current!.draw(chord, 100, 160)
 
     }, [])      
 
     return (
         <Card>
             <div style={{ padding: 7, display: 'flex', justifyContent: 'center' }}>
-                <canvas ref={canvas} width={110} height={170}/>
+                <canvas ref={canvas} width={100} height={160}/>
             </div>
         </Card>
     )

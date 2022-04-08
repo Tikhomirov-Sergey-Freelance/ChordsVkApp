@@ -5,7 +5,6 @@ import { notes } from '../../code/data/notes'
 
 import ChordCanvas from '../../code/canvas/chord'
 import { Global, Router } from 'stores/root-store'
-import { collection, addDoc, doc, setDoc } from '@firebase/firestore'
 import { snackbar } from '../../code/common/alerts'
 import { iChord, iGuitarString } from 'types/chord'
 import { addChord } from 'code/database/chords'

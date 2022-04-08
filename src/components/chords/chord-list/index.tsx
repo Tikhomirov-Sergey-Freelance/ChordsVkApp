@@ -1,36 +1,36 @@
-import { Panel, PanelHeader, View, PanelSpinner } from '@vkontakte/vkui'
 import React, { useEffect } from 'react'
+import { Panel, PanelHeader, View, PanelSpinner, Group } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import ChordsListStore from 'stores/pages/chords-list-store'
+import { Global } from 'stores/root-store'
 
 import PanelPreloader from '../../common/preloaders/panel-preloader'
 import Instrument from '../instrument/change-instrument'
+import SelectNote from 'components/common/notes/select-note'
 import Note from '../../chords/chord-list/note'
-import { Global } from 'stores/root-store'
-import ListVirtualized from '../../common/virtualized/virtualized-list'
+
 
 const ChordsList: React.FC = observer(() => {
 
     useEffect(() => {
         ChordsListStore.loadChords()
     }, [])
-    
-    const chords = Global.currentInstrument === 'guitar' ? ChordsListStore.guitarChords : ChordsListStore.ukuleleChords
-    
-    if(!chords || !chords.size) return <PanelPreloader title='Аккорды'/>
 
-    const keys = Array.from(chords.keys())
+    if (ChordsListStore.loading || !ChordsListStore.loaded) return <PanelPreloader title='Аккорды' />
 
     return (
         <>
 
             <PanelHeader>Аккорды</PanelHeader>
 
-            <Instrument />
+            <Group>
 
-            {
-                keys.map(note => <Note key={note} note={note} chords={chords.get(note)} />)
-            }
+                <Instrument />
+                <SelectNote note={ChordsListStore.note} onChangeNote={ChordsListStore.changeNote} />
+
+            </Group>
+
+            <Note note={ChordsListStore.note} chords={ChordsListStore.currentNoteChords} />
         </>
     )
 })

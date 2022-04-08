@@ -8,7 +8,7 @@ import Store from '../../../stores/pages/add-chords-store'
 import HeaderWithBack from '../../vk/layout/header/heade-and-back'
 import Canvas from './drawing-fret'
 import Instrument from '../instrument/change-instrument'
-import Notes from './notes'
+import Notes from '../../common/notes/select-note'
 import Name from './name'
 import StartFret from './startFret'
 import Barre from './barre'
@@ -27,7 +27,7 @@ const AddChordsForm: React.FC = observer(() => {
             <Group>
 
                 <Instrument />
-                <Notes />
+                <Notes note={Store.note} onChangeNote={Store.changeNote} />
                 <Name />
 
                 <Canvas />

@@ -12,7 +12,7 @@ export interface iProps {
 const Note: React.FC<iProps> = ({ note, chords }) => {
     
     return (
-        <Group header={<Header mode="secondary">{note}</Header>}>
+        <Group>
             <CardGrid size='s'>
 
             {

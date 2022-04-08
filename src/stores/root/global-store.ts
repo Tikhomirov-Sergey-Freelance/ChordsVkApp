@@ -9,6 +9,8 @@ export class GlobalStore {
     currentInstrument: MusicalInstrument = 'guitar'
     lastViewedTracks: string[] = []
 
+    currentInstrumentKey = 'currentInstrument'
+
     constructor() {
 
         if(!global['window']) return
@@ -16,6 +18,8 @@ export class GlobalStore {
         this.isAdmin = window.isAdmin
         this.lastViewedTracks = getLastTracksFromLocalStorage()
 
+        this.currentInstrument = this.loadCurrentInstrument()
+        
         makeObservable(this, {
             currentInstrument: observable,
             lastViewedTracks: observable
@@ -24,6 +28,7 @@ export class GlobalStore {
     
     changeInstrument(instrument: MusicalInstrument) {
         this.currentInstrument = instrument
+        this.saveCurrentInstrument()
     }
 
     saveLastViewedTrack(trackId: string) {
@@ -43,6 +48,16 @@ export class GlobalStore {
         this.lastViewedTracks = lastTracks
 
         saveLastTrackToLocalStorage(this.lastViewedTracks)
+    }
+
+    saveCurrentInstrument() {
+        if(global['localStorage']) {
+            localStorage.setItem(this.currentInstrumentKey, this.currentInstrument)
+        }
+    }
+
+    loadCurrentInstrument(): MusicalInstrument {
+        return (localStorage.getItem(this.currentInstrument) || 'guitar') as MusicalInstrument
     }
 }
 
