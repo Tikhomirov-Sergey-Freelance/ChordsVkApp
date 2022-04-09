@@ -2,6 +2,7 @@ import React from 'react'
 import { Group, CardScroll, HorizontalCell, InfoRow, SimpleCell, Spinner, Header, Card } from '@vkontakte/vkui'
 import  HorizontalScroll from '../../../common/scrollbar/horizontal-scroll'
 import { observer } from 'mobx-react-lite'
+import { Global } from 'stores/root-store'
 import { iChord } from 'types/chord'
 
 import Chord from '../../../chords/chord-card'
@@ -35,7 +36,7 @@ const Chords: React.FC<iProps> = ({ chords, loading }) => {
             >
 
                     {
-                        chords.map(chord => <Chord key={chord.name} chord={chord} />)
+                        chords.map(chord => <Chord key={chord.name + Global.changeInstrument} chord={chord} />)
                     }
 
             </HorizontalScroll>
