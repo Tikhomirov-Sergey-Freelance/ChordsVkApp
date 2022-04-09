@@ -36,8 +36,6 @@ export class Database {
 
     getConfigPath(): string {
 
-        console.log(this.devPath, this.prodPath)
-
         if (existsSync(this.devPath)) {
             return this.devPath
         }
