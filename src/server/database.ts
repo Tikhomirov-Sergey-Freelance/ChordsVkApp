@@ -1,10 +1,13 @@
 import admin, { auth } from 'firebase-admin'
-import fs from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
-class Database {
+export class Database {
 
     app: admin.app.App
+
+    prodPath = resolve(__dirname, '..', 'ChordsPrivate/firebase/service-account-key.json')
+    devPath = resolve(__dirname, '..', 'private/service-account-key.json')
 
     init() {
 
@@ -16,7 +19,7 @@ class Database {
                 throw new Error('Не найдет файл конфигурации.')
             }
 
-            const config = JSON.parse(fs.readFileSync(configPath).toString('utf8'))
+            const config = JSON.parse(readFileSync(configPath).toString('utf8'))
             this.app = admin.initializeApp({
                 credential: admin.credential.cert(config),
                 databaseURL: "https://chords-7f150.firebaseio.com"
@@ -33,17 +36,14 @@ class Database {
 
     getConfigPath(): string {
 
-        let prodPath = resolve(__dirname, '..', 'ChordsPrivate/firebase/service-account-key.json')
-        let devPath = resolve(__dirname, '..', 'private/service-account-key.json')
+        console.log(this.devPath, this.prodPath)
 
-        let path
-
-        if (fs.existsSync(devPath)) {
-            return devPath
+        if (existsSync(this.devPath)) {
+            return this.devPath
         }
 
-        if (fs.existsSync(prodPath)) {
-            return prodPath
+        if (existsSync(this.prodPath)) {
+            return this.prodPath
         }
 
         return null

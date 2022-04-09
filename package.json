@@ -106,6 +106,7 @@
     "start:server": "nodemon index.js --watch dist/server.js",
     "start": "set NODE_ENV=development&&set HTTP=true&& npm-run-all --print-label --parallel start:*",
     "start-https": "set NODE_ENV=development&& npm-run-all --print-label --parallel start:*",
+    "firebase-to-json": "nodemon ./src/server/firebase-to-json.ts --watch ./src",
     "postinst": "npm install node_modules/@vkontakte/vkui/",
     "build": "webpack"
   },

@@ -2,7 +2,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { SSRWrapper } from '@vkontakte/vkui'
 
-import App from './App'
+import App from '../App'
 
 export default (userAgent, appParams) => {
 

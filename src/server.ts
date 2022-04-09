@@ -5,7 +5,7 @@ import validateVK from './server/vk'
 import fireBaseToken from './server/auth'
 import http from 'http'
 
-import getApp from './ssr'
+import getApp from './server/ssr'
 import initHttps from './server/ssl'
 import { isHttp } from './code/env'
 
