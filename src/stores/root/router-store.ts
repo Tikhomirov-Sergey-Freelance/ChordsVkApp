@@ -1,3 +1,4 @@
+import { openTrack } from 'code/tracks/open-track'
 import { makeAutoObservable, makeObservable, observable, toJS } from 'mobx'
 import pages, { iPageKey } from '../../components/navigation/menu'
 import { Modal } from '../root-store'
@@ -22,6 +23,8 @@ export class RouterStore {
     constructor() {
 
         if (!global['window']) return
+
+        console.log(location)
 
         this.setLocation()
         this.bindEvents()
@@ -117,6 +120,15 @@ export class RouterStore {
                 Modal.openFromHistory(state.modalKey, state.modalData)
             }
         })
+    }
+
+    checkHash() {
+
+        const hash = location.hash
+        if(!hash || !hash.startsWith('#track=')) return
+
+        const [,id] = hash.split('track=')
+        openTrack(id)
     }
 
     get locationData() {

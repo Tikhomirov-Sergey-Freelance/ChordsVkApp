@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import { Database } from '../database'
 
 const collections = ['chords', 'admins']
-const dirPath = resolve(__dirname, '../..', 'data')
+const dirPath = resolve(__dirname, '../../..', 'data')
 
 interface iExportData {
     id: string, data: any
@@ -15,7 +15,7 @@ const firebaseToJson = async () => {
     console.log('Начало экспорта')
 
     const database = new Database()
-    database.devPath = resolve(__dirname, '../..', 'ChordsPrivate/firebase/service-account-key.json')
+    database.devPath = resolve(__dirname, '../../..', 'ChordsPrivate/firebase/service-account-key.json')
     database.init()
     
     const store = firestore(database.app)

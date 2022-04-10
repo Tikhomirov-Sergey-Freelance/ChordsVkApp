@@ -3,6 +3,7 @@ import { ModalPage } from '@vkontakte/vkui'
 
 import ModalPageStore from '../../../stores/root/modal-page-store'
 
+import Snackbar from 'components/common/dialogs/snackbar'
 import Artist from '../../../components/artists/artist-page'
 import ArtistHeader from '../../../components/artists/artist-page/header'
 
@@ -13,4 +14,5 @@ export default <ModalPage
     settlingHeight={100}
 >
     <Artist />
+    <Snackbar />
 </ModalPage> 

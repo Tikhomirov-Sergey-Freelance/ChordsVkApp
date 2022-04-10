@@ -1,6 +1,6 @@
 import React from 'react'
 import { ModalPageHeader, PanelHeaderClose, useAdaptivity, ViewWidth, PanelHeaderEdit, PanelHeaderButton } from '@vkontakte/vkui'
-import { Icon24Like, Icon24LikeOutline } from '@vkontakte/icons'
+import { Icon24Like, Icon24LikeOutline, Icon24ShareOutline } from '@vkontakte/icons'
 import { editTrack } from 'code/tracks/edit-track'
 import { observer } from 'mobx-react-lite'
 import GlobalStore from 'stores/root/global-store'
@@ -32,6 +32,7 @@ const TrackHeader: React.FC<iProps> = () => {
                         <PanelHeaderButton onClick={() => store.changeFavourite()}>
                             {store.isFavorite ? <Icon24Like /> : <Icon24LikeOutline />}
                         </PanelHeaderButton>}
+                        <PanelHeaderButton onClick={() => store.share()}><Icon24ShareOutline /></PanelHeaderButton>
                     {Global.isAdmin && <PanelHeaderEdit onClick={() => editTrack(store.track)} />}
                 </>
             }

@@ -1941,6 +1941,11 @@
   "resolved" "https://registry.npmjs.org/@types/uuid/-/uuid-8.3.3.tgz"
   "version" "8.3.3"
 
+"@types/vk-openapi@^1.6.1":
+  "integrity" "sha512-T5kfaOQCQAttxyV711Y4NUPTxrG3UGlMcIJ+1dL42XGMRd8jv6XYmKiOGDPXTmTPP6EIgPW0bCBns7wEotUmfA=="
+  "resolved" "https://registry.npmjs.org/@types/vk-openapi/-/vk-openapi-1.6.1.tgz"
+  "version" "1.6.1"
+
 "@types/webpack-dev-middleware@*", "@types/webpack-dev-middleware@5.0.2":
   "integrity" "sha512-S3WUtef//Vx6WETyWZkM45WqgRxWSaqbpWtPcKySNRhiQNyhCqM9EueggaMX3L9N2IbG4dJIK5PgYcAWUifUbA=="
   "resolved" "https://registry.npmjs.org/@types/webpack-dev-middleware/-/webpack-dev-middleware-5.0.2.tgz"
@@ -6707,7 +6712,7 @@
     "source-map" "^0.5.6"
     "supports-color" "^3.2.3"
 
-"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.0", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.2.14", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.3", "postcss@^8.3.11", "postcss@^8.3.3", "postcss@^8.4.5", "postcss@>= 5.0.0", "postcss@>4 <9":
+"postcss@^5.2.18", "postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.0", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.2.14", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.3", "postcss@^8.3.11", "postcss@^8.3.3", "postcss@^8.4.5", "postcss@>4 <9":
   "integrity" "sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.12.tgz"
   "version" "8.4.12"

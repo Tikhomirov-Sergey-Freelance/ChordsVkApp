@@ -9,6 +9,8 @@ import GlobalStore from '../root/global-store'
 import { incrementTrackView } from 'code/database/track-metrics'
 import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/database/favorite'
 import { Modal, Favorites, Global } from '../root-store'
+import { getTrackLink } from 'code/tracks/track-link'
+import { snackbar } from 'code/common/alerts'
 
 export class TrackPageStore {
 
@@ -91,6 +93,11 @@ export class TrackPageStore {
 
     async changeFavourite() {
         Favorites.changeFavourite(this.track.id, this.isFavorite ? 'delete' : 'add')
+    }
+
+    async share() {
+        await navigator.clipboard.writeText(getTrackLink(this.track.id))
+        snackbar('Ссылка на трек скопирована в буффер обмена')
     }
 }
 

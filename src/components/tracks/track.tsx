@@ -16,7 +16,7 @@ const Track: React.FC<iProps> = ({ track }) => {
 
     const onOpenTrack = () => openTrack(track.id)
     const isFavorite = Favorites.favorites.includes(track.id)
-    const changeFaforite = (event: React.MouseEvent) => { 
+    const changeFaforite = (event: React.MouseEvent) => {
         Favorites.changeFavourite(track.id, isFavorite ? 'delete' : 'add')
         event.preventDefault()
         event.stopPropagation()
@@ -28,9 +28,11 @@ const Track: React.FC<iProps> = ({ track }) => {
             description={<Text weight='regular'>{track.artist.name}</Text>}
             before={<Avatar size={32} mode="app" src={track.artist.artistImage} />}
             after={
-                <IconButton onClick={changeFaforite}>
-                    {isFavorite ? <Icon24Like/> : <Icon24LikeOutline />}
-                </IconButton>
+                <>
+                    <IconButton onClick={changeFaforite}>
+                        {isFavorite ? <Icon24Like /> : <Icon24LikeOutline />}
+                    </IconButton>
+                </>
             }
         >
             {track.name}

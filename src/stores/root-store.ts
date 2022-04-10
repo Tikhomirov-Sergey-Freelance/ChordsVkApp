@@ -19,6 +19,7 @@ export class RootStore {
         //тут что-нибудь, что нужно загрузить
 
         await this.VkStore.bindVKEvents()
+        this.RouterStore.checkHash()
 
         this.FavoritesStore.loadFavorites()
     }
