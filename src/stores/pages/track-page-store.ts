@@ -8,7 +8,7 @@ import { loadChordsByKeys } from 'code/database/chords'
 import GlobalStore from '../root/global-store'
 import { incrementTrackView } from 'code/database/track-metrics'
 import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/database/favorite'
-import { Modal, Favorites, Global } from '../root-store'
+import { Modal, Favorites, Global, VK } from '../root-store'
 import { getTrackLink } from 'code/tracks/track-link'
 import { snackbar } from 'code/common/alerts'
 
@@ -96,8 +96,7 @@ export class TrackPageStore {
     }
 
     async share() {
-        await navigator.clipboard.writeText(getTrackLink(this.track.id))
-        snackbar('Ссылка на трек скопирована в буффер обмена')
+        VK.shareLink(getTrackLink(this.track.id))
     }
 }
 

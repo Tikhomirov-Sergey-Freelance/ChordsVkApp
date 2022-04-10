@@ -42,6 +42,10 @@ export class VKStore {
         { limit: 10, pageUrl: getTrackLink(objectId) }, 
         objectId)
     }
+
+    shareLink(link: string) {
+        VK.send('VKWebAppShare', { link })
+    }
 }
 
 export default VKStore

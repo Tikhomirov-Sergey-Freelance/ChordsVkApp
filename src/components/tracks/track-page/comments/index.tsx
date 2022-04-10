@@ -13,7 +13,7 @@ const Comments: React.FC<iProps> = ({ track }) => {
     }, [])
 
     return (
-        <div id='vk_comments' style={{ minHeight: 200, margin: 20 }} />
+        <div id='vk_comments' style={{ minHeight: 200, width: 300, margin: 20 }} />
     )
 }
 

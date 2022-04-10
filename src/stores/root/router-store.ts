@@ -24,8 +24,6 @@ export class RouterStore {
 
         if (!global['window']) return
 
-        console.log(location)
-
         this.setLocation()
         this.bindEvents()
 
