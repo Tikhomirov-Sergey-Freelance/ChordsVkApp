@@ -10,7 +10,7 @@ export interface iProps {
 const Comments: React.FC<iProps> = ({ track }) => {
 
     useEffect(() => {
-        setTimeout(() => VK.mountComments(track.id), 500)
+        setTimeout(() => VK.mountComments(track.id), 2000)
     }, [])
 
     return (
