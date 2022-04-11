@@ -21,10 +21,14 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
         if(!query.length) return
         changeLoading(true)
         const data = await loadChordsByQuery(query)
-        setChordsList(data.map(chord => ({
-            label: chord.name,
-            value: chord.name
-        })))
+        console.log(query, data)
+        const uniqKeys = Array.from((new Set(data.map(chord => chord.name))).values())
+        const options = uniqKeys.map(chord => ({
+            label: chord,
+            value: chord
+        }))
+
+        setChordsList(options)
         changeLoading(false)
     }
 

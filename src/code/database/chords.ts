@@ -18,16 +18,18 @@ export const addChord = async (chord: iChord) => {
 }
 
 export const loadAllChords = async () => {
-    return (await getDocs(collection(await Firebase.getFirestore(), "chords"))).docs.map(doc => doc.data() as iChord)
+    return (await getDocs(collection(await Firebase.getFirestore(), 'chords'))).docs.map(doc => doc.data() as iChord)
 }
 
 export const loadChordsByQuery = async (q: string) => {
 
+    if(!q) return []
+
     const querySnapshot =
         query(
-            collection(await Firebase.getFirestore(), "chords"),
-            where('name', '>=', q.toUpperCase()),
-            where('name', '<=', q.toUpperCase() + '\uf8ff'));
+            collection(await Firebase.getFirestore(), 'chords'),
+            where('searchName', '>=', q.toUpperCase()),
+            where('searchName', '<=', q.toUpperCase() + '\uf8ff'));
 
     const data = await getDocs(querySnapshot)
     return data.docs.map(item => item.data()) as iChord[]
@@ -56,7 +58,7 @@ export const loadChordsByKeys = async (keys: string[]) => {
 
         const querySnapshot =
             query(
-                collection(await Firebase.getFirestore(), "chords"),
+                collection(await Firebase.getFirestore(), 'chords'),
                 where('name', 'in', keys)
             );
 

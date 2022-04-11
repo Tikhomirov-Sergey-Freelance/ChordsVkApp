@@ -1,3 +1,4 @@
+import { Group } from '@vkontakte/vkui'
 import React, { useEffect } from 'react'
 import { VK } from 'stores/root-store'
 import { iTrackView } from 'types/track'
@@ -9,11 +10,13 @@ export interface iProps {
 const Comments: React.FC<iProps> = ({ track }) => {
 
     useEffect(() => {
-        VK.mountComments(track.id)
+        setTimeout(() => VK.mountComments(track.id), 500)
     }, [])
 
     return (
-        <div id='vk_comments' style={{ minHeight: 200, width: 300, margin: 20 }} />
+        <Group style={{ padding: 10 }}>
+            <div id='vk_comments' style={{ minHeight: 200 }} />
+        </Group>
     )
 }
 

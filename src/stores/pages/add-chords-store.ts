@@ -17,10 +17,11 @@ const defauiltParams: iChord = {
     name: notes[0],
     startFret: 0,
     barre: false,
-    guitarStrings: []
+    guitarStrings: [],
+    searchName: ''
 }
 
-export class AddChordsStore implements iChord {
+export class AddChordsStore {
 
     mode: Mode = 'add'
     note: string 
@@ -125,7 +126,8 @@ export class AddChordsStore implements iChord {
             name: this.name,
             startFret: this.startFret,
             barre: this.barre,
-            guitarStrings: [...this.guitarStrings]
+            guitarStrings: [...this.guitarStrings],
+            searchName: this.name.toUpperCase()
         }
 
         return params

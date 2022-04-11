@@ -10,11 +10,10 @@ export default Styled.div`
     z-index: 2;
     
     .space-row {
-        margin-top: 1.5rem;
+        margin-top: 1.4em;
     }    
 
     .chord-word-space {
-        msrgin: 0.5em auto;
         display: inline-block;
     }
 
@@ -22,12 +21,16 @@ export default Styled.div`
         
         display: inline-block;
         position: relative;
-        margin: 0.5em 0;
+
+        &.visible-chord {
+            margin-top: 1.4em;
+        }
 
         .chord {
             position: absolute;
-            top: -1em;
+            top: -1.2em;
             white-space: nowrap;
+            font-weight: bold;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;

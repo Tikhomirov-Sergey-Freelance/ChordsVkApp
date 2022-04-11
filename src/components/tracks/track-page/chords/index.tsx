@@ -4,16 +4,18 @@ import  HorizontalScroll from '../../../common/scrollbar/horizontal-scroll'
 import { observer } from 'mobx-react-lite'
 import { Global } from 'stores/root-store'
 import { iChord } from 'types/chord'
+import { MusicalInstrument } from 'types/global-types'
 
 import Chord from '../../../chords/chord-card'
 import ChangeInstrument from '../../../chords/instrument/change-instrument'
 
 export interface iProps {
     chords: iChord[]
+    currentInstrument: MusicalInstrument
     loading: boolean
 }
 
-const Chords: React.FC<iProps> = ({ chords, loading }) => {
+const Chords: React.FC<iProps> = ({ chords, currentInstrument, loading }) => {
 
     if (loading) {
         return (
@@ -36,7 +38,7 @@ const Chords: React.FC<iProps> = ({ chords, loading }) => {
             >
 
                     {
-                        chords.map(chord => <Chord key={chord.name + Global.changeInstrument} chord={chord} />)
+                        chords.map(chord => <Chord key={currentInstrument + chord.name} chord={chord} />)
                     }
 
             </HorizontalScroll>
@@ -46,4 +48,4 @@ const Chords: React.FC<iProps> = ({ chords, loading }) => {
     )
 }
 
-export default observer(Chords)
+export default Chords

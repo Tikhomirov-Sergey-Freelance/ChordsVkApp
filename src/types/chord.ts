@@ -7,6 +7,7 @@ export interface iChord {
     startFret: number
     barre: boolean
     guitarStrings: iGuitarString[]
+    searchName: string
 }
 
 export interface iGuitarString {
