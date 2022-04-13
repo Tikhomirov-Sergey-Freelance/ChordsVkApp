@@ -1,19 +1,27 @@
 import React from 'react'
-import { iChordsWord } from 'types/track'
+import { ChordRowWord } from 'types/track'
 
 export interface iProps {
-    word: iChordsWord
+    word: ChordRowWord
     selectWord: () => void
     deleteWord: () => void
 }
 
 const ChordsWord: React.FC<iProps> = ({ word, selectWord, deleteWord }) => {
 
+    let chord 
+    let chordWord = word
+
+    if(typeof chordWord !== 'string') {
+        chord = chordWord.chord
+        chordWord = chordWord.word
+    }
+
     return (
         <div className='chord-word'>
-            <span className='word' onClick={word.chord ? deleteWord : selectWord}>{word.word}</span>
-            {word.chord && <span className='chord' style={{ left: `${word.chord?.chordCharPosition / 2}rem` }}>
-                {word.chord?.key}
+            <span className='word' onClick={chord ? deleteWord : selectWord}>{chordWord}</span>
+            {chord && <span className='chord' style={{ left: `${chord?.chordCharPosition / 2}rem` }}>
+                {chord?.key}
             </span>}    
         </div>
     )

@@ -75,6 +75,9 @@ export class TrackPageStore {
 
         this.track.chordsText.rows.forEach(row => 
             row.words.forEach(word => {
+
+                if(typeof word === 'string') return
+
                 if(word.chord && !chordsKey.includes(word.chord.key)) {
                     chordsKey.push(word.chord.key)
                 }

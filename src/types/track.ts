@@ -25,7 +25,7 @@ export interface iTrack {
     strummingNote: string
     intro: string[]
     introNote: string
-    chordsText: iChordsText
+    chordsText?: iChordsText
     chordsNote: string
     trackVideoSrc: string
 
@@ -45,19 +45,21 @@ export interface iChordsText {
 }
 
 export interface iChordsRow {
-    words: iChordsWord[]
-    spaceRow?: boolean
+    words?: ChordRowWord[]
+    space?: boolean
 }
 
 export interface iChordsWord {
     word: string
-    chord?: iChordWordPosition
+    chord: iChordWordPosition
 }
 
 export interface iChordWordPosition {
     key: string
-    chordCharPosition: number
+    pos: number
 }
+
+export type ChordRowWord = iChordsWord | string
 
 export const defaultTrack: iTrack = {
     id: '',

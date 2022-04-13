@@ -7,6 +7,7 @@ import { Global, Modal } from 'stores/root-store'
 import TrackPageStore from 'stores/pages/track-page-store'
 
 import Spinner from '../../common/preloaders/panel-preloader'
+import Name from './name'
 import Artist from './artist'
 import Strumming from './strumming'
 import Chords from './chords'
@@ -30,6 +31,7 @@ const TrackModal: React.FC<iProps> = () => {
 
         <Group style={{ paddingBottom: 50 }}>
 
+            <Name track={store.track}/>
             <Artist track={store.track} />
             <Strumming track={store.track} />
             <Chords chords={store.instrumentChords} currentInstrument={Global.currentInstrument} loading={store.loadingChords}/>

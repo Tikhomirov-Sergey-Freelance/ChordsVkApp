@@ -6,7 +6,7 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 import { snackbar } from '../../../code/common/alerts'
 import { loadArtistById, loadArtistsByIds, loadArtistsByQuery } from 'code/database/artists'
-import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack } from 'types/track'
+import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack, ChordRowWord } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
 
@@ -43,7 +43,7 @@ export class AddTrackStore {
 
         const routData = Router.activePanelData
         const track = routData && routData.track
-
+        debugger
         if (track) {
             this.mode = 'edit'
         } else {
@@ -196,12 +196,12 @@ export class AddTrackStore {
         for (let row of rows) {
 
             if (!row) {
-                chordsText.rows.push({ words: [], spaceRow: true })
+                chordsText.rows.push({ space: true })
                 continue
             }
 
             const words = row.split(' ').filter(word => word)
-            chordsText.rows.push({ words: words.map(word => ({ word })) })
+            chordsText.rows.push({ words: words.map(word => (word)) })
         }
 
         for (let i = 0; i < chordsText.rows.length; i++) {
@@ -210,16 +210,22 @@ export class AddTrackStore {
             const lastRow = this.chordsText?.rows[i]
 
             if (!lastRow) break
+            if(!row.words || !lastRow.words) continue
 
             for (let j = 0; j < row.words.length; j++) {
 
-                const word = row.words[j]
-                const lastWord = lastRow.words[j]
+                let word = row.words[j]
+                let lastWord = lastRow.words[j]
 
-                if (!lastWord) break
+                if (!lastWord || !word) break
 
-                if (word.word === lastWord.word) {
-                    word.chord = lastWord.chord
+                if(typeof lastWord === 'string') continue
+
+                word = this.getWordFromWordChord(word)
+                lastWord.word
+
+                if (word === lastWord.word) {
+                    row.words[j] = { word: word, chord: lastWord.chord }
                 }
             }
         }
@@ -230,14 +236,23 @@ export class AddTrackStore {
 
     changeChordWord(rowIndex: number, wordIndex: number, chord: iChordWordPosition) {
 
-        this.chordsText.rows[rowIndex].words[wordIndex].chord = chord
+        let word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
+
+        if(chord.key) {
+            this.chordsText.rows[rowIndex].words[wordIndex] = { word: word, chord }
+        } else {
+            this.chordsText.rows[rowIndex].words[wordIndex] = word
+        }
+
         this.chordsText = { ...this.chordsText }
         this.saveTempTrack()
     }
 
     deleteChordWord(rowIndex: number, wordIndex: number) {
 
-        this.chordsText.rows[rowIndex].words[wordIndex].chord = null
+        let word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
+
+        this.chordsText.rows[rowIndex].words[wordIndex] = word
         this.chordsText = { ...this.chordsText }
         this.saveTempTrack()
     }
@@ -272,15 +287,24 @@ export class AddTrackStore {
     }
 
     setTextByChordsText() {
-
+        
         if (!this.chordsText?.rows) return
 
         const rows = this.chordsText.rows.map(row => {
-            const words = row.words.map(word => word.word)
+
+            if(row.space || !row.words) {
+                return ''
+            } 
+
+            const words = row.words.map(word => this.getWordFromWordChord(word))
             return words.join(' ')
         })
 
-        return rows.join('\n')
+        this.text = rows.join('\n')
+    }
+
+    getWordFromWordChord(word: ChordRowWord) {
+        return typeof word === 'string' ? word : word.word
     }
 }
 

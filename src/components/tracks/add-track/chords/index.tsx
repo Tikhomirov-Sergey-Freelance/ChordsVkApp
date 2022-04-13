@@ -22,7 +22,7 @@ const Chords: React.FC<iProps> = observer(({ store }) => {
                 <Styled>
 
                     {
-                        store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} words={row.words} spaceRow={row.spaceRow} store={store} />)
+                        store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} row={row} store={store} />)
                     }
 
                 </Styled>

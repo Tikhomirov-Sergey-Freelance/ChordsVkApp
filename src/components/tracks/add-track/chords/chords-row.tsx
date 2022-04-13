@@ -2,24 +2,26 @@ import React from 'react'
 import AddTrackStore from 'stores/pages/add-track-store'
 
 import { Modal } from 'stores/root-store'
-import { iChordsWord, iChordWordPosition } from '../../../../types/track'
+import { iChordsRow, iChordsWord, iChordWordPosition, ChordRowWord } from '../../../../types/track'
 
 import SelectChordsModal from './select-word-chords-modal'
 import ChordsWord from './chords-word'
 
 export interface iProps {
-    words: iChordsWord[]
-    spaceRow: boolean
+    row: iChordsRow
     rowIndex: number
     store: AddTrackStore
 }
 
 const ChordsRow: React.FC<iProps> = (props) => {
 
-    const showChordsModal = (word: iChordsWord, wordIndex: number) => {
+    const space = props.row.space
+    const words = props.row.words
 
-        const changeChord = (chord: string, chordCharPosition: number) => {
-            const chordWord: iChordWordPosition = { key: chord, chordCharPosition }
+    const showChordsModal = (word: ChordRowWord, wordIndex: number) => {
+
+        const changeChord = (chord: string, pos: number) => {
+            const chordWord: iChordWordPosition = { key: chord, pos }
             props.store.changeChordWord(props.rowIndex, wordIndex, chordWord)
         }
 
@@ -28,9 +30,9 @@ const ChordsRow: React.FC<iProps> = (props) => {
     }
 
     return (
-        <div className={`chord-row${props.spaceRow ? ' space-row' : ''}`}>
+        <div className={`chord-row${space ? ' space-row' : ''}`}>
             {
-                props.words.map((word, index) => <ChordsWord
+                words && words.map((word, index) => <ChordsWord
                     key={index}
                     word={word}
                     selectWord={() => showChordsModal(word, index)}

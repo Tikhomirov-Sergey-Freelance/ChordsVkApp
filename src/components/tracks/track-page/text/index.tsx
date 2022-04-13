@@ -19,7 +19,7 @@ const Chords: React.FC<iProps> = ({ track }) => {
                 <Styled>
                     
                     {
-                        track.chordsText.rows.map((row, index) => <ChordsRow key={index} rowIndex={index} words={row.words} spaceRow={row.spaceRow} />)
+                        track.chordsText.rows.map((row, index) => <ChordsRow key={index} rowIndex={index} row={row} />)
                     }
 
                 </Styled>
