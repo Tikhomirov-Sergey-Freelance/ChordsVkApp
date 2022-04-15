@@ -11,6 +11,10 @@ import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/databas
 import { Modal, Favorites, Global, VK } from '../root-store'
 import { getTrackLink } from 'code/tracks/track-link'
 import { snackbar } from 'code/common/alerts'
+import { sendTrackError } from 'code/database/track-error'
+import { iTrackError } from 'types/track-error'
+import { createGuid } from 'code/common/guid'
+import { openTrackByStore } from 'code/tracks/open-track'
 
 export class TrackPageStore {
 
@@ -92,6 +96,27 @@ export class TrackPageStore {
         }
 
         return chordsKey
+    }
+
+    async sendError(error: string) {
+
+        if(!error) return this.openTrackPage()
+
+        const trackError: iTrackError = {
+            id: createGuid(),
+            userId: VK.vkId,
+            trackId: this.track.id,
+            message: error
+        }
+
+        await sendTrackError(trackError)
+        this.openTrackPage()
+
+        setTimeout(() => snackbar('Сообщение отправлено. Благодарим за помощь'), 100)
+    }
+
+    openTrackPage() {
+        openTrackByStore(this.track.id, this)
     }
 
     async changeFavourite() {

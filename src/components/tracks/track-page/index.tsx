@@ -12,8 +12,10 @@ import Artist from './artist'
 import Strumming from './strumming'
 import Chords from './chords'
 import Intro from './intro'
+import Outro from './outro'
 import Text from './text'
 import TrackVideo from './video'
+import ErrorButton from './error'
 import Comments from './comments'
 
 interface iProps {
@@ -37,6 +39,8 @@ const TrackModal: React.FC<iProps> = () => {
             <Chords chords={store.instrumentChords} currentInstrument={Global.currentInstrument} loading={store.loadingChords}/>
             <Intro track={store.track}/>
             <Text track={store.track} />
+            <Outro track={store.track}/>
+            <ErrorButton store={store} />
             <TrackVideo track={store.track} />
             <Comments track={store.track} />
 

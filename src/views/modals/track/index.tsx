@@ -14,5 +14,5 @@ export default <ModalPage
     settlingHeight={100}
     >
     <Track />
-    <Snackbar />
+    <Snackbar place='modal' />
 </ModalPage>

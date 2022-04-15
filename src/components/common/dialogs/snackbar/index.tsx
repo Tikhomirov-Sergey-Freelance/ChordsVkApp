@@ -1,13 +1,19 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 
-import Store from '../../../../stores/root/snackbar'
+import { Modal, Snackbar as SnackbarStore } from 'stores/root-store'
 import { SizeType, Snackbar } from '@vkontakte/vkui'
 
-const SnackbarContainer: React.FC = observer(() => {
+export interface iProps {
+  place?: 'page' | 'modal'
+}
+
+const SnackbarContainer: React.FC<iProps> = observer(({ place }) => {
     
-    const current = Store.currentSnackbar
+    const current = SnackbarStore.currentSnackbar
+    
     if(!current) return null
+    if(Modal.active && place === 'page') return null
 
     return (
         <Snackbar
@@ -18,5 +24,9 @@ const SnackbarContainer: React.FC = observer(() => {
       </Snackbar>
     )
 })
+
+SnackbarContainer.defaultProps = {
+  place: 'page'
+}
 
 export default SnackbarContainer

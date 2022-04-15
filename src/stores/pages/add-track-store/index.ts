@@ -30,6 +30,8 @@ export class AddTrackStore {
     strummingNote: string
     intro: string[] = []
     introNote: string
+    outro: string[] = []
+    outroNote: string
     chordsText: iChordsText
     chordsNote: string
     trackVideoSrc: string
@@ -43,7 +45,7 @@ export class AddTrackStore {
 
         const routData = Router.activePanelData
         const track = routData && routData.track
-        debugger
+        
         if (track) {
             this.mode = 'edit'
         } else {
@@ -106,6 +108,8 @@ export class AddTrackStore {
             strummingNote: this.strummingNote || '',
             intro: this.intro || [],
             introNote: this.introNote || '',
+            outro: this.outro || [],
+            outroNote: this.outroNote || '',
             chordsText: toJS(this.chordsText),
             chordsNote: this.chordsNote || '',
             trackVideoSrc: this.trackVideoSrc || '',
@@ -170,16 +174,27 @@ export class AddTrackStore {
         this.saveTempTrack()
     }
 
-    addIntroItem(chord: string) {
+    addIntroItem(chord: string, mode: 'intro' | 'outro' = 'intro') {
 
         if(!chord) return
 
-        this.intro.push(chord)
+        if(mode === 'intro') {
+            this.intro.push(chord)
+        } else {
+            this.outro.push(chord)
+        }
+
         this.saveTempTrack()
     }
 
-    deleteIntroItem() {
-        this.intro.pop()
+    deleteIntroItem(mode: 'intro' | 'outro' = 'intro') {
+
+        if(mode === 'intro') {
+            this.intro.pop()
+        } else {
+            this.outro.pop()
+        }
+        
         this.saveTempTrack()
     }
 

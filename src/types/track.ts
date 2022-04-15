@@ -25,6 +25,8 @@ export interface iTrack {
     strummingNote: string
     intro: string[]
     introNote: string
+    outro: string[]
+    outroNote: string
     chordsText?: iChordsText
     chordsNote: string
     trackVideoSrc: string
@@ -72,6 +74,8 @@ export const defaultTrack: iTrack = {
     strummingNote: '',
     intro: [],
     introNote: '',
+    outro: [],
+    outroNote: '',
     chordsText: null,
     chordsNote: '',
     trackVideoSrc: ''

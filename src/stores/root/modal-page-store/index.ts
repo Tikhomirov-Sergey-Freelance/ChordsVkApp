@@ -30,6 +30,10 @@ export class ModalPageStore {
         this.closeModal = this.closeModal.bind(this)
     }  
 
+    get active() {
+        return !!this.activeModalComponent
+    }
+
     openModal(key: ModalKey, modalData: ModalComponentData = {}) {
         
         const store = modalData.store || createStoreByModalKey(key, modalData.data)

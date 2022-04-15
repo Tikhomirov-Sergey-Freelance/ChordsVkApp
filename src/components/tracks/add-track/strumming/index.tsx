@@ -7,7 +7,7 @@ import { Icon24ArrowDownOutline, Icon24ArrowUpOutline, Icon24CheckBoxOff, Icon24
 import AddTrackStore from 'stores/pages/add-track-store'
 
 import Styled from './styled'
-import store from 'stores/root/snackbar'
+import store from 'stores/root/snackbar-store'
 import { StrummingType } from 'types/strumming'
 
 export interface iProps {
