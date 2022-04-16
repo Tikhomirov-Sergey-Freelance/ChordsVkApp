@@ -9,6 +9,7 @@ import { loadArtistById, loadArtistsByIds, loadArtistsByQuery } from 'code/datab
 import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack, ChordRowWord } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
+import debounce from 'code/common/debounce'
 
 export interface iArtistSearch {
     label: string
@@ -61,7 +62,7 @@ export class AddTrackStore {
 
     async save() {
 
-        const track = this.trackToSave
+        const track = this.prepareTrackToSave()
 
         const result = this.mode === 'add' ?
             await addTrack(track) :
@@ -96,8 +97,9 @@ export class AddTrackStore {
         }
     }
 
-    get trackToSave(): iTrack {
-        return {
+    prepareTrackToSave(): iTrack {
+
+        const track: iTrack = {
             id: this.id,
             name: this.name,
             index: 0,
@@ -115,6 +117,35 @@ export class AddTrackStore {
             trackVideoSrc: this.trackVideoSrc || '',
             addedDate: new Date()
         }
+
+        track.chordsText.rows = track.chordsText.rows.map(row => {
+
+            if(row.words) {
+
+                row.words = row.words.map(word => {
+
+                    if(typeof word === 'string') return word
+
+                    if(!word.chord || !word.chord.key) return word.word
+
+                    if(!word.chord.pos) {
+                        word.chord.pos = 0
+                    }
+
+                    return word
+                })
+            }
+
+            if(row.instrumental) {
+                if(!row.instrumental.chords?.length && !row.instrumental.note) {
+                    return { space: true }
+                }
+            }
+
+            return row
+        })
+
+        return track
     }
 
     fillTrackData(track: iTrack) {
@@ -322,11 +353,12 @@ export class AddTrackStore {
         this.saveTempTrack()
     }
 
-    saveTempTrack() {
+    saveTempTrack = debounce(this._saveTempTrack, 300)[0]
+    _saveTempTrack() {
 
         if (this.mode === 'edit') return
 
-        const track = [this.trackToSave, this.text]
+        const track = [this.prepareTrackToSave(), this.text]
         localStorage.setItem('tempTrack', JSON.stringify(track))
     }
 
