@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChordRowWord } from 'types/track'
+import { ChordRowWord, iChordWordPosition } from 'types/track'
 
 export interface iProps {
     word: ChordRowWord
@@ -7,7 +7,7 @@ export interface iProps {
 
 const ChordsWord: React.FC<iProps> = (props) => {
 
-    let chord 
+    let chord: iChordWordPosition
     let word = props.word
 
     if(typeof word !== 'string') {
@@ -18,7 +18,7 @@ const ChordsWord: React.FC<iProps> = (props) => {
     return (
         <div className={`chord-word${chord ? ' visible-chord' : ''}`}>
             <span className='word'>{word}</span>
-            {chord && <span className='chord' style={{ left: `${chord?.chordCharPosition / 2}rem` }}>
+            {chord && <span className='chord' style={{ left: `${chord?.pos / 2}rem` }}>
                 {chord?.key}
             </span>}    
         </div>
