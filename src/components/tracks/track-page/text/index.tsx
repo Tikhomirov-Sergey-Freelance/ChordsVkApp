@@ -20,7 +20,7 @@ const Chords: React.FC<iProps> = ({ track }) => {
             return <SpaceRow key={index} />
         }
 
-        if(row.instrumental) {debugger
+        if(row.instrumental) {
             return <Instrumental mode='instrumental' chords={row.instrumental.chords} note={row.instrumental.note}/>
         }
 
