@@ -49,11 +49,17 @@ export interface iChordsText {
 export interface iChordsRow {
     words?: ChordRowWord[]
     space?: boolean
+    instrumental?: iInstrumentalRow
 }
 
 export interface iChordsWord {
     word: string
     chord: iChordWordPosition
+}
+
+export interface iInstrumentalRow {
+    chords?: string[]
+    note?: string
 }
 
 export interface iChordWordPosition {

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { Icon24AddOutline, Icon24DeleteOutline } from '@vkontakte/icons'
 
 import AddTrackStore from 'stores/pages/add-track-store'
-import { showSelectChordModal } from '../../../../code/chords/select-chord'
+import { showSelectChordModal } from '../../../../code/show-modals/chords/select-chord'
 
 import Styled from './styled'
 import { StrummingType } from 'types/strumming'

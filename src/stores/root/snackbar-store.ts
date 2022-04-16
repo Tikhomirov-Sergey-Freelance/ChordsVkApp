@@ -13,6 +13,10 @@ export class SnackbarsStore {
         makeAutoObservable(this)
     }
 
+    snackbar(message: string, callback?: () => void) {
+        return this.showSnackbar({ message, callback })
+    }
+
     showSnackbar(snackbar: iSnackbar) {
 
         const id = createGuid()

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Modal } from '../../stores/root-store'
-import ModalPage from '../../components/chords/select-chord-modal'
+import { Modal } from '../../../stores/root-store'
+import ModalPage from '../../../components/chords/select-chord-modal'
 import { VoidExpression } from 'typescript'
 
 export const showSelectChordModal = async (onSelect: (chord: string) => void, onClose: () => void = null) => {

@@ -1,5 +1,5 @@
-import SnackbarsStore, { iSnackbar } from '../../stores/root/snackbar-store'
+import { Snackbar } from 'stores/root-store'
 
 export const snackbar = (message: string, callback?: () => void) => {
-    return SnackbarsStore.showSnackbar({ message, callback })
+    return Snackbar.snackbar(message, callback)
 }

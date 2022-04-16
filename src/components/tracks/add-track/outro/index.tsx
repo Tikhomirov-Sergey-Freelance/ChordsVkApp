@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { Icon24AddOutline, Icon24DeleteOutline } from '@vkontakte/icons'
 
 import AddTrackStore from 'stores/pages/add-track-store'
-import { showSelectChordModal } from '../../../../code/chords/select-chord'
+import { showSelectChordModal } from '../../../../code/show-modals/chords/select-chord'
 
 import Styled from './styled'
 
@@ -25,7 +25,7 @@ const Outro: React.FC<iProps> = observer(({ store }) => {
 
             <ChipsInput
 
-                value={store.intro.map((item, index) => ({ value: item, index }))}
+                value={store.outro.map((item, index) => ({ value: item, index }))}
                 renderChip={({ value, label, option, ...rest }) => (
                     <Chip
                         key={option.index}

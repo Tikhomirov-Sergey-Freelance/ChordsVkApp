@@ -4,16 +4,31 @@ import { FormItem, FormField } from '@vkontakte/vkui'
 
 import AddTrackStore from '../../../../stores/pages/add-track-store'
 import ModalPageStore from '../../../../stores/root/modal-page-store'
-import { iChordsWord } from 'types/track'
+import { iChordsRow, iChordsWord } from 'types/track'
 
 import Styled from './styled'
 import ChordRow from './chords-row'
+import SpaceRow from './space-row'
+import InstrumentalRow from './instrumental-row'
 
 interface iProps {
     store: AddTrackStore
 }
 
 const Chords: React.FC<iProps> = observer(({ store }) => {
+
+    const getRow = (row: iChordsRow, index: number) => {
+
+        if(row.space) {
+            return <SpaceRow key={index} rowIndex={index} rows={store.chordsText?.rows} store={store} />
+        }
+
+        if(row.instrumental) {
+            return <InstrumentalRow key={index} rowIndex={index} row={row} store={store}/>
+        }
+
+        return <ChordRow key={index} rowIndex={index} row={row} store={store} />
+    }
 
     return (
         <FormItem top='Аккодры'>
@@ -22,7 +37,7 @@ const Chords: React.FC<iProps> = observer(({ store }) => {
                 <Styled>
 
                     {
-                        store.chordsText?.rows.map((row, index) => <ChordRow key={index} rowIndex={index} row={row} store={store} />)
+                        store.chordsText?.rows.map((row, index) => getRow(row, index))
                     }
 
                 </Styled>

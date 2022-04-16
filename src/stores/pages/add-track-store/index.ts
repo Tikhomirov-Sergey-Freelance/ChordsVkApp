@@ -175,7 +175,7 @@ export class AddTrackStore {
     }
 
     addIntroItem(chord: string, mode: 'intro' | 'outro' = 'intro') {
-
+    
         if(!chord) return
 
         if(mode === 'intro') {
@@ -268,6 +268,50 @@ export class AddTrackStore {
         let word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
 
         this.chordsText.rows[rowIndex].words[wordIndex] = word
+        this.chordsText = { ...this.chordsText }
+        this.saveTempTrack()
+    }
+
+    addInstrumentalRow(rowIndex: number) {
+
+        this.chordsText.rows.splice(rowIndex, 0, { instrumental: { chords: [] } })
+
+        this.chordsText = { ...this.chordsText }
+        this.saveTempTrack()
+    }
+
+    addInctrumentalChord(rowIndex: number, chord: string) {
+
+        if(!chord) return 
+
+        if(!this.chordsText.rows[rowIndex].instrumental.chords) {
+            this.chordsText.rows[rowIndex].instrumental.chords = []
+        }
+
+        this.chordsText.rows[rowIndex].instrumental.chords.push(chord)
+
+        this.chordsText = { ...this.chordsText }
+        this.saveTempTrack()
+    }
+
+    deleteInstrumentalChord(rowIndex: number) {
+
+        const chords = this.chordsText.rows[rowIndex].instrumental.chords
+
+        if(!chords || !chords.length) {
+            this.chordsText.rows.splice(rowIndex, 1)
+        } else {
+            chords.pop()
+        }
+
+        this.chordsText = { ...this.chordsText }
+        this.saveTempTrack()
+    }
+
+    addInstrumentalNote(rowIndex: number, note: string) {
+
+        this.chordsText.rows[rowIndex].instrumental.note = note || ''
+
         this.chordsText = { ...this.chordsText }
         this.saveTempTrack()
     }

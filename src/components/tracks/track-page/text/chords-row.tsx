@@ -14,7 +14,7 @@ export interface iProps {
 const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
 
     return (
-        <div className={`chord-row${row.space ? ' space-row' : ''}`}>
+        <div className='chord-row'>
             {
                 row.words && row.words.map((word, index) => {
                     return <>

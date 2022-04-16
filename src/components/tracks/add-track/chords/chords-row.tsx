@@ -15,7 +15,6 @@ export interface iProps {
 
 const ChordsRow: React.FC<iProps> = (props) => {
 
-    const space = props.row.space
     const words = props.row.words
 
     const showChordsModal = (word: ChordRowWord, wordIndex: number) => {
@@ -30,7 +29,7 @@ const ChordsRow: React.FC<iProps> = (props) => {
     }
 
     return (
-        <div className={`chord-row${space ? ' space-row' : ''}`}>
+        <div className='chord-row'>
             {
                 words && words.map((word, index) => <ChordsWord
                     key={index}

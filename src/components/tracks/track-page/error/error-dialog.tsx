@@ -12,7 +12,7 @@ const TrackError: React.FC<iProps> = ({ sendError, onClose }) => {
     const [error, changeText] = useState('')
 
     return (
-        <Group header={<Header mode="secondary">Пожалуйста, опишите ошибку</Header>}>
+        <Group style={{ padding: 10 }} >
 
             <Textarea sizeY={SizeType.REGULAR} value={error} onChange={(event) => changeText(event.target.value)} />
 

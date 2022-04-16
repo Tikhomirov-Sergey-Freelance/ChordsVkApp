@@ -25,22 +25,22 @@ export class TrackPageStore {
     chords: iChord[] = []
 
     constructor(trackId: string) {
-        
-        if(!trackId) {
+
+        if (!trackId) {
             Modal.closeModal()
             return
         }
 
         this.loadTrack(trackId)
 
-        makeAutoObservable(this) 
+        makeAutoObservable(this)
     }
 
     async loadTrack(trackId: string) {
         this.loading = true
         this.track = await loadTrackById(trackId)
 
-        if(!this.track) {
+        if (!this.track) {
             Modal.closeModal()
             return
         }
@@ -77,30 +77,44 @@ export class TrackPageStore {
 
         let chordsKey = []
 
-        this.track.chordsText.rows.forEach(row => 
-            row.words.forEach(word => {
+        this.track.chordsText.rows.forEach(row => {
 
-                if(typeof word === 'string') return
+            if (row.words) {
+                row.words.forEach(word => {
 
-                if(word.chord && !chordsKey.includes(word.chord.key)) {
-                    chordsKey.push(word.chord.key)
-                }
-            }))
+                    if (typeof word === 'string') return
 
-        if(this.track.intro) {
-            this.track.intro.forEach(key => {
-                if(!chordsKey.includes(key)) {
-                    chordsKey.push(key)
-                }
-            })
-        }
+                    if (word.chord && !chordsKey.includes(word.chord.key)) {
+                        chordsKey.push(word.chord.key)
+                    }
+                })
+
+            }
+
+            if (row.instrumental?.chords) {
+
+                row.instrumental.chords.forEach(key => {
+                    if (!chordsKey.includes(key)) {
+                        chordsKey.push(key)
+                    }
+                })
+            }
+        })
+
+        const chords = [...(this.track.intro || []), ...(this.track.outro || [])]
+
+        chords.forEach(key => {
+            if (!chordsKey.includes(key)) {
+                chordsKey.push(key)
+            }
+        })
 
         return chordsKey
     }
 
     async sendError(error: string) {
 
-        if(!error) return this.openTrackPage()
+        if (!error) return this.openTrackPage()
 
         const trackError: iTrackError = {
             id: createGuid(),

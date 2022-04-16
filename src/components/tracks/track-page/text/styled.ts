@@ -2,12 +2,41 @@ import Styled from 'styled-components'
 
 export default Styled.div`
 
+    width: 100%;
     border-radius: inherit;
     min-height: 60px;
     margin: 0 10px;
     padding: 17px 11px;
     box-sizing: border-box;
     z-index: 2;
+
+    .intro, .outro, .instrumental {
+
+        .title {
+            font-weight: bold;
+        }
+
+        .desctiption .vkuiGroup__description {
+            padding: 0;
+        }
+
+        .chord {
+            margin: 0 3px;
+            font-weight: bold;
+        }
+    }
+
+    .intro { 
+        margin-bottom: 10px;
+    }
+
+    .outro {
+        margin-top: 10px;
+    }
+
+    .instrumental {
+        margin: 1rem 0;
+    }
     
     .space-row {
         margin-top: 1.4em;

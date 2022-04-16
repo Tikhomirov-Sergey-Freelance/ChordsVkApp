@@ -7,6 +7,7 @@ import Artist from './artist'
 import Strumming from './strumming'
 import InputControl from '../../common/vk/controls/input-control'
 import Into from './intro'
+import Outro from './outro'
 import Text from './text'
 import Chords from './chords'
 import TrackVideo from './video'
@@ -27,6 +28,8 @@ const AddArtistForm: React.FC = observer(() => {
             <InputControl title='Примечание к бою' value={store.strummingNote} onChange={event => store.changeProperty('strummingNote', event.target.value)} />
             <Into store={store} />
             <InputControl title='Примечание к вступлению' value={store.introNote} onChange={event => store.changeProperty('introNote', event.target.value)} />
+            <Outro store={store}/>
+            <InputControl title='Примечание к концовке' value={store.outroNote} onChange={event => store.changeProperty('outroNote', event.target.value)} />
             <Text store={store} />
             <Chords store={store} />
             <InputControl title='Примечание к тексту' value={store.chordsNote} onChange={event => store.changeProperty('chordsNote', event.target.value)} />

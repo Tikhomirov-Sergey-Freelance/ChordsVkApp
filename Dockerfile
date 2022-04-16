@@ -10,6 +10,7 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 9001
+EXPOSE 443
+EXPOSE 80
 
 CMD ["node", "dist/server.js"]

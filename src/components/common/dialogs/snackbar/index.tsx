@@ -14,9 +14,10 @@ const SnackbarContainer: React.FC<iProps> = observer(({ place }) => {
     
     if(!current) return null
     if(Modal.active && place === 'page') return null
-
+    
     return (
         <Snackbar
+        style={{ width: 'max-content' }}
         sizeX={SizeType.COMPACT}
         onClose={current.close}
       >
