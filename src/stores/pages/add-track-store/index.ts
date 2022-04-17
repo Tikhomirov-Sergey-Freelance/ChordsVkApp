@@ -5,15 +5,17 @@ import { Global, Router } from 'stores/root-store'
 import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc, updateDoc } from '@firebase/firestore'
 import { limit } from 'firebase/firestore'
 import { snackbar } from '../../../code/common/alerts'
-import { loadArtistById, loadArtistsByIds, loadArtistsByQuery } from 'code/database/artists'
+import { loadArtistById, loadArtistsByIds, loadArtistsByQuery, loadShortArtistById } from 'code/database/artists'
 import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack, ChordRowWord } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
 import debounce from 'code/common/debounce'
+import { iShortArtist } from 'types/artists'
 
 export interface iArtistSearch {
     label: string
     value: string
+    avatar: string
 }
 
 type StoreMode = 'add' | 'edit'
@@ -39,6 +41,7 @@ export class AddTrackStore {
 
     text: string
 
+    currentArtist: iShortArtist
     artistsList: iArtistSearch[] = []
     artistListLoading = false
 
@@ -57,7 +60,7 @@ export class AddTrackStore {
         this.fillTrack(track)
 
         makeAutoObservable(this, undefined, { deep: true })
-        this.loadArtist = this.loadArtist.bind(this)
+        this.searchArtist = this.searchArtist.bind(this)
     }
 
     async save() {
@@ -171,6 +174,8 @@ export class AddTrackStore {
         this.chordsText = track.chordsText
         this.chordsNote = track.chordsNote
         this.trackVideoSrc = track.trackVideoSrc
+
+        this.fillArtistData(track)
         this.setTextByChordsText()
     }
 
@@ -179,18 +184,37 @@ export class AddTrackStore {
         this.saveTempTrack()
     }
 
-    async loadArtist(query: string) {
+    async changeArtist(artistId: string) {
+        this.artistId = artistId
 
-        if (!query.length) return
+        if(artistId) {
+            this.currentArtist = await loadShortArtistById(artistId)
+        }
+    }
+
+    async fillArtistData(track: iTrack) {
+
+        if(!track.artistId) return 
+        this.currentArtist = await loadShortArtistById(track.artistId)
+
+        if(this.currentArtist) {
+            this.artistsList = [this.artistToSearchArtist(this.currentArtist)]
+        }
+    }
+
+    async searchArtist(query: string) {
+
+        if (!query.length) {
+
+            if(this.currentArtist) {
+                this.artistsList = [this.artistToSearchArtist(this.currentArtist)]
+            }
+        }
 
         this.artistListLoading = true
         const data = await loadArtistsByQuery(query)
 
-        this.artistsList = data.map(artist => ({
-            label: artist.name,
-            value: artist.id,
-            avatar: artist.artistImage
-        }))
+        this.artistsList = data.map(artist => this.artistToSearchArtist(artist))
 
         this.artistListLoading = false
     }
@@ -345,6 +369,14 @@ export class AddTrackStore {
 
         this.chordsText = { ...this.chordsText }
         this.saveTempTrack()
+    }
+
+    artistToSearchArtist(artist: iShortArtist): iArtistSearch {
+        return {
+            label: artist.name,
+            value: artist.id,
+            avatar: artist.artistImage
+        }
     }
 
     newTrack() {

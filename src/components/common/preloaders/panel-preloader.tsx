@@ -11,7 +11,15 @@ const PanelPreloader: React.FC<iProps> = ({ title }) => {
         <>
             {title && <PanelHeader>{title}</PanelHeader>}
 
-            <div style={{ display: 'flex', height: '100%', width: '100%', margin: 'auto', justifyContent: 'center' }}>
+            <div style={{
+                display: 'flex',
+                height: '100%',
+                minHeight: 300,
+                width: '100%',
+                margin: 'auto',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
                 <PanelSpinner size="large" />
             </div>
         </>

@@ -13,7 +13,7 @@ interface iProps {
 const Artist: React.FC<iProps> = observer(({ store }) => {
 
     const [query, changeQuery] = useState<string>('')
-    const [loadArtists, clearDebounce] = useDebounce(store.loadArtist)
+    const [loadArtists, clearDebounce] = useDebounce(store.searchArtist)
 
     return (   
 

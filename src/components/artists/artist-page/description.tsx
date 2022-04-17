@@ -9,11 +9,15 @@ interface iProps {
 }
 
 const Description: React.FC<iProps> = ({ store }) => {
-
+    
     return (
         <>
             {store.artist.description && <Group header={<Header mode="secondary">Биография</Header>}>
-                <Textarea value={store.artist.description} readOnly={true}/>
+                <FormItem style={{ margin: 10 }}>
+                    <div style={{ whiteSpace: 'pre-line', overflowWrap: 'break-word' }}>
+                        {store.artist.description}
+                    </div>
+                </FormItem>
             </Group>}
         </>
     )
