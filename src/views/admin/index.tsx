@@ -23,6 +23,10 @@ const AdminView: React.FC = observer(() => {
             <CellButton onClick={ () => Router.setActivePanel('addTrack') }>
                 Добавить трек
             </CellButton>
+
+            <CellButton onClick={ () => Router.setActivePanel('trackCandidatesList') }>
+                Треки на добавление
+            </CellButton>
         
             </Group>
 

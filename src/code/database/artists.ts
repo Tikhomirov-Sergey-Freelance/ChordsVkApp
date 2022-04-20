@@ -22,6 +22,28 @@ export const loadArtistsByQuery = async (q: string) => {
     }
 }
 
+export const loadArtistsByNames = async (names: string[]) => {
+
+    if(!names.length) return []
+
+    const searchNames = names.map(name => name.toUpperCase())
+
+    try {
+        const querySnapshot =
+            query(
+                collection(await Firebase.getFirestore(), 'short-artists'),
+                where('searchName', '==', searchNames));
+
+        const data = await getDocs(querySnapshot)
+        return data.docs.map(item => item.data()) as iShortArtist[]
+        
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+
+}
+
 export const loadArtistsByIds = async (ids: string[]) => {
 
     if (!ids.length) return []

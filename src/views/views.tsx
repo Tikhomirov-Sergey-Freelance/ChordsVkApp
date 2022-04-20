@@ -7,6 +7,7 @@ import Admin from './admin'
 import AdminAddChords from './admin/add-chords'
 import AdminAddArtist from './admin/add-artist'
 import AdminAddTrack from './admin/add-track'
+import TrackCandidatesList from './admin/track-candidates'
 
 export const views = [
     {
@@ -58,6 +59,10 @@ export const views = [
             {
                 id: 'addTrack',
                 render: () => <AdminAddTrack />
+            },
+            {
+                id: 'trackCandidatesList',
+                render: () => <TrackCandidatesList />
             }
         ]
     },
