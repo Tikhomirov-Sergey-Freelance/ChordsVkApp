@@ -5,6 +5,7 @@ import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayo
 import { useTrackCandidatesStore } from 'stores/pages/track-candidates-store/track-candidates-store-provider'
 
 import PanelPreloader from 'components/common/preloaders/panel-preloader'
+import Track from './track'
 
 const TrackCandidatePage: React.FC = () => {
 
@@ -16,10 +17,10 @@ const TrackCandidatePage: React.FC = () => {
 
         <>
             {
-                store.tracks.map(track => <div>{track.name}</div>)
+                store.tracks.map(track => <Track key={track.id} track={track} cancellTrack={store.cancellTrack}/>)
             }
         </>    
     )
 }
-
-export default observer(TrackCandidatePage)
+  
+export default observer(TrackCandidatePage)    

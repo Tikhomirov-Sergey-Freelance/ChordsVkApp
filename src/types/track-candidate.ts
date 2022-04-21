@@ -14,7 +14,10 @@ export interface iTrackCandidate {
     chordText: iChordsText
     trackVideoSrc: string
     pageLink: string
+    state: TrackCandidateState
 }
+
+export type TrackCandidateState = 'active' | 'added' | 'cancel'
 
 export interface iTrackCandidatesView extends iTrackCandidate {
     foundArtist: iShortArtist

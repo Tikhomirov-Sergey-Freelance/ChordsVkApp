@@ -11,8 +11,9 @@ import { saveArtistLogo } from 'code/database/images'
 import { addArtist, updateArtist } from 'code/database/artists'
 import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
 import { iTrack } from 'types/track'
+import { addTrackFromCandidate } from 'code/tracks/add-track'
 
-type StoreMode = 'add' | 'edit'
+type StoreMode = 'add' | 'edit' | 'from-track-candidate'
 
 export class AddArtistStore {
 
@@ -32,18 +33,9 @@ export class AddArtistStore {
 
     constructor() {
 
-        const routData = Router.activePanelData
-        const artist = routData && routData.artist
+        const routeData = Router.activePanelData
 
-        if (artist) {
-            this.mode = 'edit'
-            this.origArtist = artist
-        } else {
-            this.mode = 'add'
-            this.id = createGuid()
-        }
-
-        this.fillArtistData(artist)
+        this.fillArtistData(routeData)
 
         makeAutoObservable(this)
     }
@@ -53,7 +45,7 @@ export class AddArtistStore {
         const artist = this.artistToSave
         await this.saveLogo(artist)
 
-        if (this.mode === 'add') {
+        if (this.mode === 'add' || this.mode === 'from-track-candidate') {
             const result = await addArtist(artist)
             console.log(result)
             snackbar('Добавили артиста')
@@ -62,6 +54,14 @@ export class AddArtistStore {
             console.log(result)
             await this.recalcTracksNames(artist)
             snackbar('Изменили артиста')
+        }
+
+        if(this.mode === 'from-track-candidate') {
+            
+            const trackCandidate = Router.activePanelData && Router.activePanelData.trackCandidate
+            if(trackCandidate) {
+                addTrackFromCandidate(trackCandidate)
+            }
         }
     }
 
@@ -105,23 +105,39 @@ export class AddArtistStore {
         artist.artistImage = logo
     }
 
-    fillArtistData(artist: iArtist) {
+    fillArtistData(routeData) {
 
-        if (this.mode === 'add' || !artist) return
+        this.mode = this.getMode(routeData)
 
-        this.id = artist.id
-        this.name = artist.name
-        this.description = artist.description
-        this.artistImage = artist.artistImage
+        if (this.mode === 'add') {
+            this.id = createGuid()
+        }
+
+        if (this.mode === 'from-track-candidate') {
+            const trackCandidate = routeData && routeData.trackCandidate
+            this.id = createGuid()
+            this.name = trackCandidate.artist.trim()
+        }
+
+        if (this.mode === 'edit') {
+            const artist = routeData && routeData.artist
+
+            this.id = artist.id
+            this.name = artist.name
+            this.description = artist.description
+            this.artistImage = artist.artistImage
+
+            this.origArtist = artist
+        }
     }
 
     async recalcTracksNames(artist: iArtist) {
 
-        if(this.mode === 'add') return
+        if (this.mode === 'add') return
 
         try {
 
-            const tracks = await loadTracksByArtist(this.id) 
+            const tracks = await loadTracksByArtist(this.id)
 
             const requests = tracks.map(track => {
                 return updateTracksSearchName(track, artist as iShortArtist)
@@ -134,6 +150,22 @@ export class AddArtistStore {
             console.error(error)
             snackbar('Ошибка при пересчете названий треков')
         }
+    }
+
+    getMode(routeData): StoreMode {
+
+        const artist = routeData && routeData.artist
+        const trackCandidate = routeData && routeData.trackCandidate
+
+        if (artist) {
+            return 'edit'
+        }
+
+        if (trackCandidate) {
+            return 'from-track-candidate'
+        }
+
+        return 'add'
     }
 }
 

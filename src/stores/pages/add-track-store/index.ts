@@ -11,6 +11,9 @@ import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
 import debounce from 'code/common/debounce'
 import { iShortArtist } from 'types/artists'
+import { iTrackCandidate, iTrackCandidatesView as iTrackCandidateView } from 'types/track-candidate'
+import { openTrack } from 'code/tracks/open-track'
+import { changeTrackCandidateState } from 'code/database/track-candidates'
 
 export interface iArtistSearch {
     label: string
@@ -18,7 +21,7 @@ export interface iArtistSearch {
     avatar: string
 }
 
-type StoreMode = 'add' | 'edit'
+type StoreMode = 'add' | 'edit' | 'from-track-candidate'
 
 export class AddTrackStore {
 
@@ -47,17 +50,9 @@ export class AddTrackStore {
 
     constructor() {
 
-        const routData = Router.activePanelData
-        const track = routData && routData.track
-        
-        if (track) {
-            this.mode = 'edit'
-        } else {
-            this.mode = 'add'
-            this.id = createGuid()
-        }
+        const routeData = Router.activePanelData
 
-        this.fillTrack(track)
+        this.fillTrack(routeData)
 
         makeAutoObservable(this, undefined, { deep: true })
         this.searchArtist = this.searchArtist.bind(this)
@@ -67,18 +62,29 @@ export class AddTrackStore {
 
         const track = this.prepareTrackToSave()
 
-        const result = this.mode === 'add' ?
-            await addTrack(track) :
-            await updateTrack(track.id, track)
+        const result = this.mode === 'edit' ?
+            await updateTrack(track.id, track) :
+            await addTrack(track)
 
         if(result) {
-            snackbar(this.mode === 'add' ? 'Добавили трек' : 'Трек изменен')
+
+            if(this.mode === 'from-track-candidate') {
+                const trackCandidate: iTrackCandidate = Router.activePanelData.trackCandidate
+                await changeTrackCandidateState(trackCandidate.id, 'added')
+            }
+
+            snackbar(this.mode === 'edit' ?  'Трек изменен' : 'Добавили трек')
 
             if(this.mode === 'add') {
-                snackbar('Добавили трек')
                 this.newTrack()
-            } else {
+            } 
+
+            if(this.mode === 'edit') {
                 Router.goBack()
+            }
+
+            if(this.mode === 'from-track-candidate') {
+                openTrack(this.id)
             }
 
         } else {
@@ -86,17 +92,23 @@ export class AddTrackStore {
         }
     }
 
-    fillTrack(track: iTrack) {
+    fillTrack(routeData) {
+
+        this.mode = this.getMode(routeData)
 
         if (this.mode === 'add') {
-
-            if (!track) {
-                return this.loadTempTrack()
-            }
+            this.id = createGuid()
+            this.loadTempTrack()
         }
 
-        if (track) {
+        if(this.mode === 'edit') {
+            const track = routeData && routeData.track
             this.fillTrackData(track)
+        }
+
+        if(this.mode === 'from-track-candidate') {
+            const trackCandidate = routeData && routeData.trackCandidate
+            this.fillTrackFromCandidate(trackCandidate)
         }
     }
 
@@ -153,18 +165,9 @@ export class AddTrackStore {
 
     fillTrackData(track: iTrack) {
 
-        if (!track) {
+        track = { ...defaultTrack, ...(track || {}) }
 
-            if (this.mode === 'add') {
-                this.newTrack()
-            }
-
-            return
-        }
-
-        track = { ...defaultTrack, ...track }
-
-        this.id = track.id
+        this.id = track.id || createGuid()
         this.name = track.name
         this.artistId = track.artistId
         this.strumming = track.strumming
@@ -177,6 +180,43 @@ export class AddTrackStore {
 
         this.fillArtistData(track)
         this.setTextByChordsText()
+    }
+
+    fillTrackFromCandidate(trackCandidate: iTrackCandidateView) {
+
+        const track: iTrack = { ...defaultTrack, ...(trackCandidate || {}), chordsText: trackCandidate.chordText }
+
+        track.artistId = trackCandidate.foundArtist?.id || ''
+
+        this.id = createGuid()
+        this.name = track.name
+        this.artistId = track.artistId 
+        this.strumming = track.strumming
+        this.strummingNote = track.strummingNote
+        this.intro = track.intro
+        this.introNote = track.introNote
+        this.chordsText = track.chordsText
+        this.chordsNote = track.chordsNote
+        this.trackVideoSrc = track.trackVideoSrc
+
+        this.fillArtistData(track)
+        this.setTextByChordsText()
+    }
+
+    getMode(routeData): StoreMode {
+
+        const track = routeData && routeData.track
+        const trackCandidate = routeData && routeData.trackCandidate
+
+        if(track) {
+            return 'edit'
+        }
+
+        if(trackCandidate) {
+            return 'from-track-candidate'
+        }
+
+        return 'add'
     }
 
     changeProperty(property: keyof iTrack, value: any) {
@@ -280,6 +320,12 @@ export class AddTrackStore {
             const lastRow = this.chordsText?.rows[i]
 
             if (!lastRow) break
+
+            if(lastRow.space || lastRow.instrumental) {
+                chordsText.rows.splice(i, 0, lastRow)
+                continue
+            }
+
             if(!row.words || !lastRow.words) continue
 
             for (let j = 0; j < row.words.length; j++) {
@@ -388,7 +434,7 @@ export class AddTrackStore {
     saveTempTrack = debounce(this._saveTempTrack, 300)[0]
     _saveTempTrack() {
 
-        if (this.mode === 'edit') return
+        if (this.mode !== 'add') return
 
         const track = [this.prepareTrackToSave(), this.text]
         localStorage.setItem('tempTrack', JSON.stringify(track))

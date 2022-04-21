@@ -26,16 +26,37 @@ export const loadArtistsByNames = async (names: string[]) => {
 
     if(!names.length) return []
 
-    const searchNames = names.map(name => name.toUpperCase())
+    const pools: string[][] = names.reduce((accum, current) => {
+
+        const name = current.toUpperCase()
+        const lastArray = accum[accum.length - 1]
+
+        if(lastArray.length >= 10) {
+            accum.push([name])
+        } else {
+            lastArray.push(name)
+        }
+
+        return accum
+
+    }, [[]])
 
     try {
-        const querySnapshot =
+
+        const requests = pools.map(async names => {
+
+            const querySnapshot =
             query(
                 collection(await Firebase.getFirestore(), 'short-artists'),
-                where('searchName', '==', searchNames));
+                where('searchName', 'in', names));
 
-        const data = await getDocs(querySnapshot)
-        return data.docs.map(item => item.data()) as iShortArtist[]
+            return await getDocs(querySnapshot)
+        })
+
+        const result = await Promise.all(requests)
+        const documents = result.map(res => res.docs).flat(1)
+
+        return documents.map(item => item.data()) as iShortArtist[]
         
     } catch (error) {
         console.error(error)
