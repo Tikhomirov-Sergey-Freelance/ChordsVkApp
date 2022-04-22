@@ -18,8 +18,22 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
     const [loading, changeLoading] = useState(false)
     const [chordsList, setChordsList] = useState([])
 
+    useEffect(() => {
+        
+        if(!chordsList.some(option => option.value === chord)) {
+
+            const option = {
+                label: chord,
+                value: chord
+            }
+
+            setChordsList([...chordsList, option])
+        }
+
+    }, [chord])
+
     const loadChords = async (query: string) => {
-        if(!query.length) return
+        if (!query.length) return
         changeLoading(true)
         const data = await loadChordsByQuery(query)
         setChordsList(data.map(chord => ({
@@ -32,7 +46,8 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
     const [loadChordsDebounce, clearDebounce] = useDebounce(loadChords)
 
     return (
-        <FormItem top='Аккорд'>
+        <>
+            <FormItem top='Аккорд'>
                 <CustomSelect
                     placeholder='Введите аккорд'
                     searchable
@@ -52,10 +67,12 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
                     options={chordsList}
                     fetching={loading}
                     renderDropdown={(!loading || !q.length) &&
-                        (({ defaultDropdownContent }) => 
-                        q.length ? defaultDropdownContent : <OptionText>Начните вводить аккорд</OptionText>)}
+                        (({ defaultDropdownContent }) =>
+                            q.length ? defaultDropdownContent : <OptionText>Начните вводить аккорд</OptionText>)}
                 />
             </FormItem>
+
+        </>
     )
 }
 

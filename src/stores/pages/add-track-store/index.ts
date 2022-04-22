@@ -6,7 +6,7 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 import { snackbar } from '../../../code/common/alerts'
 import { loadArtistById, loadArtistsByIds, loadArtistsByQuery, loadShortArtistById } from 'code/database/artists'
-import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack, ChordRowWord } from 'types/track'
+import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack, ChordRowWord, iChordsRow } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
 import debounce from 'code/common/debounce'
@@ -298,7 +298,7 @@ export class AddTrackStore {
         this.saveTempTrack()
     }
 
-    changeChordText(text: string) {
+    changeChordText(prevText: string, text: string) {
 
         const chordsText: iChordsText = { rows: [] }
         const rows = text.split('\n')
@@ -314,19 +314,50 @@ export class AddTrackStore {
             chordsText.rows.push({ words: words.map(word => (word)) })
         }
 
+        let startLastIndex = 0
+
+        const findLastRowIndex = (row: iChordsRow) => {
+
+            if(!this.chordsText?.rows) return -1
+            
+            const rowString = row.words.map(word => this.getWordFromWordChord(word)).join(' ');
+
+            for(let i = startLastIndex; i < this.chordsText.rows.length; i++) {
+
+                const lastRow = this.chordsText.rows[i]?.words?.map(word => this.getWordFromWordChord(word)).join(' ');
+                
+                if(lastRow && (rowString.startsWith(lastRow) || lastRow.startsWith(rowString))) {
+                    return i
+                }
+            }
+
+            for(let i = 0; i < startLastIndex; i++) {
+
+                const lastRow = this.chordsText.rows[i]?.words?.map(word => this.getWordFromWordChord(word)).join(' ');
+                
+                if(lastRow && (rowString.startsWith(lastRow) || lastRow.startsWith(rowString))) {
+                    return i
+                }
+            }
+
+            return -1
+        }
+
         for (let i = 0; i < chordsText.rows.length; i++) {
 
             const row = chordsText.rows[i]
-            const lastRow = this.chordsText?.rows[i]
 
-            if (!lastRow) break
+            if(row.space) continue
 
-            if(lastRow.space || lastRow.instrumental) {
-                chordsText.rows.splice(i, 0, lastRow)
-                continue
+            const lastIndex = findLastRowIndex(row)
+
+            if(lastIndex > startLastIndex) {
+                startLastIndex = lastIndex
             }
 
-            if(!row.words || !lastRow.words) continue
+            if (lastIndex === -1) continue
+
+            const lastRow = this.chordsText?.rows[lastIndex]
 
             for (let j = 0; j < row.words.length; j++) {
 
@@ -453,6 +484,44 @@ export class AddTrackStore {
         }
 
         return null
+    }
+
+    getSelectedChords() {
+
+        const chords = []
+
+        this.chordsText.rows.forEach(row => {
+
+            if (row.words) {
+                row.words.forEach(word => {
+
+                    if (typeof word === 'string') return
+
+                    if (word.chord && !chords.includes(word.chord.key)) {
+                        chords.push(word.chord.key)
+                    }
+                })
+            }
+
+            if (row.instrumental?.chords) {
+
+                row.instrumental.chords.forEach(key => {
+                    if (!chords.includes(key)) {
+                        chords.push(key)
+                    }
+                })
+            }
+        })
+
+        const introChords = [...(this.intro || []), ...(this.outro || [])]
+
+        introChords.forEach(key => {
+            if (!chords.includes(key)) {
+                chords.push(key)
+            }
+        })
+
+        return chords
     }
 
     setTextByChordsText() {

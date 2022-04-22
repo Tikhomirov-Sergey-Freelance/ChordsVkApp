@@ -24,7 +24,7 @@ const ChordsRow: React.FC<iProps> = (props) => {
             props.store.changeChordWord(props.rowIndex, wordIndex, chordWord)
         }
 
-        const component = () => <SelectChordsModal word={word} onChange={changeChord} onClose={() => Modal.closeModal()} />
+        const component = () => <SelectChordsModal word={word} selectedChords={props.store.getSelectedChords()} onChange={changeChord} onClose={() => Modal.closeModal()} />
         Modal.openModal('defaultModalPage', { component })
     }
 
