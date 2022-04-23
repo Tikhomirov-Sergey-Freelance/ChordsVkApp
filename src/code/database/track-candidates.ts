@@ -14,7 +14,7 @@ export const loadActiveCandidatesList = async () => {
             query(
                 collection(await Firebase.getFirestore(), 'track-candidates'),
                 where('state', '==', 'active'),
-                limit(50)
+                limit(20)
             );
 
         const data = await getDocs(querySnapshot)

@@ -10,10 +10,10 @@ import SearchResult from './search-result'
 const Search: React.FC = () => {
 
     return (
-        <Group>
+        <>
             <SearchInput />
             <SearchResult />
-        </Group>
+        </>
     )
 }
 

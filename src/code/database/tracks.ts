@@ -1,3 +1,4 @@
+import { arrayToPools } from 'code/common/array'
 import { setTrackSearchName } from 'code/tracks/search-name'
 import { trackToShortTrack, trackToShortTrackPartial } from 'code/tracks/track-to-short-track'
 import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc, runTransaction, startAt } from 'firebase/firestore'
@@ -156,29 +157,43 @@ export const loadTracksByIds = async (ids: string[]) => {
 
     if (!ids.length) return []
 
-    const querySnapshot =
-        query(
-            collection(await Firebase.getFirestore(), 'short-tracks'),
-            where('id', 'in', ids)
-        );
+    try {
 
-    const data = await getDocs(querySnapshot)
-    const tracks = data.docs.map(item => item.data()) as iShortTrack[]
+        const pools = arrayToPools(ids, 10)
+        const requests = pools.map(async idList => {
 
-    const artistsIds = tracks.map(track => track.artistId)
-    const artists = await loadArtistsByIds(artistsIds)
+            const querySnapshot =
+            query(
+                collection(await Firebase.getFirestore(), 'short-tracks'),
+                where('id', 'in', idList)
+            );
 
-    const tracksView: iShortTrackView[] = tracks.map(track => {
+            return await getDocs(querySnapshot)
+        })
 
-        const artist = artists.find(art => art.id === track.artistId)
+        const result = await Promise.all(requests)
+        const documents = result.map(res => res.docs).flat(1)
 
-        return {
-            ...track,
-            artist
-        }
-    })
+        const tracks = documents.map(item => item.data()) as iShortTrack[]
 
-    return tracksView
+        const artistsIds = tracks.map(track => track.artistId)
+        const artists = await loadArtistsByIds(artistsIds)
+
+        const tracksView: iShortTrackView[] = tracks.map(track => {
+
+            const artist = artists.find(art => art.id === track.artistId)
+
+            return {
+                ...track,
+                artist
+            }
+        })
+
+        return tracksView
+
+    } catch (error) {
+        return []
+    }
 }
 
 export const loadRandomTrack = async () => {

@@ -8,13 +8,15 @@ import useDebounce from '../../../../code/hooks/use-debounce'
 const SearchInput: React.FC = () => {
 
     return (
+        <Group>
             <Search
                 value={MainPageStore.searchQuery}
                 onChange={(event) => {
                     const query = event.target.value
                     MainPageStore.onChangeSearch(query)
                 }}
-          />
+            />
+        </Group>
     )
 }
 

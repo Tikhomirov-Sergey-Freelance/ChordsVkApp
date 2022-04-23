@@ -28,9 +28,9 @@ const Track: React.FC<iProps> = ({ track, cancellTrack }) => {
             </Text>}
             after={
                 <>
-                    <IconButton onClick={() => addArtistFromTrackCandidate(track)}><Icon24UserAdd /></IconButton>
-                    <IconButton onClick={() => addTrackFromCandidate(track)}><Icon24Add /></IconButton>
-                    <IconButton onClick={() => cancellTrack(track.id)}><Icon24Delete /></IconButton>
+                    <IconButton onClick={(event) => { event.stopPropagation(); addArtistFromTrackCandidate(track) }}><Icon24UserAdd /></IconButton>
+                    <IconButton onClick={(event) => { event.stopPropagation(); addTrackFromCandidate(track) }}><Icon24Add /></IconButton>
+                    <IconButton onClick={(event) => { event.stopPropagation(); cancellTrack(track.id) }}><Icon24Delete /></IconButton>
                 </>
             }
         >

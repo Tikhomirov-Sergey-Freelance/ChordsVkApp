@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { Database } from '../database'
 
-const collections = ['chords', 'admins', 'track-candidates']
+const collections = ['chords', 'admins', 'track-candidates', 'artists', 'short-artists', 'tracks', 'short-tracks']
 const dirPath = resolve(__dirname, '../../../..', 'data')
 
 interface iExportData {

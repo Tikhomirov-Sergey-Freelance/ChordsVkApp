@@ -1,7 +1,7 @@
 import { Firebase } from 'stores/root-store'
 import { iShortArtist } from 'types/artists'
 import { iShortTrack, iShortTrackView } from 'types/track'
-import { loadArtistsByQuery } from './artists'
+import { loadArtistByTags } from './artists'
 import { loadTracksByQuery } from './tracks'
 
 export const searchByQuery = async (query: string): Promise<[iShortArtist[], iShortTrackView[]]> => {
@@ -16,6 +16,6 @@ export const searchByQuery = async (query: string): Promise<[iShortArtist[], iSh
     
     if(!words.length) return [[], []]
 
-    return await Promise.all([loadArtistsByQuery(words), loadTracksByQuery(words)])
+    return await Promise.all([loadArtistByTags(words), loadTracksByQuery(words)])
 }
 

@@ -16,6 +16,13 @@ export interface iArtist {
     searchName: string
 }
 
+export interface iArtistTag {
+    id: string
+    artistId: string
+    tag: string
+    strict?: boolean
+}
+
 export const defaultArtist: iArtist = {
     id: '',
     name: '',

@@ -6,12 +6,14 @@ import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDo
 import { limit } from 'firebase/firestore'
 
 import { snackbar } from '../../../code/common/alerts'
-import { iArtist, iShortArtist } from 'types/artists'
+import { defaultArtist, iArtist, iArtistTag, iShortArtist } from 'types/artists'
 import { saveArtistLogo } from 'code/database/images'
 import { addArtist, updateArtist } from 'code/database/artists'
 import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
 import { iTrack } from 'types/track'
 import { addTrackFromCandidate } from 'code/tracks/add-track'
+import { loadArtistTagsById, updateArtistTags } from 'code/database/artist-tags'
+import { artistTagId } from 'code/artist/common'
 
 type StoreMode = 'add' | 'edit' | 'from-track-candidate'
 
@@ -26,10 +28,12 @@ export class AddArtistStore {
     artistImage: string
 
     description: string
+    tags: string[] = []
 
     queryArtist
 
     origArtist: iArtist
+    origTags: iArtistTag[] 
 
     constructor() {
 
@@ -47,12 +51,13 @@ export class AddArtistStore {
 
         if (this.mode === 'add' || this.mode === 'from-track-candidate') {
             const result = await addArtist(artist)
+            this.saveTags(artist) 
             console.log(result)
             snackbar('Добавили артиста')
         } else {
             const result = await updateArtist(artist)
             console.log(result)
-            await this.recalcTracksNames(artist)
+            await Promise.all([this.recalcTracksNames(artist), this.saveTags(artist)])
             snackbar('Изменили артиста')
         }
 
@@ -70,7 +75,7 @@ export class AddArtistStore {
             id: this.id,
             name: this.name,
             description: this.description || '',
-            artistImage: '',
+            artistImage: this.artistImage,
             searchName: this.name.toLocaleUpperCase()
         }
     }
@@ -88,6 +93,10 @@ export class AddArtistStore {
             this.imageDataSrc = fileReader.result
         }
         fileReader.readAsDataURL(this.imageData)
+    }
+
+    changeTags(tags: string[]) {
+        this.tags = tags
     }
 
     async saveLogo(artist: iArtist) {
@@ -120,15 +129,24 @@ export class AddArtistStore {
         }
 
         if (this.mode === 'edit') {
-            const artist = routeData && routeData.artist
+            const artistData = routeData && routeData.artist
+
+            const artist = { ...defaultArtist, ...(artistData || {})  }
 
             this.id = artist.id
             this.name = artist.name
             this.description = artist.description
             this.artistImage = artist.artistImage
-
+            
             this.origArtist = artist
+
+            this.loadTags()
         }
+    }
+
+    async loadTags() {
+        this.origTags = await loadArtistTagsById(this.id)
+        this.tags = this.origTags.map(tag => tag.tag)
     }
 
     async recalcTracksNames(artist: iArtist) {
@@ -152,6 +170,32 @@ export class AddArtistStore {
         }
     }
 
+    async saveTags(artist: iArtist) {
+
+        const lastTags = this.origTags || []
+
+        const tags: iArtistTag[] = this.tags.map(tag => ({
+            id: artistTagId(artist.id, tag),
+            artistId: artist.id,
+            tag: tag.toLocaleUpperCase()
+        }))
+
+        tags.push({
+            id: artistTagId(artist.id, artist.searchName),
+            artistId: artist.id,
+            tag: artist.searchName
+        })
+
+        const needAdd = tags.filter(tag => !lastTags.some(lastTag => tag.tag === lastTag.tag))
+        const needDelete = lastTags.filter(lastTag => !tags.some(tag => tag.tag === lastTag.tag))
+
+        const result = await updateArtistTags(needAdd, needDelete)
+
+        if(!result) {
+            snackbar('Ошибка при обновлении тегов')
+        }
+    }
+
     getMode(routeData): StoreMode {
 
         const artist = routeData && routeData.artist
@@ -166,6 +210,10 @@ export class AddArtistStore {
         }
 
         return 'add'
+    }
+
+    get tagsOptions() {
+        return this.tags.map(tag => ({ value: tag, label: tag }))
     }
 }
 

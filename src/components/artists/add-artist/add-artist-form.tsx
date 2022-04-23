@@ -4,9 +4,9 @@ import { CellButton, Group, File, FormItem, SliderSwitch, Select, CustomSelectOp
 
 import { useAddArtistStore } from 'stores/pages/add-artist-store/add-artist-store-provider'
 import AddArtistStore from '../../../stores/pages/add-artist-store'
-import { Icon24Camera } from '@vkontakte/icons'
 
 import ArtistImage from './artist-image'
+import SearchTags from './search-tags'
 
 const AddArtistForm: React.FC = observer(() => {
 
@@ -25,6 +25,8 @@ const AddArtistForm: React.FC = observer(() => {
             <FormItem top='Описание'>
                 <Textarea value={store.description} onInput={event => store.changeProperty('description', event.currentTarget.value)} />
             </FormItem>
+
+            <SearchTags />
 
             <CellButton centered onClick={() => store.save()}>
                 Сохранить артиста
