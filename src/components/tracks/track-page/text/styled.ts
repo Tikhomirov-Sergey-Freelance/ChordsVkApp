@@ -12,13 +12,16 @@ export default Styled.div`
 
     .intro, .outro, .instrumental {
 
+        display: flex;
+        flex-wrap: wrap;
+
         .title {
             font-weight: bold;
         }
 
         .desctiption .vkuiGroup__description {
             padding: 0;
-        }
+        } 
 
         .chord {
             margin: 0 3px;
