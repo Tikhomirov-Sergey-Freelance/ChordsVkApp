@@ -189,7 +189,7 @@ export class AddTrackStore {
         track.artistId = trackCandidate.foundArtist?.id || ''
 
         this.id = createGuid()
-        this.name = track.name
+        this.name = track.name.trim()
         this.artistId = track.artistId 
         this.strumming = track.strumming
         this.strummingNote = track.strummingNote
