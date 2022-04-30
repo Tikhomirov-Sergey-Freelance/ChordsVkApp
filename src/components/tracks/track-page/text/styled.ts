@@ -12,8 +12,10 @@ export default Styled.div`
 
     .intro, .outro, .instrumental {
 
-        display: flex;
-        flex-wrap: wrap;
+        .chords {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
         .title {
             font-weight: bold;

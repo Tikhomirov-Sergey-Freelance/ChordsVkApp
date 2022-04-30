@@ -12,7 +12,7 @@ export interface iProps {
 
 const Strumming: React.FC<iProps> = ({ track }) => {
 
-    if (!track.strumming.length) return null
+    if (!track.strumming.length && !track.strummingNote) return null
 
     const getIcon = (value: StrummingType) => {
 
@@ -37,7 +37,7 @@ const Strumming: React.FC<iProps> = ({ track }) => {
         <Group
             header={<Header mode="secondary">Бой</Header>}
         >
-            <SimpleCell>
+            {!!track.strumming.length && <SimpleCell>
                 <Styled>
 
                     {
@@ -45,9 +45,10 @@ const Strumming: React.FC<iProps> = ({ track }) => {
                     }
 
                 </Styled>
-            </SimpleCell>
+            </SimpleCell>}
 
-            {track.strummingNote && <Group description={track.strummingNote} />}
+            {!!!track.strumming.length && <SimpleCell>{track.strummingNote}</SimpleCell>}
+            {!!track.strumming.length && track.strummingNote && <Group description={track.strummingNote} />}
 
         </Group>
     )
