@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, Fragment } from 'react'
 import AddTrackStore from 'stores/pages/add-track-store'
 
 import ModalPageStore from '../../../../stores/root/modal-page-store'
@@ -24,12 +24,12 @@ const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
             if(typeof word !== 'string') {
 
                 if(buffer.length) {
-                    row.push(<> {buffer.join(' ') + ' '} </>)
+                    row.push(<Fragment key={`${rowIndex}-${index}`}> {buffer.join(' ') + ' '} </Fragment>)
                     buffer = []
                 }
 
                 if(lastChord) {
-                    row.push(<span className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>)
+                    row.push(<span key={`${rowIndex}-${index}-space`} className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>)
                 }
 
                 row.push(<ChordsWord key={`${rowIndex}-${index}`} word={word} />)
@@ -58,14 +58,3 @@ const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
 }
 
 export default ChordsRow
-
-/*
-{
-                row.words && row.words.map((word, index) => {
-                    return <>
-                        <ChordsWord key={`${rowIndex}-${index}`} word={word} />
-                        {(index !== row.words.length - 1) && <span className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>}
-                    </>
-                })
-            }
-            */
