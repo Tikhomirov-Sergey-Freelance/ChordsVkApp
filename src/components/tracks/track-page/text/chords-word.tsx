@@ -16,12 +16,14 @@ const ChordsWord: React.FC<iProps> = (props) => {
     }
 
     return (
-        <div className={`chord-word${chord ? ' visible-chord' : ''}`}>
+        <span className='chord-word visible-chord'>
+
             <span className='word'>{word}</span>
             {chord && <span className='chord' style={{ left: `${chord?.pos / 2}rem` }}>
                 {chord?.key}
-            </span>}    
-        </div>
+            </span>} 
+
+        </span>
     )
 }
 
