@@ -24,15 +24,15 @@ const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
             if(typeof word !== 'string') {
 
                 if(buffer.length) {
-                    row.push(<Fragment key={`${rowIndex}-${index}`}> {buffer.join(' ') + ' '} </Fragment>)
+                    row.push(<Fragment key={index - 1}> {buffer.join(' ') + ' '} </Fragment>)
                     buffer = []
                 }
 
                 if(lastChord) {
-                    row.push(<span key={`${rowIndex}-${index}-space`} className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>)
+                    row.push(<span key={index + 'space'} className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>)
                 }
 
-                row.push(<ChordsWord key={`${rowIndex}-${index}`} word={word} />)
+                row.push(<ChordsWord key={index} word={word} />)
                 lastChord = true
                 return
             }

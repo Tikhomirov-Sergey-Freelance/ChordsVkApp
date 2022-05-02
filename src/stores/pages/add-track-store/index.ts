@@ -172,6 +172,8 @@ export class AddTrackStore {
         this.artistId = track.artistId
         this.strumming = track.strumming
         this.strummingNote = track.strummingNote
+        this.riff = track.riff
+        this.riffNote = track.riffNote
         this.intro = track.intro
         this.introNote = track.introNote
         this.chordsText = track.chordsText

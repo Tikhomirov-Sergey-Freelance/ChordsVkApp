@@ -32,7 +32,7 @@ const Instrumental: React.FC<iProps> = ({ mode, chords, note }) => {
                 {!chords.length && <span className='info'>{note}</span>}
 
                 {
-                    chords.map(item => <span className='chord'>{item}</span>)
+                    chords.map((item, index) => <span key={index} className='chord'>{item}</span>)
                 }
             </div>
 
