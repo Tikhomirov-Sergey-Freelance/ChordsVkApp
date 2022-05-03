@@ -1,5 +1,6 @@
 import React from 'react'
 import Tracks from './tracks'
+import ArtistList from './tracks/artist-list'
 import Chords from './chords'
 import Favourites from './favorites'
 import ProposeTrack from './tracks/propose-track'
@@ -20,7 +21,11 @@ export const views = [
             {
                 id: 'proposeTrack',
                 render: () => <ProposeTrack />
-            }
+            },
+            {
+                id: 'artistList',
+                render: () => <ArtistList />
+            },
         ]
     },
     {

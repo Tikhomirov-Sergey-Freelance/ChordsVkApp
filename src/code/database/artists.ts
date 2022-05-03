@@ -1,6 +1,6 @@
 import { artistToShortArtist } from 'code/artist/mapper';
 import { arrayToPools } from 'code/common/array';
-import { collection, getDocs, where, query, Query, getDoc, doc, setDoc, updateDoc, runTransaction } from 'firebase/firestore'
+import { collection, getDocs, where, query, Query, getDoc, doc, setDoc, updateDoc, runTransaction, orderBy } from 'firebase/firestore'
 import { Firebase } from "stores/root-store"
 import { iArtist, iShortArtist } from 'types/artists'
 import { loadArtistTagsByQuery } from './artist-tags';
@@ -23,6 +23,23 @@ export const loadArtistByTags = async (tag: string) => {
         if(!ids.length) return []
 
         return loadArtistsByIds(ids)
+
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+}
+
+export const loadAllArtists = async () => {
+
+    try {
+        const querySnapshot =
+            query(
+                collection(await Firebase.getFirestore(), 'short-artists'),
+                orderBy('searchName'))
+
+        const data = await getDocs(querySnapshot)
+        return data.docs.map(item => item.data()) as iShortArtist[]
 
     } catch (error) {
         console.error(error)

@@ -8,6 +8,7 @@ import PanelPreloader from '../../common/preloaders/panel-preloader'
 import TrackList from '../../tracks/tracks-list'
 import RandomTrackButton from '../random-track-button'
 import ProposeTrackButton from '../propose-track-button'
+import ShowArtistsButton from '../show-artists-button'
 
 const Tracks: React.FC = () => {
 
@@ -20,6 +21,7 @@ const Tracks: React.FC = () => {
             {!!MainPageStore.lastViewedTracks.length && <TrackList tracks={MainPageStore.lastViewedTracks} title='Последние просмотренные треки' />}
            
             <Group style={{ padding: 10 }}>
+                <ShowArtistsButton />
                 <RandomTrackButton />
                 <ProposeTrackButton />
             </Group>
