@@ -21,7 +21,7 @@ const Chords: React.FC<iProps> = ({ track }) => {
         }
 
         if(row.instrumental) {
-            return <Instrumental mode='instrumental' chords={row.instrumental.chords} note={row.instrumental.note}/>
+            return <Instrumental key={index} mode='instrumental' chords={row.instrumental.chords} note={row.instrumental.note}/>
         }
 
         return <ChordsRow key={index} rowIndex={index} row={row} />

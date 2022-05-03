@@ -172,6 +172,8 @@ export class AddTrackStore {
         this.artistId = track.artistId
         this.strumming = track.strumming
         this.strummingNote = track.strummingNote
+        this.riff = track.riff
+        this.riffNote = track.riffNote
         this.intro = track.intro
         this.introNote = track.introNote
         this.chordsText = track.chordsText
@@ -189,7 +191,7 @@ export class AddTrackStore {
         track.artistId = trackCandidate.foundArtist?.id || ''
 
         this.id = createGuid()
-        this.name = track.name
+        this.name = track.name.trim()
         this.artistId = track.artistId 
         this.strumming = track.strumming
         this.strummingNote = track.strummingNote

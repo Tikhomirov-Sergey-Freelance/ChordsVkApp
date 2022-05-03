@@ -10,7 +10,27 @@ export interface iProps {
 const Comments: React.FC<iProps> = ({ track }) => {
 
     useEffect(() => {
-        setTimeout(() => VK.mountComments(track.id), 2000)
+
+        const modalDiv = document.getElementsByClassName('ModalPage__content')[0]
+        let mounted = false
+
+        const action = () => {
+
+            if(!mounted && modalDiv.scrollTop > modalDiv.scrollHeight - modalDiv.clientHeight - 200) {
+                
+                VK.mountComments(track.id)
+
+                mounted = true
+                modalDiv.removeEventListener('scroll', action)
+            }
+        }
+
+        modalDiv.addEventListener('scroll', action)
+
+        return () => {
+            modalDiv.removeEventListener('scroll', action)
+        }
+
     }, [])
 
     return (

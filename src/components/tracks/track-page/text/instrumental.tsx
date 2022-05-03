@@ -10,7 +10,7 @@ export interface iProps {
 }
 
 const Instrumental: React.FC<iProps> = ({ mode, chords, note }) => {
-    
+
     if (!chords.length && !note) return null
 
     const getTitle = () => {
@@ -26,15 +26,19 @@ const Instrumental: React.FC<iProps> = ({ mode, chords, note }) => {
 
         <div className={mode}>
 
-            <span className='title'>{getTitle()}:</span> 
+            <div className='chords'>
+                <span className='title'>{getTitle()}:</span>
 
-            {!chords.length && <span className='info'>{note}</span>}
+                {!chords.length && <span className='info'>{note}</span>}
 
-            {
-                chords.map(item => <span className='chord'>{item}</span>)
-            }
+                {
+                    chords.map((item, index) => <span key={index} className='chord'>{item}</span>)
+                }
+            </div>
 
-            {chords.length && note && <Group className='desctiption' description={note} />}
+            <div className='desctiption'>
+                {chords.length && note && <Group className='desctiption' description={note} />}
+            </div>
 
         </div>
     )

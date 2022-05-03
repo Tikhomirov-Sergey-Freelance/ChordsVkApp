@@ -25,11 +25,15 @@ const TrackHeader: React.FC<iProps> = () => {
 
     return (
         <ModalPageHeader
-            left={isMobile && <PanelHeaderClose onClick={() => Modal.closeModal()} />}
+            left={isMobile && <PanelHeaderClose 
+                aria-label='Закрыть'
+                onClick={() => Modal.closeModal()} />}
             right={
                 <>
                     {VK.validVk &&
-                        <PanelHeaderButton onClick={() => store.changeFavourite()}>
+                        <PanelHeaderButton
+                            aria-label={store.isFavorite ? 'Добавить в коллекцию' : 'Удалить из коллекции'}
+                            onClick={() => store.changeFavourite()}>
                             {store.isFavorite ? <Icon24Like /> : <Icon24LikeOutline />}
                         </PanelHeaderButton>}
                         <PanelHeaderButton onClick={() => store.share()}><Icon24ShareOutline /></PanelHeaderButton>

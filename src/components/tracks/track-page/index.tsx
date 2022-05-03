@@ -10,6 +10,7 @@ import Spinner from '../../common/preloaders/panel-preloader'
 import Name from './name'
 import Artist from './artist'
 import Strumming from './strumming'
+import Riff from './riff'
 import Chords from './chords'
 import Text from './text'
 import TrackVideo from './video'
@@ -34,6 +35,7 @@ const TrackModal: React.FC<iProps> = () => {
             <Name track={store.track}/>
             <Artist track={store.track} />
             <Strumming track={store.track} />
+            <Riff track={store.track} />
             <Chords chords={store.instrumentChords} currentInstrument={Global.currentInstrument} loading={store.loadingChords}/>
             <Text track={store.track} />
             <ErrorButton store={store} />

@@ -12,23 +12,23 @@ export interface iProps {
 
 const Strumming: React.FC<iProps> = ({ track }) => {
 
-    if (!track.strumming.length) return null
+    if (!track.strumming.length && !track.strummingNote) return null
 
-    const getIcon = (value: StrummingType) => {
+    const getIcon = (value: StrummingType, index: number) => {
 
         switch (value) {
 
             case StrummingType.down:
-                return <Icon24ArrowDownOutline color='' />
+                return <Icon24ArrowDownOutline key={index} color='' />
 
             case StrummingType.up:
-                return <Icon24ArrowUpOutline />
+                return <Icon24ArrowUpOutline key={index} />
 
             case StrummingType.mutting:
-                return <Icon24CancelOutline title='глушение' />
+                return <Icon24CancelOutline key={index} title='глушение' />
 
             case StrummingType.space:
-                return <span className='space' />
+                return <span key={index} className='space' />
         }
     }
 
@@ -37,17 +37,18 @@ const Strumming: React.FC<iProps> = ({ track }) => {
         <Group
             header={<Header mode="secondary">Бой</Header>}
         >
-            <SimpleCell>
+            {!!track.strumming.length && <SimpleCell>
                 <Styled>
 
                     {
-                        track.strumming.map(item => getIcon(item))
+                        track.strumming.map((item, index) => getIcon(item, index))
                     }
 
                 </Styled>
-            </SimpleCell>
+            </SimpleCell>}
 
-            {track.strummingNote && <Group description={track.strummingNote} />}
+            {!!!track.strumming.length && <SimpleCell>{track.strummingNote}</SimpleCell>}
+            {!!track.strumming.length && track.strummingNote && <Group description={track.strummingNote} />}
 
         </Group>
     )

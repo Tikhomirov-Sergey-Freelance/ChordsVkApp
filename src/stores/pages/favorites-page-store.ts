@@ -3,6 +3,7 @@ import { makeAutoObservable, reaction } from 'mobx'
 import { loadTracksByIds } from '../../code/database/tracks'
 import { Favorites } from '../root-store'
 import { iShortTrackView, iTrackView } from '../../types/track'
+import { changeFavorite } from 'code/database/favorite'
 
 export class FavoritesPageStore {
 
@@ -26,13 +27,15 @@ export class FavoritesPageStore {
 
         const unloadedTracks = Favorites.favorites
             .filter(trackId => !this.tracks.some(track => track.id === trackId))
-
+        
         if (unloadedTracks.length) {
 
             this.loaded = false
             this.loading = true
 
             const tracks = await loadTracksByIds(unloadedTracks)
+            this.deleteNotFoundTracks(unloadedTracks, tracks)
+
             this.tracks.push(...tracks)
         }
 
@@ -62,6 +65,11 @@ export class FavoritesPageStore {
 
     changePageState(open: boolean) {
         this.openPage = open
+    }
+
+    deleteNotFoundTracks(ids: string[], foundTracks: iShortTrackView[]) {
+        const notFoundTrack = ids.filter(id => !foundTracks.some(track => track.id === id))
+        notFoundTrack.forEach(track => changeFavorite(track, 'delete'))
     }
 }
 
