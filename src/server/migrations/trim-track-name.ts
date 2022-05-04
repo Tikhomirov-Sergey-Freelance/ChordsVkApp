@@ -12,9 +12,17 @@ const load = async () => {
     
     const store = firestore(database.app)
 
-    const docs = await store.collection('track-candidates').get()
+    const docs = await store.collection('short-tracks').get()
     
-    const updates = docs.docs.map(doc => store.doc(`track-candidates/${doc.id}`).update({ state: 'active' }))
+    const updates = docs.docs.map(doc => {
+
+        const track: iShortTrack = doc.data() as iShortTrack
+
+        if(track.name.startsWith(" ")) {
+            store.doc(`short-tracks/${doc.id}`).update({ name: track.name.trim() })
+            store.doc(`tracks/${doc.id}`).update({ name: track.name.trim() })
+        }
+    })
     
     await Promise.all(updates)
 

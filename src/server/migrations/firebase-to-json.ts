@@ -17,7 +17,7 @@ const firebaseToJson = async () => {
     const database = new Database()
     database.devPath = resolve(__dirname, '../../..', 'ChordsPrivate/firebase/service-account-key.json')
     database.init()
-    
+     
     const store = firestore(database.app)
 
     if (!existsSync(dirPath)) {
