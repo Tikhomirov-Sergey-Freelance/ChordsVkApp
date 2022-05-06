@@ -21,6 +21,19 @@ export const loadAllChords = async () => {
     return (await getDocs(collection(await Firebase.getFirestore(), 'chords'))).docs.map(doc => doc.data() as iChord)
 }
 
+export const loadChordsByNote = async (note: string) => {
+
+    if(!note) return []
+
+    const querySnapshot =
+        query(
+            collection(await Firebase.getFirestore(), 'chords'),
+            where('note', '==', note.toUpperCase()));
+
+    const data = await getDocs(querySnapshot)
+    return data.docs.map(item => item.data()) as iChord[]
+}
+
 export const loadChordsByQuery = async (q: string) => {
 
     if(!q) return []

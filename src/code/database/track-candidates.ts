@@ -13,12 +13,13 @@ export const loadActiveCandidatesList = async () => {
         const querySnapshot =
             query(
                 collection(await Firebase.getFirestore(), 'track-candidates'),
-                where('state', '==', 'active'),
-                limit(20)
+                where('state', '==', 'active')
             );
 
         const data = await getDocs(querySnapshot)
         const tracks = data.docs.map(item => item.data()) as iTrackCandidate[]
+
+        console.log(tracks.length) 
 
         const artistNames = tracks.map(track => track.artist.trim())
         const artists = await loadArtistsByNames(artistNames)

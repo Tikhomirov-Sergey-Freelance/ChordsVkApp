@@ -1,18 +1,18 @@
 import { makeAutoObservable, observable } from 'mobx'
 import { iChord } from 'types/chord'
-import { loadAllChords } from 'code/database/chords'
+import { loadAllChords, loadChordsByNote } from 'code/database/chords'
 import { Global } from 'stores/root-store'
 import { threadId } from 'worker_threads'
+import { notes } from 'code/data/notes'
 
 export class ChordsListStore {
 
     loading = false
-    loaded = false
 
     guitarChords: Map<string, iChord[]> = new Map<string, iChord[]>()
     ukuleleChords: Map<string, iChord[]> = new Map<string, iChord[]>()
 
-    note: string = ''
+    note: string = notes[0]
 
     constructor() {
         makeAutoObservable(this)
@@ -29,38 +29,30 @@ export class ChordsListStore {
 
     async loadChords() {
         
-        if(this.loaded) return
+        if(this.guitarChords.has(this.note)) return
         
         this.loading = true
 
-        const chords = await loadAllChords()
+        const chords = await loadChordsByNote(this.note)
 
-        const guitarChordsByGroup = new Map<string, iChord[]>([])
-        const ukuleleChordsByGroup = new Map<string, iChord[]>([])
-
-        this.guitarChords = null 
-        this.ukuleleChords = null
+        const guitarChords: iChord[] = []
+        const ukuleleChords: iChord[] = []
 
         chords.forEach(chord => {
-
-            const source = chord.instrument === 'guitar' ? guitarChordsByGroup : ukuleleChordsByGroup
-
-            if(source.has(chord.note)) {
-                source.get(chord.note).push(chord)
-            } else {
-                source.set(chord.note, [chord])
-            }
+            const source = chord.instrument === 'guitar' ? guitarChords : ukuleleChords
+            source.push(chord)
         })
-        
-        this.guitarChords = guitarChordsByGroup 
-        this.ukuleleChords = ukuleleChordsByGroup
 
-        this.loaded = true
+        this.guitarChords.set(this.note, guitarChords)
+        this.ukuleleChords.set(this.note, ukuleleChords)
+
         this.loading = false 
     }
 
     changeNote(note: string) {
+
         this.note = note
+        this.loadChords()
     }
 } 
 

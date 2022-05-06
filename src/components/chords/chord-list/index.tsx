@@ -4,11 +4,9 @@ import { observer } from 'mobx-react-lite'
 import ChordsListStore from 'stores/pages/chords-list-store'
 import { Global } from 'stores/root-store'
 
-import PanelPreloader from '../../common/preloaders/panel-preloader'
 import Instrument from '../instrument/change-instrument'
 import SelectNote from 'components/common/notes/select-note'
-import Note from '../../chords/chord-list/note'
-import Chord from './chord'
+import ChordList from './chord-list'
 
 
 const ChordsList: React.FC = observer(() => {
@@ -16,8 +14,6 @@ const ChordsList: React.FC = observer(() => {
     useEffect(() => {
         ChordsListStore.loadChords()
     }, [])
-
-    if (ChordsListStore.loading || !ChordsListStore.loaded) return <PanelPreloader title='Аккорды' />
 
     return (
         <>
@@ -32,13 +28,7 @@ const ChordsList: React.FC = observer(() => {
             </Group>
 
             <Group>
-                <CardGrid size='s'>
-
-                    {
-                        ChordsListStore.currentNoteChords.map(chord => <Chord key={chord.name + Global.currentInstrument} chord={chord} />)
-                    }
-
-                </CardGrid>
+                <ChordList />
             </Group>
         </>
     )
