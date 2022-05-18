@@ -7,9 +7,10 @@ export interface iProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
     title: string
     error?: string
+    maxLength?: number
 }
 
-const InputControl: React.FC<iProps> = ({ title, value, onChange, error }) => {
+const InputControl: React.FC<iProps> = ({ title, value, onChange, error, maxLength }) => {
 
     return (
         <FormItem 
@@ -17,9 +18,13 @@ const InputControl: React.FC<iProps> = ({ title, value, onChange, error }) => {
             status={error ? 'error' : 'default'}
             bottom={error}
          >
-            <Input value={value} onChange={onChange} />
+            <Input value={value} onChange={onChange} maxLength={maxLength}/>
         </FormItem>
     )
+}
+
+InputControl.defaultProps = {
+    maxLength: 100
 }
 
 export default InputControl

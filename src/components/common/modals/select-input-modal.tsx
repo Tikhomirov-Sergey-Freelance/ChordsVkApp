@@ -15,7 +15,7 @@ const SelectInputModal: React.FC<iProps> = ({ onSelect, onClose, defaultText }) 
 
         <Group style={{ padding: 10 }}>
         
-            <Input value={text} onChange={event => changeText(event.target.value)} />
+            <Input value={text} onChange={event => changeText(event.target.value)} maxLength={100} />
 
             <CellButton centered onClick={() => onSelect(text)}>
                 Сохранить

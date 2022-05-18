@@ -29,6 +29,7 @@ const AddArtistForm: React.FC = observer(() => {
                 <Textarea
                     sizeY={SizeType.REGULAR}
                     value={store.comment}
+                    maxLength={1000}
                     onChange={(event) => store.changeProperty('comment', event.target.value)} />
             </FormItem>
 

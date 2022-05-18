@@ -14,7 +14,7 @@ const TrackError: React.FC<iProps> = ({ sendError, onClose }) => {
     return (
         <Group style={{ padding: 10 }} >
 
-            <Textarea sizeY={SizeType.REGULAR} value={error} onChange={(event) => changeText(event.target.value)} />
+            <Textarea sizeY={SizeType.REGULAR} value={error} onChange={(event) => changeText(event.target.value)} maxLength={1000} />
 
             <CellButton centered onClick={() => sendError(error)}>
                 Отправить
