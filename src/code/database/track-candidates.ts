@@ -40,6 +40,21 @@ export const loadActiveCandidatesList = async () => {
     }
 }
 
+export const addTrackCandidate = async (track: iTrackCandidate) => {
+
+    try {
+
+        const document = doc(await Firebase.getFirestore(), `track-candidates/${track.id}`)
+        setDoc(document, track)
+
+        return true
+
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+}
+
 export const deleteTrackCandidate = async (id: string) => {
 
     try {
@@ -72,5 +87,23 @@ export const changeTrackCandidateState = async (id: string, state: TrackCandidat
         console.log(error)
         return false
     }
+}
+
+export const changeTrackCandidateAfterSaveTrack = async (id: string, trackId: string) => {
+
+    try {
+
+        const firestore = await Firebase.getFirestore()
+
+        const document = doc(firestore, `track-candidates/${id}`)
+        await updateDoc(document, { trackId, state: 'added' })
+
+        return true
+
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+
 }
 

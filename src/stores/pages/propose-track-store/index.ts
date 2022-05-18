@@ -13,6 +13,8 @@ import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks
 import { iTrack } from 'types/track'
 import { iProposeTrack, ProposeTrackType } from 'types/propose-track'
 import { addProposeTrack } from 'code/database/propose-track'
+import { iTrackCandidate, TrackCandidateState } from 'types/track-candidate'
+import { addTrackCandidate } from 'code/database/track-candidates'
 
 export interface iProposeTrackErrors {
     artist: string
@@ -28,7 +30,7 @@ export class ProposeTrackStore {
     artist: string
     comment: string
 
-    state: ProposeTrackType = 'creaded'
+    state: TrackCandidateState = 'active'
 
     showErrors: boolean
 
@@ -48,7 +50,7 @@ export class ProposeTrackStore {
         if (!this.validate()) return
 
         const track = this.dataToSave
-        const result = await addProposeTrack(track)
+        const result = await addTrackCandidate(track)
 
         Router.toMainPanel()
         snackbar(result ?
@@ -81,13 +83,13 @@ export class ProposeTrackStore {
         return isValid
     }
 
-    get dataToSave(): iProposeTrack {
+    get dataToSave(): iTrackCandidate {
         return {
             id: this.id,
             userId: VK.vkId.toString(),
-            track: this.track,
+            name: this.track,
             artist: this.artist,
-            comment: this.comment,
+            chordsNote: this.comment,
             state: this.state
         }
     }

@@ -13,7 +13,7 @@ import debounce from 'code/common/debounce'
 import { iShortArtist } from 'types/artists'
 import { iTrackCandidate, iTrackCandidatesView as iTrackCandidateView } from 'types/track-candidate'
 import { openTrack } from 'code/tracks/open-track'
-import { changeTrackCandidateState } from 'code/database/track-candidates'
+import { changeTrackCandidateAfterSaveTrack, changeTrackCandidateState } from 'code/database/track-candidates'
 
 export interface iArtistSearch {
     label: string
@@ -70,7 +70,7 @@ export class AddTrackStore {
 
             if(this.mode === 'from-track-candidate') {
                 const trackCandidate: iTrackCandidate = Router.activePanelData.trackCandidate
-                await changeTrackCandidateState(trackCandidate.id, 'added')
+                await changeTrackCandidateAfterSaveTrack(trackCandidate.id, track.id)
             }
 
             snackbar(this.mode === 'edit' ?  'Трек изменен' : 'Добавили трек')
