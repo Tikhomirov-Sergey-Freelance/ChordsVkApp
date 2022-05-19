@@ -127,9 +127,7 @@ export class TrackPageStore {
         }
 
         await sendTrackError(trackError)
-        this.openTrackPage()
-
-        setTimeout(() => snackbar('Сообщение отправлено. Благодарим за помощь'), 100)
+        snackbar('Сообщение отправлено.\nБлагодарим за помощь')
     }
 
     openTrackPage() {

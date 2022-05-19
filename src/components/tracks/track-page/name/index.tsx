@@ -7,7 +7,7 @@ import { editTrack } from 'code/tracks/edit-track'
 import { Global, VK } from 'stores/root-store'
 import { TrackPageStore } from 'stores/pages/track-page-store'
 
-import { iTrackView } from 'types/track'
+import { observer } from 'mobx-react-lite'
 
 export interface iProps {
     store: TrackPageStore
@@ -43,4 +43,4 @@ const Name: React.FC<iProps> = ({ store }) => {
     )
 }
 
-export default Name
+export default observer(Name)

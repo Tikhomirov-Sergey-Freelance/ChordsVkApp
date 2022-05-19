@@ -10,6 +10,10 @@ export interface iProps {
 const TrackError: React.FC<iProps> = ({ sendError, onClose }) => {
 
     const [error, changeText] = useState('')
+    const send = () => {
+        sendError(error)
+        onClose()
+    }
 
     return (
         <Group style={{ padding: 10 }} >

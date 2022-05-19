@@ -5,7 +5,7 @@ import { editTrack } from 'code/tracks/edit-track'
 import { observer } from 'mobx-react-lite'
 import GlobalStore from 'stores/root/global-store'
 import { useTrackStore } from 'stores/pages/track-page-store/track-page-store-provider'
-import { Modal, Global, VK } from 'stores/root-store'
+import { Modal, Global, VK, Router } from 'stores/root-store'
 
 export interface iProps {
 
@@ -21,7 +21,7 @@ const TrackHeader: React.FC<iProps> = () => {
         <PanelHeader
             left={<PanelHeaderBack 
                 aria-label='Закрыть'
-                onClick={() => Modal.closeModal()} />}
+                onClick={() => Router.goBack()} />}
         >
             {store.track.artist.name} - {store.track.name}
         </PanelHeader>
