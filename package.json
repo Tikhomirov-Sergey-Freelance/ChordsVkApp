@@ -7,7 +7,6 @@
     "@loadable/server": "5.15.2",
     "@types/react-virtualized": "^9.21.16",
     "@types/styled-components": "^5.1.21",
-    "@types/vk-openapi": "^1.6.1",
     "@vkontakte/icons": "^1.150.0",
     "@vkontakte/vk-bridge": "^2.5.3",
     "@vkontakte/vkui": "^4.28.1",

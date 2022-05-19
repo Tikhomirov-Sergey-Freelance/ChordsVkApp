@@ -25,18 +25,16 @@ const Chord: React.FC<iProps> = ({ chord, width, height, style }) => {
     }, [])
 
     return (
-        <Card style={{ margin: '0 10px' }}>
-            <div style={{ padding: 7, display: 'flex', justifyContent: 'center', width, height, ...style  }}>
-                <canvas ref={canvas} width={width} height={height} />  
-            </div>
-        </Card> 
+        <div style={{ padding: 3, display: 'flex', justifyContent: 'center', width, height, ...style }}>
+            <canvas ref={canvas} width={width} height={height} />
+        </div>
     )
 }
 
 Chord.defaultProps = {
     width: 110,
     height: 170,
-    style: {} 
+    style: {}
 }
 
 export default Chord

@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 import { Router } from '../../root-store'
 import { createStoreByModalKey } from './dictionary'
 
-export type ModalKey = 'defaultModalPage' | 'track' | 'artist'
+export type ModalKey = 'defaultModalPage'
 
 export interface ModalComponent {
     key: ModalKey

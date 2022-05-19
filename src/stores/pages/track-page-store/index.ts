@@ -5,16 +5,16 @@ import { loadArtistById } from 'code/database/artists'
 import { loadTrackById, loadTracksByArtist } from 'code/database/tracks'
 import { iChord } from 'types/chord'
 import { loadChordsByKeys } from 'code/database/chords'
-import GlobalStore from '../root/global-store'
+import GlobalStore from '../../root/global-store'
 import { incrementTrackView } from 'code/database/track-metrics'
 import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/database/favorite'
-import { Modal, Favorites, Global, VK } from '../root-store'
+import { Modal, Favorites, Global, VK, Router } from '../../root-store'
 import { getTrackLink } from 'code/tracks/track-link'
 import { snackbar } from 'code/common/alerts'
 import { sendTrackError } from 'code/database/track-error'
 import { iTrackError } from 'types/track-error'
 import { createGuid } from 'code/common/guid'
-import { openTrackByStore } from 'code/tracks/open-track'
+import { openTrack } from 'code/tracks/open-track'
 
 export class TrackPageStore {
 
@@ -24,10 +24,13 @@ export class TrackPageStore {
     track: iTrackView
     chords: iChord[] = []
 
-    constructor(trackId: string) {
+    constructor() {
+
+        const routeData = Router.activePanelData
+        const trackId = routeData?.trackId
 
         if (!trackId) {
-            Modal.closeModal()
+            Router.goBack()
             return
         }
 
@@ -130,7 +133,7 @@ export class TrackPageStore {
     }
 
     openTrackPage() {
-        openTrackByStore(this.track.id, this)
+        openTrack(this.track.id)
     }
 
     async changeFavourite() {

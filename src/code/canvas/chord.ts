@@ -141,8 +141,8 @@ class ChordCanvas {
             this.context.strokeText('X', x - 2.5, this.topPadding - 2)
         }
 
-        this.context.lineWidth = 1
-        this.context.font = '25px Arial'
+        this.context.lineWidth = 0.8
+        this.context.font = '15px Arial'
         this.context.textAlign = 'center'
         this.context.strokeText(this.params.name, this.canvas.width / 2, this.topPadding - 13)
     }
