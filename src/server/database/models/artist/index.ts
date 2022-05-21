@@ -1,19 +1,10 @@
 import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { iArtist, iArtistTag, iShortArtist } from 'types/artists'
 
-export interface iArtist {
-    id: string
-    name: string
-    
-    description: string
-    artistImage: string
-
-    searchName: string
-}
-
-export const ArtistSchema = new Schema({
+export const ArtistSchema = new Schema<iArtist>({
 
     id: {
-        type: Number,
+        type: String,
         unique: true,
         required: true
     },
@@ -39,33 +30,50 @@ export const ArtistSchema = new Schema({
 
 }, { versionKey: false })
 
-export const ShortArtistSchema = new Schema({
-    vkId: {
-        type: Number,
+export const ShortArtistSchema = new Schema<iShortArtist>({
+    id: {
+        type: String,
         unique: true,
         required: true
     },
-    words: {
+    name: {
         type: String,
         unique: false,
         required: true
+    },
+    
+    searchName: {
+        type: String,
+        unique: false
     }
 
 }, { versionKey: false })
 
-export interface iShortArtist {
-    id: string
-    name: string
-    artistImage: string
+export const ArtistTagSchema = new Schema<iArtistTag>({
+    id: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    artistId: {
+        type: String,
+        unique: false,
+        required: true
+    },
+    
+    tag: {
+        type: String,
+        unique: false,
+        required: true
+    },
 
-    searchName: string
-}
+    strict: {
+        type: Boolean,
+        unique: false,
+    },
 
-export interface iArtistTag {
-    id: string
-    artistId: string
-    tag: string
-    strict?: boolean
-}
+}, { versionKey: false })
 
-//export default model('admins', AdminSchema)
+export const artistModel = model('artist', ArtistSchema)
+export const shortArtistModel = model('short-artist', ShortArtistSchema)
+export const artistTagModel = model('artist-tag', ArtistTagSchema)

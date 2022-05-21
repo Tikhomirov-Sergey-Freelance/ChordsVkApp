@@ -1,9 +1,8 @@
-import { iAdmin } from 'types/admin'
-import Shema, { AdminSchema } from '.'
+import model from '.'
 
 export default class AdminHelper {
 
     static findByVkId(id: number) {
-        return Shema.findOne<iAdmin>({ vkId: { $eq: id } })
+        return model.findOne({ vkId: { $eq: id } })
     }
 }

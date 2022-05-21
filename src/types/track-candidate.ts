@@ -7,7 +7,10 @@ export interface iTrackCandidate {
     id: string
     name: string
     artist: string
+    riff: string
+    riffNote: string
     strumming?: StrummingType[]
+    strummingNote: string
     intro?: string[]
     introNote?: string
     outro?: string[]

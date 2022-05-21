@@ -1,6 +1,7 @@
 import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { iAdmin } from 'types/admin'
 
-export const AdminSchema = new Schema({
+export const AdminSchema = new Schema<iAdmin>({
     vkId: {
         type: Number,
         unique: true,
