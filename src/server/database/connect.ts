@@ -1,4 +1,5 @@
 import mongoose = require('mongoose')
+import { iResult } from 'types/common';
 
 const options = {
     autoIndex: true,
@@ -7,24 +8,31 @@ const options = {
     socketTimeoutMS: 45000, 
     family: 4,
     useNewUrlParser: true, 
-    useCreateIndex: true, 
     useUnifiedTopology: true
   };
 
-const connect = () => {
+  type ActionMongoose<T> = () => Promise<T>
 
-    return new Promise(async (resolve, reject) => {
+const connect = <T>(action: ActionMongoose<T>) => {
+
+    return new Promise<iResult<T>>(async (resolve, reject) => {
+
+        let db
 
         try {
-
-            await mongoose.connect('mongodb://localhost/chords', options)
-
-            console.log('Подключение к базе данных прошло успешно')
-            return true
+            
+            db = await mongoose.connect('mongodb://localhost/chords', options)
+            console.log('mongoose connect')
+            const result = await action()
+            resolve({ error: null, result })
 
         } catch (error) {
-            console.error(`Ошибка при подключении к базеданных. ${error}`)
-            throw error
+            console.log('mongoose error ' + error)
+            resolve({ error })
+        }
+        finally {
+            db.disconnect()
+            console.log('mongoose disconnect')
         }
     })
 }
