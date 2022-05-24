@@ -7,18 +7,28 @@ import connect from '../database/connect'
 import adminModel from '../database/models/admin'
 import chordsModel from '../database/models/chord'
 import trackCandidateModel from '../database/models/track-candidates'
-import { artistModel, shortArtistModel, artistTagModel } from '../database/models/artist'
+import { artistModel, artistTagModel } from '../database/models/artist'
+import { trackModel } from '../database/models/track'
+import { trackMetrics } from '../database/models/track-metrics'
+import { trackErrorModel } from '../database/models/track-errors'
+import favoriteModel from '../database/models/user-favorite'
 
-const collections = ['chords', 'admins', 'track-candidates', 'artists', 'short-artists', 'tracks', 'short-tracks', 'track-metrics', 'track-errors', 'favourites', 'artist-tags']
+let trackIndex = 1
+
 const dictionary = {
-    chords: chordsModel,
-    admins: adminModel,
-    'track-candidates': trackCandidateModel,
-    artists: artistModel,
-    'short-artists': shortArtistModel,
-    'artist-tags': artistTagModel
+    chords: { model: chordsModel },
+    admins: { model: adminModel },
+    'track-candidates': { model: trackCandidateModel },
+    artists: { model: artistModel },
+    'artist-tags': { model: artistTagModel },
+    'tracks': { model: trackModel, parseData: (data) => {
+        data.data.addedDate = new Date()
+        data.data.index = trackIndex++
+    } },
+    'track-metrics': { model: trackMetrics },
+    'track-errors': { model: trackErrorModel },
+    'favourites': { model: favoriteModel }
 }
-
 
 interface iExportData {
     id: string, data: any
@@ -54,7 +64,13 @@ const collectionToMongo = async (collection: string, firestore: firestore.Firest
 
             const inserts = data.map(async data => {
                 try {
-                    await model.create({ ...data.data })
+
+                    if(model.parseData) {
+                        model.parseData(data)
+                    }
+
+                    await model.model.create({ ...data.data })
+
                 } catch(error) {
                     console.log(`Коллекция ${collection}. Ошибка ${error}`)
                 }

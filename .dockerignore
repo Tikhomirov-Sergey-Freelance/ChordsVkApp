@@ -3,3 +3,4 @@ node_modules
 Dockerfile
 dist
 data
+ssh/mongo-dump

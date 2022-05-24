@@ -3,7 +3,6 @@ import { iResult } from 'types/common';
 
 const options = {
     autoIndex: true,
-    maxPoolSize: 10, 
     serverSelectionTimeoutMS: 5000, 
     socketTimeoutMS: 45000, 
     family: 4,
@@ -17,11 +16,9 @@ const connect = <T>(action: ActionMongoose<T>) => {
 
     return new Promise<iResult<T>>(async (resolve, reject) => {
 
-        let db
-
         try {
             
-            db = await mongoose.connect('mongodb://localhost/chords', options)
+            await mongoose.connect('mongodb://localhost/chords', options)
             console.log('mongoose connect')
             const result = await action()
             resolve({ error: null, result })
@@ -31,8 +28,7 @@ const connect = <T>(action: ActionMongoose<T>) => {
             resolve({ error })
         }
         finally {
-            db.disconnect()
-            console.log('mongoose disconnect')
+            //db.disconnect()
         }
     })
 }

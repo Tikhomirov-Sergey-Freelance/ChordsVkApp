@@ -22,5 +22,5 @@ export const TrackErrorsSchema = new Schema<iTrackError>({
 
 }, { versionKey: false })
 
-export const trackErrorModel = model('track-errors', TrackErrorsSchema)
+export const trackErrorModel = model('trackErrors', TrackErrorsSchema)
 
