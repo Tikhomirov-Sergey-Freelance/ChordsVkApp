@@ -4,6 +4,7 @@ import database from './server/database'
 import validateVK from './server/vk'
 import fireBaseToken from './server/auth'
 import http from 'http'
+import initGraphQl from './server/graphql'
 
 import getApp from './server/ssr'
 import initHttps from './server/ssl'
@@ -25,6 +26,8 @@ if(!isHttp) {
         }
     })
 }
+
+initGraphQl(app)
 
 app.use('*', async (req, res) => {
 
