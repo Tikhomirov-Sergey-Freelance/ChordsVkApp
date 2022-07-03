@@ -75,5 +75,5 @@ export const ArtistTagSchema = new Schema<iArtistTag>({
 }, { versionKey: false })
 
 export const artistModel = model('artist', ArtistSchema)
-export const shortArtistModel = model('short-artist', ShortArtistSchema)
-export const artistTagModel = model('artist-tag', ArtistTagSchema)
+//export const shortArtistModel = model('short-artist', ShortArtistSchema)
+export const artistTagModel = model('artistTags', ArtistTagSchema)

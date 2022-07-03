@@ -26,6 +26,6 @@ export const AllInfoTrackMetricsSchema = new Schema<iAllTracksInfo>({
 
 }, { versionKey: false })
 
-export const trackMetrics = model('track-metrics', TrackMetricsSchema)
-export const allTrackMetrics = model('track-metrics', AllInfoTrackMetricsSchema)
+export const trackMetrics = model('trackMetrics', TrackMetricsSchema)
+//export const allTrackMetrics = model('trackMetrics', AllInfoTrackMetricsSchema)
 

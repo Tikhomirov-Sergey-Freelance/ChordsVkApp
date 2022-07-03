@@ -55,8 +55,20 @@ export const TrackCandidateSchema = new Schema<iTrackCandidate>({
 
     trackVideoSrc: {
         type: String
+    },
+
+    state: {
+        type: String
+    },
+
+    userId: {
+        type: String
+    },
+
+    trackId: {
+        type: String
     }
 
 }, { versionKey: false })
 
-export default model('track-candidate', TrackCandidateSchema)
+export default model('trackCandidate', TrackCandidateSchema)

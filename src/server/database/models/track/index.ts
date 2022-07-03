@@ -9,9 +9,7 @@ export const TrackSchema = new Schema<iTrack>({
         required: true
     },
     index: {
-        type: Number,
-        unique: true,
-        required: true
+        type: Number
     },
     name: {
         type: String,
@@ -76,9 +74,7 @@ export const ShortTrackSchema = new Schema<iShortTrack>({
         required: true
     },
     index: {
-        type: Number,
-        unique: true,
-        required: true
+        type: Number
     },
     name: {
         type: String,
@@ -108,4 +104,4 @@ export const ShortTrackSchema = new Schema<iShortTrack>({
 }, { versionKey: false })
 
 export const trackModel = model('track', TrackSchema)
-export const shortTrackModel = model('short-track', ShortTrackSchema)
+//export const shortTrackModel = model('shortTrack', ShortTrackSchema)

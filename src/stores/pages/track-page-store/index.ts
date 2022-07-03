@@ -123,7 +123,7 @@ export class TrackPageStore {
         }
 
         await sendTrackError(trackError)
-        snackbar('Сообщение отправлено.\nБлагодарим за помощь')
+        snackbar('Сообщение отправлено.')
     }
 
     openTrackPage() {
