@@ -1,8 +1,7 @@
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { iChord } from 'types/chord'
-import { loadAllChords, loadChordsByNote } from 'code/database/chords'
+import { loadChordsByNote } from 'code/database/chords'
 import { Global } from 'stores/root-store'
-import { threadId } from 'worker_threads'
 import { notes } from 'code/data/notes'
 
 export class ChordsListStore {

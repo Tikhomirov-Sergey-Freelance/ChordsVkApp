@@ -1,8 +1,5 @@
-import { setTrackSearchName } from 'code/tracks/search-name'
-import { trackToShortTrack, trackToShortTrackPartial } from 'code/tracks/track-to-short-track'
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc, runTransaction, startAt, deleteDoc } from 'firebase/firestore'
-import { Firebase } from "stores/root-store"
-import { iShortArtist } from 'types/artists'
+import { collection, getDocs, where, query, doc, updateDoc, setDoc, deleteDoc } from 'firebase/firestore'
+import { Firebase } from 'stores/root-store'
 import { iTrackCandidate, iTrackCandidatesView, TrackCandidateState } from '../../types/track-candidate'
 import { loadArtistsByNames } from './artists'
 
@@ -14,12 +11,10 @@ export const loadActiveCandidatesList = async () => {
             query(
                 collection(await Firebase.getFirestore(), 'track-candidates'),
                 where('state', '==', 'active')
-            );
+            )
 
         const data = await getDocs(querySnapshot)
         const tracks = data.docs.map(item => item.data()) as iTrackCandidate[]
-
-        console.log(tracks.length) 
 
         const artistNames = tracks.map(track => track.artist.trim())
         const artists = await loadArtistsByNames(artistNames)
@@ -35,7 +30,6 @@ export const loadActiveCandidatesList = async () => {
         return tracksView
 
     } catch (error) {
-        console.log(error)
         return []
     }
 }
@@ -50,7 +44,6 @@ export const addTrackCandidate = async (track: iTrackCandidate) => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
@@ -67,7 +60,6 @@ export const deleteTrackCandidate = async (id: string) => {
         return true
 
     } catch (error) {
-        console.log(error)
         return false
     }
 }
@@ -84,7 +76,6 @@ export const changeTrackCandidateState = async (id: string, state: TrackCandidat
         return true
 
     } catch (error) {
-        console.log(error)
         return false
     }
 }
@@ -101,7 +92,6 @@ export const changeTrackCandidateAfterSaveTrack = async (id: string, trackId: st
         return true
 
     } catch (error) {
-        console.log(error)
         return false
     }
 

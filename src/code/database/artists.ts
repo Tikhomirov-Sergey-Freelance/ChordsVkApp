@@ -1,9 +1,9 @@
-import { artistToShortArtist } from 'code/artist/mapper';
-import { arrayToPools } from 'code/common/array';
-import { collection, getDocs, where, query, Query, getDoc, doc, setDoc, updateDoc, runTransaction, orderBy } from 'firebase/firestore'
-import { Firebase } from "stores/root-store"
+import { artistToShortArtist } from 'code/artist/mapper'
+import { arrayToPools } from 'code/common/array'
+import { collection, getDocs, where, query, getDoc, doc, runTransaction, orderBy } from 'firebase/firestore'
+import { Firebase } from 'stores/root-store'
 import { iArtist, iShortArtist } from 'types/artists'
-import { loadArtistTagsByQuery } from './artist-tags';
+import { loadArtistTagsByQuery } from './artist-tags'
 
 export const loadArtistByTags = async (tag: string) => {
 
@@ -25,7 +25,6 @@ export const loadArtistByTags = async (tag: string) => {
         return loadArtistsByIds(ids)
 
     } catch (error) {
-        console.error(error)
         return []
     }
 }
@@ -42,7 +41,6 @@ export const loadAllArtists = async () => {
         return data.docs.map(item => item.data()) as iShortArtist[]
 
     } catch (error) {
-        console.error(error)
         return []
     }
 }
@@ -60,7 +58,6 @@ export const loadArtistsByQuery = async (q: string) => {
         return data.docs.map(item => item.data()) as iShortArtist[]
 
     } catch (error) {
-        console.error(error)
         return []
     }
 }
@@ -70,7 +67,7 @@ export const loadArtistsByNames = async (names: string[]) => {
     if (!names.length) return []
 
     const items = names.map(name => name.toUpperCase())
-    const pools = arrayToPools(items, 10)
+    const pools = arrayToPools(items)
 
     try {
 
@@ -90,7 +87,6 @@ export const loadArtistsByNames = async (names: string[]) => {
         return documents.map(item => item.data()) as iShortArtist[]
 
     } catch (error) {
-        console.error(error)
         return []
     }
 
@@ -102,14 +98,14 @@ export const loadArtistsByIds = async (ids: string[]) => {
 
     try {
 
-        const pools = arrayToPools(ids, 10)
+        const pools = arrayToPools(ids)
         const requests = pools.map(async idList => {
 
             const querySnapshot =
             query(
                 collection(await Firebase.getFirestore(), 'short-artists'),
                 where('id', 'in', idList)
-            );
+            )
 
             return await getDocs(querySnapshot)
         })
@@ -136,7 +132,6 @@ export const loadArtistById = async (id: string) => {
         return artist?.data() as iArtist
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }
@@ -153,7 +148,6 @@ export const loadShortArtistById = async (id: string) => {
         return artist?.data() as iShortArtist
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }
@@ -172,7 +166,6 @@ export const addArtist = async (artist: iArtist) => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
@@ -191,7 +184,6 @@ export const updateArtist = async (artist: iArtist) => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }

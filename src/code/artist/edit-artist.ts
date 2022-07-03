@@ -3,7 +3,7 @@ import { iArtist } from 'types/artists'
 
 export const editArtist = (artist: iArtist) => {
 
-    const mobxArtistObject = artist as any
+    const mobxArtistObject = artist as iArtist & { toJS: () => iArtist }
     const dataRoute = {
         artist: mobxArtistObject.toJS ? mobxArtistObject.toJS() : mobxArtistObject
     }

@@ -1,19 +1,17 @@
-import { makeAutoObservable, observable, toJS } from 'mobx'
+import { makeAutoObservable, toJS } from 'mobx'
 
 import { createGuid } from '../../../code/common/guid'
-import { Global, Router } from 'stores/root-store'
-import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc, updateDoc } from '@firebase/firestore'
-import { limit } from 'firebase/firestore'
+import { Router } from 'stores/root-store'
 import { snackbar } from '../../../code/common/alerts'
-import { loadArtistById, loadArtistsByIds, loadArtistsByQuery, loadShortArtistById } from 'code/database/artists'
-import { iChordsText, iTrack, iChordsWord, iChordWordPosition, defaultTrack, ChordRowWord, iChordsRow } from 'types/track'
+import { loadArtistsByQuery, loadShortArtistById } from 'code/database/artists'
+import { iChordsText, iTrack, iChordWordPosition, defaultTrack, ChordRowWord, iChordsRow } from 'types/track'
 import { StrummingType, defaultStrumming } from 'types/strumming'
 import { addTrack, updateTrack } from 'code/database/tracks'
 import debounce from 'code/common/debounce'
 import { iShortArtist } from 'types/artists'
 import { iTrackCandidate, iTrackCandidatesView as iTrackCandidateView } from 'types/track-candidate'
 import { openTrack } from 'code/tracks/open-track'
-import { changeTrackCandidateAfterSaveTrack, changeTrackCandidateState } from 'code/database/track-candidates'
+import { changeTrackCandidateAfterSaveTrack } from 'code/database/track-candidates'
 
 export interface iArtistSearch {
     label: string
@@ -69,7 +67,7 @@ export class AddTrackStore {
         if(result) {
 
             if(this.mode === 'from-track-candidate') {
-                const trackCandidate: iTrackCandidate = Router.activePanelData.trackCandidate
+                const trackCandidate: iTrackCandidate = Router.activePanelData?.['trackCandidate']
                 await changeTrackCandidateAfterSaveTrack(trackCandidate.id, track.id)
             }
 
@@ -221,8 +219,8 @@ export class AddTrackStore {
         return 'add'
     }
 
-    changeProperty(property: keyof iTrack, value: any) {
-        this[property as keyof this] = value
+    changeProperty(property: string, value: unknown) {
+        this[property] = value
         this.saveTempTrack()
     }
 
@@ -305,7 +303,7 @@ export class AddTrackStore {
         const chordsText: iChordsText = { rows: [] }
         const rows = text.split('\n')
 
-        for (let row of rows) {
+        for (const row of rows) {
 
             if (!row) {
                 chordsText.rows.push({ space: true })
@@ -322,11 +320,11 @@ export class AddTrackStore {
 
             if(!this.chordsText?.rows) return -1
             
-            const rowString = row.words.map(word => this.getWordFromWordChord(word)).join(' ');
+            const rowString = row.words.map(word => this.getWordFromWordChord(word)).join(' ')
 
             for(let i = startLastIndex; i < this.chordsText.rows.length; i++) {
 
-                const lastRow = this.chordsText.rows[i]?.words?.map(word => this.getWordFromWordChord(word)).join(' ');
+                const lastRow = this.chordsText.rows[i]?.words?.map(word => this.getWordFromWordChord(word)).join(' ')
                 
                 if(lastRow && (rowString.startsWith(lastRow) || lastRow.startsWith(rowString))) {
                     return i
@@ -335,7 +333,7 @@ export class AddTrackStore {
 
             for(let i = 0; i < startLastIndex; i++) {
 
-                const lastRow = this.chordsText.rows[i]?.words?.map(word => this.getWordFromWordChord(word)).join(' ');
+                const lastRow = this.chordsText.rows[i]?.words?.map(word => this.getWordFromWordChord(word)).join(' ')
                 
                 if(lastRow && (rowString.startsWith(lastRow) || lastRow.startsWith(rowString))) {
                     return i
@@ -364,7 +362,7 @@ export class AddTrackStore {
             for (let j = 0; j < row.words.length; j++) {
 
                 let word = row.words[j]
-                let lastWord = lastRow.words[j]
+                const lastWord = lastRow.words[j]
 
                 if (!lastWord || !word) break
 
@@ -385,7 +383,7 @@ export class AddTrackStore {
 
     changeChordWord(rowIndex: number, wordIndex: number, chord: iChordWordPosition) {
 
-        let word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
+        const word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
 
         if(chord.key) {
             this.chordsText.rows[rowIndex].words[wordIndex] = { word: word, chord }
@@ -399,7 +397,7 @@ export class AddTrackStore {
 
     deleteChordWord(rowIndex: number, wordIndex: number) {
 
-        let word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
+        const word = this.getWordFromWordChord(this.chordsText.rows[rowIndex].words[wordIndex])
 
         this.chordsText.rows[rowIndex].words[wordIndex] = word
         this.chordsText = { ...this.chordsText }
@@ -479,7 +477,7 @@ export class AddTrackStore {
 
         if (value) {
 
-            let [track, text] = JSON.parse(value)
+            const [track, text] = JSON.parse(value)
 
             this.text = text
             this.fillTrackData(track)

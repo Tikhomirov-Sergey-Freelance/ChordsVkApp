@@ -1,4 +1,4 @@
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { iTrackError } from 'types/track-error'
 
 export const TrackErrorsSchema = new Schema<iTrackError>({

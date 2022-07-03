@@ -1,4 +1,4 @@
-import { Group, Header, SimpleCell, Avatar, Text } from '@vkontakte/vkui'
+import { Group, Header } from '@vkontakte/vkui'
 import React from 'react'
 
 import { iShortTrackView } from 'types/track'

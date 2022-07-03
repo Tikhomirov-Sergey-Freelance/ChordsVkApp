@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { PanelHeader, PanelHeaderBack, PanelHeaderProps } from '@vkontakte/vkui'
 

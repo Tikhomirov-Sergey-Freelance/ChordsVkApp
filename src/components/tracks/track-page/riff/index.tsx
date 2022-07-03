@@ -1,4 +1,4 @@
-import { Group, Header, InfoRow, SimpleCell } from '@vkontakte/vkui'
+import { Group, Header, SimpleCell } from '@vkontakte/vkui'
 import React from 'react'
 
 import { iTrackView } from '../../../../types/track'

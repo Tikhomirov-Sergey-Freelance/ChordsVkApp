@@ -1,5 +1,5 @@
-import admin, { auth, firestore } from 'firebase-admin'
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs'
+import { firestore } from 'firebase-admin'
+import { existsSync, rmSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { Database } from '../database'
 import connect from '../database/connect'
@@ -31,7 +31,7 @@ const dictionary = {
 }
 
 interface iExportData {
-    id: string, data: any
+    id: string, data: unknown
 }
 
 const firebaseToJson = async () => {
@@ -58,7 +58,9 @@ const collectionToMongo = async (collection: string, firestore: firestore.Firest
         console.log(`Коллекция ${collection}. Начало загрузки`)
 
         const collectionResult = (await firestore.collection(collection)).get()
-        const data: iExportData[] = (await collectionResult).docs.map(document => ({ id: document.id, data: document.data() }))
+
+        const data: iExportData[] = (await collectionResult).
+        docs.map(document => ({ id: document.id, data: document.data() }))
 
         await connect(async () => {
 

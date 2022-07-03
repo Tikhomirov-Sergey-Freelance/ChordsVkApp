@@ -1,5 +1,4 @@
-import { async } from '@firebase/util'
-import { firestore, auth } from 'firebase-admin'
+import { firestore } from 'firebase-admin'
 import { isDev, databaseConnected } from './common'
 import database from './database'
 import { createGuid } from '../code/common/guid'

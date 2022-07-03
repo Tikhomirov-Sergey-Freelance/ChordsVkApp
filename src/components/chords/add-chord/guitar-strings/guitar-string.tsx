@@ -1,6 +1,5 @@
-import React, { useMemo, forwardRef } from 'react'
-import { observer } from 'mobx-react-lite'
-import { CustomSelectOption, FormItem, Select, SliderSwitch } from '@vkontakte/vkui'
+import React, { useMemo } from 'react'
+import { CustomSelectOption, FormItem, Select } from '@vkontakte/vkui'
 
 import { stringsByCount } from '../../../../code/data/guitar-string'
 
@@ -9,7 +8,7 @@ interface iProps {
     startFret: number
     fret: number | string
     index: number
-    changeFret: (fret: string) => void
+    changeFret: (fret: string | number) => void
 }
 
 const GuitarStringField: React.FC<iProps> = ({ fret, index, barre, startFret, changeFret }) => {
@@ -18,7 +17,7 @@ const GuitarStringField: React.FC<iProps> = ({ fret, index, barre, startFret, ch
 
         const start = barre ? startFret + 1 : startFret
 
-        let data = [
+        const data = [
             { label: 'Не играется', value: 'notPlayed' },
             { label: 'Открытая', value: startFret }
         ]
@@ -32,7 +31,7 @@ const GuitarStringField: React.FC<iProps> = ({ fret, index, barre, startFret, ch
     }, [startFret, barre, fret])
 
     if(!data.some(item => item.value === fret)) {
-        changeFret(data[1].value as any)
+        changeFret(data[1].value)
     }
 
     return (
@@ -42,7 +41,7 @@ const GuitarStringField: React.FC<iProps> = ({ fret, index, barre, startFret, ch
             <Select
                 value={fret}
                 options={data}
-                renderOption={({ option, ...restProps }) => (<CustomSelectOption {...restProps} />)}
+                renderOption={({ ...restProps }) => (<CustomSelectOption {...restProps} />)}
                 onChange={event => changeFret(event.target.value)}
             />
 

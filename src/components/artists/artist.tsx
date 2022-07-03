@@ -1,12 +1,8 @@
-import React, { useMemo } from 'react'
-import { SimpleCell, Text, Avatar, IconButton } from '@vkontakte/vkui'
-import { Icon24Like, Icon24LikeOutline } from '@vkontakte/icons'
+import React from 'react'
+import { SimpleCell, Avatar } from '@vkontakte/vkui'
 
-import { Favorites } from 'stores/root-store'
 import { openArtist } from '../../code/artist/open-artist'
 
-import { iShortTrackView } from 'types/track'
-import { observer } from 'mobx-react-lite'
 import { iShortArtist } from 'types/artists'
 
 export interface iProps {

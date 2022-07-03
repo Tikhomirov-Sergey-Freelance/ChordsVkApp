@@ -1,8 +1,7 @@
-import { Panel, PanelHeader, View, PanelSpinner, Group } from '@vkontakte/vkui'
+import { PanelHeader, Group } from '@vkontakte/vkui'
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import FavoritesPageStore from 'stores/pages/favorites-page-store'
-import { Favorites } from 'stores/root-store'
 
 import PanelPreloader from '../../common/preloaders/panel-preloader'
 
@@ -16,7 +15,7 @@ const FavoritesList: React.FC = () => {
         return () => {  FavoritesPageStore.changePageState(false) }
     }, [])
     
-    if(FavoritesPageStore.loading || !FavoritesPageStore.loaded) return <PanelPreloader title='Моя коллекция'/>
+    if(FavoritesPageStore.loading || !FavoritesPageStore.loaded) return <PanelPreloader title="Моя коллекция"/>
 
     if(!FavoritesPageStore.tracks.length) {
         return <EmptyList />

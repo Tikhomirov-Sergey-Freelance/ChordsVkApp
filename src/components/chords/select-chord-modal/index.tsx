@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ModalPage, ModalRoot, Group, FormItem, Input, CustomSelect, CellButton } from '@vkontakte/vkui'
+import { Group, CellButton } from '@vkontakte/vkui'
 
 import Chords from './chords'
 

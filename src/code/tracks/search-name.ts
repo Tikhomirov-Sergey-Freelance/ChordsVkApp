@@ -18,7 +18,6 @@ export const setTrackSearchName = async (track: iShortTrack, artist: iShortArtis
 
         return true
     } catch (error) {
-        console.error(error)
         return false
     }
 }

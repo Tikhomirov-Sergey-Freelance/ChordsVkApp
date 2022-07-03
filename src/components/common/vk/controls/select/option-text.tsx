@@ -8,7 +8,7 @@ const OptionText: React.FC = ({ children }) => {
         <Text
             style={{
                 padding: 12,
-                color: "var(--text_secondary)",
+                color: 'var(--text_secondary)',
             }}
             weight="regular"
         >

@@ -1,16 +1,13 @@
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 
 import { createGuid } from '../../../code/common/guid'
-import { Global, Router } from 'stores/root-store'
-import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc } from '@firebase/firestore'
-import { limit } from 'firebase/firestore'
+import { Router } from 'stores/root-store'
 
 import { snackbar } from '../../../code/common/alerts'
 import { defaultArtist, iArtist, iArtistTag, iShortArtist } from 'types/artists'
 import { saveArtistLogo } from 'code/database/images'
 import { addArtist, updateArtist } from 'code/database/artists'
 import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
-import { iTrack } from 'types/track'
 import { addTrackFromCandidate } from 'code/tracks/add-track'
 import { loadArtistTagsById, updateArtistTags } from 'code/database/artist-tags'
 import { artistTagId } from 'code/artist/common'
@@ -24,7 +21,7 @@ export class AddArtistStore {
     name: string
     id: string
     imageData: File
-    imageDataSrc: any
+    imageDataSrc: unknown
     artistImage: string
 
     description: string
@@ -50,20 +47,18 @@ export class AddArtistStore {
         await this.saveLogo(artist)
 
         if (this.mode === 'add' || this.mode === 'from-track-candidate') {
-            const result = await addArtist(artist)
+            await addArtist(artist)
             this.saveTags(artist) 
-            console.log(result)
             snackbar('Добавили артиста')
         } else {
-            const result = await updateArtist(artist)
-            console.log(result)
+            await updateArtist(artist)
             await Promise.all([this.recalcTracksNames(artist), this.saveTags(artist)])
             snackbar('Изменили артиста')
         }
 
         if(this.mode === 'from-track-candidate') {
             
-            const trackCandidate = Router.activePanelData && Router.activePanelData.trackCandidate
+            const trackCandidate = Router.activePanelData && Router.activePanelData['trackCandidate']
             if(trackCandidate) {
                 addTrackFromCandidate(trackCandidate)
             }
@@ -80,8 +75,8 @@ export class AddArtistStore {
         }
     }
 
-    changeProperty(property: keyof iArtist, value: any) {
-        this[property as keyof this] = value
+    changeProperty(property: keyof iArtist, value: unknown) {
+        this[property] = value
     }
 
     changeImage(file: File) {
@@ -164,8 +159,6 @@ export class AddArtistStore {
             Promise.all(requests)
 
         } catch (error) {
-
-            console.error(error)
             snackbar('Ошибка при пересчете названий треков')
         }
     }

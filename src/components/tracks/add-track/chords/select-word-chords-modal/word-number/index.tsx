@@ -16,7 +16,7 @@ const WordNumber: React.FC<iProps> = ({ word, number, onChange }) => {
     const chars = chordWord.split('')
 
     return (
-        <FormItem top='Выберите букву, с которой сменяется аккорд'>
+        <FormItem top="Выберите букву, с которой сменяется аккорд">
             <Styled>
                 {
                     chars.map((char, index) => 

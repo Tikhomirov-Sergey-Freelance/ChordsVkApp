@@ -1,10 +1,9 @@
-import TrackPageStore from 'stores/pages/track-page-store'
-import { Modal, Router } from 'stores/root-store'
+import { Router } from 'stores/root-store'
 
 export const openTrack = (trackId: string) => {
     openTrackModal(trackId)
 }
 
-export const openTrackModal = (trackId: string, store: TrackPageStore = null) => {
+export const openTrackModal = (trackId: string) => {
     Router.setActiveStory('tracks', 'track', { trackId })
 }

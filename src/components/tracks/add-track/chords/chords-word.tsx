@@ -18,9 +18,9 @@ const ChordsWord: React.FC<iProps> = ({ word, selectWord, deleteWord }) => {
     }
 
     return (
-        <div className='chord-word'>
-            <span className='word' onClick={chord ? deleteWord : selectWord}>{chordWord}</span>
-            {chord && <span className='chord' style={{ left: `${chord?.pos / 2}rem` }}>
+        <div className="chord-word">
+            <span className="word" onClick={chord ? deleteWord : selectWord}>{chordWord}</span>
+            {chord && <span className="chord" style={{ left: `${chord?.pos / 2}rem` }}>
                 {chord?.key}
             </span>}    
         </div>

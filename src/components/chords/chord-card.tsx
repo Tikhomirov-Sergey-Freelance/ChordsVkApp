@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Group, Header, CardGrid, Card, HorizontalCell } from '@vkontakte/vkui'
+
 import { iChord } from '../../types/chord'
 import ChordCanvas from 'code/canvas/chord'
 
@@ -19,8 +19,10 @@ const Chord: React.FC<iProps> = ({ chord, width, height, style }) => {
 
     useEffect(() => {
 
-        chordCanvasRef.current = new ChordCanvas(canvas.current!)
-        chordCanvasRef.current!.draw(chord, width, height)
+        chordCanvasRef.current = new ChordCanvas(canvas.current)
+        if(chordCanvasRef.current) {
+            chordCanvasRef.current.draw(chord, width, height)
+        }
 
     }, [])
 

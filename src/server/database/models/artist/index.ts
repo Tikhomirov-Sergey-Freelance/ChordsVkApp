@@ -1,4 +1,4 @@
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { iArtist, iArtistTag, iShortArtist } from 'types/artists'
 
 export const ArtistSchema = new Schema<iArtist>({

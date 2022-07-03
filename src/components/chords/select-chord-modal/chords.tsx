@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { CustomSelect, FormItem, Text } from '@vkontakte/vkui'
+import React, { useState } from 'react'
+import { CustomSelect, FormItem } from '@vkontakte/vkui'
 
 import { loadChordsByQuery } from '../../../code/database/chords'
 import useDebounce from '../../../code/hooks/use-debounce'
@@ -21,7 +21,7 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
         if(!query.length) return
         changeLoading(true)
         const data = await loadChordsByQuery(query)
-        console.log(query, data)
+
         const uniqKeys = Array.from((new Set(data.map(chord => chord.name))).values())
         const options = uniqKeys.map(chord => ({
             label: chord,
@@ -35,12 +35,12 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
     const [loadChordsDebounce, clearDebounce] = useDebounce(loadChords)
 
     return (
-        <FormItem top='Аккорд'>
+        <FormItem top="Аккорд">
                 <CustomSelect
-                    placeholder='Введите аккорд'
+                    placeholder="Введите аккорд"
                     searchable
-                    onInputChange={(e: any) => {
-                        const remoteQuery = e.target.value
+                    onInputChange={(e: React.ChangeEvent<Element>) => {
+                        const remoteQuery = e.currentTarget['value']
                         changeQuery(remoteQuery)
                         loadChordsDebounce(remoteQuery)
                     }

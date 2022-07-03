@@ -1,6 +1,6 @@
 import { increment, doc, updateDoc, getDoc, setDoc, Transaction } from 'firebase/firestore'
 import { iTrackMetrics, iAllTracksInfo, defaultTracksInfo } from 'types/track-metrics'
-import { Firebase } from "stores/root-store"
+import { Firebase } from 'stores/root-store'
 import { iShortTrack } from 'types/track'
 
 export const incrementTrackView = async (trackId) => {
@@ -30,7 +30,6 @@ export const incrementTrackView = async (trackId) => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
@@ -67,14 +66,13 @@ export const changeFavorites = async (trackId, mode: 'increment' | 'decrement') 
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
 
 export const updateAfterAddedTrack = async (transaction: Transaction) => {
 
-    const document = doc(await Firebase.getFirestore(), `track-metrics/all-tracks-info`)
+    const document = doc(await Firebase.getFirestore(), 'track-metrics/all-tracks-info')
 
     await transaction.update(document,
         {
@@ -87,7 +85,7 @@ export const loadAllTracksInfo = async () => {
 
     try {
 
-        const reference = doc(await Firebase.getFirestore(), `track-metrics/all-tracks-info`)
+        const reference = doc(await Firebase.getFirestore(), 'track-metrics/all-tracks-info')
         const data = await getDoc(reference)
 
         if (!data.exists()) {
@@ -97,7 +95,6 @@ export const loadAllTracksInfo = async () => {
         return data.data() as iAllTracksInfo
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }

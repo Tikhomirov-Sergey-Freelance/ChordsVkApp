@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
-import { Panel, PanelHeader, View, PanelSpinner, Group, ModalCardBase, Button, Placeholder } from '@vkontakte/vkui'
-import { Icon56LikeOutline } from '@vkontakte/icons'
-import { Global, Router } from 'stores/root-store'
+import React from 'react'
+import { PanelHeader, Group, Button, Placeholder } from '@vkontakte/vkui'
+import { Router } from 'stores/root-store'
 
 const EmptyFavoritesList: React.FC = () => {
 
@@ -12,11 +11,11 @@ const EmptyFavoritesList: React.FC = () => {
             <Group>
 
                 <Placeholder
-                    header='Ваша коллекция пуста'
+                    header="Ваша коллекция пуста"
                     action={<Button
-                        size='l'
-                        mode='outline'
-                        key='button'
+                        size="l"
+                        mode="outline"
+                        key="button"
                         onClick={() => Router.setActiveStory('tracks')}>
                         Найти трек
                     </Button>}

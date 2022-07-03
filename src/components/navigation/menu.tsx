@@ -1,6 +1,5 @@
 import React from 'react'
-import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28LikeOutline, Icon28AddSquareOutline, Icon28SettingsOutline } from '@vkontakte/icons'
-import { JsxElement } from 'typescript'
+import { Icon28PlaylistOutline, Icon28MusicOutline, Icon28LikeOutline, Icon28SettingsOutline } from '@vkontakte/icons'
 import { Global } from 'stores/root-store'
 
 export type iPageKey = 'tracks' | 'chords' | 'favourites' | 'admin'

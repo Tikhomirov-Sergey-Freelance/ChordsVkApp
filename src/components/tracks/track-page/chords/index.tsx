@@ -1,7 +1,5 @@
 import React from 'react'
-import { Group, CardScroll, HorizontalCell, InfoRow, SimpleCell, Spinner, Header, Card, HorizontalScroll } from '@vkontakte/vkui'
-import { observer } from 'mobx-react-lite'
-import { Global } from 'stores/root-store'
+import { Group, HorizontalCell, Spinner, Header, HorizontalScroll } from '@vkontakte/vkui'
 import { iChord } from 'types/chord'
 import { MusicalInstrument } from 'types/global-types'
 
@@ -29,7 +27,7 @@ const Chords: React.FC<iProps> = ({ chords, currentInstrument, loading }) => {
     return (
         <Group header={<Header mode="secondary">Аккорды</Header>}>
 
-            <ChangeInstrument title='' />
+            <ChangeInstrument title="" />
 
             <HorizontalScroll
                 getScrollToLeft={i => i - 130}
@@ -38,7 +36,10 @@ const Chords: React.FC<iProps> = ({ chords, currentInstrument, loading }) => {
                 <div style={{ display: 'flex' }}>
                     {
                         chords.map(chord =>
-                            <HorizontalCell disabled style={{ maxWidth: 140, margin: '0 5px' }}>
+                            <HorizontalCell
+                                key={currentInstrument + chord.name}
+                                disabled style={{ maxWidth: 140, margin: '0 5px' }}
+                            >
                                 <Chord key={currentInstrument + chord.name} chord={chord} />
                             </HorizontalCell>
                         )

@@ -1,15 +1,15 @@
 import { openTrack } from 'code/tracks/open-track'
-import { makeAutoObservable, makeObservable, observable, toJS } from 'mobx'
-import pages, { iPageKey } from '../../components/navigation/menu'
+import { makeAutoObservable, toJS } from 'mobx'
+import { iPageKey } from '../../components/navigation/menu'
 import { Modal } from '../root-store'
 
 export interface iHistoryData {
     activeStory: iActiveStory
     activePanel: string
-    activePanelData: any
+    activePanelData: unknown
 
     modalKey?: string
-    modalData?: any
+    modalData?: unknown
 }
 
 export type iActiveStory = iPageKey
@@ -17,8 +17,8 @@ export type iActiveStory = iPageKey
 export class RouterStore {
 
     activeStory: iActiveStory = 'tracks'
-    activePanel: string = 'tracks'
-    activePanelData: any
+    activePanel = 'tracks'
+    activePanelData: unknown
 
     constructor() {
 
@@ -51,7 +51,7 @@ export class RouterStore {
         history.pushState(toJS(data), null)
     }
 
-    setActiveStory(activeStory: iActiveStory, panel: string = '', data = null) {
+    setActiveStory(activeStory: iActiveStory, panel = '', data = null) {
 
         this.activeStory = activeStory
         this.activePanel = panel || activeStory
@@ -61,7 +61,7 @@ export class RouterStore {
         this.saveLocation()
     }
 
-    setActivePanel(panel: string = '', data = null) {
+    setActivePanel(panel = '', data = null) {
 
         this.activePanel = panel
         this.activePanelData = data
@@ -78,7 +78,8 @@ export class RouterStore {
 
         try {
 
-            let ssLocation = global['window'] && global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
+            const ssLocation = global['window'] && 
+            global['window'].sessionStorage && global['window'].sessionStorage.getItem('chords_location')
 
             if (ssLocation) {
 
@@ -91,9 +92,11 @@ export class RouterStore {
 
             const data: iHistoryData = { ...toJS(this.locationData) }
             history.replaceState(data, null)
-        }
-        catch {
 
+            return true
+        }
+        catch (error) {
+            return false
         }
     }
 
@@ -130,7 +133,11 @@ export class RouterStore {
     }
 
     get locationData() {
-        return { activeStory: toJS(this.activeStory), activePanel: toJS(this.activePanel), activePanelData: toJS(this.activePanelData) }
+        return { 
+            activeStory: toJS(this.activeStory), 
+            activePanel: toJS(this.activePanel), 
+            activePanelData: toJS(this.activePanelData)
+         }
     }
 }
 

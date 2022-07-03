@@ -3,7 +3,7 @@ import ArtistStore from '.'
 
 const StoreContext = createContext(null)
  
-export const ArtistStoreProvider = ({ children }) => {
+export const ArtistStoreProvider: React.FC = ({ children }) => {
 
   return (
     <StoreContext.Provider value={new ArtistStore()}>{children}</StoreContext.Provider>

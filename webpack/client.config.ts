@@ -1,14 +1,14 @@
-import path from 'path';
-import { Configuration, Entry, WebpackPluginInstance } from 'webpack';
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CompressionPlugin from 'compression-webpack-plugin';
-import LoadablePlugin from '@loadable/webpack-plugin';
+import path from 'path'
+import { Configuration, Entry, WebpackPluginInstance } from 'webpack'
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CompressionPlugin from 'compression-webpack-plugin'
+import LoadablePlugin from '@loadable/webpack-plugin'
 
-import { IS_DEV, DIST_DIR, SRC_DIR } from './env';
-import fileLoader from './loaders/file';
-import cssLoader from './loaders/css';
-import jsLoader from './loaders/js';
+import { IS_DEV, DIST_DIR, SRC_DIR } from './env'
+import fileLoader from './loaders/file'
+import cssLoader from './loaders/css'
+import jsLoader from './loaders/js'
 
 const config: Configuration = {
     entry: ([
@@ -42,6 +42,6 @@ const config: Configuration = {
     performance: {
         hints: IS_DEV ? false : 'warning',
     },
-};
+}
 
-export default config;
+export default config

@@ -3,9 +3,9 @@ import { iTrack } from 'types/track'
 
 export const editTrack = (track: iTrack) => {
 
-    const mobxTrackObject = track as any
+    const mobxTrackObject = track as unknown
     const dataRoute = {
-        track: mobxTrackObject.toJS ? mobxTrackObject.toJS() : mobxTrackObject
+        track: mobxTrackObject['toJS'] ? mobxTrackObject['toJS']() : mobxTrackObject
     }
 
     Router.setActiveStory('admin', 'addTrack', dataRoute)

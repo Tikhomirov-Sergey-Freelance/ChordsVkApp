@@ -1,4 +1,4 @@
-import admin, { auth } from 'firebase-admin'
+import admin from 'firebase-admin'
 import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
@@ -22,12 +22,12 @@ export class Database {
             const config = JSON.parse(readFileSync(configPath).toString('utf8'))
             this.app = admin.initializeApp({
                 credential: admin.credential.cert(config),
-                databaseURL: "https://chords-7f150.firebaseio.com"
+                databaseURL: 'https://chords-7f150.firebaseio.com'
             })
             
             this.app.auth()
 
-            process["database_connected"] = true
+            process['database_connected'] = true
 
         } catch (error) {
             console.warn(`Не удалось установить соединение с firebase. ${error}`)

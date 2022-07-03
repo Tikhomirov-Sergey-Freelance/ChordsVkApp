@@ -3,7 +3,7 @@ import AddArtistStore from '.'
 
 const StoreContext = createContext(null)
  
-export const AddArtistStoreProvider = ({ children }) => {
+export const AddArtistStoreProvider:React.FC = ({ children }) => {
 
   return (
     <StoreContext.Provider value={new AddArtistStore()}>{children}</StoreContext.Provider>

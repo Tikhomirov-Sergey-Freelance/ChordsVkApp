@@ -1,5 +1,5 @@
 import React from 'react'
-import { Epic, Group, Panel, View, ModalRoot, ModalPage, ModalPageHeader, SplitLayout } from '@vkontakte/vkui'
+import { Epic, Panel, View, ModalRoot, SplitLayout } from '@vkontakte/vkui'
 
 import { Modal, Router } from 'stores/root-store'
 

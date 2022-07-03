@@ -1,6 +1,6 @@
-import { Button, PullToRefresh, Group } from '@vkontakte/vkui'
+import { Group } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import MainPageStore from '../../../stores/pages/main-page-store'
 
@@ -18,7 +18,8 @@ const Tracks: React.FC = () => {
     return (
         <>
 
-            {!!MainPageStore.lastViewedTracks.length && <TrackList tracks={MainPageStore.lastViewedTracks} title='Последние просмотренные треки' />}
+            {!!MainPageStore.lastViewedTracks.length && 
+                <TrackList tracks={MainPageStore.lastViewedTracks} title="Последние просмотренные треки" />}
            
             <Group style={{ padding: 10 }}>
                 <ShowArtistsButton />
@@ -26,7 +27,8 @@ const Tracks: React.FC = () => {
                 <ProposeTrackButton />
             </Group>
 
-            {!!MainPageStore.lastAddedTracks.length && <TrackList tracks={MainPageStore.lastAddedTracks} title='Новые треки' />}
+            {!!MainPageStore.lastAddedTracks.length && 
+                <TrackList tracks={MainPageStore.lastAddedTracks} title="Новые треки" />}
 
         </>
     )

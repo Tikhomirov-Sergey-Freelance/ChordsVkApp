@@ -1,5 +1,4 @@
-import admin, { auth, firestore } from 'firebase-admin'
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs'
+import { firestore } from 'firebase-admin'
 import { resolve } from 'path'
 import { iShortTrack } from 'types/track'
 import { Database } from '../database'
@@ -18,7 +17,7 @@ const load = async () => {
 
         const track: iShortTrack = doc.data() as iShortTrack
 
-        if(track.name.startsWith(" ")) {
+        if(track.name.startsWith(' ')) {
             store.doc(`short-tracks/${doc.id}`).update({ name: track.name.trim() })
             store.doc(`tracks/${doc.id}`).update({ name: track.name.trim() })
         }

@@ -1,5 +1,4 @@
 import { FormItem, Input } from '@vkontakte/vkui'
-import { observer } from 'mobx-react-lite'
 import React from 'react'
 
 export interface iProps {

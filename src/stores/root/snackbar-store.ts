@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { createGuid } from '../../code/common/guid'
 
 export class SnackbarsStore {

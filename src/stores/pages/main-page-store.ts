@@ -1,13 +1,7 @@
-import { makeAutoObservable, observable, reaction } from 'mobx'
+import { makeAutoObservable, reaction } from 'mobx'
 
-import { createGuid } from '../../code/common/guid'
-import GlobalStore from '../root/global-store'
-import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc } from '@firebase/firestore'
-import { limit } from 'firebase/firestore'
-import { snackbar } from '../../code/common/alerts'
 import { loadLastAddedTracks, loadRandomTrack, loadTracksByIds } from 'code/database/tracks'
-import { iChordsText, iTrack, iChordsWord, iChordWordPosition, iTrackView, iShortTrackView, iShortTrack } from 'types/track'
-import { StrummingType, defaultStrumming } from 'types/strumming'
+import { iShortTrackView } from 'types/track'
 import { Global } from 'stores/root-store'
 import { openTrack } from 'code/tracks/open-track'
 import useDebounce from 'code/common/debounce'
@@ -90,7 +84,7 @@ export class MainPageStore {
                 .filter(track => track)
 
         } catch (error) {
-            console.log(error)
+            return false
         }
     }
 

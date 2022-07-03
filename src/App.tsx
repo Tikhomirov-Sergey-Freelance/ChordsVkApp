@@ -1,9 +1,6 @@
 import React from 'react'
-import ReactDom from 'react-dom'
 import { AppRoot } from '@vkontakte/vkui'
 import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui'
-
-declare var window: any
 
 import '@vkontakte/vkui/dist/vkui.css'
 
@@ -19,12 +16,6 @@ declare global {
     isAdmin: boolean
     isServer: boolean
   }
-}
-
-try {
-  console.log(window);
-} catch (err) {
-  global['window'] = { isServer: true } as any
 }
 
 const App: React.FC = () => {

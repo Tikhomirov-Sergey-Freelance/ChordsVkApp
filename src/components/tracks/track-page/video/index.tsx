@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Header } from '@vkontakte/vkui'
+import { Group } from '@vkontakte/vkui'
 
 import { iTrackView } from 'types/track'
 

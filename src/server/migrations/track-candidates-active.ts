@@ -1,7 +1,5 @@
-import admin, { auth, firestore } from 'firebase-admin'
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs'
+import { firestore } from 'firebase-admin'
 import { resolve } from 'path'
-import { iShortTrack } from 'types/track'
 import { Database } from '../database'
 
 const load = async () => {
@@ -17,7 +15,6 @@ const load = async () => {
     const updates = docs.docs.map(doc => store.doc(`track-candidates/${doc.id}`).update({ state: 'active' }))
     
     await Promise.all(updates)
-
 }
 
 load()

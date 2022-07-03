@@ -14,9 +14,9 @@ const ArtistImage: React.FC = () => {
     const refImageInput = useRef(null)
 
     return (
-        <FormItem top='Загрузите логотип артиста'>
+        <FormItem top="Загрузите логотип артиста">
             <Styled>
-                <Avatar size={45} mode="app" src={store.imageDataSrc || store.artistImage} className='artist-image' />
+                <Avatar size={45} mode="app" src={store.imageDataSrc || store.artistImage} className="artist-image" />
                 <File
                     before={<Icon24Camera />}
                     controlSize="m"

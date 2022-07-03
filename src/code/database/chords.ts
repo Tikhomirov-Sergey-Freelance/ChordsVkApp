@@ -1,6 +1,6 @@
-import { collection, getDocs, where, query, Query, doc, getDoc, setDoc } from "firebase/firestore"
-import { Firebase } from "stores/root-store"
-import { iChord } from "types/chord"
+import { collection, getDocs, where, query, doc, getDoc, setDoc } from 'firebase/firestore'
+import { Firebase } from 'stores/root-store'
+import { iChord } from 'types/chord'
 
 export const addChord = async (chord: iChord) => {
 
@@ -12,7 +12,6 @@ export const addChord = async (chord: iChord) => {
         return setDoc(document, chord)
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
@@ -28,7 +27,7 @@ export const loadChordsByNote = async (note: string) => {
     const querySnapshot =
         query(
             collection(await Firebase.getFirestore(), 'chords'),
-            where('note', '==', note.toUpperCase()));
+            where('note', '==', note.toUpperCase()))
 
     const data = await getDocs(querySnapshot)
     return data.docs.map(item => item.data()) as iChord[]
@@ -42,7 +41,7 @@ export const loadChordsByQuery = async (q: string) => {
         query(
             collection(await Firebase.getFirestore(), 'chords'),
             where('searchName', '>=', q.toUpperCase()),
-            where('searchName', '<=', q.toUpperCase() + '\uf8ff'));
+            where('searchName', '<=', q.toUpperCase() + '\uf8ff'))
 
     const data = await getDocs(querySnapshot)
     return data.docs.map(item => item.data()) as iChord[]
@@ -58,7 +57,6 @@ export const loadChordByKey = async (key: string) => {
         return data?.data() as iChord
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }
@@ -73,13 +71,12 @@ export const loadChordsByKeys = async (keys: string[]) => {
             query(
                 collection(await Firebase.getFirestore(), 'chords'),
                 where('name', 'in', keys)
-            );
+            )
 
         const data = await getDocs(querySnapshot)
         return data.docs.map(item => item.data()) as iChord[]
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }

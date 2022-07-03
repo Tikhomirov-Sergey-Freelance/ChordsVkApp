@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { List, AutoSizer, CellMeasurerCache, ListProps } from 'react-virtualized'
 import 'react-virtualized/styles.css'
@@ -6,8 +6,8 @@ import 'react-virtualized/styles.css'
 
 export interface iProps extends Partial<ListProps> {
 
-    items: any[]
-    rowRenderer: (props: any) => any
+    items: unknown[]
+    rowRenderer: (props: unknown) => unknown
     rowCount: number
     overscanRowCount?: number
     cache?: CellMeasurerCache
@@ -17,7 +17,7 @@ const ListVirtualized: React.FC<iProps> = (props) => {
 
     const cache = useRef<CellMeasurerCache>(null)
     const list = useRef(null)
-    const [resizeAllFlag, changeResizeAllFlag] = useState(false)
+    const [, changeResizeAllFlag] = useState(false)
     const [mostRecentWidth, changeMostRecentWidth] = useState(0)
 
     const resizeAll = () => {

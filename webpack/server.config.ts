@@ -1,12 +1,12 @@
-import path from 'path';
-import { Configuration, ProvidePlugin } from 'webpack';
-import nodeExternals from 'webpack-node-externals';
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+import path from 'path'
+import { Configuration } from 'webpack'
+import nodeExternals from 'webpack-node-externals'
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 
-import { IS_DEV, DIST_DIR, SRC_DIR } from './env';
-import fileLoader from './loaders/file';
-import cssLoader from './loaders/css';
-import jsLoader from './loaders/js';
+import { IS_DEV, DIST_DIR, SRC_DIR } from './env'
+import fileLoader from './loaders/file'
+import cssLoader from './loaders/css'
+import jsLoader from './loaders/js'
 
 const config: Configuration = {
     name: 'server',
@@ -37,6 +37,6 @@ const config: Configuration = {
     externals: [nodeExternals({ allowlist: [/\.(?!(?:tsx?|json)$).{1,5}$/i] })],
 
     optimization: { nodeEnv: false },
-};
+}
 
-export default config;
+export default config

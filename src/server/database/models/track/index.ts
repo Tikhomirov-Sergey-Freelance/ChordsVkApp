@@ -1,4 +1,4 @@
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { iShortTrack, iTrack } from 'types/track'
 
 export const TrackSchema = new Schema<iTrack>({

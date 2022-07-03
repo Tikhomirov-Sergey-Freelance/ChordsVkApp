@@ -2,8 +2,8 @@ import { GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLBo
 import { iChord, iGuitarString } from 'types/chord'
 
 export const GuitarStringType = new GraphQLObjectType<iGuitarString>({
-  name: "GuitarString", 
-  description: "GuitarString",
+  name: 'GuitarString', 
+  description: 'GuitarString',
   fields: {
     index: { type: GraphQLInt },
     fret: { type: GraphQLString },
@@ -11,8 +11,8 @@ export const GuitarStringType = new GraphQLObjectType<iGuitarString>({
 })
 
 export const ChordType = new GraphQLObjectType<iChord>({
-    name: "Chord",
-    description: "Аккорд",
+    name: 'Chord',
+    description: 'Аккорд',
     fields: () => ({
       instrument: { type: new GraphQLNonNull(GraphQLString) },
       note: { type: new GraphQLNonNull(GraphQLString) },

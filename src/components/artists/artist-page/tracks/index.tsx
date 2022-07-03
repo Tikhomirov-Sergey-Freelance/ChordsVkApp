@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, FormItem, Header } from '@vkontakte/vkui'
+import { Group, Header } from '@vkontakte/vkui'
 
 import ArtistPageStore from 'stores/pages/artist-page-store'
 

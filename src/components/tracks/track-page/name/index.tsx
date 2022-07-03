@@ -1,7 +1,6 @@
 import React from 'react'
 import { Icon24Like, Icon24LikeOutline, Icon24ShareOutline, Icon24WriteOutline } from '@vkontakte/icons'
-import { Avatar, InfoRow, SimpleCell, Group, IconButton } from '@vkontakte/vkui'
-import { openArtist } from 'code/artist/open-artist'
+import { InfoRow, SimpleCell, Group, IconButton } from '@vkontakte/vkui'
 import { editTrack } from 'code/tracks/edit-track'
 
 import { Global, VK } from 'stores/root-store'
@@ -31,11 +30,12 @@ const Name: React.FC<iProps> = ({ store }) => {
                             {store.isFavorite ? <Icon24Like /> : <Icon24LikeOutline />}
                         </IconButton>}
                         <IconButton onClick={() => store.share()}><Icon24ShareOutline /></IconButton>
-                    {Global.isAdmin && <IconButton onClick={() => editTrack(store.track)}><Icon24WriteOutline /></IconButton>}
+                    {Global.isAdmin && 
+                        <IconButton onClick={() => editTrack(store.track)}><Icon24WriteOutline /></IconButton>}
                 </>
                 }
             >
-                <InfoRow header='Название трека'>
+                <InfoRow header="Название трека">
                     {track.name}
                 </InfoRow>
             </SimpleCell>

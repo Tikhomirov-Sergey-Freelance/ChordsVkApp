@@ -1,10 +1,9 @@
-import { Modal, Router } from 'stores/root-store'
-import { iArtist } from 'types/artists'
+import { Router } from 'stores/root-store'
 import { iTrackCandidate } from 'types/track-candidate'
 
 export const addArtistFromTrackCandidate = (trackCandidate: iTrackCandidate) => {
 
-    const mobxObject = trackCandidate as any
+    const mobxObject = trackCandidate as iTrackCandidate & { toJS?:() => unknown }
     const dataRoute = {
         trackCandidate: mobxObject.toJS ? mobxObject.toJS() : mobxObject
     }

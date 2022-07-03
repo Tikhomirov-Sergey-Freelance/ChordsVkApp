@@ -1,5 +1,5 @@
-import { makeAutoObservable, reaction } from 'mobx'
-import { iShortTrackView, iTrackView } from 'types/track'
+import { makeAutoObservable } from 'mobx'
+import { iShortTrackView } from 'types/track'
 import { iArtist } from 'types/artists'
 import { loadArtistById } from 'code/database/artists'
 import { loadTracksByArtist } from 'code/database/tracks'
@@ -15,7 +15,7 @@ export class ArtistPageStore {
     constructor() {
 
         const routeData = Router.activePanelData
-        const artistId = routeData?.artistId
+        const artistId = routeData?.['artistId']
 
         if(!artistId) {
             Router.goBack()

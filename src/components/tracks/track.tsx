@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { SimpleCell, Text, Avatar, IconButton } from '@vkontakte/vkui'
 import { Icon24Like, Icon24LikeOutline } from '@vkontakte/icons'
 
@@ -25,7 +25,7 @@ const Track: React.FC<iProps> = ({ track }) => {
     return (
         <SimpleCell
             onClick={onOpenTrack}
-            description={<Text weight='regular'>{track.artist.name}</Text>}
+            description={<Text weight="regular">{track.artist.name}</Text>}
             before={<Avatar size={32} mode="app" src={track.artist.artistImage} />}
             after={
                 <>

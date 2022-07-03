@@ -1,18 +1,9 @@
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 
 import { createGuid } from '../../../code/common/guid'
-import { Global, Router, VK } from 'stores/root-store'
-import { collection, addDoc, getDocs, query, getDoc, collectionGroup, doc, setDoc } from '@firebase/firestore'
-import { limit } from 'firebase/firestore'
+import { Router, VK } from 'stores/root-store'
 
 import { snackbar } from '../../../code/common/alerts'
-import { iArtist, iShortArtist } from 'types/artists'
-import { saveArtistLogo } from 'code/database/images'
-import { addArtist, updateArtist } from 'code/database/artists'
-import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
-import { iTrack } from 'types/track'
-import { iProposeTrack, ProposeTrackType } from 'types/propose-track'
-import { addProposeTrack } from 'code/database/propose-track'
 import { iTrackCandidate, TrackCandidateState } from 'types/track-candidate'
 import { addTrackCandidate } from 'code/database/track-candidates'
 
@@ -37,7 +28,7 @@ export class ProposeTrackStore {
     constructor() {
 
         const routData = Router.activePanelData
-        const query = (routData && routData.query)
+        const query = (routData && routData['query'])
 
         this.track = query || ''
         this.id = createGuid()
@@ -75,7 +66,7 @@ export class ProposeTrackStore {
         if (!this.track) {
             errors.track = 'Пожалуйста, введите наименование трека'
             isValid = false
-        }   
+        }
 
         this.errors = errors
         this.showErrors = true
@@ -90,12 +81,16 @@ export class ProposeTrackStore {
             name: this.track,
             artist: this.artist,
             chordsNote: this.comment,
-            state: this.state
+            state: this.state,
+            riff: '',
+            riffNote: '',
+            strummingNote: ''
         }
     }
 
-    changeProperty(property: keyof this, value: any) {
-        this[property as keyof this] = value
+    changeProperty(property: string, value: unknown) {
+
+        this[property] = value
 
         if (this.showErrors) {
             this.validate()

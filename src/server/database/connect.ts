@@ -1,5 +1,4 @@
 import mongoose = require('mongoose')
-import { iResult } from 'types/common';
 
 const options = {
     autoIndex: true,
@@ -8,29 +7,23 @@ const options = {
     family: 4,
     useNewUrlParser: true, 
     useUnifiedTopology: true
-  };
+  }
 
   type ActionMongoose<T> = () => Promise<T>
 
-const connect = <T>(action: ActionMongoose<T>) => {
+  const connect = async <T>(action: ActionMongoose<T>) => {
+  
+    try {
+              
+        await mongoose.connect('mongodb://localhost/chords', options)
+        console.log('mongoose connect')
+        const result = await action()
+        return { error: null, result }
 
-    return new Promise<iResult<T>>(async (resolve, reject) => {
-
-        try {
-            
-            await mongoose.connect('mongodb://localhost/chords', options)
-            console.log('mongoose connect')
-            const result = await action()
-            resolve({ error: null, result })
-
-        } catch (error) {
-            console.log('mongoose error ' + error)
-            resolve({ error })
-        }
-        finally {
-            //db.disconnect()
-        }
-    })
+    } catch (error) {
+        console.log('mongoose error ' + error)
+        return { error }
+    }
 }
 
 export default connect
