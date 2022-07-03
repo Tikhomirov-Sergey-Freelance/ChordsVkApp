@@ -1,13 +1,18 @@
 import React, { ChangeEvent } from 'react'
-import { Chip, ChipsInput, FormItem, Group } from '@vkontakte/vkui'
+import { Chip, ChipsInput, FormItem } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
-import { Icon24ArrowDownOutline, Icon24ArrowUpOutline, Icon24CheckBoxOff, Icon24CancelOutline, Icon24DeleteOutline } from '@vkontakte/icons'
+import {
+    Icon24ArrowDownOutline,
+    Icon24ArrowUpOutline,
+    Icon24CheckBoxOff,
+    Icon24CancelOutline,
+    Icon24DeleteOutline
+} from '@vkontakte/icons'
 
 import AddTrackStore from 'stores/pages/add-track-store'
 
 import Styled from './styled'
-import store from 'stores/root/snackbar-store'
 import { StrummingType } from 'types/strumming'
 
 export interface iProps {
@@ -27,7 +32,7 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
                 return <Icon24ArrowUpOutline />
 
             case StrummingType.mutting:
-                return <Icon24CancelOutline title='глушение' />
+                return <Icon24CancelOutline title="глушение" />
 
             case StrummingType.space:
                 return ''
@@ -36,12 +41,12 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
 
     return (
 
-        <FormItem top='Бой'>
+        <FormItem top="Бой">
 
             <ChipsInput
 
                 value={store.strumming.map((item, index) => ({ value: item, index }))}
-                renderChip={({ value, label, option, ...rest }) => (
+                renderChip={({ value, option, ...rest }) => (
                     <Chip
                         key={option.index}
                         value={value}
@@ -56,7 +61,9 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
                     <Styled>
                         <Icon24ArrowDownOutline onClick={() => store.addStrummingItem(StrummingType.down)} />
                         <Icon24ArrowUpOutline onClick={() => store.addStrummingItem(StrummingType.up)} />
-                        <Icon24CancelOutline title='глушение' onClick={() => store.addStrummingItem(StrummingType.mutting)} />
+                        <Icon24CancelOutline
+                            title="глушение"
+                            onClick={() => store.addStrummingItem(StrummingType.mutting)} />
                         <Icon24CheckBoxOff onClick={() => store.addStrummingItem(StrummingType.space)} />
                         <Icon24DeleteOutline onClick={() => store.deleteStrummingItem()} />
                     </Styled>
@@ -67,7 +74,7 @@ const Strumming: React.FC<iProps> = observer(({ store }) => {
                     event.preventDefault()
                 }}
             />
- 
+
         </FormItem>
     )
 })

@@ -1,6 +1,8 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 
-const useDebounce = <T>(func: T, delay: number = 300) => {
+type debounceAction<T> = T & { apply: (context, ...args) => void }
+
+const useDebounce = <T>(func: debounceAction<T>, delay = 300) => {
 
     const timeoutRef = useRef<NodeJS.Timeout>()
   
@@ -11,12 +13,12 @@ const useDebounce = <T>(func: T, delay: number = 300) => {
       }
     }
   
-    const debounce: any = (...args) => {
+    const debounce = ((...args) => {
         clearTimer()
-        timeoutRef.current = setTimeout(() => (func as any)(...args), delay)
-    } 
+        timeoutRef.current = setTimeout(() => func.apply(null, ...args), delay)
+    }) as unknown as T
 
-    return [debounce as T, clearTimer] as [T, () => void]
+    return [debounce, clearTimer] as [debounceAction<T>, () => void]
 }
 
 export default useDebounce

@@ -1,5 +1,5 @@
-import { getStorage, ref, deleteObject, uploadBytes, getDownloadURL, updateMetadata } from 'firebase/storage'
-import { Firebase } from "stores/root-store"
+import { getStorage, ref, uploadBytes, getDownloadURL, updateMetadata } from 'firebase/storage'
+import { Firebase } from 'stores/root-store'
 
 export const saveArtistLogo = async (artistId: string, blob) => {
 
@@ -9,7 +9,7 @@ export const saveArtistLogo = async (artistId: string, blob) => {
         const storage = getStorage()
 
         const logoRef = ref(storage, `images/artists/${artistId}/logo.jpg`)
-        const result = await uploadBytes(logoRef, blob)
+        await uploadBytes(logoRef, blob)
 
         const metadata = {
             cacheControl: 'public,max-age=30000',
@@ -21,7 +21,6 @@ export const saveArtistLogo = async (artistId: string, blob) => {
         return await getDownloadURL(logoRef)
 
     } catch (error) {
-        console.error(`Ошибка при сохранении изображения. ${error}`)
         return null
     }
 }

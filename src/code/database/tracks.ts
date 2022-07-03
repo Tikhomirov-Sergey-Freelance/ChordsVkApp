@@ -1,11 +1,21 @@
 import { arrayToPools } from 'code/common/array'
 import { setTrackSearchName } from 'code/tracks/search-name'
 import { trackToShortTrack, trackToShortTrackPartial } from 'code/tracks/track-to-short-track'
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc, runTransaction, startAt } from 'firebase/firestore'
-import { Firebase } from "stores/root-store"
+import { 
+    collection, 
+    getDocs, 
+    where, 
+    query, 
+    orderBy, 
+    limit, 
+    doc, 
+    updateDoc, 
+    getDoc, 
+    runTransaction } from 'firebase/firestore'
+import { Firebase } from 'stores/root-store'
 import { iShortArtist } from 'types/artists'
 import { iShortTrack, iShortTrackView, iTrack, iTrackView } from '../../types/track'
-import { loadArtistById, loadArtistsByIds, loadShortArtistById } from './artists'
+import { loadArtistsByIds, loadShortArtistById } from './artists'
 import { updateAfterAddedTrack, loadNextRandomIndex, setNextRandomIndex } from './track-metrics'
 
 export const addTrack = async (track: iTrack) => {
@@ -33,7 +43,6 @@ export const addTrack = async (track: iTrack) => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
@@ -64,7 +73,6 @@ export const updateTrack = async (trackId: string, track: Partial<iTrack>) => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }
@@ -86,7 +94,6 @@ export const loadTrackById = async (id: string) => {
         return { ...track, artist } as iTrackView
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }
@@ -108,7 +115,6 @@ export const loadShortTrackById = async (id: string) => {
         return { ...track, artist } as iShortTrackView
 
     } catch (error) {
-        console.error(error)
         return null
     }
 }
@@ -120,7 +126,7 @@ export const loadLastAddedTracks = async (count: number) => {
             collection(await Firebase.getFirestore(), 'short-tracks'),
             orderBy('addedDate', 'desc'),
             limit(count)
-        );
+        )
 
     const data = await getDocs(querySnapshot)
     const tracks = data.docs.map(item => item.data()) as iShortTrack[]
@@ -147,7 +153,7 @@ export const loadTracksByArtist = async (artistId: string) => {
         query(
             collection(await Firebase.getFirestore(), 'short-tracks'),
             where('artistId', '==', artistId)
-        );
+        )
 
     const data = await getDocs(querySnapshot)
     return data.docs.map(item => item.data()) as iShortTrackView[]
@@ -166,7 +172,7 @@ export const loadTracksByIds = async (ids: string[]) => {
             query(
                 collection(await Firebase.getFirestore(), 'short-tracks'),
                 where('id', 'in', idList)
-            );
+            )
 
             return await getDocs(querySnapshot)
         })
@@ -201,7 +207,7 @@ export const loadRandomTrack = async () => {
     try {
 
         const count = await loadNextRandomIndex()
-        let randomIndex = Math.round(Math.random() * (count - 2)) + 1
+        const randomIndex = Math.round(Math.random() * (count - 2)) + 1
 
         const querySnapshot = query(
             collection(await Firebase.getFirestore(), 'short-tracks'),
@@ -219,7 +225,7 @@ export const loadRandomTrack = async () => {
         return trackView
 
     } catch (error) {
-        console.error(error)
+        return false
     }
 }
 
@@ -244,8 +250,8 @@ export const loadTracksByQuery = async (q: string) => {
             getDocs(searchByNameWithEndArtist)
         ])
 
-        let tracksIds: string[] = []
-        let tracks: iShortTrack[] = []
+        const tracksIds: string[] = []
+        const tracks: iShortTrack[] = []
 
         results.forEach(search => search.docs.forEach(doc => {
             if (!tracksIds.includes(doc.id)) {
@@ -270,7 +276,6 @@ export const loadTracksByQuery = async (q: string) => {
         return tracksView
 
     } catch (error) {
-        console.log(error)
         return []
     }
 }
@@ -284,7 +289,7 @@ export const updateTracksSearchName = async (track: iShortTrack, artist: iShortA
         return true
 
     } catch (error) {
-        console.log(error)
+        return false
     }
 }
 

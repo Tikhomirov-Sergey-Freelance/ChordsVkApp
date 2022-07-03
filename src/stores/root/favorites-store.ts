@@ -1,8 +1,4 @@
-import { makeAutoObservable, reaction } from 'mobx'
-import { iTrackView } from 'types/track'
-import { iArtist } from 'types/artists'
-import { loadArtistById } from 'code/database/artists'
-import { loadTracksByArtist, loadTracksByIds } from 'code/database/tracks'
+import { makeAutoObservable } from 'mobx'
 import { changeFavorite, getFavoriteTracks } from 'code/database/favorite'
 
 export class FavoritesStore {

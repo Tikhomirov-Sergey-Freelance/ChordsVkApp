@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Header, SimpleCell, Avatar, Text } from '@vkontakte/vkui'
+import { Group, Header } from '@vkontakte/vkui'
 
 import { iShortArtist } from 'types/artists'
 

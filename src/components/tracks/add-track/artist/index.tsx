@@ -17,9 +17,9 @@ const Artist: React.FC<iProps> = observer(({ store }) => {
 
     return (   
 
-        <FormItem top='Исполнитель'> 
+        <FormItem top="Исполнитель"> 
               <CustomSelect
-                placeholder='Введите исполнителя'
+                placeholder="Введите исполнителя"
                 searchable
                 onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const remoteQuery = e.target.value

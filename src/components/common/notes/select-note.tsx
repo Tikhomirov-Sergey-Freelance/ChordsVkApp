@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { observer } from 'mobx-react-lite'
 import { FormItem, Select, CustomSelectOption } from '@vkontakte/vkui'
 
 import { notes } from '../../../code/data/notes'
@@ -23,12 +22,12 @@ const NoteField: React.FC<iProps> = ({ onChangeNote, note }) => {
 
     return (
 
-        <FormItem top='Нота'>
+        <FormItem top="Нота">
 
             <Select
                 value={note || notes[0]}
                 options={notes.map(note => ({ label: note, value: note }))}
-                renderOption={({ option, ...restProps }) => (<CustomSelectOption {...restProps} />)}
+                renderOption={({ ...restProps }) => (<CustomSelectOption {...restProps} />)}
                 onChange={changeNote}
             />
 

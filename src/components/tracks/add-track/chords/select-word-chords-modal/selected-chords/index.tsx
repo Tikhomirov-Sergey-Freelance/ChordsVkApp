@@ -11,7 +11,7 @@ const SelectedChords: React.FC<iProps> = ({ selectedChords, select }) => {
     if (!selectedChords.length) return null
 
     return (
-        <FormItem top='Аккорды в треке'>
+        <FormItem top="Аккорды в треке">
 
             {
                 selectedChords.map((key, index) =>

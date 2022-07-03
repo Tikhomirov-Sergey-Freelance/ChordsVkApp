@@ -2,7 +2,7 @@ import { makeAutoObservable, reaction } from 'mobx'
 
 import { loadTracksByIds } from '../../code/database/tracks'
 import { Favorites } from '../root-store'
-import { iShortTrackView, iTrackView } from '../../types/track'
+import { iShortTrackView } from '../../types/track'
 import { changeFavorite } from 'code/database/favorite'
 
 export class FavoritesPageStore {

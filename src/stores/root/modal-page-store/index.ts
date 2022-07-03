@@ -1,7 +1,6 @@
-import { makeAutoObservable, makeObservable, observable } from 'mobx'
-import React, { ReactNode } from 'react'
+import { makeAutoObservable } from 'mobx'
+import { ReactNode } from 'react'
 import { Router } from '../../root-store'
-import { createStoreByModalKey } from './dictionary'
 
 export type ModalKey = 'defaultModalPage'
 
@@ -13,10 +12,10 @@ export interface ModalComponent {
 export interface ModalComponentData {
     header?: () => ReactNode
     component?: () => ReactNode
-    data?: any
-    onClose?: (data?: any) => void
+    data?: unknown
+    onClose?: (data?: unknown) => void
 
-    store?: any
+    store?: unknown
     saveHistory?: boolean
     openFromHistory?: boolean
 }
@@ -36,7 +35,7 @@ export class ModalPageStore {
 
     openModal(key: ModalKey, modalData: ModalComponentData = {}) {
         
-        const store = modalData.store || createStoreByModalKey(key, modalData.data)
+        const store = modalData.store
         modalData.store = store
         
         this.activeModalComponent = {
@@ -62,7 +61,7 @@ export class ModalPageStore {
         }, 0)
     }
 
-    openFromHistory(key: string, data: any) {
+    openFromHistory(key: string, data: unknown) {
 
         if(key) {
             this.openModal(key as ModalKey, { data, saveHistory: true, openFromHistory: true })

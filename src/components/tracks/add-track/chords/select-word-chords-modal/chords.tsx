@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { loadChordsByQuery } from 'code/database/chords'
 import useDebounce from 'code/hooks/use-debounce'
-import { CustomSelect, FormItem, Text } from '@vkontakte/vkui'
+import { CustomSelect, FormItem } from '@vkontakte/vkui'
 
 import OptionText from '../../../../common/vk/controls/select/option-text'
 
@@ -47,9 +47,9 @@ const Chords: React.FC<iProps> = ({ chord, onChange }) => {
 
     return (
         <>
-            <FormItem top='Аккорд'>
+            <FormItem top="Аккорд">
                 <CustomSelect
-                    placeholder='Введите аккорд'
+                    placeholder="Введите аккорд"
                     searchable
                     onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         const remoteQuery = e.target.value

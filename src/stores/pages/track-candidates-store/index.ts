@@ -1,5 +1,5 @@
 import { changeTrackCandidateState, loadActiveCandidatesList } from 'code/database/track-candidates'
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { iTrackCandidatesView } from 'types/track-candidate'
 
 export interface iProposeTrackErrors {
@@ -26,7 +26,6 @@ export class TrackCandidatesStore {
         this.loading = true
 
         this.tracks = await loadActiveCandidatesList()
-        console.log(this.tracks)
         this.loading = false
     }
 

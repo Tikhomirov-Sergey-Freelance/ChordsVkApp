@@ -10,18 +10,22 @@ interface iProps {
 
 const Text: React.FC<iProps> = ({ store }) => {
 
-    const [onChangeChordText] = useDebounce((prevString: string, text: string) => store.changeChordText(prevString, text), 200)
+    const changeText = (prevString: string, text: string) => store.changeChordText(prevString, text)
+    const [onChangeChordText] = useDebounce(changeText, 200)
 
     const onChangeText = (text) => {
         onChangeChordText(store.text, text)
         store.changeText(text)
-    }  
+    }
 
     return (
-        <FormItem top='Текст'>
-            <Textarea sizeY={SizeType.REGULAR} value={store.text} onChange={(event) => onChangeText(event.target.value)} />
+        <FormItem top="Текст">
+            <Textarea
+                sizeY={SizeType.REGULAR}
+                value={store.text}
+                onChange={(event) => onChangeText(event.target.value)} />
         </FormItem>
-    )       
+    )
 }
 
 export default observer(Text)

@@ -26,6 +26,15 @@
         "quotes": ["error", "single"],
         "jsx-quotes": ["error", "prefer-double"],
         "max-len": ["error", { "code": 120 }],
-        "semi": ["error", "never"]
-    }
+        "semi": ["error", "never"],
+        "@typescript-eslint/no-empty-interface": "off"
+    },
+    "overrides": [
+        {
+         "files": ["./src/server/**/*", "./src/server.ts"],
+            "rules": {
+               "no-console": "off"   
+            }
+        }
+    ]
 }

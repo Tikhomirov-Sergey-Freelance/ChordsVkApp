@@ -1,4 +1,4 @@
-import { CardGrid, Card } from '@vkontakte/vkui'
+import { CardGrid } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
 
@@ -13,7 +13,7 @@ const ChordList: React.FC = () => {
     if (ChordsListStore.loading) return <PanelPreloader />
 
     return (
-        <CardGrid size='s'>
+        <CardGrid size="s">
 
             {
                 ChordsListStore.currentNoteChords.map(chord =>

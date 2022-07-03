@@ -3,7 +3,7 @@ import ProposeTrackStore from '.'
 
 const StoreContext = createContext(null)
  
-export const ProposeTrackStoreProvider = ({ children }) => {
+export const ProposeTrackStoreProvider: React.FC = ({ children }) => {
 
   return (
     <StoreContext.Provider value={new ProposeTrackStore()}>{children}</StoreContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AddTrackStore from 'stores/pages/add-track-store'
 import { Icon16Add } from '@vkontakte/icons'
 
@@ -17,9 +17,9 @@ const SpaceRow: React.FC<iProps> = ({ store, rowIndex, rows }) => {
         (rowIndex !== 0 && rows[rowIndex - 1].instrumental)
 
     return (
-        <div className='chord-row space-row' onClick={!hideActions && (() => store.addInstrumentalRow(rowIndex))}>
-            <div className='actions'>
-                {!hideActions && <Icon16Add title='добавить проигрыш' />}
+        <div className="chord-row space-row" onClick={!hideActions && (() => store.addInstrumentalRow(rowIndex))}>
+            <div className="actions">
+                {!hideActions && <Icon16Add title="добавить проигрыш" />}
             </div>
         </div>
     )

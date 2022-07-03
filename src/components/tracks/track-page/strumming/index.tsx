@@ -1,9 +1,9 @@
 import { Icon24ArrowDownOutline, Icon24ArrowUpOutline, Icon24CancelOutline } from '@vkontakte/icons'
-import { Group, Header, InfoRow, SimpleCell } from '@vkontakte/vkui'
+import { Group, Header, SimpleCell } from '@vkontakte/vkui'
 import React from 'react'
 import { StrummingType } from 'types/strumming'
 
-import { iChordsWord, iTrackView } from '../../../../types/track'
+import { iTrackView } from '../../../../types/track'
 import Styled from './styled'
 
 export interface iProps {
@@ -19,16 +19,16 @@ const Strumming: React.FC<iProps> = ({ track }) => {
         switch (value) {
 
             case StrummingType.down:
-                return <Icon24ArrowDownOutline key={index} color='' />
+                return <Icon24ArrowDownOutline key={index} color="" />
 
             case StrummingType.up:
                 return <Icon24ArrowUpOutline key={index} />
 
             case StrummingType.mutting:
-                return <Icon24CancelOutline key={index} title='глушение' />
+                return <Icon24CancelOutline key={index} title="глушение" />
 
             case StrummingType.space:
-                return <span key={index} className='space' />
+                return <span key={index} className="space" />
         }
     }
 
@@ -47,7 +47,7 @@ const Strumming: React.FC<iProps> = ({ track }) => {
                 </Styled>
             </SimpleCell>}
 
-            {!!!track.strumming.length && <SimpleCell>{track.strummingNote}</SimpleCell>}
+            {!track.strumming.length && <SimpleCell>{track.strummingNote}</SimpleCell>}
             {!!track.strumming.length && track.strummingNote && <Group description={track.strummingNote} />}
 
         </Group>

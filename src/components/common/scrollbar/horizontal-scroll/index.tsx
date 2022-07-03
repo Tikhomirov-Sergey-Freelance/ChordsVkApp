@@ -23,20 +23,19 @@ const HorizontScroll: React.FC<iProps> = ({ children, style }) => {
     const moveData: iMoveData = useMemo(() => ({ mouseDown: false }), [])
 
     const mouseup = () => {
-
         moveData.mouseDown = false
         moveData.x = undefined
     }
 
-    const mousedown = (event: any) => {
+    const mousedown = (event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>) => {
         moveData.mouseDown = true
-        moveData.x = event.clientX || event.changedTouches[0].clientX
+        moveData.x = event['clientX'] || event['changedTouches'][0].clientX
     }
 
-    const mousemove = (event: any) => {
+    const mousemove = (event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>) => {
 
         if (moveData.mouseDown && moveData.x && scrollRef.current) {
-            const clientX = event.clientX || event.changedTouches[0].clientX
+            const clientX = event['clientX'] || event['changedTouches'][0].clientX
             scrollRef.current.scroll(scrollRef.current.scrollLeft + (moveData.x - clientX), 0)
             moveData.x = clientX
         }

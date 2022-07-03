@@ -1,5 +1,5 @@
 import { getLastTracksFromLocalStorage, saveLastTrackToLocalStorage } from 'code/tracks/last-tracks'
-import { makeAutoObservable, makeObservable, observable, toJS } from 'mobx'
+import { makeObservable, observable, toJS } from 'mobx'
 import { MusicalInstrument } from 'types/global-types'
 
 export class GlobalStore {
@@ -33,7 +33,7 @@ export class GlobalStore {
 
     saveLastViewedTrack(trackId: string) {
     
-        let lastTracks = toJS(this.lastViewedTracks)
+        const lastTracks = toJS(this.lastViewedTracks)
 
         if(lastTracks.includes(trackId)) {
             const index = lastTracks.findIndex(track => track === trackId)

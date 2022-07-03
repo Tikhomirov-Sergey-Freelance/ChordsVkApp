@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Div } from '@vkontakte/vkui'
 
@@ -13,17 +13,15 @@ const Fret: React.FC = observer(() => {
     const chordCanvasRef = useRef<ChordCanvas>()
 
     useEffect(() => {
-        Store.canvas = chordCanvasRef.current = new ChordCanvas(canvas.current!)
+        Store.canvas = chordCanvasRef.current = new ChordCanvas(canvas.current)
     }, [])
 
     useEffect(() => {
 
-        const chordCanvas = chordCanvasRef.current!
+        const chordCanvas = chordCanvasRef.current
         chordCanvas.draw(params, params.instrument === 'ukulele' ? 90 : 110, 170)
 
     }, [params])
-
-    console.log('rerender')
 
     return (
         <Div style={{display: 'flex', justifyContent: 'center'}}>

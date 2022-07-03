@@ -1,4 +1,4 @@
-import { FormItem, Group, Header, FormField } from '@vkontakte/vkui'
+import { Group, Header, FormField } from '@vkontakte/vkui'
 import React from 'react'
 import { iChordsRow, iTrackView } from 'types/track'
 
@@ -21,7 +21,13 @@ const Chords: React.FC<iProps> = ({ track }) => {
         }
 
         if(row.instrumental) {
-            return <Instrumental key={index} mode='instrumental' chords={row.instrumental.chords} note={row.instrumental.note}/>
+            return (
+                <Instrumental 
+                    key={index} 
+                    mode="instrumental" 
+                    chords={row.instrumental.chords} 
+                    note={row.instrumental.note}/>
+            )
         }
 
         return <ChordsRow key={index} rowIndex={index} row={row} />
@@ -33,13 +39,13 @@ const Chords: React.FC<iProps> = ({ track }) => {
             <FormField style={{ margin: 10 }}>
                 <Styled>
 
-                    <Instrumental mode='intro' chords={track.intro} note={track.introNote} />
+                    <Instrumental mode="intro" chords={track.intro} note={track.introNote} />
                     
                     {
                         track.chordsText.rows.map((row, index) => getRow(row, index))
                     }
 
-                    <Instrumental mode='outro' chords={track.outro} note={track.outroNote}/>
+                    <Instrumental mode="outro" chords={track.outro} note={track.outroNote}/>
 
                 </Styled>
             </FormField>

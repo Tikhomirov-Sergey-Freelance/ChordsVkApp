@@ -9,24 +9,21 @@ const options = {
     useNewUrlParser: true, 
     useCreateIndex: true, 
     useUnifiedTopology: true
-  };
+  }
 
-const connect = () => {
+const connect = async () => {
 
-    return new Promise(async (resolve, reject) => {
+    try {
 
-        try {
+        await mongoose.connect('mongodb://localhost/chords', options)
 
-            await mongoose.connect('mongodb://localhost/chords', options)
+        console.log('Подключение к базе данных прошло успешно')
+        return true
 
-            console.log('Подключение к базе данных прошло успешно')
-            return true
-
-        } catch (error) {
-            console.error(`Ошибка при подключении к базеданных. ${error}`)
-            throw error
-        }
-    })
+    } catch (error) {
+        console.error(`Ошибка при подключении к базеданных. ${error}`)
+        throw error
+    }
 }
 
 export default connect

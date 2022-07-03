@@ -1,6 +1,6 @@
-import { Button, Group } from '@vkontakte/vkui'
-import { openTrack } from 'code/tracks/open-track'
 import React from 'react'
+
+import { Button, Group } from '@vkontakte/vkui'
 import TrackPageStore from 'stores/pages/track-page-store'
 import { Modal } from 'stores/root-store'
 
@@ -19,7 +19,7 @@ const ErrorButton: React.FC<iProps> = ({ store }) => {
             store.sendError(error)
         }
 
-        const header = () => <DialogHeader title='Пожалуйста, опишите ошибку' />
+        const header = () => <DialogHeader title="Пожалуйста, опишите ошибку" />
         const component = () => <Dialog sendError={sendError} onClose={() => Modal.closeModal()} />
         Modal.openModal('defaultModalPage', { header, component })
     }
@@ -27,10 +27,10 @@ const ErrorButton: React.FC<iProps> = ({ store }) => {
     return (
         <Group style={{ padding: '0 10px' }}>
             <Button
-                size='l'
+                size="l"
                 stretched={true}
-                mode='outline'
-                key='button'
+                mode="outline"
+                key="button"
                 onClick={showErrorModal}>
                 Нашли ошибку?
             </Button>

@@ -1,8 +1,6 @@
 import React from 'react'
 import { Group } from '@vkontakte/vkui'
 
-import { iTrackView } from '../../../../types/track'
-
 export interface iProps {
     mode: 'intro' | 'outro' | 'instrumental'
     chords?: string[]
@@ -26,18 +24,18 @@ const Instrumental: React.FC<iProps> = ({ mode, chords, note }) => {
 
         <div className={mode}>
 
-            <div className='chords'>
-                <span className='title'>{getTitle()}:</span>
+            <div className="chords">
+                <span className="title">{getTitle()}:</span>
 
-                {!chords.length && <span className='info'>{note}</span>}
+                {!chords.length && <span className="info">{note}</span>}
 
                 {
-                    chords.map((item, index) => <span key={index} className='chord'>{item}</span>)
+                    chords.map((item, index) => <span key={index} className="chord">{item}</span>)
                 }
             </div>
 
-            <div className='desctiption'>
-                {chords.length && note && <Group className='desctiption' description={note} />}
+            <div className="desctiption">
+                {chords.length && note && <Group className="desctiption" description={note} />}
             </div>
 
         </div>

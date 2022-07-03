@@ -4,7 +4,7 @@ import { isDev } from './common'
 import { resolve } from 'path'
 
 const devVKSecret = {
-    "secret": "1111111"
+    'secret': '1111111'
 }
 
 const validateVkParams = (req) => {
@@ -12,13 +12,13 @@ const validateVkParams = (req) => {
     if(isDev) return true
 
     const query = req.query
-    let vkParams = []
+    const vkParams = []
 
     const sign: string = query.sign
 
     if(!sign) return false
 
-    for(let key in query) {
+    for(const key in query) {
 
         if(key.startsWith('vk_')) {
             vkParams.push(`${key}=${query[key]}`)
@@ -48,7 +48,8 @@ export const getVKConfig = () => {
         return devVKSecret
     }
 
-    return JSON.parse(fs.readFileSync(resolve(__dirname, '..', 'ChordsPrivate/firebase/vk-secret-key.json')).toString('utf8'))
+    const file = fs.readFileSync(resolve(__dirname, '..', 'ChordsPrivate/firebase/vk-secret-key.json')).toString('utf8')
+    return JSON.parse(file)
 }
 
 export default validateVkParams

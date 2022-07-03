@@ -1,5 +1,4 @@
-import GuitarStringField from 'components/chords/add-chord/guitar-strings/guitar-string'
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { Schema, model} from 'mongoose'
 import { iChord } from 'types/chord'
 
 export const ChordSchema = new Schema<iChord>({

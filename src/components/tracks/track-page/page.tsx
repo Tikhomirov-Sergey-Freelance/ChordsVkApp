@@ -1,8 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Group, withModalRootContext, PanelHeader, PanelHeaderClose, PanelHeaderEdit } from '@vkontakte/vkui'
-import { iChordsWord, iTrackView } from 'types/track'
-import { Global, Modal } from 'stores/root-store'
+import { Group } from '@vkontakte/vkui'
+import { Global } from 'stores/root-store'
 
 import { useTrackStore } from 'stores/pages/track-page-store/track-page-store-provider'
 
@@ -35,7 +34,10 @@ const TrackModal: React.FC = () => {
                 <Artist track={store.track} />
                 <Strumming track={store.track} />
                 <Riff track={store.track} />
-                <Chords chords={store.instrumentChords} currentInstrument={Global.currentInstrument} loading={store.loadingChords} />
+                <Chords 
+                    chords={store.instrumentChords} 
+                    currentInstrument={Global.currentInstrument} 
+                    loading={store.loadingChords} />
                 <Text track={store.track} />
                 <ErrorButton store={store} />
                 <TrackVideo track={store.track} />

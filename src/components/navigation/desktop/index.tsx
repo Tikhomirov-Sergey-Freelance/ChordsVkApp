@@ -8,7 +8,7 @@ import { pages } from '../menu'
 import { observer } from 'mobx-react-lite'
 
 const activeLinkStyle = {
-  backgroundColor: "var(--button_secondary_background)",
+  backgroundColor: 'var(--button_secondary_background)',
   borderRadius: 8
 }
 

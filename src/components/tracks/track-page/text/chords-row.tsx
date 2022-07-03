@@ -1,8 +1,6 @@
 import React, { useMemo, Fragment } from 'react'
-import AddTrackStore from 'stores/pages/add-track-store'
 
-import ModalPageStore from '../../../../stores/root/modal-page-store'
-import { iChordsWord, iChordWordPosition, iChordsRow, ChordRowWord } from '../../../../types/track'
+import { iChordsRow, ChordRowWord } from '../../../../types/track'
 
 import ChordsWord from './chords-word'
 
@@ -11,7 +9,7 @@ export interface iProps {
     rowIndex: number
 }
 
-const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
+const ChordsRow: React.FC<iProps> = ({ row }) => {
 
     const prepareRow = (words: ChordRowWord[]) => {
 
@@ -29,7 +27,11 @@ const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
                 }
 
                 if(lastChord) {
-                    row.push(<span key={index + 'space'} className='chord-word-space' dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>)
+                    row.push(
+                        <span 
+                        key={index + 'space'} 
+                        className="chord-word-space" 
+                        dangerouslySetInnerHTML={{ __html: '&nbsp;' }} ></span>)
                 }
 
                 row.push(<ChordsWord key={index} word={word} />)
@@ -51,7 +53,7 @@ const ChordsRow: React.FC<iProps> = ({ row, rowIndex }) => {
     const chordRow = useMemo(() => prepareRow(row.words), [row])
 
     return (
-        <div className='chord-row'>
+        <div className="chord-row">
             <span>{chordRow}</span>
         </div>
     )

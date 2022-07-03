@@ -1,4 +1,4 @@
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { iAllTracksInfo, iTrackMetrics } from 'types/track-metrics'
 
 export const TrackMetricsSchema = new Schema<iTrackMetrics>({

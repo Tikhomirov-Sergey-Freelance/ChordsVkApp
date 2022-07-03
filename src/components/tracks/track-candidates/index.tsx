@@ -1,4 +1,3 @@
-import { Group, Header, SimpleCell, Avatar, Text } from '@vkontakte/vkui'
 import HeaderWithBack from 'components/vk/layout/header/heade-and-back'
 import React from 'react'
 

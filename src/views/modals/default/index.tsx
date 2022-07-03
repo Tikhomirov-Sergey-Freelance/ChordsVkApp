@@ -6,8 +6,8 @@ import Header from './header'
 import Content from './content'
 
 export default <ModalPage
-    key='defaultModalPage'
-    id='defaultModalPage'
+    key="defaultModalPage"
+    id="defaultModalPage"
     header={<Header />}
     onClose={() => Modal.closeModal()}>
     <Content />

@@ -6,5 +6,5 @@ export default (app) => {
     app.use('/graphql', graphqlHTTP({
         schema: RootAppSchema,
         graphiql: true
-      }));
+      }))
 }

@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { Chip, ChipsInput, FormItem, Group } from '@vkontakte/vkui'
+import { Chip, ChipsInput, FormItem } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
 import { Icon24AddOutline, Icon24DeleteOutline } from '@vkontakte/icons'
@@ -21,12 +21,12 @@ const Outro: React.FC<iProps> = observer(({ store }) => {
 
     return (
 
-        <FormItem top='Концовка'>
+        <FormItem top="Концовка">
 
             <ChipsInput
 
                 value={store.outro.map((item, index) => ({ value: item, index }))}
-                renderChip={({ value, label, option, ...rest }) => (
+                renderChip={({ value, option, ...rest }) => (
                     <Chip
                         key={option.index}
                         value={value}

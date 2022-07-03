@@ -2,7 +2,7 @@ import { FirebaseApp, initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getDatabase, Database } from 'firebase/database'
 import { getAuth, signInWithCustomToken } from 'firebase/auth'
-import { getFirestore, collection } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import { Firestore } from '@firebase/firestore'
 import { Analytics } from 'firebase/analytics'
 

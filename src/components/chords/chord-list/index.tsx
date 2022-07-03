@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import { Panel, PanelHeader, View, PanelSpinner, Group, CardGrid } from '@vkontakte/vkui'
+import { PanelHeader, Group } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 import ChordsListStore from 'stores/pages/chords-list-store'
-import { Global } from 'stores/root-store'
 
 import Instrument from '../instrument/change-instrument'
 import SelectNote from 'components/common/notes/select-note'

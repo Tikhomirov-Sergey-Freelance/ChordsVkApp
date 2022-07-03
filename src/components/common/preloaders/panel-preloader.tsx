@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, PanelHeader, PanelSpinner } from '@vkontakte/vkui'
+import { PanelHeader, PanelSpinner } from '@vkontakte/vkui'
 
 export interface iProps {
     title?: string

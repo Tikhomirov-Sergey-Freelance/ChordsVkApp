@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ModalPage, ModalRoot, Group, FormItem, Input, CustomSelect, CellButton } from '@vkontakte/vkui'
+import { Group, Input, CellButton } from '@vkontakte/vkui'
 
 interface iProps {
     onClose: () => void
@@ -7,7 +7,7 @@ interface iProps {
     defaultText?: string
 }
 
-const SelectInputModal: React.FC<iProps> = ({ onSelect, onClose, defaultText }) => {
+const SelectInputModal: React.FC<iProps> = ({ onSelect, defaultText }) => {
     
     const [text, changeText] = useState(defaultText)
 

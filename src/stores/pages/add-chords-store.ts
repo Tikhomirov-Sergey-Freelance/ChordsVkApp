@@ -1,5 +1,4 @@
 import { makeAutoObservable, reaction } from 'mobx'
-import { iPageKey } from '../../components/navigation/menu'
 import { MusicalInstrument } from '../../types/global-types'
 import { notes } from '../../code/data/notes'
 
@@ -60,8 +59,8 @@ export class AddChordsStore {
 
     fillParams(params: iChord) {
         
-        for (let prop in params) {
-            this[prop as keyof this] = params[prop as keyof iChord] as any
+        for (const prop in params) {
+            this[prop as keyof this] = params[prop]
         }
 
         if (!this.guitarStrings.length) {
@@ -69,8 +68,8 @@ export class AddChordsStore {
         }
     }
 
-    changeProperty(property: keyof iChord, value: any) {
-        this[property as keyof this] = value
+    changeProperty(property: keyof iChord, value: unknown) {
+        this[property] = value
     }
 
     changeNote(note: string) {
@@ -78,12 +77,12 @@ export class AddChordsStore {
         this.name = this.note
     }
 
-    changeString(index: number, fret: string) {
+    changeString(index: number, fret: string | number) {
 
         const string = this.guitarStrings.find(string => string.index === index)
 
         if (string) {
-            string.fret = isNaN(fret as any) ? fret : +fret
+            string.fret = isNaN(+fret) ? fret : +fret
         }
 
         this.guitarStrings = [...this.guitarStrings]
@@ -108,12 +107,15 @@ export class AddChordsStore {
 
     async saveChord() { 
 
-        const result = await addChord(this.chordParams)
-        console.log(result)
+        await addChord(this.chordParams)
         
         snackbar('Добавили аккорд')
 
-        const newParams = { ...defauiltParams, note: this.chordParams.note, name: this.chordParams.note, instrument: Global.currentInstrument }
+        const newParams = { 
+            ...defauiltParams, 
+            note: this.chordParams.note, 
+            name: this.chordParams.note, 
+            instrument: Global.currentInstrument }
 
         this.fillParams(newParams) 
     }

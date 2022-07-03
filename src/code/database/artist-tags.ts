@@ -1,8 +1,6 @@
-import { artistToShortArtist } from 'code/artist/mapper';
-import { arrayToPools } from 'code/common/array';
-import { collection, getDocs, where, query, Query, getDoc, doc, setDoc, updateDoc, runTransaction, deleteDoc } from 'firebase/firestore'
-import { Firebase } from "stores/root-store"
-import { iArtist, iShortArtist, iArtistTag } from 'types/artists'
+import { collection, getDocs, where, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { Firebase } from 'stores/root-store'
+import { iArtistTag } from 'types/artists'
 
 export const loadArtistTagsByQuery = async (tagQuery: string) => {
 
@@ -22,7 +20,6 @@ export const loadArtistTagsByQuery = async (tagQuery: string) => {
         return tags.filter(tag => tag.strict ? tag.tag === q : true)
 
     } catch (error) {
-        console.error(error)
         return []
     }
 }
@@ -42,7 +39,6 @@ export const loadArtistTagsById = async (artistId: string) => {
         return data.docs.map(item => item.data()) as iArtistTag[]
 
     } catch (error) {
-        console.error(error)
         return []
     }
 }
@@ -68,7 +64,6 @@ export const updateArtistTags = async (forAdd: iArtistTag[], forDelete: iArtistT
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }

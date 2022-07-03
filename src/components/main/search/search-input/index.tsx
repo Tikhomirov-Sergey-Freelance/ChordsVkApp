@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Group, Search } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
 import MainPageStore from '../../../../stores/pages/main-page-store'
-import useDebounce from '../../../../code/hooks/use-debounce'
 
 const SearchInput: React.FC = () => {
 

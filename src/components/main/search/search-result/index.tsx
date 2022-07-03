@@ -1,6 +1,6 @@
-import { Button, PullToRefresh, Group, useAdaptivity, ViewWidth } from '@vkontakte/vkui'
+import { Group, useAdaptivity, ViewWidth } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import MainPageStore from '../../../../stores/pages/main-page-store'
 
@@ -22,8 +22,10 @@ const SearchResult: React.FC = () => {
     return (
         <Group>
             <div style={{ marginTop: isMobile ? 0 : 15 }}>
-                {!!MainPageStore.foundArtists.length && <ArtistList artists={MainPageStore.foundArtists} title='Исполнители' />}
-                {!!MainPageStore.foundTracks.length && <TrackList tracks={MainPageStore.foundTracks} title='Треки' />}
+                {!!MainPageStore.foundArtists.length &&
+                    <ArtistList artists={MainPageStore.foundArtists} title="Исполнители" />}
+                {!!MainPageStore.foundTracks.length &&
+                    <TrackList tracks={MainPageStore.foundTracks} title="Треки" />}
             </div>
         </Group>
     )

@@ -1,4 +1,4 @@
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { iUserFavorite } from 'types/common'
 
 export const UserFavoriteSchema = new Schema<iUserFavorite>({

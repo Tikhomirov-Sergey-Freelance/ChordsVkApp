@@ -1,6 +1,6 @@
-import { collection, getDocs, where, query, Query, orderBy, limit, doc, updateDoc, getDoc, setDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc, setDoc } from 'firebase/firestore'
 import { iUserFavorite } from 'types/common'
-import { Firebase, VK } from "stores/root-store"
+import { Firebase, VK } from 'stores/root-store'
 import { changeFavorites } from './track-metrics'
 
 export const changeFavorite = async (trackId, mode: 'add' | 'delete') => {
@@ -43,7 +43,6 @@ export const changeFavorite = async (trackId, mode: 'add' | 'delete') => {
         return true
 
     } catch (error) {
-        console.error(error)
         return false
     }
 }

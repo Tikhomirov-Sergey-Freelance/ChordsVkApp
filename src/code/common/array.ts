@@ -1,4 +1,4 @@
-export const arrayToPools = <T>(array: T[], count: number) => {
+export const arrayToPools = <T>(array: T[]) => {
 
     const pools: T[][] = array.reduce((accum, current) => {
 

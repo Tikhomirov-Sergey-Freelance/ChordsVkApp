@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { CellButton, Group, Panel, PanelHeader, View } from '@vkontakte/vkui'
+import { CellButton, Group, PanelHeader } from '@vkontakte/vkui'
 import { Router } from 'stores/root-store'
 
 

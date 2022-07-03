@@ -1,9 +1,9 @@
 declare global {
     interface Window {
-        dataLayer?: any
+        dataLayer?: unknown
     }
     interface document {
-
+        location: unknown 
     }
 }
 

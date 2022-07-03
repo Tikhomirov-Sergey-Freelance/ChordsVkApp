@@ -1,17 +1,6 @@
-const path = require('path');
-const postcssNested = require('postcss-nested');
-const postcssCustomMedia = require('postcss-custom-media');
-const postcssImport = require('postcss-import');
-const postcssImportAliasResolver = require('postcss-import-alias-resolver');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const cssnano = require('cssnano');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-const { IS_DEV } = require('../env');
-
-const resolverOptions = {
-    alias: { styles: path.resolve('src/styles') },
-    mergeExtensions: 'extend',
-};
+import { IS_DEV } from '../env'
 
 export default {
     client: {
@@ -25,7 +14,7 @@ export default {
                 options: {
                     postcssOptions: {
                       plugins: [
-                        "postcss-import"
+                        'postcss-import'
                       ]
                     }
                 }
@@ -36,4 +25,4 @@ export default {
         test: /\.css$/,
         loader: 'null-loader',
     },
-};
+}

@@ -1,6 +1,5 @@
-import { Firebase } from 'stores/root-store'
 import { iShortArtist } from 'types/artists'
-import { iShortTrack, iShortTrackView } from 'types/track'
+import { iShortTrackView } from 'types/track'
 import { loadArtistByTags } from './artists'
 import { loadTracksByQuery } from './tracks'
 

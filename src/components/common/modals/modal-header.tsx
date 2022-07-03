@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalPageHeader, PanelHeaderClose, useAdaptivity, ViewWidth, PanelHeaderEdit, Avatar, Div } from '@vkontakte/vkui'
+import { ModalPageHeader, PanelHeaderClose, useAdaptivity, ViewWidth } from '@vkontakte/vkui'
 import { Modal } from 'stores/root-store'
 
 

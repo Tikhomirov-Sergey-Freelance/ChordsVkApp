@@ -9,7 +9,7 @@ class ChordCanvas {
 
     stepStrings: number
     stepFrets: number
-    padding: number = 10
+    padding = 10
     topPadding: number = this.padding * 2.5
 
     stringsColor = 'black'
@@ -17,7 +17,7 @@ class ChordCanvas {
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas
-        this.context = this.canvas.getContext('2d')!
+        this.context = this.canvas.getContext('2d')
     }
 
     draw(params: iChord, width: number, height: number) {
@@ -58,7 +58,7 @@ class ChordCanvas {
         let x = this.canvas.width - this.padding
         this.stepStrings = (x - this.padding) / (this.params.guitarStrings.length - 1)
 
-        this.params.guitarStrings.forEach((string) => {
+        this.params.guitarStrings.forEach(() => {
             this.drawLine(x, this.topPadding, x, this.canvas.height - this.padding)
             x -= this.stepStrings
         })

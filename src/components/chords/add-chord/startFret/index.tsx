@@ -8,7 +8,7 @@ const StartFretField: React.FC = observer(() => {
 
     const fretsData = useMemo(() => {
 
-        let frets = []
+        const frets = []
 
         for(let i = 0; i <= 8; i++) {
             frets.push(i)
@@ -20,12 +20,12 @@ const StartFretField: React.FC = observer(() => {
 
     return (
 
-        <FormItem top={`Начальный лад`}>
+        <FormItem top={'Начальный лад'}>
 
             <Select
                 value={Store.startFret}
                 options={fretsData.map(fret => ({ label: fret.toString(), value: fret }))}
-                renderOption={({ option, ...restProps }) => (<CustomSelectOption {...restProps} />)}
+                renderOption={({ ...restProps }) => (<CustomSelectOption {...restProps} />)}
                 onChange={event => Store.changeProperty('startFret', +event.target.value)}
             />
  

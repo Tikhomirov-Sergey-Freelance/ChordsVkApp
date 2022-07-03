@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { CellButton, Group, Panel, PanelHeader, PanelHeaderClose, View, FormLayout, FormItem, SliderSwitch, Select, CustomSelectOption, PanelHeaderSubmit } from '@vkontakte/vkui'
+import { FormLayout } from '@vkontakte/vkui'
 
-import { notes } from '../../../code/data/notes'
-import Store from '../../../stores/pages/add-chords-store'
 import { AddArtistStoreProvider } from 'stores/pages/add-artist-store/add-artist-store-provider'
 
 import HeaderWithBack from '../../vk/layout/header/heade-and-back'

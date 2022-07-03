@@ -1,13 +1,9 @@
-import { makeAutoObservable, reaction } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { iTrackView } from 'types/track'
-import { iArtist } from 'types/artists'
-import { loadArtistById } from 'code/database/artists'
-import { loadTrackById, loadTracksByArtist } from 'code/database/tracks'
+import { loadTrackById } from 'code/database/tracks'
 import { iChord } from 'types/chord'
 import { loadChordsByKeys } from 'code/database/chords'
-import GlobalStore from '../../root/global-store'
 import { incrementTrackView } from 'code/database/track-metrics'
-import { changeFavorite, getFavoriteTracks, isFavoriteTrack } from 'code/database/favorite'
 import { Modal, Favorites, Global, VK, Router } from '../../root-store'
 import { getTrackLink } from 'code/tracks/track-link'
 import { snackbar } from 'code/common/alerts'
@@ -27,7 +23,7 @@ export class TrackPageStore {
     constructor() {
 
         const routeData = Router.activePanelData
-        const trackId = routeData?.trackId
+        const trackId = routeData?.['trackId']
 
         if (!trackId) {
             Router.goBack()
@@ -59,7 +55,7 @@ export class TrackPageStore {
     async loadChords() {
         this.loadingChords = true
 
-        let chordsKeys = this.getChordsKeys()
+        const chordsKeys = this.getChordsKeys()
         const chords = await loadChordsByKeys(chordsKeys)
         this.chords = chords || []
 
@@ -73,12 +69,12 @@ export class TrackPageStore {
     }
 
     get instrumentChords() {
-        return this.chords.filter(chord => Global.currentInstrument === chord.instrument);
+        return this.chords.filter(chord => Global.currentInstrument === chord.instrument)
     }
 
     getChordsKeys() {
 
-        let chordsKey = []
+        const chordsKey = []
 
         this.track.chordsText.rows.forEach(row => {
 

@@ -1,5 +1,5 @@
-import admin, { auth, firestore } from 'firebase-admin'
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs'
+import { firestore } from 'firebase-admin'
+import { existsSync, rmSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { Database } from '../database'
 import connectMongo from '../database/connect'
@@ -8,7 +8,7 @@ const collections = ['chords', 'admins', 'track-candidates', 'artists', 'short-a
 const dirPath = resolve(__dirname, '../../../..', 'data')
 
 interface iExportData {
-    id: string, data: any
+    id: string, data: unknown
 }
 
 const firebaseToJson = async () => {
@@ -41,7 +41,9 @@ const collectionToJson = async (collection: string, firestore: firestore.Firesto
         }
 
         const collectionResult = (await firestore.collection(collection)).get()
-        const data: iExportData[] = (await collectionResult).docs.map(document => ({ id: document.id, data: document.data() }))
+
+        const data: iExportData[] = (await collectionResult).
+        docs.map(document => ({ id: document.id, data: document.data() }))
 
         writeFileSync(collectionPath, JSON.stringify(data))
         console.log(`Коллекция ${collection}. Завершение загрузки`)

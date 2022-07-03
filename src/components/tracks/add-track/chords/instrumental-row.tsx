@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AddTrackStore from 'stores/pages/add-track-store'
 import { Icon16Add, Icon16Text, Icon16Delete } from '@vkontakte/icons'
 
@@ -32,24 +32,24 @@ const InstrumentalRow: React.FC<iProps> = ({ store, rowIndex, row }) => {
 
     return (
         
-        <div className='chord-row instrumental-row'>
+        <div className="chord-row instrumental-row">
 
             <div>
-                <span className='title'>Проигрыш: </span>
+                <span className="title">Проигрыш: </span>
 
-                {!!!chords.length && <span className='info'>{note}</span>}
+                {!chords.length && <span className="info">{note}</span>}
 
                 {
-                    chords.map(item => <span className='chord'>{item}</span>)
+                    chords.map(item => <span key={item} className="chord">{item}</span>)
                 }
 
-                {!!chords.length && note && <Group className='desctiption' description={note} />}
+                {!!chords.length && note && <Group className="desctiption" description={note} />}
             </div>
 
-            <div className='actions'>
-                <Icon16Add title='добавить аккорд' onClick={() => showSelectChordModal(addChord)} />
-                <Icon16Text title='добавить примечание' onClick={selectNote} />
-                <Icon16Delete title='удалить' onClick={() => store.deleteInstrumentalChord(rowIndex)} />
+            <div className="actions">
+                <Icon16Add title="добавить аккорд" onClick={() => showSelectChordModal(addChord)} />
+                <Icon16Text title="добавить примечание" onClick={selectNote} />
+                <Icon16Delete title="удалить" onClick={() => store.deleteInstrumentalChord(rowIndex)} />
             </div>
 
         </div>

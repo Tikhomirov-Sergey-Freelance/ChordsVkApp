@@ -5,7 +5,6 @@ import 'babel-polyfill'
 
 import App from './App'
 import { Root } from 'stores/root-store'
-import { SSRWrapper } from '@vkontakte/vkui'
 
 const init = async () => {
     

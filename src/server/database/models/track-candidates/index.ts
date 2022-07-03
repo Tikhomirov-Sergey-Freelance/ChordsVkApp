@@ -1,5 +1,4 @@
-import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
-import { StrummingType } from 'types/strumming'
+import { Schema, model } from 'mongoose'
 import { iTrackCandidate } from 'types/track-candidate'
 
 export const TrackCandidateSchema = new Schema<iTrackCandidate>({

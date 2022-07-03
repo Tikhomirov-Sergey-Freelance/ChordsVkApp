@@ -16,7 +16,7 @@ const Artist: React.FC<iProps> = ({ track }) => {
                 onClick={() => openArtist(track.artist.id)}
                 before={<Avatar size={32} mode="app" src={track.artist.artistImage} />}
             >
-                <InfoRow header='Исполнитель'>
+                <InfoRow header="Исполнитель">
                     {track.artist.name}
                 </InfoRow>
             </SimpleCell>

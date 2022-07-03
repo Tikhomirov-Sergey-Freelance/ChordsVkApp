@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { Chip, ChipsInput, FormItem, Group } from '@vkontakte/vkui'
+import { Chip, ChipsInput, FormItem } from '@vkontakte/vkui'
 import { observer } from 'mobx-react-lite'
 
 import { Icon24AddOutline, Icon24DeleteOutline } from '@vkontakte/icons'
@@ -8,7 +8,6 @@ import AddTrackStore from 'stores/pages/add-track-store'
 import { showSelectChordModal } from '../../../../code/show-modals/chords/select-chord'
 
 import Styled from './styled'
-import { StrummingType } from 'types/strumming'
 
 export interface iProps {
     store: AddTrackStore
@@ -22,12 +21,12 @@ const Intro: React.FC<iProps> = observer(({ store }) => {
 
     return (
 
-        <FormItem top='Вступление'>
+        <FormItem top="Вступление">
 
             <ChipsInput
 
                 value={store.intro.map((item, index) => ({ value: item, index }))}
-                renderChip={({ value, label, option, ...rest }) => (
+                renderChip={({ value, option, ...rest }) => (
                     <Chip
                         key={option.index}
                         value={value}
