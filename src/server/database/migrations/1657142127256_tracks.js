@@ -4,7 +4,7 @@ module.exports = {
         CREATE TABLE Track
         (
             id VARCHAR(100) PRIMARY KEY,
-            ind INT AUTO_INCREMENT,
+            ind INT AUTO_INCREMENT ,
             name VARCHAR(100),
             artistId VARCHAR(100),
             riff VARCHAR(300) NULL,
