@@ -35,6 +35,12 @@
             "rules": {
                "no-console": "off"   
             }
+        },
+        {
+            "files": ["./src/server/database/migrations/*"],
+            "rules": {
+                "no-undef": "off"
+            }
         }
     ]
 }
