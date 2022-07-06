@@ -2,7 +2,7 @@ import { firestore } from 'firebase-admin'
 import { existsSync, rmSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { Database } from '../database'
-import connect from '../database/connect'
+import connect from '../database/mongo-connect'
 
 import adminModel from '../database/models/admin'
 import chordsModel from '../database/models/chord'

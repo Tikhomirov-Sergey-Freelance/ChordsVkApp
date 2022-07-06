@@ -25,3 +25,5 @@ yarn-error.log*
 /data
 
 /ssh/mongo-dump
+
+/src/server/database/mysql-config.json
