@@ -1,4 +1,4 @@
-import connect from 'server/database/connect'
+import connect from 'server/database/mongo-connect'
 import { iAdmin } from 'types/admin'
 import model from '.'
 
