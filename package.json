@@ -1,7 +1,4 @@
 {
-  "name": "chords-vk-app",
-  "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@loadable/component": "5.15.2",
     "@loadable/server": "5.15.2",
@@ -53,6 +50,7 @@
     "@types/express": "^4.17.13",
     "@types/guid": "^1.0.0",
     "@types/html-webpack-plugin": "3.2.6",
+    "@types/jest": "^28.1.4",
     "@types/loadable__component": "5.13.4",
     "@types/loadable__server": "5.12.6",
     "@types/loadable__webpack-plugin": "5.7.3",
@@ -82,6 +80,8 @@
     "hot-loader": "^0.0.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "7.0.4",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "mini-css-extract-plugin": "2.4.5",
     "nodemon": "2.0.15",
     "npm-run-all": "4.1.5",
@@ -103,6 +103,7 @@
     "style-loader": "3.3.1",
     "stylelint": "^14.1.0",
     "ts-loader": "9.2.6",
+    "ts-node": "^10.8.2",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "type-fest": "2.8.0",
     "typescript": "^4.5.4",
@@ -114,36 +115,6 @@
     "write-file-webpack-plugin": "4.5.1"
   },
   "scripts": {
-    "start:webpack": "webpack --mode=development --watch",
-    "start:server": "nodemon index.js --watch dist/server.js",
-    "start": "set NODE_ENV=development&&set HTTP=true&& npm-run-all --print-label --parallel start:*",
-    "start-https": "set NODE_ENV=development&& npm-run-all --print-label --parallel start:*",
-    "firebase-to-json": "ts-node ./src/server/migrations/firebase-to-json.ts",
-    "firebase-to-mongo": "ts-node ./src/server/migrations/firebase-to-mongo.ts",
-    "mongoload": "node ./src/server/database/ssh/mongoload",
-    "mongopush": "node ./src/server/database/ssh/mongopush",
-    "postinst": "npm install node_modules/@vkontakte/vkui/",
-    "build": "webpack",
-    "create-migration": "ts-node ./src/server/database/migration.ts add migration migr",
-    "run-migration": "ts-node ./src/server/database/migration.ts up --migrate-all",
-    "lint": "eslint -c .eslintrc.json --ext .ts,.tsx .",
-    "lint:fix": "npm run lint -- --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "test": "jest"
   }
 }
