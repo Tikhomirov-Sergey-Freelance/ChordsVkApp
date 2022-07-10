@@ -3,37 +3,46 @@ import { resolve } from 'path'
 import { Database } from '../database'
 import connect from '../database/mongo-connect'
 
-import adminModel from '../database/models/admin'
-import chordsModel from '../database/models/chord'
+import adminHelper from '../database/helpers/admin'
+import { Result } from 'server/database/connect'
+/* import chordsModel from '../database/models/chord'
 import trackCandidateModel from '../database/models/track-candidates'
 import { artistModel, artistTagModel } from '../database/models/artist'
 import { trackModel } from '../database/models/track'
 import { trackMetrics } from '../database/models/track-metrics'
 import { trackErrorModel } from '../database/models/track-errors'
-import favoriteModel from '../database/models/user-favorite'
+import favoriteModel from '../database/models/user-favorite' */
 
-let trackIndex = 1
+type Insert = (data: unknown) => Promise<Result<unknown>>
+type DictionaryItem = { insert: Insert }
+type Dictionary = { [key: string]: DictionaryItem }
 
-const dictionary = {
-    chords: { model: chordsModel },
-    admins: { model: adminModel },
-    'track-candidates': { model: trackCandidateModel },
-    artists: { model: artistModel },
-    'artist-tags': { model: artistTagModel },
-    'tracks': {
-        model: trackModel, parseData: (data) => {
-            data.data.addedDate = new Date()
-            data.data.index = trackIndex++
+const dictionary: Dictionary = {
+    // cords: { insert: (data) => adminHelper.insertOne(data) },
+    admins: {
+        insert: (data) => {
+            data['vkId'] = data['vkId'].toString()
+            return adminHelper.insertOne(data)
         }
-    },
-    'track-metrics': { model: trackMetrics },
-    'track-errors': { model: trackErrorModel },
-    'favourites': { model: favoriteModel }
-}
+    }
+        /* admins: { model: adminModel },
+        'track-candidates': { model: trackCandidateModel },
+        artists: { model: artistModel },
+        'artist-tags': { model: artistTagModel },
+        'tracks': {
+            model: trackModel, parseData: (data) => {
+                data.data.addedDate = new Date()
+                data.data.index = trackIndex++
+            }
+        },
+        'track-metrics': { model: trackMetrics },
+        'track-errors': { model: trackErrorModel },
+        'favourites': { model: favoriteModel } */
+    }
 
 interface iExportData {
-    id: string, data: unknown
-}
+        id: string, data: unknown
+    }
 
 const firebaseToJson = async () => {
 
@@ -46,13 +55,13 @@ const firebaseToJson = async () => {
     const store = firestore(database.app)
     const keys = Object.keys(dictionary)
 
-    const requests = keys.map(key => collectionToMongo(key, store, dictionary[key]))
+    const requests = keys.map(key => collectionToSQL(key, store, dictionary[key]))
 
     await Promise.all(requests)
     console.log('Завершение экспорта')
 }
 
-const collectionToMongo = async (collection: string, firestore: firestore.Firestore, model: any) => {
+const collectionToSQL = async (collection: string, firestore: firestore.Firestore, model: DictionaryItem) => {
 
     try {
 
@@ -67,13 +76,14 @@ const collectionToMongo = async (collection: string, firestore: firestore.Firest
 
             const inserts = data.map(async data => {
                 try {
-
-                    if (model.parseData) {
-                        model.parseData(data)
-                    }
-
                     const values = data.data as object
-                    await model.model.create({ ...values })
+                    const { insert } = model
+
+                    const result = await insert({ ...values })
+
+                    if (result.error) {
+                        throw result.error
+                    }
 
                 } catch (error) {
                     console.log(`Коллекция ${collection}. Ошибка ${error}`)

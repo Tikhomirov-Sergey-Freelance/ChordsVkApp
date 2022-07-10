@@ -6,6 +6,6 @@ export interface iUserFavorite {
 }
 
 export type iResult<T> = {
-    error?: string | any,
+    error?: string | unknown,
     result?: T
 }

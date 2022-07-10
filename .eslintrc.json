@@ -37,9 +37,18 @@
             }
         },
         {
-            "files": ["./src/server/database/migrations/*"],
+            "files": ["./src/server/database/migrations/*", "./src/server/migrations/*"],
             "rules": {
-                "no-undef": "off"
+                "no-undef": "off",
+                "@typescript-eslint/no-explicit-any": "off"
+            }
+        },
+        {
+            "files": ["./*.ts", "./*.js"],
+            "rules": {
+                "max-len": "off",
+                "quotes": "off",
+                "semi": "off"
             }
         }
     ]
