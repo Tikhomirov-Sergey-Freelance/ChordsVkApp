@@ -1,12 +1,11 @@
 module.exports = {
     'up': `
-
-        CREATE TABLE Track
+    
+        CREATE TABLE TrackCandidate
         (
             id VARCHAR(100) PRIMARY KEY,
-            num INT,
             name VARCHAR(100),
-            artistId VARCHAR(100),
+            artist VARCHAR(100),
             riff VARCHAR(300) NULL,
             riffNote VARCHAR(300) NULL,
             strumming VARCHAR(300) NULL,
@@ -17,13 +16,12 @@ module.exports = {
             outroNote VARCHAR(300) NULL,
             chordsText VARCHAR(2000),
             trackVideoSrc VARCHAR(100) NULL,
-            addedDate DATE NULL,
-            userId VARCHAR(100) NULL,
-            FOREIGN KEY (artistId) REFERENCES Artist (id)
+            userId VARCHAR(100) NULL
         )
     
     `,
     'down': `
-        DROP TABLE Track
+        DROP TABLE TrackCandidates
+            
     `
 }
