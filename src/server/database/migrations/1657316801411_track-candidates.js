@@ -14,7 +14,7 @@ module.exports = {
             introNote VARCHAR(300) NULL,
             outro VARCHAR(300) NULL,
             outroNote VARCHAR(300) NULL,
-            chordsText VARCHAR(2000),
+            chordText VARCHAR(2000),
             trackVideoSrc VARCHAR(100) NULL,
             userId VARCHAR(100) NULL
         )

@@ -3,8 +3,9 @@ import db, { Result } from '../connect'
 
 abstract class EntityHelper {
 
-    static entityName = ''
-    static mapKey: string[] = []
+    protected static entityName = ''
+    protected static mapKey: string[] = []
+    protected static requiredKeys: string[] = []
 
     static async insertOne(entity: unknown): Promise<Result<ResultSetHeader>> {
 
@@ -51,21 +52,27 @@ abstract class EntityHelper {
     static entityToArray(entity: unknown) {
 
         const array = []
+        const mappedEntity = this.insertMapper(entity)
 
         for(const key of this.mapKey) {
             
-            if(!Object.prototype.hasOwnProperty.call(entity, key)) {
-                throw new Error('Неполная энтити')
+            if(!Object.prototype.hasOwnProperty.call(mappedEntity, key) &&
+            this.requiredKeys.includes(key)) {
+                throw new Error(`Неполная энтити. ${key}`)
             }
 
-            if(entity[key] === undefined) {
+            if(mappedEntity[key] === undefined && this.requiredKeys.includes(key)) {
                 throw new Error(`Свойство ${key} не определено`)
             }
 
-            array.push(entity[key])
+            array.push(mappedEntity[key])
         }
-
+       
         return array
+    }
+
+    protected static insertMapper(data: unknown) {
+        return { ...data as object }
     }
 }
 

@@ -1,5 +1,5 @@
 import { createPool, Connection, ResultSetHeader } from 'mysql2'
-import { Pool } from 'mysql2/promise'
+import { Pool, PoolConnection } from 'mysql2/promise'
 import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
@@ -19,45 +19,45 @@ export class Database {
 
     async query<R>(sql: string, data: unknown[] = null, mapper: (data: unknown) => R): Promise<Result<R>> {
         
-        try {
-
-            const values = await this.pool.query(sql, data)
+        return this.connect(async (connection: PoolConnection) => {
+            const values = (await connection.query(sql, data)) as unknown as ResultSetHeader
             const result = mapper(values)
 
             return { result }
-
-        } catch(error) {
-            return { error }
-        } finally {
-            this.pool.end()
-        }
+        })
     }
 
     async insertOne(sql: string, data: unknown[] = null): Promise<Result<ResultSetHeader>> {
-        console.log(sql, data)
-        try {
 
-            const result = (await this.pool.query(sql, data)) as unknown as ResultSetHeader
+        return this.connect(async (connection: PoolConnection) => {
+            const result = (await connection.query(sql, data)) as unknown as ResultSetHeader
             return { result }
-
-        } catch(error) {
-            return { error }
-        } finally {
-            this.pool.end()
-        }
+        })
     } 
 
     async insertMany(sql: string, data: unknown[] = null): Promise<Result<boolean>> {
 
+        return this.connect(async (connection: PoolConnection) => {
+            await connection.query(sql, data)
+            return { result: true }
+        })
+    }
+
+    async connect<T>(action: (connection: PoolConnection) => Promise<Result<T>>) {
+
+        let connection: PoolConnection
+
         try {
 
-            await this.pool.query(sql, data)
-            return { result: true }
+            connection = await this.pool.getConnection()
+            return action(connection)
 
         } catch (error) {
             return { error }
         } finally {
-            this.pool.end()
+            if(connection?.release) {
+                connection.release()
+            }
         }
     }
 
@@ -70,7 +70,7 @@ export class Database {
         }
 
         const config = JSON.parse(readFileSync(configPath).toString('utf8'))
-        this.pool = createPool({ ...config, connectionLimit: 10 }).promise()
+        this.pool = createPool({ ...config, connectionLimit: 20, connectTimeout: 2400 }).promise()
 
         process['database_connected'] = true
     }

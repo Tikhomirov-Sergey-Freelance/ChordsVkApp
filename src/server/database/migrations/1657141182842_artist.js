@@ -6,7 +6,7 @@ module.exports = {
             id VARCHAR(100) PRIMARY KEY,
             name VARCHAR(100),
             description VARCHAR(2000),
-            artistImage VARCHAR(100),
+            artistImage VARCHAR(300),
             searchName VARCHAR(100)
         );    
 
