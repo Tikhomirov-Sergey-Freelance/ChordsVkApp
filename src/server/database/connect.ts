@@ -11,17 +11,10 @@ export class Database {
     pool: Pool
 
     private prodPath = resolve(__dirname, '..', 'ChordsPrivate/mysql-config.json')
+    private devopsPath = resolve(__dirname, '../../..', 'ChordsPrivate/mysql-config.json')
     private devPath = resolve(__dirname, 'mysql-config.json')
 
-    constructor(prodPath?: string, devPath?: string) {
-
-        if(prodPath) {
-            this.prodPath = prodPath
-        }
-
-        if(devPath) {
-            this.devPath = devPath
-        }
+    constructor() {
 
         this.init()
     }
@@ -88,6 +81,10 @@ export class Database {
 
         if (existsSync(this.devPath)) {
             return this.devPath
+        }
+
+        if (existsSync(this.devopsPath)) {
+            return this.devopsPath
         }
         
         if (existsSync(this.prodPath)) {
