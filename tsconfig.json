@@ -6,12 +6,16 @@
       "noImplicitThis": true,
       "resolveJsonModule": true,
       "allowSyntheticDefaultImports": true,
-      "module": "commonjs",
-      "target": "es5",
       "jsx": "react",
       "baseUrl": "src",
       "skipLibCheck": true,
       "checkJs": false,
-      "skipDefaultLibCheck": true,
+      "skipDefaultLibCheck": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "target": "ES5"
+    }
   }
 }

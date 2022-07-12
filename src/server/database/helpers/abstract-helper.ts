@@ -7,6 +7,10 @@ abstract class EntityHelper {
     protected static mapKey: string[] = []
     protected static requiredKeys: string[] = []
 
+    static query<R>(sql: string, mapper: (data: unknown[]) => R = this.mapper, data: unknown[] = null) {
+        return db.query(sql, mapper, data)
+    }
+
     static async insertOne(entity: unknown): Promise<Result<ResultSetHeader>> {
 
         try {
@@ -70,6 +74,10 @@ abstract class EntityHelper {
        
         return array
     }
+
+    protected static mapper<R>(data: unknown[]): R {
+        return data as unknown as R
+    } 
 
     protected static insertMapper(data: unknown) {
         return { ...data as object }

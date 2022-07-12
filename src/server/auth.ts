@@ -1,7 +1,7 @@
-import { firestore } from 'firebase-admin'
 import { isDev, databaseConnected } from './common'
 import database from './database'
 import { createGuid } from '../code/common/guid'
+import AdminHelper from './database/helpers/admin'
 
 const createFirebaseToken = async (req, isValidVk: boolean): Promise<[string, string, boolean]> => {
 
@@ -15,8 +15,7 @@ const createFirebaseToken = async (req, isValidVk: boolean): Promise<[string, st
         const query = req.query
         vkId = !isDev ? (query && query.vk_user_id) : '222834864'
 
-        const store = firestore(database.app)
-        admin = !(await store.collection('admins').where('vkId', '==', +vkId).get()).empty
+        admin = await AdminHelper.isAdmin(vkId)
     } 
 
     return [await database.app.auth().createCustomToken(vkId, { admin, vkuser: isValidVk, id: vkId }), vkId, admin] 

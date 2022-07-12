@@ -10,7 +10,7 @@ export default class AdminHelper {
             return model.create(admin)
         })
     }
-
+ 
     static findByVkId(id: number) {
         return model.findOne({ vkId: { $eq: id } })
     }

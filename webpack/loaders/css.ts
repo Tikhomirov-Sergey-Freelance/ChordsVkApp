@@ -1,4 +1,4 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import { loader as minicss } from 'mini-css-extract-plugin'
 
 import { IS_DEV } from '../env'
 
@@ -7,7 +7,7 @@ export default {
         test: /\.css$/,
         use: [
             IS_DEV && 'css-hot-loader',
-            MiniCssExtractPlugin.loader,
+            minicss,
             'css-loader',      
             {
                 loader: 'postcss-loader',

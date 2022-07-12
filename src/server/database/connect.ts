@@ -10,14 +10,23 @@ export class Database {
 
     pool: Pool
 
-    private prodPath = resolve(__dirname, '../../..', 'ChordsPrivate/mysql-config.json')
+    private prodPath = resolve(__dirname, '..', 'ChordsPrivate/mysql-config.json')
     private devPath = resolve(__dirname, 'mysql-config.json')
 
-    constructor() {
+    constructor(prodPath?: string, devPath?: string) {
+
+        if(prodPath) {
+            this.prodPath = prodPath
+        }
+
+        if(devPath) {
+            this.devPath = devPath
+        }
+
         this.init()
     }
 
-    async query<R>(sql: string, data: unknown[] = null, mapper: (data: unknown) => R): Promise<Result<R>> {
+    async query<R>(sql: string, mapper: (data: unknown) => R, data: unknown[] = null): Promise<Result<R>> {
         
         return this.connect(async (connection: PoolConnection) => {
             const values = (await connection.query(sql, data)) as unknown as ResultSetHeader
