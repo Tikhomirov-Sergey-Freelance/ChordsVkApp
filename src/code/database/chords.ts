@@ -13,7 +13,7 @@ export const addChord = async (chord: iChord) => {
 
     } catch (error) {
         return false
-    }
+    }  
 }
 
 export const loadAllChords = async () => {

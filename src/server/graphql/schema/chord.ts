@@ -1,5 +1,8 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLList } from 'graphql'
-import { iChord, iGuitarString } from 'types/chord'
+
+import { iChord, iGuitarString, iChordDataBase } from 'types/chord'
+import ChordsHelper from '../../database/helpers/chords'
+import ChordHelper from '../../database/helpers/chords'
 
 export const GuitarStringType = new GraphQLObjectType<iGuitarString>({
   name: 'GuitarString', 
@@ -10,7 +13,7 @@ export const GuitarStringType = new GraphQLObjectType<iGuitarString>({
   }
 })
 
-export const ChordType = new GraphQLObjectType<iChord>({
+export const ChordType = new GraphQLObjectType<iChordDataBase, iChord>({
     name: 'Chord',
     description: 'Аккорд',
     fields: () => ({
@@ -20,7 +23,8 @@ export const ChordType = new GraphQLObjectType<iChord>({
       startFret: { type: GraphQLInt },
       barre: { type: GraphQLBoolean },
       guitarStrings: {
-        type: new GraphQLList(GuitarStringType)
+        type: new GraphQLList(GuitarStringType),
+        resolve: (chord) => ChordHelper.getChordStrings(chord)
       },
       searchName: { type: new GraphQLNonNull(GraphQLString) }
     })
@@ -30,6 +34,7 @@ export const ChordType = new GraphQLObjectType<iChord>({
     type: new GraphQLList(ChordType),
     description: 'List of all chords',
     resolve: () => {
-        return []
+      
+        return ChordsHelper.loadAllChords()
     }
 }

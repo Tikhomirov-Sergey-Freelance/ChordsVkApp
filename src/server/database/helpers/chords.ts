@@ -1,5 +1,5 @@
 import EntityHelper from './abstract-helper'
-import { iChord } from 'types/chord'
+import { iChord, iChordDataBase } from 'types/chord'
 
 class ChordsHelper extends EntityHelper {
 
@@ -15,11 +15,29 @@ class ChordsHelper extends EntityHelper {
         'searchName'
     ]
 
-    protected static insertMapper(data: iChord) {
+    static insertMapper(data: iChord) {
         return {
             ...data,
             guitarStrings: JSON.stringify(data.guitarStrings)
         }
+    }
+
+    static async loadAllChords(): Promise<iChord[]> {
+
+        const data = await this.query<iChord>(`
+            SELECT *
+            FROM Chords
+        `)
+
+        if(data.error) {
+            throw data.error
+        }
+        
+        return data.result
+    }
+
+    static getChordStrings(chord: iChordDataBase) {
+        return JSON.parse(chord.guitarStrings)
     }
 }
 
