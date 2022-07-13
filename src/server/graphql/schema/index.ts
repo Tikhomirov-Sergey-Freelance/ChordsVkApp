@@ -1,18 +1,14 @@
-import { GraphQLList, GraphQLObjectType, GraphQLSchema } from 'graphql'
+import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-import { ChordType } from './chord'
+import { ChordsSchema } from './chord'
+import { ArtistSchema } from './artist'
 
 export const RootType = new GraphQLObjectType({
     name: 'AllChordsSchema',
     description: 'AllChordsSchema',
     fields: {
-        chords: {
-            type: new GraphQLList(ChordType),
-            description: 'List of all chords',
-            resolve: () => {
-                return []
-            }
-        },
+        chords: ChordsSchema,
+        artists: ArtistSchema
     }
 })
 

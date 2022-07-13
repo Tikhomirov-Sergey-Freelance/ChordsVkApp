@@ -1,10 +1,11 @@
-import { createPool, Connection, ResultSetHeader } from 'mysql2'
+import { createPool, Connection, ResultSetHeader, FieldPacket } from 'mysql2'
 import { Pool, PoolConnection } from 'mysql2/promise'
 import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
 export type Action<T> = (connection: Connection) => Promise<T>
 export type Result<T> = { error?: string, result?: T }
+export type Mapper<R> = (data: unknown[][], keys: FieldPacket[]) => R
 
 export class Database {
 
@@ -19,13 +20,11 @@ export class Database {
         this.init()
     }
 
-    async query<R>(sql: string, mapper: (data: unknown) => R, data: unknown[] = null): Promise<Result<R>> {
+    async query<R>(sql: string): Promise<Result<R[]>> {
         
         return this.connect(async (connection: PoolConnection) => {
-            const values = (await connection.query(sql, data)) as unknown as ResultSetHeader
-            const result = mapper(values)
-
-            return { result }
+            const [rows] = await connection.query(sql)
+            return { result: rows as R[] }
         })
     }
 

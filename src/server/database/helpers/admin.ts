@@ -17,9 +17,9 @@ class AdminHelper extends EntityHelper {
             SELECT 1 
             FROM Admins
             WHERE vkId = ${vkId}
-        `, (data) => !!data?.length)
+        `)
         
-        if(data.result) {
+        if(data.result?.length) {
             return true
         }
 

@@ -6,9 +6,10 @@ abstract class EntityHelper {
     protected static entityName = ''
     protected static mapKey: string[] = []
     protected static requiredKeys: string[] = []
+    protected static ignoreByInsert: string[] = []
 
-    static query<R>(sql: string, mapper: (data: unknown[]) => R = this.mapper, data: unknown[] = null) {
-        return db.query(sql, mapper, data)
+    static query<R>(sql: string) {
+        return db.query<R>(sql)
     }
 
     static async insertOne(entity: unknown): Promise<Result<ResultSetHeader>> {
@@ -59,6 +60,8 @@ abstract class EntityHelper {
         const mappedEntity = this.insertMapper(entity)
 
         for(const key of this.mapKey) {
+
+            if(this.ignoreByInsert.includes(key)) continue
             
             if(!Object.prototype.hasOwnProperty.call(mappedEntity, key) &&
             this.requiredKeys.includes(key)) {
@@ -75,9 +78,32 @@ abstract class EntityHelper {
         return array
     }
 
-    protected static mapper<R>(data: unknown[]): R {
-        return data as unknown as R
-    } 
+    protected static getKeysForSelect() {
+        return this.mapKey
+    }
+
+    static mapper = <T>(data: unknown[][] = [], keys: string[]): T[] => {
+
+        if(!data.length) return []
+
+        if(data[0].length !== keys.length) {
+            console.log(data[0], keys.length)
+            throw 'Количество полей не совпадает с ожидаемыми'
+        }
+
+        const entities = data.map(item => {
+
+            const entity = {}
+
+            for(let i = 0; i < keys.length; i++) {
+                entity[keys[i]] = item[i]
+            }
+
+            return entity
+        })
+
+        return entities as T[]
+    }
 
     protected static insertMapper(data: unknown) {
         return { ...data as object }

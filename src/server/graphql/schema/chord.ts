@@ -25,3 +25,11 @@ export const ChordType = new GraphQLObjectType<iChord>({
       searchName: { type: new GraphQLNonNull(GraphQLString) }
     })
   })
+
+  export const ChordsSchema = {
+    type: new GraphQLList(ChordType),
+    description: 'List of all chords',
+    resolve: () => {
+        return []
+    }
+}
