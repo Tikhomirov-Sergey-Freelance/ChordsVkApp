@@ -1,5 +1,6 @@
 import EntityHelper from './abstract-helper'
 import { iChord, iChordDataBase } from 'types/chord'
+import { RequestData } from '../connect'
 
 class ChordsHelper extends EntityHelper {
 
@@ -22,13 +23,12 @@ class ChordsHelper extends EntityHelper {
         }
     }
 
-    static async loadAllChords(): Promise<iChord[]> {
+    static async loadAllChords(requestData: RequestData = {}): Promise<iChord[]> {
 
         const data = await this.query<iChord>(`
             SELECT *
             FROM Chords
-            LIMIT 5 OFFSET 3
-        `)
+        `, requestData) 
 
         if(data.error) {
             throw data.error
@@ -37,13 +37,13 @@ class ChordsHelper extends EntityHelper {
         return data.result
     } 
 
-    static async loadChordsByNote(note: string): Promise<iChord[]> {
+    static async loadChordsByNote(note: string, requestData: RequestData = {}): Promise<iChord[]> {
 
         const data = await this.query<iChord>(`
             SELECT * 
             FROM Chords
             WHERE note = '${note}'
-        `)
+        `, requestData)
 
         if(data.error) {
             throw data.error
@@ -52,7 +52,7 @@ class ChordsHelper extends EntityHelper {
         return data.result
     }
 
-    static async loadChordsByQuery(query: string): Promise<iChord[]> {
+    static async loadChordsByQuery(query: string, requestData: RequestData = {}): Promise<iChord[]> {
 
         const searchName = query.toUpperCase()
 
@@ -60,7 +60,7 @@ class ChordsHelper extends EntityHelper {
             SELECT *
             FROM Chords
             WHERE searchName LIKE '${searchName}%'
-        `)
+        `, requestData)
 
         if(data.error) {
             throw data.error

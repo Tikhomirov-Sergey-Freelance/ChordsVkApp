@@ -64,28 +64,11 @@ describe('server/database/helpers/abstract-helper', () => {
             const entity = { a: 1, b: 'a', c: null, d: {}, e: 3, r: 5 }
             expect(TestHelper.entityToArray(entity)).toEqual([1, 'a', null, {}, 3])
         })
-    })
 
-    describe('mapper', () => {
-
-        let mapKey 
-
-        beforeEach(() => {
-            mapKey = ['a', 'b', 'c']
-        })
-
-        test('should return object by mapKey', () => {
-            const data = [[1,2,3], [4,5,6]]
-            expect(TestHelper.mapper(data, mapKey)).toEqual([{a: 1, b: 2, c: 3}, {a: 4, b: 5, c: 6}])
-        })
-
-        test('should return empty array if receive empty data', () => {
-            expect(TestHelper.mapper([], mapKey)).toEqual([{a: 1, b: 2, c: 3}, {a: 4, b: 5, c: 6}])
-        })
-
-        test('should throw error if length mapKey and data item not equal', () => {
-            expect(TestHelper.mapper([[1,2]], mapKey)).toThrow()
-            expect(TestHelper.mapper([[1,2,3,4,5]], mapKey)).toThrow()
+        test('should change undefined fields to null', () => {
+            TestHelper.setMapKey(['a', 'b', 'c', 'd', 'e'])
+            const entity = { a: 1, b: 1, c: null, d: {}, e: undefined }
+            expect(TestHelper.entityToArray(entity)[4]).toBeNull()
         })
     })
 })

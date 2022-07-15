@@ -7,7 +7,7 @@ module.exports = {
             artistId VARCHAR(100),
             tag VARCHAR(100),
             strict BOOL DEFAULT false,
-            FOREIGN KEY (artistId)  REFERENCES Artist (id)
+            FOREIGN KEY (artistId)  REFERENCES Artists (id)
         );
 
     `,

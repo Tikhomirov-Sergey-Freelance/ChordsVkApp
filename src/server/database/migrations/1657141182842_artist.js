@@ -1,7 +1,7 @@
 module.exports = {
     'up': `
     
-        CREATE TABLE Artist
+        CREATE TABLE Artists
         (
             id VARCHAR(100) PRIMARY KEY,
             name VARCHAR(100),

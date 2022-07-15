@@ -3,6 +3,7 @@ import { GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLBo
 import { iChord, iGuitarString, iChordDataBase } from 'types/chord'
 import ChordsHelper from '../../database/helpers/chords'
 import ChordHelper from '../../database/helpers/chords'
+import { requestDataArgs, RequestData, mapRequestDataArgs } from '../request-data'
 
 export const GuitarStringType = new GraphQLObjectType<iGuitarString>({
   name: 'GuitarString',
@@ -41,17 +42,20 @@ export const ChordsSchema = {
   args: {
     query: { type: GraphQLString },
     note: { type: GraphQLString },
+    ...requestDataArgs
   },
-  resolve: (root: unknown, chords: Filter) => {
+  resolve: (root: unknown, chords: Filter & RequestData) => {
+
+    const requestData = mapRequestDataArgs(chords)
 
     if (chords?.query) {
-      return ChordsHelper.loadChordsByQuery(chords.query)
+      return ChordsHelper.loadChordsByQuery(chords.query, requestData)
     }
 
     if (chords?.note) {
-      return ChordsHelper.loadChordsByNote(chords.note)
+      return ChordsHelper.loadChordsByNote(chords.note, requestData)
     }
 
-    return ChordsHelper.loadAllChords()
+    return ChordsHelper.loadAllChords(requestData)
   }
 }

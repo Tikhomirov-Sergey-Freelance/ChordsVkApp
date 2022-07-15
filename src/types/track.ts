@@ -1,6 +1,28 @@
 import { iShortArtist } from './artists'
 import { defaultStrumming, StrummingType } from './strumming'
 
+export interface iTrackDataBase {
+    id: string
+    num: number
+    name: string
+    artistId: string
+    riff: string
+    riffNote: string
+    strumming: string
+    strummingNote: string
+    intro: string
+    introNote: string
+    outro: string
+    outroNote: string
+    chordsText?: string
+    chordsNote: string
+    trackVideoSrc: string
+
+    addedDate?: string
+    searchNameStartArtist?: string
+    searchNameEndArtist?: string
+}
+
 export interface iShortTrack {
     id: string
     index: number
@@ -32,6 +54,8 @@ export interface iTrack {
     trackVideoSrc: string
 
     addedDate?: Date
+    searchNameStartArtist?: string
+    searchNameEndArtist?: string
 } 
 
 export interface iShortTrackView extends iShortTrack {

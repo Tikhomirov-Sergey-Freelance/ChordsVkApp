@@ -6,7 +6,7 @@ module.exports = {
             id VARCHAR(100) PRIMARY KEY,
             views INT DEFAULT 0,
             inFavorites INT DEFAULT 0,
-            FOREIGN KEY (id) REFERENCES Track (id)
+            FOREIGN KEY (id) REFERENCES Tracks (id)
         )
 
     `,

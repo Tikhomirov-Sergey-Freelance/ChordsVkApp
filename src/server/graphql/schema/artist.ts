@@ -1,9 +1,11 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql'
 
 import { iArtist } from 'types/artists'
+import { TrackType } from './track'
 
 import { ArtistTagSchema } from './artist-tag'
 import ArtistHelper from '../../database/helpers/artist'
+import TrackHelper from '../../database/helpers/track'
 
 export const ArtistType = new GraphQLObjectType<iArtist>({
     name: 'Artist',
@@ -13,7 +15,11 @@ export const ArtistType = new GraphQLObjectType<iArtist>({
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: GraphQLString },
         searchName: { type: new GraphQLNonNull(GraphQLString) },
-        tags: ArtistTagSchema
+        tags: ArtistTagSchema,
+        tracks : {
+            type: new GraphQLList(TrackType), 
+            resolve: (artist: iArtist) => TrackHelper.loadTracksByArtistId(artist.id)
+        }
     })
 })
 

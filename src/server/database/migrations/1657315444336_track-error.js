@@ -7,7 +7,7 @@ module.exports = {
             userId VARCHAR(100),
             trackId VARCHAR(100),
             message VARCHAR(2000),
-            FOREIGN KEY (trackId) REFERENCES Track (id)
+            FOREIGN KEY (trackId) REFERENCES Tracks (id)
         )
 
     `,

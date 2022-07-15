@@ -3,7 +3,7 @@ import EntityHelper from './abstract-helper'
 
 class ArtistHelper extends EntityHelper {
 
-    static entityName = 'Artist'
+    static entityName = 'Artists'
 
     static mapKey = [
         'id',
@@ -17,7 +17,7 @@ class ArtistHelper extends EntityHelper {
 
         const data = await this.query<iArtist>(`
             SELECT *
-            FROM Artist
+            FROM Artists
         `)
 
         if(data.error) {
@@ -28,13 +28,13 @@ class ArtistHelper extends EntityHelper {
     }
 
     static async loadArtistById(id: string) {
-
+        
         const data = await this.query<iArtist>(`
             SELECT *
-            FROM Artist
+            FROM Artists
             WHERE id = '${id}'
         `)
-
+        
         if(data.error) {
             throw data.error
         }

@@ -6,10 +6,10 @@ import { resolve } from 'path'
 export type Action<T> = (connection: Connection) => Promise<T>
 export type Result<T> = { error?: string, result?: T }
 export type Mapper<R> = (data: unknown[][], keys: FieldPacket[]) => R
-export type PagerData = {
-    limit: number
-    offset: number
-    orderby: string
+export type RequestData = {
+    limit?: number
+    offset?: number
+    orderby?: string
 }
 
 export class Database {
@@ -25,10 +25,21 @@ export class Database {
         this.init()
     }
 
-    async query<R>(sql: string): Promise<Result<R[]>> {
+    async query<R>(sql: string, requestData: RequestData = {}): Promise<Result<R[]>> {
+
+        const limit = requestData.limit ? 
+        `LIMIT ${requestData.limit} OFFSET ${requestData.offset || 0}` : ''
+
+        const orderby = requestData.orderby ? `ORDERBY ${requestData.orderby}` : ''
+
+        const _sql = `
+            ${sql}
+            ${orderby}
+            ${limit}
+        `
         
         return this.connect(async (connection: PoolConnection) => {
-            const [rows] = await connection.query(sql)
+            const [rows] = await connection.query(_sql)
             return { result: rows as R[] }
         })
     }

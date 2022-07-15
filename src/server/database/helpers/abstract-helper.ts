@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2'
-import db, { Result } from '../connect'
+import db, { RequestData, Result } from '../connect'
 
 abstract class EntityHelper {
 
@@ -8,8 +8,8 @@ abstract class EntityHelper {
     protected static requiredKeys: string[] = []
     protected static ignoreByInsert: string[] = []
 
-    static query<R>(sql: string) {
-        return db.query<R>(sql)
+    static query<R>(sql: string, requestData: RequestData = {}) {
+        return db.query<R>(sql, requestData)
     }
 
     static async insertOne(entity: unknown): Promise<Result<ResultSetHeader>> {
@@ -68,8 +68,13 @@ abstract class EntityHelper {
                 throw new Error(`Неполная энтити. ${key}`)
             }
 
-            if(mappedEntity[key] === undefined && this.requiredKeys.includes(key)) {
-                throw new Error(`Свойство ${key} не определено`)
+            if(mappedEntity[key] === undefined) {
+
+                if(this.requiredKeys.includes(key)) {
+                    throw new Error(`Свойство ${key} не определено`)
+                } else {
+                    mappedEntity[key] = null
+                }
             }
 
             array.push(mappedEntity[key])
