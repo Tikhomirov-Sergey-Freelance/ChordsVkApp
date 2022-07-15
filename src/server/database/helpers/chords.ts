@@ -36,6 +36,38 @@ class ChordsHelper extends EntityHelper {
         return data.result
     }
 
+    static async loadChordsByNote(note: string): Promise<iChord[]> {
+
+        const data = await this.query<iChord>(`
+            SELECT *
+            FROM Chords
+            WHERE note = '${note}'
+        `)
+
+        if(data.error) {
+            throw data.error
+        }
+        
+        return data.result
+    }
+
+    static async loadChordsByQuery(query: string): Promise<iChord[]> {
+
+        const searchName = query.toUpperCase()
+
+        const data = await this.query<iChord>(`
+            SELECT *
+            FROM Chords
+            WHERE searchName LIKE '${searchName}%'
+        `)
+
+        if(data.error) {
+            throw data.error
+        }
+        
+        return data.result
+    }
+
     static getChordStrings(chord: iChordDataBase) {
         return JSON.parse(chord.guitarStrings)
     }
