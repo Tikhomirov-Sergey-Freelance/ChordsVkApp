@@ -45,6 +45,41 @@ export const loadAllArtists = async () => {
     }
 }
 
+// <command id="tablepager String" db="mss">
+// 		<arg name ="critselect" direction="inc"/>
+// 		<arg name ="pkName" direction="inc"/>
+// 		<arg name ="rtName" direction="inc"/>
+// 		<arg name ="obJoins" direction="inc"/>
+// 		<arg name ="ob" direction="inc"/>
+// 		<arg name ="StartRowIndex" type="int" default="0"/>
+// 		<arg name ="EndRowIndex" type="int" default="20"/>
+// 		<arg name ="TotalRecords" type="int" direction="out" default="-3"/>
+// 		<result name = "Result" />
+
+// 		declare @temp table (due varchar(248), total int);
+		
+// 		insert into @temp(due, total)
+// 		select 
+// 			c.{pkName} due, 
+// 			total
+// 		from (
+// 			select 
+// 				a.{pkName}, 
+// 				row_number() over(order by {ob}) rn, 
+// 				sum(1) over() total
+// 			from
+// 				({critselect}) a 
+// 				left join {rtName} rt on a.{pkName} = rt.{pkName}
+// 				{obJoins}
+// 		) c
+// 		where rn between @StartRowIndex + 1 and @EndRowIndex
+// 		order by rn;
+		
+// 		select @TotalRecords = isnull(min(total), 0) from @temp;
+		
+//     select a2.* from @temp a1 join ({critselect}) a2 on a1.due + ''= a2.{pkName};
+// 	</command>
+
 export const loadArtistsByQuery = async (q: string) => {
 
     try {
