@@ -27,6 +27,7 @@ class ChordsHelper extends EntityHelper {
         const data = await this.query<iChord>(`
             SELECT *
             FROM Chords
+            LIMIT 5 OFFSET 3
         `)
 
         if(data.error) {
@@ -34,12 +35,12 @@ class ChordsHelper extends EntityHelper {
         }
         
         return data.result
-    }
+    } 
 
     static async loadChordsByNote(note: string): Promise<iChord[]> {
 
         const data = await this.query<iChord>(`
-            SELECT *
+            SELECT * 
             FROM Chords
             WHERE note = '${note}'
         `)

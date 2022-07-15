@@ -6,6 +6,11 @@ import { resolve } from 'path'
 export type Action<T> = (connection: Connection) => Promise<T>
 export type Result<T> = { error?: string, result?: T }
 export type Mapper<R> = (data: unknown[][], keys: FieldPacket[]) => R
+export type PagerData = {
+    limit: number
+    offset: number
+    orderby: string
+}
 
 export class Database {
 
