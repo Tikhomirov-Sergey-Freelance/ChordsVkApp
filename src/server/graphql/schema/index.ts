@@ -16,7 +16,7 @@ export const RootType = new GraphQLObjectType({
         tracks: TrackSchema,    
         trackMetrics: TrackMetricsSchema,
         trackErrors: TrackErrorSchema, 
-        trackCandidates: TrackCandidateSchema  
+        trackCandidates: TrackCandidateSchema
     }
 })
 

@@ -14,7 +14,8 @@ import userFavouritesHelper from '../database/helpers/favourites'
 import { Result } from 'server/database/connect'
 
 type Insert = (data: unknown) => Promise<Result<unknown>>
-type DictionaryItem = { insert: Insert }
+type Parser = (data: unknown[]) => unknown[]
+type DictionaryItem = { insert: Insert, parser?: Parser }
 type Dictionary = { [key: string]: DictionaryItem }
 
 const dictionary: Dictionary = {
@@ -31,7 +32,24 @@ const dictionary: Dictionary = {
      'tracks': { insert: (data) => trackHelper.insertOne(data) },
     'track-metrics': { insert: (data) => trackMetricsHelper.insertOne(data) },
     'track-errors': { insert: (data) => trackErrorsHelper.insertOne(data) },
-    'favourites': { insert: (data) => userFavouritesHelper.insertOne(data) },
+    'favourites': { insert: (data) => userFavouritesHelper.insertOne(data), parser: (data: unknown[]) => {
+
+        const values = []
+
+        data.forEach((valueRoot: unknown) => {
+
+            const item = valueRoot['data']
+
+            const id = item['id']
+            const tracks: string[] = item['tracks']
+
+            tracks.forEach(trackId => {
+                values.push({ id, trackId })
+            })
+        })
+
+        return values
+    }},
 }
 
 interface iExportData {
@@ -69,12 +87,15 @@ const collectionToSQL = async (collection: string, firestore: firestore.Firestor
         let count = 0
         let duplicates = 0
 
-        const inserts = data.map(async data => {
-            try {
-                const values = data.data as object
-                const { insert } = model
+        const { parser } = model
 
-                const result = await insert({ ...values })
+        const values = parser ? parser(data) : data.map(value => value.data as object)
+
+        const inserts = values.map(async data => {
+            try {
+
+                const { insert } = model
+                const result = await insert({ ...data as object })
 
                 if (result.error) {
                     throw result.error
@@ -95,7 +116,7 @@ const collectionToSQL = async (collection: string, firestore: firestore.Firestor
         await Promise.all(inserts)
 
         console.log(`Коллекция ${collection}. 
-            Завершение загрузки. Обработано: ${count}, Дублей: ${duplicates}, Всего: ${data.length}`)
+            Завершение загрузки. Обработано: ${count}, Дублей: ${duplicates}, Всего: ${values.length}`)
 
     } catch (error) {
         console.log(`Коллекция ${collection}. Ошибка загрузки ${error}`)

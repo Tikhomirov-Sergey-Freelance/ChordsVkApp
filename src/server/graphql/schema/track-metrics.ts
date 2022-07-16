@@ -7,6 +7,7 @@ import TrackMetricsHelper from '../../database/helpers/track-metrics'
 import TrackHelper from '../../database/helpers/track'
 import { RequestData } from '../request-data'
 import { iTrackDataBase } from 'types/track'
+import { Context } from '../context'
 
 export const TrackMetricsType = new GraphQLObjectType<iTrackMetrics>({
     name: 'TrackMetrics',
@@ -17,7 +18,10 @@ export const TrackMetricsType = new GraphQLObjectType<iTrackMetrics>({
         inFavorites: { type: GraphQLInt },
         track: {
             type: TrackType,
-            resolve: async (metric: iTrackMetrics) => {
+            resolve: async (metric: iTrackMetrics, args, context: Context) => {
+
+                if(!context.isAdmin) return null
+
                 const track = await TrackHelper.loadTrackById(metric.id)
                 return track[0]
             }
@@ -32,7 +36,9 @@ type Filter = {
 export const TrackMetricsSchema = {
     type: new GraphQLList(TrackMetricsType),
     description: 'List of all track error',
-    resolve: (track: iTrackDataBase, filter: Filter & RequestData) => {
+    resolve: (track: iTrackDataBase, filter: Filter & RequestData,  context: Context) => {
+
+        if(!context.isAdmin) return []
         
         if(filter?.trackId || track) {
             return TrackMetricsHelper.loadTrackMetricsByTrackId(filter.trackId || track.id)

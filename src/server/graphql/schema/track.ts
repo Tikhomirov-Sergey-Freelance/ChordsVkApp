@@ -1,6 +1,6 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql'
 
-import { iTrack, iTrackDataBase } from 'types/track'
+import { iTrackDataBase } from 'types/track'
 
 import TrackHelper from '../../database/helpers/track'
 import ArtistHelper from '../../database/helpers/artist'
@@ -11,7 +11,7 @@ import { ArtistType } from './artist'
 import { TrackMetricsSchema } from './track-metrics'
 import { TrackErrorSchema } from './track-error'
 
-export const TrackType = new GraphQLObjectType<iTrackDataBase, iTrack>({
+export const TrackType = new GraphQLObjectType<iTrackDataBase>({
   name: 'Tracks',
   description: 'Кандидаты в треки',
   fields: () => ({
@@ -72,8 +72,8 @@ export const TrackSchema = {
     query: { type: GraphQLString },
     ...requestDataArgs
   },
-  resolve: (root: unknown, filter: Filter & RequestData) => {
-
+  resolve: async (root: unknown, filter: Filter & RequestData) => {
+    
     const requestData = mapRequestDataArgs(filter)
 
     if(filter?.id) {
