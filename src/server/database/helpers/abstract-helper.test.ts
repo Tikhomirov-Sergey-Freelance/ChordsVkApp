@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import EntityHelper from './abstract-helper'
 
 class TestHelper extends EntityHelper {
@@ -26,49 +27,49 @@ describe('server/database/helpers/abstract-helper', () => {
             TestHelper.setMapKey(['a', 'b', 'c', 'd', 'e', 'r'])
         })
 
-        test('should return empty array if empty mapKey', () => {
+        it('should return empty array if empty mapKey', () => {
             TestHelper.setMapKey([])
             const entity = { a: 1, b: 'a', c: null, d: {}, e: undefined }
-            expect(TestHelper.entityToArray(entity)).toEqual([])
+            expect(TestHelper.entityToArray(entity)).to.be.empty
         })
 
-        test('should ignore keys without mapKey dictionary', () => {
+        it('should ignore keys without mapKey dictionary', () => {
             const entity = { a: 1, b: 'a', c: null, d: {}, e: 3, j: 5 }
-            expect(TestHelper.entityToArray(entity)).toEqual([1, 'a', null, {}, 3])
+            expect(TestHelper.entityToArray(entity)).to.deep.equal([1, 'a', null, {}, 3])
         })
 
-        test('should return all values with any types', () => {
+        it('should return all values with any types', () => {
             const entity = { a: 1, b: 'a', c: null, d: {}, e: 3 }
-            expect(TestHelper.entityToArray(entity)).toEqual([1, 'a', null, {}, 3])
+            expect(TestHelper.entityToArray(entity)).to.deep.equal([1, 'a', null, {}, 3])
         })
 
-        test('should throw error if miss required key in entity', () => {
+        it('should throw error if miss required key in entity', () => {
             const entity = { a: 1 }
-            expect(() => TestHelper.entityToArray(entity)).toThrow()
+            expect(() => TestHelper.entityToArray(entity)).to.throw()
         })
 
-        test('should throw error if entity mapped required key is undefined', () => {
+        it('should throw error if entity mapped required key is undefined', () => {
             const entity = { a: 1, b: undefined, c: null, d: {}, e: undefined }
-            expect(() => TestHelper.entityToArray(entity)).toThrow()
+            expect(() => TestHelper.entityToArray(entity)).to.throw()
         })
 
-        test('should mapping data before insert', () => {
+        it('should mapping data before insert', () => {
 
             TestHelper.setMapKey(['a', 'b', 'c', 'd', 'e', 'j'])
             const entity = { a: 1, b: 'a', c: null, d: {}, e: 3, j: 5 }
-            expect(TestHelper.entityToArray(entity)).toEqual([1, 'a', null, {}, 3, 3])
+            expect(TestHelper.entityToArray(entity)).to.deep.equal([1, 'a', null, {}, 3, 3])
         })
 
-        test('should ignore field in ignoreByInsert property', () => {
+        it('should ignore field in ignoreByInsert property', () => {
 
             const entity = { a: 1, b: 'a', c: null, d: {}, e: 3, r: 5 }
-            expect(TestHelper.entityToArray(entity)).toEqual([1, 'a', null, {}, 3])
+            expect(TestHelper.entityToArray(entity)).to.deep.equal([1, 'a', null, {}, 3])
         })
 
-        test('should change undefined fields to null', () => {
+        it('should change undefined fields to null', () => {
             TestHelper.setMapKey(['a', 'b', 'c', 'd', 'e'])
             const entity = { a: 1, b: 1, c: null, d: {}, e: undefined }
-            expect(TestHelper.entityToArray(entity)[4]).toBeNull()
+            expect(TestHelper.entityToArray(entity)[4]).to.be.null
         })
     })
 })
