@@ -1,3 +1,4 @@
+import { RequestData } from '../connect'
 import EntityHelper from './abstract-helper'
 
 class FavouritesHelper extends EntityHelper {
@@ -9,20 +10,21 @@ class FavouritesHelper extends EntityHelper {
         'trackId'
     ]
 
-    // static async loadFavouiritesTracks(userId: string) {
+    static async loadFavouiritesTracks(userId: string, requestData: RequestData = {}) {
 
-    //     const data = await this.query<iTrackError>(`
-    //         SELECT * 
-    //         FROM 
-    //         WHERE trackId = '${trackId}'
-    //     `)
+        const data = await this.query<unknown>(`
+            SELECT track.* 
+            FROM UserFavourites favourite
+            JOIN Tracks track on track.id = favourite.trackId
+            WHERE favourite.id = '${userId}'
+        `, requestData)  
+        
+        if(data.error) {
+            throw data.error
+        }
 
-    //     if(data.error) {
-    //         throw data.error
-    //     }
-
-    //     return data.result
-    // }
+        return data.result
+    }
 }
 
 export default FavouritesHelper
