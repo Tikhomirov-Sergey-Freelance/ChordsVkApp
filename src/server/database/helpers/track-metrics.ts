@@ -18,6 +18,36 @@ class TrackMetricsHelper extends EntityHelper {
             inFavorites: data.inFavorites || 0
         }
     }
+
+    static async loadAllMetrics() {
+
+        const data = await this.query<iTrackMetrics>(`
+            SELECT * 
+            FROM TrackMetrics
+        `)
+
+        if(data.error) {
+            throw data.error
+        }
+
+        return data.result
+    }
+
+    static async loadTrackMetricsByTrackId(trackId: string) {
+
+        const data = await this.query<iTrackMetrics>(`
+            SELECT * 
+            FROM TrackMetrics
+            WHERE id = '${trackId}'
+        `)
+
+        if(data.error) {
+            throw data.error
+        }
+
+        return data.result
+
+    }
 }
 
 export default TrackMetricsHelper

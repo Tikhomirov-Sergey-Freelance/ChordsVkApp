@@ -3,6 +3,8 @@ import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 import { ChordsSchema } from './chord'
 import { ArtistSchema } from './artist'
 import { TrackSchema } from './track'
+import { TrackMetricsSchema } from './track-metrics'
+import { TrackErrorSchema } from './track-error'
 import { TrackCandidateSchema } from './track-candidate'
 
 export const RootType = new GraphQLObjectType({
@@ -11,7 +13,9 @@ export const RootType = new GraphQLObjectType({
     fields: {
         chords: ChordsSchema,
         artists: ArtistSchema,
-        tracks: TrackSchema,     
+        tracks: TrackSchema,    
+        trackMetrics: TrackMetricsSchema,
+        trackErrors: TrackErrorSchema, 
         trackCandidates: TrackCandidateSchema  
     }
 })

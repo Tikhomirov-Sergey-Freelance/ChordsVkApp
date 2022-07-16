@@ -6,7 +6,10 @@ import TrackHelper from '../../database/helpers/track'
 import ArtistHelper from '../../database/helpers/artist'
 
 import { requestDataArgs, RequestData, mapRequestDataArgs } from '../request-data'
+
 import { ArtistType } from './artist'
+import { TrackMetricsSchema } from './track-metrics'
+import { TrackErrorSchema } from './track-error'
 
 export const TrackType = new GraphQLObjectType<iTrackDataBase, iTrack>({
   name: 'Tracks',
@@ -48,7 +51,9 @@ export const TrackType = new GraphQLObjectType<iTrackDataBase, iTrack>({
             const artist = await ArtistHelper.loadArtistById(track.artistId)
             return artist[0]
         }
-     }
+     },
+     metrics: TrackMetricsSchema,
+     errors: TrackErrorSchema
   })
 })
 
