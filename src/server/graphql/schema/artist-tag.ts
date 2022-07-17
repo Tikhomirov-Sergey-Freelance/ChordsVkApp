@@ -13,6 +13,16 @@ export const ArtistTagType = new GraphQLObjectType<iArtistTag>({
     })
 })
 
+export const ArtistTagDTOType = new GraphQLObjectType<iArtistTag>({
+    name: 'ArtistTagDTO',
+    description: 'Артист тег для добавления',
+    fields: () => ({
+        tag: { type: new GraphQLNonNull(GraphQLString) },
+        strict: { type: GraphQLBoolean }
+    })
+})
+
+
 type Filter = {
     artistId: string
 }

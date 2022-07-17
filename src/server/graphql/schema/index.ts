@@ -7,6 +7,8 @@ import { TrackMetricsSchema } from './track-metrics'
 import { TrackErrorSchema } from './track-error'
 import { TrackCandidateSchema } from './track-candidate'
 
+import { AddArtistSchema } from './add-artist'
+
 export const RootQueryType = new GraphQLObjectType({
     name: 'AllChordsSchema',
     description: 'AllChordsSchema',
@@ -22,6 +24,15 @@ export const RootQueryType = new GraphQLObjectType({
     }
 })
 
+export const RootMutationType = new GraphQLObjectType({
+    name: 'AllChordsSchemaMutations',
+    description: 'AllChordsSchemaMutations',
+    fields: {
+        addArtist: AddArtistSchema
+    }
+})
+
 export const RootAppSchema = new GraphQLSchema({
-    query: RootQueryType
+    query: RootQueryType,
+    mutation: RootMutationType
 })

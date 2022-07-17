@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2'
-import db, { RequestData, Result } from '../connect'
+import db, { Connection, RequestData, Result, TransactionAction } from '../connect'
 
 abstract class EntityHelper {
 
@@ -81,6 +81,50 @@ abstract class EntityHelper {
         }
        
         return array
+    }
+
+    static async transaction<T>(action: TransactionAction<T>) {
+        return db.transaction<T>(action)
+    }
+
+    static async transactionInsertOne(connection: Connection, entity: unknown) {
+        try {
+
+            const valuesMapPlace = Array(this.mapKey.length).fill('?').join(',') 
+            
+            const result = await db.transactionInsertOne(connection, `
+            INSERT INTO ${this.entityName}(${this.mapKey.join(',')})
+            VALUES (${valuesMapPlace})`, this.entityToArray(entity))
+
+            if(result.error) {
+                throw result.error
+            }
+
+            return { result: result.result }
+
+        } catch (error) {
+            return { error }
+        }
+    }
+
+    static async transactionInsertMany(connection: Connection, entities: unknown[]): Promise<Result<boolean>> {
+        try {
+
+            const data = entities.map(entity => this.entityToArray(entity))
+
+            const result = await db.transactionInsertMany(connection, `
+            INSERT INTO ${this.entityName}(${this.mapKey.join(',')})
+            VALUES ?`, data)
+
+            if(result.error) {
+                throw result.error
+            }
+
+            return { result: result.result }
+
+        } catch (error) {
+            return { error }
+        }
     }
 
     protected static getKeysForSelect() {

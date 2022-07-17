@@ -1,5 +1,9 @@
-import { iArtist } from 'types/artists'
+import { createGuid } from 'code/common/guid'
+import { iArtist, iAddArtistDTO } from 'types/artists'
+
 import EntityHelper from './abstract-helper'
+
+import ArtistTagHelper from './atrist-tags'
 
 class ArtistHelper extends EntityHelper {
 
@@ -20,7 +24,7 @@ class ArtistHelper extends EntityHelper {
             FROM Artists
         `)
 
-        if(data.error) {
+        if (data.error) {
             throw data.error
         }
 
@@ -28,14 +32,14 @@ class ArtistHelper extends EntityHelper {
     }
 
     static async loadArtistById(id: string) {
-        
+
         const data = await this.query<iArtist>(`
             SELECT *
             FROM Artists
             WHERE id = '${id}'
         `)
-        
-        if(data.error) {
+
+        if (data.error) {
             throw data.error
         }
 
@@ -53,11 +57,35 @@ class ArtistHelper extends EntityHelper {
             WHERE tag = '${tag}'
         `)
 
-        if(data.error) {
+        if (data.error) {
             throw data.error
         }
 
         return data.result
+    }
+
+    static async insertArtist(artistDto: iAddArtistDTO) {
+
+
+        const artist: iArtist = {
+            id: createGuid(),
+            name: artistDto.name,
+            description: artistDto.description,
+            artistImage: artistDto.artistImage,
+            searchName: artistDto.name.toLowerCase()
+        }
+
+        const artistTags = ArtistTagHelper.getEntitiesByTags(artist, artistDto.tags)
+
+        await this.transaction<boolean>(async (connection) => {
+
+            await this.transactionInsertOne(connection, artist)
+            await ArtistTagHelper.insertMany(artistTags)
+
+            return { result: true }
+        })
+
+        return artist
     }
 }
 

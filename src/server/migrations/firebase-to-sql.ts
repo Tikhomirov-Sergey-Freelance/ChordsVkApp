@@ -56,21 +56,17 @@ interface iExportData {
     id: string, data: unknown
 }
 
-const firebaseToJson = async () => {
-
-    console.log('Начало экспорта')
+const firebaseToJson = async (keys: string[]) => {
 
     const database = new Database()
     database.devPath = resolve(__dirname, '../../..', 'ChordsPrivate/firebase/service-account-key.json')
     database.init()
 
     const store = firestore(database.app)
-    const keys = Object.keys(dictionary)
 
     const requests = keys.map(key => collectionToSQL(key, store, dictionary[key]))
 
     await Promise.all(requests)
-    console.log('Завершение экспорта')
 }
 
 const collectionToSQL = async (collection: string, firestore: firestore.Firestore, model: DictionaryItem) => {
@@ -123,4 +119,12 @@ const collectionToSQL = async (collection: string, firestore: firestore.Firestor
     }
 }
 
-firebaseToJson()
+(async () => { 
+
+    console.log('Начало экспорта')
+
+    await firebaseToJson(['admins', 'track-candidates', 'artists', 'tracks'])
+    await firebaseToJson(['artist-tags', 'track-metrics', 'track-errors', 'favourites'])
+
+    console.log('Завершение экспорта')
+})

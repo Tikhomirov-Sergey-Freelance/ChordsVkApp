@@ -16,9 +16,23 @@ export interface iArtist {
     searchName: string
 }
 
+export interface iAddArtistDTO {
+    name: string
+    
+    description: string
+    artistImage: string
+
+    tags: iArtistTagDTO[]
+}
+
 export interface iArtistTag {
     id: string
     artistId: string
+    tag: string
+    strict?: boolean
+}
+
+export interface iArtistTagDTO {
     tag: string
     strict?: boolean
 }

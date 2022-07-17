@@ -16,7 +16,7 @@ const validateVkParams = (req) => {
 
     const sign: string = query.sign
 
-    if(!sign) return false
+    if(!sign) return false 
 
     for(const key in query) {
 
@@ -26,6 +26,7 @@ const validateVkParams = (req) => {
     }
 
     const vkParamsString = vkParams.join('&')
+    
     const config = getVKConfig()
 
     const paramsHash = crypto

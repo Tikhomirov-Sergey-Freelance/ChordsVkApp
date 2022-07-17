@@ -1,4 +1,4 @@
-import { createPool, Connection, ResultSetHeader, FieldPacket } from 'mysql2'
+import { createPool, ResultSetHeader, FieldPacket } from 'mysql2'
 import { Pool, PoolConnection } from 'mysql2/promise'
 import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
@@ -11,6 +11,9 @@ export type RequestData = {
     offset?: number
     orderby?: string
 }
+export type Connection = PoolConnection
+
+export type TransactionAction<T> = (connection: Connection) => Promise<Result<T>>
 
 export class Database {
 
@@ -27,17 +30,8 @@ export class Database {
 
     async query<R>(sql: string, requestData: RequestData = {}): Promise<Result<R[]>> {
 
-        const limit = requestData.limit ? 
-        `LIMIT ${requestData.limit} OFFSET ${requestData.offset || 0}` : ''
+        const _sql = this.prepareQuerySql(sql, requestData)
 
-        const orderby = requestData.orderby ? `ORDERBY ${requestData.orderby}` : ''
-
-        const _sql = `
-            ${sql}
-            ${orderby}
-            ${limit}
-        `
-        
         return this.connect(async (connection: PoolConnection) => {
             const [rows] = await connection.query(_sql)
             return { result: rows as R[] }
@@ -50,11 +44,68 @@ export class Database {
             const result = (await connection.query(sql, data)) as unknown as ResultSetHeader
             return { result }
         })
-    } 
+    }
 
     async insertMany(sql: string, data: unknown[] = null): Promise<Result<boolean>> {
 
         return this.connect(async (connection: PoolConnection) => {
+            await connection.query(sql, data)
+            return { result: true }
+        })
+    }
+
+    async transaction<T>(action: TransactionAction<T>) {
+
+        return this.connect(async (connection: PoolConnection) => {
+
+            await connection.beginTransaction()
+            const { error, result } = await this.transactionAction<T>(connection as Connection, action)
+
+            if(error) {
+                throw error
+            }
+
+            return result
+        })
+    }
+
+    async transactionAction<T>(connection: Connection, action: TransactionAction<T>): Promise<Result<T>>  {
+
+        try {
+            return await action(connection)  
+        } catch (error) {
+            return { error }
+        }
+    }
+
+    async transactionQuery<R>(
+        connection: Connection,
+        sql: string,
+        requestData: RequestData = {}): Promise<Result<R[]>> {
+
+        const _sql = this.prepareQuerySql(sql, requestData)
+
+        return this.transactionAction<R[]>(connection, async () => {
+            const [rows] = await connection.query(_sql)
+            return { result: rows as R[] }
+        })
+    }
+
+    async transactionInsertOne(
+        connection: Connection,
+        sql: string,
+        data: unknown[] = null): Promise<Result<ResultSetHeader>> {
+        return this.transactionAction(connection, async () => {
+            const result = (await connection.query(sql, data)) as unknown as ResultSetHeader
+            return { result }
+        })
+    }
+
+    async transactionInsertMany(
+        connection: Connection,
+        sql: string,
+        data: unknown[] = null): Promise<Result<boolean>> {
+        return this.transactionAction(connection, async () => {
             await connection.query(sql, data)
             return { result: true }
         })
@@ -72,7 +123,7 @@ export class Database {
         } catch (error) {
             return { error }
         } finally {
-            if(connection?.release) {
+            if (connection?.release) {
                 connection.release()
             }
         }
@@ -101,12 +152,28 @@ export class Database {
         if (existsSync(this.devopsPath)) {
             return this.devopsPath
         }
-        
+
         if (existsSync(this.prodPath)) {
             return this.prodPath
         }
-        
+
         return null
+    }
+
+    private prepareQuerySql(sql: string, requestData: RequestData = {}): string {
+
+        const limit = requestData.limit ?
+            `LIMIT ${requestData.limit} OFFSET ${requestData.offset || 0}` : ''
+
+        const orderby = requestData.orderby ? `ORDERBY ${requestData.orderby}` : ''
+
+        const _sql = `
+            ${sql}
+            ${orderby}
+            ${limit}
+        `
+
+        return _sql
     }
 }
 
