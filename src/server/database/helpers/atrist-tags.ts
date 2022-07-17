@@ -1,5 +1,6 @@
-import { iArtist, iArtistTag, iArtistTagDTO } from 'types/artists'
+import { iArtistTag, iArtistTagDTO } from 'types/artists'
 import { createGuid } from '../../../code/common/guid'
+import { Connection, Result } from '../connect'
 import EntityHelper from './abstract-helper'
 
 class ArtistTagsHelper extends EntityHelper {
@@ -25,7 +26,7 @@ class ArtistTagsHelper extends EntityHelper {
             FROM ArtistTag
         `)
 
-        if(data.error) {
+        if (data.error) {
             throw data.error
         }
 
@@ -40,23 +41,49 @@ class ArtistTagsHelper extends EntityHelper {
             WHERE artistId = '${artistId}'
         `)
 
-        if(data.error) {
+        if (data.error) {
             throw data.error
         }
 
         return data.result
     }
 
-    static getEntitiesByTags(artist: iArtist, tags: iArtistTagDTO[] = []) {
+    static async transactionUpdateTags
+        (connection: Connection,
+            artistId: string,
+            tags: iArtistTagDTO[] = [],
+            artistName?: string): Promise<Result<boolean>> {
+
+        const artistTags = this.getEntitiesByTags(artistId, tags, artistName)
+        
+        const { error: delError } = await this.transactionDeleteTags(connection, artistId)
+        const { error: insertError } = await this.transactionInsertMany(connection, artistTags)
+                console.log(delError, insertError)
+        if(delError || insertError) {
+            throw delError || insertError
+        }
+        
+        return { result: true }
+    }
+
+    static async transactionDeleteTags(connection: Connection, artistId: string) {
+        return this.transactionExecute(connection, `
+            DELETE FROM ArtistTag WHERE artistId = '${artistId}'
+        `)
+    }
+
+    static getEntitiesByTags(artistId: string, tags: iArtistTagDTO[] = [], artistName?: string) {
 
         const entities: iArtistTag[] = tags.map(tag => ({
             ...tag as iArtistTag,
             id: createGuid(),
-            artistId: artist.id
+            artistId
         }))
 
-        if(entities.some(entity => entity.tag === artist.searchName)) {
-            entities.push({ id: createGuid(), tag: artist.searchName, artistId: artist.id })
+        const searchName = artistName?.toUpperCase()
+
+        if (searchName && entities.some(entity => entity.tag === searchName)) {
+            entities.push({ id: createGuid(), tag: searchName, artistId })
         }
 
         return entities

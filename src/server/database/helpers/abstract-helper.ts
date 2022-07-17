@@ -12,6 +12,14 @@ abstract class EntityHelper {
         return db.query<R>(sql, requestData)
     }
 
+    static async execute(sql: string, data?: unknown) {
+        return db.execute(sql, data)
+    }
+
+    static async update(table: string, updateData: object, where: string) {
+        return db.update(table, updateData, where)
+    }
+
     static async insertOne(entity: unknown): Promise<Result<ResultSetHeader>> {
 
         try {
@@ -87,6 +95,10 @@ abstract class EntityHelper {
         return db.transaction<T>(action)
     }
 
+    static async transactionUpdate(connection: Connection, table: string, updateData: object, where: string) {
+        return db.transactionUpdate(connection, table, updateData, where)
+    }
+
     static async transactionInsertOne(connection: Connection, entity: unknown) {
         try {
 
@@ -105,6 +117,10 @@ abstract class EntityHelper {
         } catch (error) {
             return { error }
         }
+    }
+
+    static async transactionExecute(connection: Connection, sql: string, data?: unknown) {
+        return db.transactionExecute(connection, sql, data)
     }
 
     static async transactionInsertMany(connection: Connection, entities: unknown[]): Promise<Result<boolean>> {

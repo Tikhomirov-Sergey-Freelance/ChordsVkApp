@@ -66,7 +66,6 @@ class ArtistHelper extends EntityHelper {
 
     static async insertArtist(artistDto: iAddArtistDTO) {
 
-
         const artist: iArtist = {
             id: createGuid(),
             name: artistDto.name,
@@ -75,7 +74,7 @@ class ArtistHelper extends EntityHelper {
             searchName: artistDto.name.toLowerCase()
         }
 
-        const artistTags = ArtistTagHelper.getEntitiesByTags(artist, artistDto.tags)
+        const artistTags = ArtistTagHelper.getEntitiesByTags(artist.id, artistDto.tags, artist.name)
 
         await this.transaction<boolean>(async (connection) => {
 
@@ -86,6 +85,42 @@ class ArtistHelper extends EntityHelper {
         })
 
         return artist
+    }
+
+    static async updateAdtist(artistId: string, artistDto: iAddArtistDTO) {
+
+        const { error } = await this.transaction<boolean>(async (connection) => {
+
+            const data = { ...artistDto }
+            delete data.tags
+
+            const { error: updateError } = await this.transactionUpdate(connection, this.entityName, data,
+                `id = '${artistId}'`)
+
+            if(updateError) {
+                throw updateError
+            }
+
+            if (data.name || artistDto.tags) {
+                const { error: updateTagsError } = await ArtistTagHelper.transactionUpdateTags(
+                    connection, 
+                    artistId, 
+                    artistDto.tags, 
+                    artistDto.name)
+
+                    if(updateTagsError) {
+                        throw updateTagsError
+                    }
+            }
+
+            return { result: true }
+        })
+
+        if(error) {
+            throw error
+        }
+
+        return this.loadArtistById(artistId)
     }
 }
 

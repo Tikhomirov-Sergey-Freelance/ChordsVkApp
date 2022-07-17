@@ -38,6 +38,23 @@ export class Database {
         })
     }
 
+    async update(table: string, updateObject: object, where: string) {
+
+        const [sql, data] = this.prepareUpdateSql(table, updateObject, where)
+
+        return this.connect(async (connection: PoolConnection) => {
+            await connection.query(sql, data)
+            return { result: true }
+        })
+    }
+
+    async execute(sql: string, data?: unknown): Promise<Result<boolean>> {
+        return this.connect(async (connection: PoolConnection) => {
+            await connection.query(sql, data)
+            return { result: true }
+        })
+    }
+
     async insertOne(sql: string, data: unknown[] = null): Promise<Result<ResultSetHeader>> {
 
         return this.connect(async (connection: PoolConnection) => {
@@ -61,7 +78,7 @@ export class Database {
             await connection.beginTransaction()
             const { error, result } = await this.transactionAction<T>(connection as Connection, action)
 
-            if(error) {
+            if (error) {
                 throw error
             }
 
@@ -69,10 +86,10 @@ export class Database {
         })
     }
 
-    async transactionAction<T>(connection: Connection, action: TransactionAction<T>): Promise<Result<T>>  {
+    async transactionAction<T>(connection: Connection, action: TransactionAction<T>): Promise<Result<T>> {
 
         try {
-            return await action(connection)  
+            return await action(connection)
         } catch (error) {
             return { error }
         }
@@ -88,6 +105,30 @@ export class Database {
         return this.transactionAction<R[]>(connection, async () => {
             const [rows] = await connection.query(_sql)
             return { result: rows as R[] }
+        })
+    }
+
+    async transactionUpdate(
+        connection: Connection, 
+        table: string, 
+        updateObject: object, 
+        where: string) {
+
+        const [sql, data] = this.prepareUpdateSql(table, updateObject, where)
+        console.log(sql, data)
+        return this.transactionAction(connection, async () => {
+            await connection.query(sql, data)
+            return { result: true }
+        })
+    }
+
+    async transactionExecute(
+        connection: Connection,
+        sql: string,
+        data?: unknown): Promise<Result<boolean>> {
+        return this.transactionAction<boolean>(connection, async () => {
+            await connection.query(sql, data)
+            return { result: true }
         })
     }
 
@@ -174,6 +215,26 @@ export class Database {
         `
 
         return _sql
+    }
+
+    private prepareUpdateSql(table: string, updateData: object, where: string): [string, unknown[]] {
+
+        const keys = []
+        const values = []
+
+        for(const key in updateData) {
+            
+            keys.push(`${key} = ?`)
+            values.push(updateData[key])
+        }
+
+        const _sql = `
+            UPDATE ${table}
+            SET ${keys.join(', ')}
+            WHERE ${where}
+        `
+
+        return [_sql, values]
     }
 }
 

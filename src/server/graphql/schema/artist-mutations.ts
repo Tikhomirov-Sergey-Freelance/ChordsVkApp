@@ -8,6 +8,7 @@ import {
 
 import { iArtistTag, iAddArtistDTO } from 'types/artists'
 import ArtistHelper from '../../database/helpers/artist'
+import { Context } from '../context'
 import { ArtistType } from './artist'
 
 export const ArtistTagInputType = new GraphQLInputObjectType({
@@ -28,7 +29,12 @@ export const ArtistInputType = new GraphQLInputObjectType({
     }
 })
 
-type ArtistDTO = {
+type AddArtistDTO = {
+    artist: iAddArtistDTO & iArtistTag
+}
+
+type UpdateArtistDTO = {
+    artistId: string
     artist: iAddArtistDTO & iArtistTag
 }
 
@@ -38,12 +44,37 @@ export const AddArtistSchema = {
     args: {
         artist: { type: ArtistInputType }
     },
-    resolve: (root: unknown, { artist }: ArtistDTO) => {
+    resolve: (root: unknown, { artist }: AddArtistDTO, { isAdmin }: Context) => {
+
+        if(!isAdmin) {
+            throw 'Только администраторы могу добавлять артистов'
+        }
 
         if (!artist) {
             throw 'Не указан артист'
         }
 
         return ArtistHelper.insertArtist(artist)
+    }
+}
+
+export const UpdateArtistSchema = {
+    type: ArtistType,
+    description: 'Update Artist',
+    args: {
+        artistId: { type: new GraphQLNonNull(GraphQLString) },
+        artist: { type: ArtistInputType }
+    },
+    resolve: (root: unknown, { artistId, artist }: UpdateArtistDTO, { isAdmin }: Context) => {
+
+        if(!isAdmin) {
+            throw 'Только администраторы могу изменять артиста'
+        }
+
+        if (!artistId) {
+            throw 'Не указан артист'
+        }
+        console.log(artistId, artist)
+        return ArtistHelper.updateAdtist(artistId, artist)
     }
 }

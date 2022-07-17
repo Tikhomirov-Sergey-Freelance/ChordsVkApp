@@ -35,7 +35,7 @@ export const ArtistSchema = {
         id: { type: GraphQLString },
         tag: { type: GraphQLString },
     },
-    resolve: (root: unknown, args?: Filter) => {
+    resolve: (root: unknown, args: Filter) => {
 
         if(args?.tag) {
             return ArtistHelper.loadArtistByTag(args?.tag)
