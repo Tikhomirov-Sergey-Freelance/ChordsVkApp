@@ -38,6 +38,10 @@ type UpdateArtistDTO = {
     artist: iAddArtistDTO & iArtistTag
 }
 
+type DeleteArtistDTO = {
+    artistId: string
+}
+
 export const AddArtistSchema = {
     type: ArtistType,
     description: 'Add Artist',
@@ -46,7 +50,7 @@ export const AddArtistSchema = {
     },
     resolve: (root: unknown, { artist }: AddArtistDTO, { isAdmin }: Context) => {
 
-        if(!isAdmin) {
+        if (!isAdmin) {
             throw 'Только администраторы могу добавлять артистов'
         }
 
@@ -67,14 +71,40 @@ export const UpdateArtistSchema = {
     },
     resolve: (root: unknown, { artistId, artist }: UpdateArtistDTO, { isAdmin }: Context) => {
 
-        if(!isAdmin) {
+        if (!isAdmin) {
             throw 'Только администраторы могу изменять артиста'
         }
 
         if (!artistId) {
             throw 'Не указан артист'
         }
-        console.log(artistId, artist)
+
         return ArtistHelper.updateAdtist(artistId, artist)
     }
+}
+
+export const DeleteArtistSchema = {
+    type: GraphQLBoolean,
+    description: 'Delete Artist',
+    args: {
+        artistId: { type: new GraphQLNonNull(GraphQLString) }
+    },
+    resolve: (root: unknown, { artistId }: DeleteArtistDTO, { isAdmin }: Context) => {
+
+        if (!isAdmin) {
+            throw 'Только администраторы могу удалять артиста'
+        }
+
+        if (!artistId) {
+            throw 'Не указан артист'
+        }
+
+        return ArtistHelper.deleteArtist(artistId)
+    }
+}
+
+export default {
+    addArtist: AddArtistSchema,
+    updateArtist: UpdateArtistSchema,
+    deleteArtist: DeleteArtistSchema
 }

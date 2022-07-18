@@ -46,9 +46,9 @@ abstract class EntityHelper {
         try {
 
             const data = entities.map(entity => this.entityToArray(entity))
-
+            
             const result = await db.insertMany(`
-            INSERT INTO ${this.entityName}(${this.mapKey.join(',')})
+            INSERT INTO ${this.entityName}(${this.mapKey.join(', ')})
             VALUES ?`, data)
 
             if(result.error) {

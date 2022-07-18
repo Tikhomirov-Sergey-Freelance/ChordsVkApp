@@ -52,7 +52,7 @@ class ArtistHelper extends EntityHelper {
 
         const data = await this.query<iArtist>(`
             SELECT art.*
-            FROM artist art
+            FROM artists art
             JOIN artisttag tag on art.id = tag.artistId
             WHERE tag = '${tag}'
         `)
@@ -78,8 +78,17 @@ class ArtistHelper extends EntityHelper {
 
         await this.transaction<boolean>(async (connection) => {
 
-            await this.transactionInsertOne(connection, artist)
-            await ArtistTagHelper.insertMany(artistTags)
+            const { error: insertArtistError } = await this.transactionInsertOne(connection, artist)
+
+            if (insertArtistError) {
+                throw insertArtistError
+            }
+
+            const { error: insertTagsError } = await ArtistTagHelper.transactionInsertMany(connection, artistTags)
+
+            if (insertTagsError) {
+                throw insertTagsError
+            }
 
             return { result: true }
         })
@@ -97,30 +106,57 @@ class ArtistHelper extends EntityHelper {
             const { error: updateError } = await this.transactionUpdate(connection, this.entityName, data,
                 `id = '${artistId}'`)
 
-            if(updateError) {
+            if (updateError) {
                 throw updateError
             }
 
             if (data.name || artistDto.tags) {
                 const { error: updateTagsError } = await ArtistTagHelper.transactionUpdateTags(
-                    connection, 
-                    artistId, 
-                    artistDto.tags, 
+                    connection,
+                    artistId,
+                    artistDto.tags,
                     artistDto.name)
 
-                    if(updateTagsError) {
-                        throw updateTagsError
-                    }
+                if (updateTagsError) {
+                    throw updateTagsError
+                }
             }
 
             return { result: true }
         })
 
-        if(error) {
+        if (error) {
             throw error
         }
 
-        return this.loadArtistById(artistId)
+        return (await this.loadArtistById(artistId))[0]
+    }
+
+    static async deleteArtist(artistId: string) {
+
+        const { error } = await this.transaction<boolean>(async (connection) => {
+
+            const { error: deleteTagsError } = await ArtistTagHelper.transactionDeleteTags(connection, artistId)
+            
+            if (deleteTagsError) {
+                throw deleteTagsError
+            }
+            const { error: deleteArtistError } =
+                await this.transactionExecute(connection, `
+            DELETE FROM Artists WHERE id = '${artistId}'`)
+
+            if (deleteArtistError) {
+                throw deleteTagsError
+            }
+
+            return { result: true }
+        })
+
+        if (error) {
+            throw error
+        }
+
+        return true
     }
 }
 

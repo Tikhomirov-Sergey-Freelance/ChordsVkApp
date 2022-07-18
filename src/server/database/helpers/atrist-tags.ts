@@ -8,9 +8,9 @@ class ArtistTagsHelper extends EntityHelper {
     static entityName = 'ArtistTag'
 
     static mapKey = [
+        'tag',
         'id',
         'artistId',
-        'tag',
         'strict'
     ]
 
@@ -58,7 +58,7 @@ class ArtistTagsHelper extends EntityHelper {
         
         const { error: delError } = await this.transactionDeleteTags(connection, artistId)
         const { error: insertError } = await this.transactionInsertMany(connection, artistTags)
-                console.log(delError, insertError)
+                
         if(delError || insertError) {
             throw delError || insertError
         }
@@ -77,7 +77,8 @@ class ArtistTagsHelper extends EntityHelper {
         const entities: iArtistTag[] = tags.map(tag => ({
             ...tag as iArtistTag,
             id: createGuid(),
-            artistId
+            artistId,
+            strict: tag.strict || false
         }))
 
         const searchName = artistName?.toUpperCase()

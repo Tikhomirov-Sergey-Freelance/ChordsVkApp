@@ -50,6 +50,12 @@
                 "quotes": "off",
                 "semi": "off"
             }
+        },
+        {
+            "files": ["test/**/*"],
+            "rules": {
+                "@typescript-eslint/no-var-requires": "off"
+            }
         }
     ]
 }
