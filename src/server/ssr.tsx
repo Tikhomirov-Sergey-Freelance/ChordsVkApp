@@ -1,15 +1,10 @@
-import React from 'react'
-import { SSRWrapper } from '@vkontakte/vkui'
-
-import App from '../App'
-
 export default (userAgent, appParams) => {
 
-    const jsx = <SSRWrapper userAgent={userAgent}>
-        <App/>
-    </SSRWrapper>
+    // const jsx = <SSRWrapper userAgent={userAgent}>
+    //     <App/>
+    // </SSRWrapper>
 
-    return getHtml(jsx, appParams)
+    return getHtml('', appParams)
 }
 
 const getHtml = (reactHtml, data) => {

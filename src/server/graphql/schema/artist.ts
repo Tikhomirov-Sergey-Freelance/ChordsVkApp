@@ -14,10 +14,11 @@ export const ArtistType = new GraphQLObjectType<iArtist>({
         id: { type: new GraphQLNonNull(GraphQLString) },
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: GraphQLString },
+        artistImage: { type: GraphQLString },
         searchName: { type: new GraphQLNonNull(GraphQLString) },
         tags: ArtistTagSchema,
-        tracks : {
-            type: new GraphQLList(TrackType), 
+        tracks: {
+            type: new GraphQLList(TrackType),
             resolve: (artist: iArtist) => TrackHelper.loadTracksByArtistId(artist.id)
         }
     })
@@ -37,11 +38,11 @@ export const ArtistSchema = {
     },
     resolve: (root: unknown, args: Filter) => {
 
-        if(args?.tag) {
+        if (args?.tag) {
             return ArtistHelper.loadArtistByTag(args?.tag)
         }
-        
-        if(args?.id) {
+
+        if (args?.id) {
             return ArtistHelper.loadArtistById(args.id)
         }
 

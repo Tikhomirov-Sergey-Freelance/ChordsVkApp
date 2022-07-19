@@ -1,9 +1,11 @@
 import { artistToShortArtist } from 'code/artist/mapper'
 import { arrayToPools } from 'code/common/array'
-import { collection, getDocs, where, query, getDoc, doc, runTransaction, orderBy } from 'firebase/firestore'
+import { collection, getDocs, where, query, getDoc, doc, runTransaction } from 'firebase/firestore'
 import { Firebase } from 'stores/root-store'
 import { iArtist, iShortArtist } from 'types/artists'
 import { loadArtistTagsByQuery } from './artist-tags'
+import client from '../apollo-client'
+import { AllShortArtistQuery } from '../graphql/queries/artist'
 
 export const loadArtistByTags = async (tag: string) => {
 
@@ -31,18 +33,14 @@ export const loadArtistByTags = async (tag: string) => {
 
 export const loadAllArtists = async () => {
 
-    try {
-        const querySnapshot =
-            query(
-                collection(await Firebase.getFirestore(), 'short-artists'),
-                orderBy('searchName'))
-
-        const data = await getDocs(querySnapshot)
-        return data.docs.map(item => item.data()) as iShortArtist[]
-
-    } catch (error) {
+    const { data, error } = 
+        await client.query<{ artists: iShortArtist[]}>({ query: AllShortArtistQuery })
+    
+    if(error) {
         return []
     }
+
+    return data.artists
 }
 
 export const loadArtistsByQuery = async (q: string) => {
