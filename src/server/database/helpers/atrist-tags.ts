@@ -83,7 +83,7 @@ class ArtistTagsHelper extends EntityHelper {
 
         const searchName = artistName?.toUpperCase()
 
-        if (searchName && entities.some(entity => entity.tag === searchName)) {
+        if (searchName && !entities.some(entity => entity.tag === searchName)) {
             entities.push({ id: createGuid(), tag: searchName, artistId })
         }
 

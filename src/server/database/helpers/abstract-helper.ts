@@ -152,7 +152,6 @@ abstract class EntityHelper {
         if(!data.length) return []
 
         if(data[0].length !== keys.length) {
-            console.log(data[0], keys.length)
             throw 'Количество полей не совпадает с ожидаемыми'
         }
 

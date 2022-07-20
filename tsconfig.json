@@ -10,7 +10,8 @@
       "baseUrl": "src",
       "skipLibCheck": true,
       "checkJs": false,
-      "skipDefaultLibCheck": true
+      "skipDefaultLibCheck": true,
+      "target": "ES5"
   },
   "ts-node": {
     "compilerOptions": {

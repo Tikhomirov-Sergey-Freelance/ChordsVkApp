@@ -48,17 +48,17 @@ export const AddArtistSchema = {
     args: {
         artist: { type: ArtistInputType }
     },
-    resolve: (root: unknown, { artist }: AddArtistDTO, { isAdmin }: Context) => {
+    resolve: (root: unknown, dto: AddArtistDTO, { isAdmin }: Context) => {
 
         if (!isAdmin) {
             throw 'Только администраторы могу добавлять артистов'
         }
 
-        if (!artist) {
+        if (!dto.artist) {
             throw 'Не указан артист'
         }
 
-        return ArtistHelper.insertArtist(artist)
+        return ArtistHelper.insertArtist(dto.artist)
     }
 }
 

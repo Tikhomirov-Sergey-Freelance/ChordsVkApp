@@ -2,10 +2,11 @@ import { artistToShortArtist } from 'code/artist/mapper'
 import { arrayToPools } from 'code/common/array'
 import { collection, getDocs, where, query, getDoc, doc, runTransaction } from 'firebase/firestore'
 import { Firebase } from 'stores/root-store'
-import { iArtist, iShortArtist } from 'types/artists'
+import { iAddArtistDTO, iArtist, iShortArtist } from 'types/artists'
 import { loadArtistTagsByQuery } from './artist-tags'
 import client from '../apollo-client'
 import { AllShortArtistQuery } from '../graphql/queries/artist'
+import { AddArtistMutation } from '../graphql/mutations/artist'
 
 export const loadArtistByTags = async (tag: string) => {
 
@@ -150,22 +151,18 @@ export const loadShortArtistById = async (id: string) => {
     }
 }
 
-export const addArtist = async (artist: iArtist) => {
+export const addArtist = async (artist: iAddArtistDTO) => {
 
-    const firestore = await Firebase.getFirestore()
+    const { data, errors } = await client.mutate<{ addArtist: { id: string } }>({ 
+        mutation: AddArtistMutation, 
+        variables: { artist }
+    })
 
-    try {
-
-        await runTransaction(firestore, async transaction => {
-            transaction.set(doc(firestore, `artists/${artist.id}`), artist)
-            transaction.set(doc(firestore, `short-artists/${artist.id}`), artistToShortArtist(artist))
-        })
-
-        return true
-
-    } catch (error) {
+    if(errors && errors.length) {
         return false
     }
+
+    return data.addArtist.id
 }
 
 export const updateArtist = async (artist: iArtist) => {

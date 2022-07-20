@@ -64,7 +64,7 @@ export class Database {
     }
 
     async insertMany(sql: string, data: unknown[] = null): Promise<Result<boolean>> {
-        console.log(sql, data)
+        
         return this.connect(async (connection: PoolConnection) => {
             await connection.query(sql, [data])
             return { result: true }
@@ -115,7 +115,7 @@ export class Database {
         where: string) {
 
         const [sql, data] = this.prepareUpdateSql(table, updateObject, where)
-        console.log(sql, data)
+        
         return this.transactionAction(connection, async () => {
             await connection.query(sql, data)
             return { result: true }
@@ -147,7 +147,7 @@ export class Database {
         sql: string,
         data: unknown[] = null): Promise<Result<boolean>> {
         return this.transactionAction(connection, async () => {
-            console.log(sql, [data])
+            
             await connection.query(sql, [data])
             return { result: true } 
         })

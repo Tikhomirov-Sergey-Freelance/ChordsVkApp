@@ -4,7 +4,7 @@ import { createGuid } from '../../../code/common/guid'
 import { Router } from 'stores/root-store'
 
 import { snackbar } from '../../../code/common/alerts'
-import { defaultArtist, iArtist, iArtistTag, iShortArtist } from 'types/artists'
+import { defaultArtist, iAddArtistDTO, iArtist, iArtistTag, iArtistTagDTO, iShortArtist } from 'types/artists'
 import { saveArtistLogo } from 'code/database/images'
 import { addArtist, updateArtist } from 'code/database/artists'
 import { loadTracksByArtist, updateTracksSearchName } from 'code/database/tracks'
@@ -48,11 +48,11 @@ export class AddArtistStore {
 
         if (this.mode === 'add' || this.mode === 'from-track-candidate') {
             await addArtist(artist)
-            this.saveTags(artist) 
+           // this.saveTags(artist) 
             snackbar('Добавили артиста')
         } else {
-            await updateArtist(artist)
-            await Promise.all([this.recalcTracksNames(artist), this.saveTags(artist)])
+            //await updateArtist(artist)
+            //await Promise.all([this.recalcTracksNames(artist), this.saveTags(artist)])
             snackbar('Изменили артиста')
         }
 
@@ -65,14 +65,17 @@ export class AddArtistStore {
         }
     }
 
-    get artistToSave(): iArtist {
+    get artistToSave(): iAddArtistDTO {
         return {
-            id: this.id,
             name: this.name,
             description: this.description || '',
-            artistImage: this.artistImage,
-            searchName: this.name.toLocaleUpperCase()
+            artistImage: this.artistImage || '',
+            tags: this.tagsToSave
         }
+    }
+
+    get tagsToSave(): iArtistTagDTO[] {
+        return this.tags.map(tag => ({ tag }))
     }
 
     changeProperty(property: keyof iArtist, value: unknown) {
@@ -94,11 +97,11 @@ export class AddArtistStore {
         this.tags = tags
     }
 
-    async saveLogo(artist: iArtist) {
+    async saveLogo(artist: iAddArtistDTO) {
 
         if (!this.imageData) return
 
-        const logo = await saveArtistLogo(artist.id, this.imageData)
+        const logo = null//await saveArtistLogo(artist.id, this.imageData)
 
         if (!logo) {
             snackbar('Ошибка при сохранении логотипа.')
